@@ -113,7 +113,9 @@ gulp.task('watch', function () {
   gulp.watch('Sources/**/*', gulp.series('swift-build', 'reload-server'))
 })
 
-gulp.task('serve', gulp.series(gulp.parallel('swift-build', 'static-build'), gulp.parallel('start-server', 'watch')))
+gulp.task('build', gulp.parallel('swift-build', 'static-build'))
+
+gulp.task('serve', gulp.series('build', gulp.parallel('start-server', 'watch')))
 
 // When the gulp process is terminated, make sure to clean up
 process.on('exit', function () {
