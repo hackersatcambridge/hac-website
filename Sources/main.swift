@@ -6,7 +6,6 @@ import KituraStencil
 import LoggerAPI
 import HeliumLogger
 
-// Create a new router
 let router = Router()
 
 // Heilium logger provides logging for Kitura processes
@@ -14,13 +13,9 @@ HeliumLogger.use()
 // This speaks to Kitura's 'LoggerAPI' to set the default logger to HeliumLogger.
 // Kitura calls this API to log things
 
-// Set Stencil as the default template engine
 router.setDefault(templateEngine: StencilTemplateEngine())
-
-// Set up a static asset server at /static serving files from the /static/dist folder
 router.all("/static", middleware: StaticFileServer(path: "./static/dist"))
 
-// Handle HTTP GET requests to /
 router.get("/") { request, response, next in
   defer {
     next()
@@ -69,7 +64,6 @@ router.get("/events") { request, response, next in
   }
 }
 
-// Add an HTTP server and connect it to the router
 Kitura.addHTTPServer(onPort: 8090, with: router)
 
 // Start the Kitura runloop (this call never returns)
