@@ -1,0 +1,7 @@
+{% extends "base.stencil" %}
+
+{% block title %}Hackers at Cambridge{% endblock %}
+
+{% block content %}
+  Welcome to our brand new website! Ain't it lovely
+{% endblock %}

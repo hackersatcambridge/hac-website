@@ -1,0 +1,6 @@
+.DS_Store
+/.build
+/static/dist/*
+/Packages
+/*.xcodeproj
+node_modules

@@ -1,0 +1,7 @@
+{% extends "base.stencil" %}
+
+{% block title %}Workshops{% endblock %}
+
+{% block content %}
+  We run workshops
+{% endblock %}
