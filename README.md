@@ -3,9 +3,16 @@
 This website is written using the Swift web framework [Kitura](https://github.com/IBM-Swift/Kitura) to allow us the flexibility to do what we please with the website and to allow us to try out Swift as an option for server-side programming.
 
 ## Installing and running the website
-This project uses the [Gulp task runner](http://gulpjs.com) to make this super simple. 
+This project uses the [Gulp v4](http://gulpjs.com) to make this super simple. 
 
 First make sure you have [Node](https://nodejs.org/en/) (you will need `npm` to install and run Gulp) and [Swift 3](https://swift.org/download/) installed 
+
+Then you will need to install the gulp-cli globally:
+```
+npm rm -g gulp
+npm install -g gulp-cli
+```
+Note: This won't interfere with other Gulp projects you may have on your machine, the new CLI is backwards compatible. For more details on using Gulp 4, see [this blog post](https://www.liquidlight.co.uk/blog/article/how-do-i-update-to-gulp-4/)
 
 Clone this repository
 
