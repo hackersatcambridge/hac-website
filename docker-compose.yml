@@ -1,0 +1,20 @@
+version: '2'
+volumes:
+  node_modules:
+  yarn_cache:
+  Packages:
+  build:
+services:
+  web:
+    build: ./
+    command: sh -c "yarn; yarn gulp serve"
+    tty: true
+    ports:
+    - "3000:3000"
+    - "3001:3001"
+    volumes:
+    - Packages:/root/hac-website/Packages
+    - build:/root/hac-website/.build
+    - node_modules:/root/hac-website/node_modules
+    - yarn_cache:/yarn_cache
+    - .:/root/hac-website/

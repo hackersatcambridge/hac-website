@@ -102,7 +102,9 @@ gulp.task('watch', function () {
   // Start browserSync in proxy mode. Augments the server at localhost:8090
   browserSync.init({
     proxy: 'http://localhost:8090',
-    notify: false
+    notify: false,
+    open: false,
+    ghostMode: false,
   })
   gulp.watch('static/src/styles/**/*.styl', gulp.parallel('styles'))
   gulp.watch('static/src/**/!(*.styl)', gulp.parallel('copy'))
