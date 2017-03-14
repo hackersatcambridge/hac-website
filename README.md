@@ -6,6 +6,8 @@ This website is written using the Swift web framework [Kitura](https://github.co
 
 We use Docker to make this quick and painless for you, [make sure you have it installed](https://docs.docker.com/engine/installation/).
 
+If you are on Windows, go to docker settings and ensure the drive you are using is shared.
+
 This has been tested to work with at least `docker 17.03.0-ce, build 60ccb22` and `docker-compose version 1.11.2, build dfed245`.
 
 Instructions are as follows. Clone this repository:
