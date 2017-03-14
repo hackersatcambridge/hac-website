@@ -3,5 +3,66 @@
 {% block title %}Hackers at Cambridge{% endblock %}
 
 {% block content %}
-  Welcome to our brand new website! Ain't it lovely
+  <div class="banner mono">
+    <strong>Featured event:</strong> <a href="https://www.facebook.com/events/250269785415402/"><em>Charitech</em></a>
+  </div>
+  <div class="hero">
+    <div class="hero-content">
+      <img src="/static/images/charitech.jpg">
+      <br>
+      <br>
+      <a href="https://www.facebook.com/events/250269785415402">ChariTech</a> is the place to be if you want to do something to make a real difference. Whether you have never seen a single line of code before, or whether you've used technology your whole life!
+      <br><br>
+      Join Hackers at Cambridge at the end of term on the 17th of March for 12 hours of hackathon madness, where we’ll be introducing you to a whole range of different charities who need your help. You’ll be working with these charities to produce new and innovative products and solutions which will really be able to make a difference.
+      <br><br>
+      Beginners are welcome, even if you have never heard the word ‘hackathon’ before! If you have experience working with a charity, we would love you to come and need your skills &amp; ideas. You may even learn something new too!
+    </div>
+  </div>
+  <div class="content-wrapper">
+    <section>
+      <h2 class="mono section-title">Workshops</h2>
+      Run by members of the community and open to everyone, our workshops aim to help and encourage you to work on technology side projects.
+      <br><br>
+      If you've missed one of our workshops and would like to catch up, check out <a href="https://www.youtube.com/channel/UCNY6ekV9z84ZYL4qUDusTFw">our YouTube page</a> for recordings.
+      <br><br>
+      If you would like to help out at one of our workshops, join the demonstrators group <a href="https://www.facebook.com/groups/1567785333234852/">here</a>, we'd love to have you!
+      <br>
+      <br>
+      <div class="featured clearfix">
+        <div class="featured-image">
+          <img src="/static/images/rxjava.png" alt="Intro to RxJava">
+        </div>
+        <div class="featured-text mono">
+          <strong>Upcoming:</strong><br>
+          <a href="https://www.facebook.com/events/1183644148400223/">
+            <em>Introduction to RxJava</em>
+          </a>
+        </div>
+      </div>
+      
+    </section>
+    <section>
+      <h2 class="mono section-title">Events</h2>
+      The HaC committee regularly run hackathons, concentrated doses of building cool stuff, along with other events to give you a focused chance to create.
+      <br>
+      <br>
+      <div class="featured clearfix">
+        <div class="featured-image">
+          <img src="/static/images/charitech.jpg">
+        </div>
+        <div class="featured-text mono">
+          <strong>Upcoming:</strong><br>
+          <a href="https://www.facebook.com/events/250269785415402/"><em>Charitech</em></a>
+        </div>
+      </div>
+    </section>
+    <section>
+      <h2 class="mono section-title">Socials</h2>
+      <em>HaC Nights</em> are your weekly chance to hang out with like-minded people and learn new tech skills together or work on that side-project you've had in mind. Whatever your experience level, you are welcome at HaC Nights. If you're just getting started, there'll be plenty of people here willing to help you out. We bring the snacks, you bring your ideas, laptop and questions, and there's bound to be someone in the room with the answers.
+    </section>
+    <section class="mono center">
+      Sounding pretty good?<br>
+      <a href="http://eepurl.com/ckeD2b">Join the mailing list</a>
+    </section>
+  </div>
 {% endblock %}
