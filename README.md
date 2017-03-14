@@ -4,18 +4,12 @@
 This website is written using the Swift web framework [Kitura](https://github.com/IBM-Swift/Kitura) to allow us the flexibility to do what we please with the website and to allow us to try out Swift as an option for server-side programming.
 
 ## Installing and running the website
-This project uses the [Gulp v4](http://gulpjs.com) to make this super simple. 
 
-First make sure you have [Node](https://nodejs.org/en/) (you will need `npm` to install and run Gulp) and [Swift 3](https://swift.org/download/) installed 
+We use Docker to make this quick and painless for you, [make sure you have it installed](https://docs.docker.com/engine/installation/).
 
-Then you will need to install the gulp-cli globally:
-```
-npm rm -g gulp
-npm install -g gulp-cli
-```
-Note: This won't interfere with other Gulp projects you may have on your machine, the new CLI is backwards compatible. For more details on using Gulp 4, see [this blog post](https://www.liquidlight.co.uk/blog/article/how-do-i-update-to-gulp-4/)
+This has been tested to work with at least `docker 17.03.0-ce, build 60ccb22` and `docker-compose version 1.11.2, build dfed245`.
 
-Clone this repository
+Instructions are as follows. Clone this repository:
 
 ```
 git clone https://github.com/hackersatcambridge/hac-website.git
@@ -24,15 +18,27 @@ git clone https://github.com/hackersatcambridge/hac-website.git
 And then run:
 
 ```
-npm install
+docker-compose up
 ```
 
-followed by:
+This will build all the files and run the web server with appropriate output. It will also watch for changes to the files and rebuild as necessarily. You can stop this process at any time with `^C` (`ctrl` + `C`).
+
+### What `docker-compose up` is doing
+
+This command starts up a docker container that has all the required dependencies, then starts up a development server.
+
+Internally, this command uses the [Gulp task runner](http://gulpjs.com) to run the Swift and static file (CSS, images, etc.) build processes in parallel. When they complete, it runs the executable produced by the Swift build. It exposes a server on http://localhost:3000. For convenience, it will reload the browser window for you whenever you make a relevant change to the files. This is powered by BrowserSync, and you can access the interface for it at http://localhost:3001.
+
+It is worth noting that we are using Gulp v4, which hasn't been officially released. It would be useful to refer to the [version 4 documentation](https://github.com/gulpjs/gulp/blob/4.0/docs/getting-started.md).
+
+### Running commands in the container
+
+If you want to access an instance of `yarn` or `swift` inside the Docker container to do some debugging or modifications, you can simply use `docker-compose run`.
 
 ```
-gulp serve
+docker-compose run web swift <<SWIFT COMMAND>>
+docker-compose run web yarn <<YARN COMMAND>>
+docker-compose run web yarn gulp <<GULP COMMAND>>
 ```
 
-This will build all the files and run the web server with appropriate output. Gulp will also watch for changes to the files and rebuild as necessarily. You can stop this process at any time with `^C` (`ctrl` + `C`).
-### What `gulp serve` is doing
-This command runs the Swift and static file (CSS, images, etc.) build processes in parallel. When they complete, it runs the executable produced by the Swift build. This starts a local server on http://localhost:8090. For convenience, it also starts a BrowserSync server on port 3000 (and a BroswerSync interface on port 3001) that simply serves as a proxy to http://localhost:8090 but with the added feature that it will reload the browser window for you whenever you make a relevant change to the files.
+As the container shares source files with your project directory, any source files modified inside the container (e.g. `package.json`) will also be modified outside the container (and vice versa).
