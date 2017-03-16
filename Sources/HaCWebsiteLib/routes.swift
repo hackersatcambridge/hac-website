@@ -22,8 +22,7 @@ public func serveWebsite() {
       next()
     }
     do {
-      var context: [String: Any] = [:]
-      try response.render("home", context: context).end()
+      try response.render("home", context: [:]).end()
     } catch {
       Log.error("Failed to render template \(error)")
     }
@@ -34,8 +33,7 @@ public func serveWebsite() {
       next()
     }
     do {
-      var context: [String: Any] = [:]
-      try response.render("workshops", context: context).end()
+      try response.render("workshops", context: [:]).end()
     } catch {
       Log.error("Failed to render template \(error)")
     }
@@ -53,7 +51,7 @@ public func serveWebsite() {
       next()
     }
     do {
-      var context: [String: Any] = [
+      let context: [String: Any] = [
         "events": [
           Event(title: "Introduction to RxJava", date: Date(), description: "This will be great", prerequisites: "Be good"),
           Event(title: "Charitech", date: Date(), description: "This will be great too", prerequisites: "Be better"),
