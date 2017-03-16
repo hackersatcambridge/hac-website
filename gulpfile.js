@@ -27,6 +27,12 @@ gulp.task('styles', () =>
       'include css': true,
       paths: ['./node_modules']
     }))
+    .on('error', function (err) {
+      console.log('[' + chalk.red('Stylus error...') + ']')
+      console.log(err.message)
+      console.log('\u0007')
+      this.emit('end')
+    })
     .pipe(autoprefixer())
     .pipe(gulp.dest('static/dist/styles'))
     .pipe(browserSync.stream())
@@ -104,7 +110,7 @@ gulp.task('watch', function () {
     proxy: 'http://localhost:8090',
     notify: false,
     open: false,
-    ghostMode: false,
+    ghostMode: false
   })
   gulp.watch('static/src/styles/**/*.styl', gulp.parallel('styles'))
   gulp.watch('static/src/**/!(*.styl)', gulp.parallel('copy'))
