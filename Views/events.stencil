@@ -1,4 +1,4 @@
-{% extends "base.stencil" %}
+{% extends "layouts/default.stencil" %}
 
 {% block title %}Notes{% endblock %}
 
