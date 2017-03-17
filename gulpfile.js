@@ -9,7 +9,7 @@ const chalk = require('chalk')
 // Define a global serverProcess that we can use to keep track of the running server instance
 let serverProcess = null
 
-const EXEC_PATH = './.build/debug/HackersAtCambridgeWebsite'
+const EXEC_PATH = './.build/debug/HaCWebsite'
 
 // A straight copy of files that don't require processing
 // You should update this glob if you ever add processing to a new file type
@@ -104,7 +104,7 @@ gulp.task('watch', function () {
     proxy: 'http://localhost:8090',
     notify: false,
     open: false,
-    ghostMode: false,
+    ghostMode: false
   })
   gulp.watch('static/src/styles/**/*.styl', gulp.parallel('styles'))
   gulp.watch('static/src/**/!(*.styl)', gulp.parallel('copy'))
