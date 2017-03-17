@@ -63,7 +63,7 @@ public func serveWebsite() {
     }
   }
 
-  Kitura.addHTTPServer(onPort: 8090, with: router)
+  Kitura.addHTTPServer(onPort: Config.listeningPort, with: router)
 
   // Start the Kitura runloop (this call never returns)
   Kitura.run()
