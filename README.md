@@ -1,4 +1,5 @@
 # Hackers at Cambridge Website
+[![Build Status](https://travis-ci.org/hackersatcambridge/hac-website.svg?branch=master)](https://travis-ci.org/hackersatcambridge/hac-website)
 
 This website is written using the Swift web framework [Kitura](https://github.com/IBM-Swift/Kitura) to allow us the flexibility to do what we please with the website and to allow us to try out Swift as an option for server-side programming.
 
@@ -12,17 +13,27 @@ This has been tested to work with at least `docker 17.03.0-ce, build 60ccb22` an
 
 Instructions are as follows. Clone this repository:
 
-```
+```bash
 git clone https://github.com/hackersatcambridge/hac-website.git
 ```
 
 And then run:
 
-```
+```bash
 docker-compose up
 ```
 
 This will build all the files and run the web server with appropriate output. It will also watch for changes to the files and rebuild as necessarily. You can stop this process at any time with `^C` (`ctrl` + `C`).
+
+If the Dockerfile has been changed, run `docker-compose build`
+
+### Unit Testing
+
+In order to run unit tests:
+
+```bash
+docker-compose run web yarn test
+```
 
 ### What `docker-compose up` is doing
 
