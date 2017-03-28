@@ -1,4 +1,4 @@
-FROM ibmcom/swift-ubuntu:3.0.2
+FROM ibmcom/swift-ubuntu:3.1
 
 RUN \
   export DEBIAN_FRONTEND=noninteractive && \
