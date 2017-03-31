@@ -29,9 +29,7 @@ func getWebsiteRouter() -> Router {
     }
     do {
       let workshops = WorkshopManager.workshops
-      dump(workshops)
       let context: [String: Any] = [ "workshops": workshops, "test": 123 ]
-      dump(context)
       try response.render("workshops", context: context).end()
     } catch {
       Log.error("Failed to render template \(error)")
