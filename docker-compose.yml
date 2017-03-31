@@ -2,7 +2,6 @@ version: '2'
 volumes:
   node_modules:
   yarn_cache:
-  Packages:
   build:
 services:
   web:
