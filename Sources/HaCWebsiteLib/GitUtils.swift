@@ -5,7 +5,6 @@ public struct GitUtils {
     Executes a shell command synchronously, returning the exit code
     
     - parameters:
-      - in: The path to the directory in which to execute the command
       - args: The arguments to the shell command, starting with the command itself
       
     - returns:
@@ -29,11 +28,9 @@ public struct GitUtils {
       - localPath: The local path in which to run the `clone`
       - directory: The directory name to clone the repository into
   */
-  public static func clone(repoURL: String, in localPath: String, directory: String) {
-    print(localPath)
-    print(directory)
+  public static func shallowBranchClone(repoURL: String, in localPath: String, directory: String, branch: String = "master") {
     let repoPath = localPath + "/" + directory
-    shell(args: "git", "clone", repoURL, repoPath)
+    shell(args: "git", "clone", "--depth", "1", repoURL, repoPath, "--branch", branch, "--single-branch")
   }
 
   /**
@@ -70,7 +67,7 @@ public struct GitUtils {
       pull(in: localRepoPath)
     } else {
       // Directory does not yet exist, clone the repo
-      clone(repoURL: "https://github.com/hackersatcambridge/workshops.git", in: localPath, directory: directory)
+      shallowBranchClone(repoURL: "https://github.com/hackersatcambridge/workshops.git", in: localPath, directory: directory)
     }
   }
 }
