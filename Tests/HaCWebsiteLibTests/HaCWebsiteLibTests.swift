@@ -67,7 +67,7 @@ class HaCWebsiteLibTests: XCTestCase {
     let testDescription = try getTestResourceString(from: "conquering_linux/description.md")
     let testPrerequisites = try getTestResourceString(from: "conquering_linux/prerequisites.md")
 
-    let workshop = try parseWorkshop(metadataYaml: testMetadata, descriptionMarkdown: testDescription, prerequisitesMarkdown: testPrerequisites)
+    let workshop = try Workshop.parse(metadataYaml: testMetadata, descriptionMarkdown: testDescription, prerequisitesMarkdown: testPrerequisites)
     
     XCTAssertEqual(workshop.title, "Conquering Linux")
     XCTAssertEqual(workshop.authors, ["Robin McCorkell"])

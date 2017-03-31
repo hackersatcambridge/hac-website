@@ -14,12 +14,6 @@
       "version": "0.1.0"
     },
     {
-      "package": "Cryptor",
-      "reason": null,
-      "repositoryURL": "https://github.com/IBM-Swift/BlueCryptor.git",
-      "version": "0.8.9"
-    },
-    {
       "package": "HeliumLogger",
       "reason": null,
       "repositoryURL": "https://github.com/IBM-Swift/HeliumLogger.git",
@@ -112,8 +106,8 @@
     {
       "package": "Yaml",
       "reason": null,
-      "repositoryURL": "https://github.com/behrang/YamlSwift.git",
-      "version": "3.3.1"
+      "repositoryURL": "https://github.com/hackersatcambridge/YamlSwift.git",
+      "version": "4.0.0"
     }
   ],
   "version": 1
