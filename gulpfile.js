@@ -71,6 +71,9 @@ gulp.task('swift-build', function (done) {
 
 function startServer () {
   serverProcess = childProcesses.spawn(EXEC_PATH)
+  serverProcess.on('exit', function (code) {
+    serverProcess = null
+  })
   connectProcessOutput(serverProcess, 'kitura')
   setTimeout(browserSync.reload, 300)
 }
