@@ -5,3 +5,36 @@
 {% block content %}
   We run workshops
 {% endblock %}
+
+{% block content %}
+  There are {{ workshops.count }} workshops. <br>
+  
+  {% for workshop in workshops %}
+    <div>
+      <h2 class="mono">{{ workshop.title }}</h2>
+      <h3>Description</h3>
+      {{ workshop.description }}
+      <h3>Prerequisites</h3>
+      {{ workshop.prerequisites }}
+      <h3>Recommended links</h3>
+      <ul>
+        {% for recommendation in workshop.recommendations %}
+          <li><a href="{{ recommendation.url }}">{{ recommendation.title }}</a></li>
+      {% endfor %}
+      </ul>
+      
+      <p>
+        With thanks to:
+        <ul>
+          {% for thanks in workshop.thanks %}
+            <li>{{ thanks.to }} for {{ thanks.reason }}</li>
+          {% endfor %}
+        </ul>
+      </p>
+      Tags:
+      {% for tag in workshop.tags %}
+        tag, 
+      {% endfor %}
+    </div>
+  {% endfor %}
+{% endblock %}

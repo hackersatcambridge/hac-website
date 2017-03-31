@@ -13,7 +13,6 @@ services:
     - "3000:3000"
     - "3001:3001"
     volumes:
-    - Packages:/root/hac-website/Packages
     - build:/root/hac-website/.build
     - node_modules:/root/hac-website/node_modules
     - yarn_cache:/yarn_cache
