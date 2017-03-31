@@ -16,11 +16,8 @@ Instructions are as follows. Clone this repository:
 ```bash
 git clone https://github.com/hackersatcambridge/hac-website.git
 ```
-Navigate to the hac-website directory that you've now cloned. Create a file named `.env` and give it the following contents:
-```
-DATA_DIR=/root/hac-website/Data
-```
-Save the file. Why did we have to do that? Leaving this file out of our source control means that we can store sensitive information like API keys in here for our server to use.
+Navigate to the hac-website directory that you've now cloned. Create an empty file named `.env`.
+Save the file. Why did we have to do that? This file will later be used to store sensitive information like API keys and environment-specific information in here for our server to use.
 
 Now run:
 

@@ -12,6 +12,8 @@ services:
     ports:
     - "3000:3000"
     - "3001:3001"
+    environment:
+      - DATA_DIR=/root/hac-website/Data
     volumes:
     - build:/root/hac-website/.build
     - node_modules:/root/hac-website/node_modules
