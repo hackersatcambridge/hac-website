@@ -16,25 +16,24 @@ public struct Workshop {
   struct Thanks: Equatable {
     let to: String
     let reason: String?
+
+    static func ==(lhs: Workshop.Thanks, rhs: Workshop.Thanks) -> Bool {
+      return lhs.to == rhs.to && lhs.reason == rhs.reason
+    }
   }
 
   struct Recommendation: Equatable {
     let title: String
     let url: URL
+    
+    static func ==(lhs: Workshop.Recommendation, rhs: Workshop.Recommendation) -> Bool { 
+      return lhs.title == rhs.title && lhs.url == rhs.url
+    }
   }
 
-  enum WorkshopError : Error {
+  enum WorkshopError: Error {
     case malformedMetadata
   }
-}
-
-// Satisfy equatability for Workshop.Recommendation
-func ==(lhs: Workshop.Recommendation, rhs: Workshop.Recommendation) -> Bool { 
-  return lhs.title == rhs.title && lhs.url == rhs.url
-}
-// ...and for Workshop.Thanks
-func ==(lhs: Workshop.Thanks, rhs: Workshop.Thanks) -> Bool {
-  return lhs.to == rhs.to && lhs.reason == rhs.reason
 }
 
 public extension Workshop {
