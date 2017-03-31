@@ -14,7 +14,7 @@ class HaCWebsiteLibTests: XCTestCase {
    * A String of the absolute path to the resource
    *
    * - throws:
-   * An error of type TestError.fileNotFound if the fil cannot be found
+   * An error of type TestError.fileNotFound if the file cannot be found
    *
    * - parameters:
    *   - at: The path of the desired resource relative to HaCWebsiteLibTests/Resources
