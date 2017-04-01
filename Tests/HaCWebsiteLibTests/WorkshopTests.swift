@@ -59,17 +59,6 @@ class WorkshopTests: HaCWebsiteLibTestCase {
     checkThrows(metadataPath: "missing_to.yaml")
   }
 
-  // Should catch
-
-  // Missing title
-  // Missing array
-  // Non-string when string expected
-  // Missing 'to' property
-  // Missing 'name' on recommendation
-  // Invalid urls (empty string or special chars)
-  // Missing tags array
-
-
   static var allTests : [(String, (WorkshopTests) -> () throws -> Void)] {
     return [
       ("testParse", testParse),
