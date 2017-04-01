@@ -1,7 +1,6 @@
 import Foundation
 import Yaml
 
-
 public struct Workshop {
   let title: String
   let authors: [String]
