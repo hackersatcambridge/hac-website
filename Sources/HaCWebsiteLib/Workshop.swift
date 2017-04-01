@@ -1,6 +1,6 @@
 import Foundation
 import Yaml
-import KituraMarkdown
+
 
 public struct Workshop {
   let title: String
@@ -10,8 +10,8 @@ public struct Workshop {
   let recommendations: [Recommendation]
   let links: [URL]
   let tags: [String]
-  let prerequisites: String
-  let description: String
+  let prerequisites: Text
+  let description: Text
 
   struct Thanks: Equatable {
     let to: String
@@ -30,13 +30,12 @@ public struct Workshop {
       return lhs.title == rhs.title && lhs.url == rhs.url
     }
   }
-
-  enum WorkshopError: Error {
-    case malformedMetadata
-  }
 }
 
 public extension Workshop {
+  enum WorkshopError: Error {
+    case malformedMetadata(String)
+  }
   /**
     Parses the files that describe a workshop into a Workshop instance
 
@@ -55,48 +54,95 @@ public extension Workshop {
   public static func parse(metadataYaml: String, descriptionMarkdown: String, prerequisitesMarkdown: String) throws -> Workshop {
     // Parse Yaml and Markdown
     let metadata = try Yaml.load(metadataYaml)
-    let description = KituraMarkdown.render(from: descriptionMarkdown)
-    let prerequisites = KituraMarkdown.render(from: prerequisitesMarkdown)
+    let prerequisites = Text(markdown: prerequisitesMarkdown)
+    let description = Text(markdown: descriptionMarkdown)
 
     // Process the Yaml
-    guard
-      let title = metadata["title"].string,
-      let authors = metadata["authors"].array?.flatMap({ $0.string }), // removes nil results
-      let presenters = metadata["presenters"].array?.flatMap({ $0.string }),
-      let thanks: [Workshop.Thanks] = metadata["thanks"].array?.flatMap({ 
-        guard let recipient = $0["to"].string else {
-          return nil
-        }
-        let reason = $0["reason"].string
-        return Workshop.Thanks(to: recipient, reason: reason)
-      }),
-      let recommendations: [Workshop.Recommendation] = metadata["recommend"].array?.flatMap({ 
-        guard
-          let title = $0["name"].string,
-          let urlString = $0["url"].string,
-          let url = URL(string: urlString)
-        else {
-          return nil
-        }
-        return Workshop.Recommendation(title: title, url: url)
-      }),
-      let links = metadata["links"].array?.flatMap({ $0.string }).flatMap({ URL(string: $0) }),
-      let tags = metadata["tags"].array?.flatMap({ $0.string })
-    else {
-      // Something went wrong with processing the metadata
-      throw Workshop.WorkshopError.malformedMetadata
-    }
-
     return Workshop(
-      title: title,
-      authors: authors,
-      presenters: presenters,
-      thanks: thanks,
-      recommendations: recommendations,
-      links: links,
-      tags: tags,
+      title: try title(from: metadata),
+      authors: try authors(from: metadata),
+      presenters: try presenters(from: metadata),
+      thanks: try thanks(from: metadata),
+      recommendations: try recommendations(from: metadata),
+      links: try links(from: metadata),
+      tags: try tags(from: metadata),
       prerequisites: prerequisites,
       description: description
     )
   }
+
+  private static func title(from metadata: Yaml) throws -> String {
+    if let title = metadata["title"].string {
+      return title
+    } else {
+      throw WorkshopError.malformedMetadata("Missing or invalid title")
+    }
+  }
+
+  private static func stringsArray(for key: Yaml, in metadata: Yaml) throws -> [String] {
+    guard let values = metadata[key].array else {
+      throw WorkshopError.malformedMetadata("Missing \(key) list")
+    }
+    return try values.map({
+      if let stringValue = $0.string {
+        return stringValue
+      } else {
+        throw WorkshopError.malformedMetadata("Expected values in \(key) to be strings")
+      }
+    })
+  }
+
+  private static func authors(from metadata: Yaml) throws -> [String] {
+    return try stringsArray(for: "authors", in: metadata)
+  }
+
+  private static func presenters(from metadata: Yaml) throws -> [String] {
+    return try stringsArray(for: "presenters", in: metadata)
+  }
+
+  private static func thanks(from metadata: Yaml) throws -> [Workshop.Thanks] {
+    guard let values = metadata["thanks"].array else {
+      return []
+    }
+    return try values.map { 
+      guard let recipient = $0["to"].string else {
+        throw WorkshopError.malformedMetadata("Expected all thanks items to contain 'to' property")
+      }
+      let reason = $0["reason"].string
+      return Workshop.Thanks(to: recipient, reason: reason)
+    }
+  }
+
+  private static func recommendations(from metadata: Yaml) throws -> [Workshop.Recommendation] {
+    guard let values = metadata["recommend"].array else {
+      return []
+    }
+    return try values.map { 
+      guard let title = $0["name"].string else {
+        throw WorkshopError.malformedMetadata("Expected all recommendations items to contain 'name' property")
+      }
+      guard 
+        let urlString = $0["url"].string,
+        let url = URL(string: urlString)
+      else {
+        throw WorkshopError.malformedMetadata("Expected all recommendations items to contain valid URLs in 'url' property")
+      }
+      return Workshop.Recommendation(title: title, url: url)
+    }
+  }
+
+  private static func links(from metadata: Yaml) throws -> [URL] {
+    return try stringsArray(for: "links", in: metadata).map {
+      if let url = URL(string: $0) {
+        return url
+      } else {
+        throw WorkshopError.malformedMetadata("Expected all links to be valid URLs (see \($0))")
+      }
+    }
+  }
+
+  private static func tags(from metadata: Yaml) throws -> [String] {
+    return try stringsArray(for: "tags", in: metadata)
+  }
+
 }

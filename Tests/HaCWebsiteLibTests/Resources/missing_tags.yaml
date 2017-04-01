@@ -1,0 +1,15 @@
+title: Linux
+authors:
+  - Robin McCorkell
+presenters:
+  - Robin McCorkell
+thanks:
+  - to        : Tristram Newman
+    reason    : Video
+recommend:
+  - name      : Install Guide
+    url       : https://wiki.archlinux.org/index.php/Installation_guide
+  - name      : Arch Wiki
+    url       : https://wiki.archlinux.org/
+links:
+  - https://www.youtube.com/watch?v=AqZWwsM3jaY
