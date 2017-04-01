@@ -5,8 +5,10 @@ import KituraMarkdown
  */
 struct Text {
   let markdown: String
+  let html: String
 
-  var html: String {
-    return KituraMarkdown.render(from: markdown)
+  init(markdown: String) {
+    self.markdown = markdown
+    self.html = KituraMarkdown.render(from: markdown)
   }
 }

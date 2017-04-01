@@ -29,6 +29,7 @@ func getWebsiteRouter() -> Router {
     }
     do {
       let workshops = WorkshopManager.workshops
+      dump(workshops.map {($0.description.html, $0.prerequisites.html)})
       let context: [String: Any] = [ "workshops": workshops, "test": 123 ]
       try response.render("workshops", context: context).end()
     } catch {

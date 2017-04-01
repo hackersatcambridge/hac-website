@@ -13,9 +13,9 @@
     <div>
       <h2 class="mono">{{ workshop.title }}</h2>
       <h3>Description</h3>
-      {{ workshop.description }}
+      {{ workshop.description.html }}
       <h3>Prerequisites</h3>
-      {{ workshop.prerequisites }}
+      {{ workshop.prerequisites.html }}
       <h3>Recommended links</h3>
       <ul>
         {% for recommendation in workshop.recommendations %}
