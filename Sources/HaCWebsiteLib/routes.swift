@@ -1,18 +1,13 @@
 import Foundation
 import Kitura
-
+import DotEnv
 import KituraStencil
-
+import SwiftyJSON
 import LoggerAPI
 import HeliumLogger
 
-public func serveWebsite() {
+func getWebsiteRouter() -> Router {
   let router = Router()
-
-  // Heilium logger provides logging for Kitura processes
-  HeliumLogger.use()
-  // This speaks to Kitura's 'LoggerAPI' to set the default logger to HeliumLogger.
-  // Kitura calls this API to log things
 
   router.setDefault(templateEngine: StencilTemplateEngine())
   router.all("/static", middleware: StaticFileServer(path: "./static/dist"))
@@ -33,38 +28,28 @@ public func serveWebsite() {
       next()
     }
     do {
-      try response.render("workshops", context: [:]).end()
+      let workshops = WorkshopManager.workshops
+      let context: [String: Any] = [ "workshops": workshops, "test": 123 ]
+      try response.render("workshops", context: context).end()
     } catch {
       Log.error("Failed to render template \(error)")
     }
   }
 
-  struct Event {
-    let title: String
-    let date: Date
-    let description: String
-    let prerequisites: String
+  /// Intended for use by GitHub webhooks
+  router.post("/api/refresh_workshops") { request, response, _ in
+    try! WorkshopManager.update()
   }
 
-  router.get("/events") { request, response, next in
-    defer {
-      next()
-    }
-    do {
-      let context: [String: Any] = [
-        "events": [
-          Event(title: "Introduction to RxJava", date: Date(), description: "This will be great", prerequisites: "Be good"),
-          Event(title: "Charitech", date: Date(), description: "This will be great too", prerequisites: "Be better"),
-        ]
-      ]
-      try response.render("events", context: context).end()
-    } catch {
-      Log.error("Failed to render template \(error)")
-    }
-  }
+  return router
+}
 
-  Kitura.addHTTPServer(onPort: Config.listeningPort, with: router)
+public func serveWebsite() {
+  // Helium logger provides logging for Kitura processes
+  HeliumLogger.use()
+  // This speaks to Kitura's 'LoggerAPI' to set the default logger to HeliumLogger.
+  // Kitura calls this API to log things
 
-  // Start the Kitura runloop (this call never returns)
-  Kitura.run()
+  Kitura.addHTTPServer(onPort: Config.listeningPort, with: getWebsiteRouter())
+  Kitura.run() // This call never returns
 }

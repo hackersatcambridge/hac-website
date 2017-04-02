@@ -69,21 +69,25 @@ gulp.task('swift-build', function (done) {
   })
 })
 
-function spawnServer () {
+function startServer () {
   serverProcess = childProcesses.spawn(EXEC_PATH)
+  serverProcess.on('exit', function (code) {
+    serverProcess = null
+  })
+  connectProcessOutput(serverProcess, 'kitura')
   setTimeout(browserSync.reload, 300)
 }
 
 // Runs the built Swift package
 gulp.task('reload-server', function (done) {
   if (serverProcess === null) {
-    spawnServer()
+    startServer()
     done()
   } else {
     serverProcess.kill()
     serverProcess.on('exit', function (code) {
       // The process exited, restart it
-      spawnServer()
+      startServer()
       done()
     })
   }
@@ -98,10 +102,6 @@ gulp.task('start-server', function (done) {
 
 // All the tasks that handle the building of static files
 gulp.task('static-build', gulp.parallel('styles', 'copy'))
-
-gulp.task('swift-reload', function (done) {
-  gulp.task
-})
 
 // Watch for changes and perform appropriate actions
 gulp.task('watch', function () {
@@ -118,12 +118,12 @@ gulp.task('watch', function () {
     browserSync.reload()
     done()
   })
-  gulp.watch('Sources/**/*', gulp.series('swift-build', 'reload-server'))
+  gulp.watch(['Sources/**/*', 'Package.swift'], gulp.series('swift-build', 'reload-server'))
 })
 
 gulp.task('build', gulp.parallel('swift-build', 'static-build'))
 
-gulp.task('serve', gulp.series('build', gulp.parallel('start-server', 'watch')))
+gulp.task('serve', gulp.series('build', gulp.parallel('reload-server', 'watch')))
 
 // When the gulp process is terminated, make sure to clean up
 process.on('exit', function () {

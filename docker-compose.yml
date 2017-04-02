@@ -2,7 +2,6 @@ version: '2'
 volumes:
   node_modules:
   yarn_cache:
-  Packages:
   build:
 services:
   web:
@@ -12,8 +11,9 @@ services:
     ports:
     - "3000:3000"
     - "3001:3001"
+    environment:
+      - DATA_DIR=/root/hac-website/Data
     volumes:
-    - Packages:/root/hac-website/Packages
     - build:/root/hac-website/.build
     - node_modules:/root/hac-website/node_modules
     - yarn_cache:/yarn_cache

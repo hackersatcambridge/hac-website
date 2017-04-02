@@ -1,6 +1,8 @@
 .DS_Store
 /.build
 /static/dist/*
-/Packages
+Packages/
 /*.xcodeproj
 node_modules
+/Data
+.env
