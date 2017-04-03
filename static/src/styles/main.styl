@@ -1,3 +1,119 @@
-body {
-  background: brown; // stylish
+html, body {
+  margin: 0;
 }
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: #1B1B1B;
+  background-color: #FAFAFA;
+  font-family: 'Open Sans';
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+a {
+  color: inherit;
+}
+.site-header {
+  text-align: center;
+  padding: 5em;
+  background-color: white;
+}
+
+.header-logo {
+  max-height: 5em;
+  max-width: 80%;
+  /*transform: rotate(-2deg);*/
+}
+
+.banner {
+  background-color: #FAC127;
+  text-align: center;
+  padding: 1em;
+  color: black;
+}
+
+.mono {
+  font-family: 'Cousine';
+}
+
+.center {
+  text-align: center;
+}
+
+.subtitle {
+  margin: 0.2em;
+  color: #999999;
+  font-size: 1.4em;
+  font-weight: 200;
+}
+
+section {
+  max-width: 35em;
+  margin: 2em auto;
+  line-height: 1.6em;
+  padding: 2em;
+}
+
+.section-title {
+  font-size: 2.5em;
+  margin-bottom: 0.6em;
+}
+
+.hero {
+  background-color: #223643;
+  color: #EBE7D9;
+  padding: 2em;
+}
+
+.hero-content {
+  width: 100%;
+  max-width: 40em;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.hero-content img {
+  max-width: 70%;
+  display: block;
+  margin: 0 auto;
+}
+
+.featured {
+}
+
+.featured-image {
+  float: left;
+  width: 30%;
+  /*background-color: #CD238A;*/
+
+  /* TODO: Remove */
+  height: 80px;
+}
+
+.featured-image img {
+  width: 100%;
+}
+.featured-text {
+  float: left;
+  width: 70%;
+  padding: 0.3em 0.8em;
+}
+
+/*.body-container {
+  width: calc(100% - 20em);
+}*/
+
+/*section:nth-child(2n) {
+  text-align: right;
+}
+section:nth-child(2n) .section-title {
+  text-align: right;
+}*/
