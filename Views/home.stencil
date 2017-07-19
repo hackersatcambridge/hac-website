@@ -3,23 +3,27 @@
 {% block title %}Hackers at Cambridge{% endblock %}
 
 {% block content %}
-  <header>
+  <header class="LandingIntroduction">
     <h1>Hackers at Cambridge</h1>
-    <h2>Cambridge's student tech society</h2>
-    Welcome to our beautiful new website
+    <p>Cambridge's student tech society</p>
+    <p>Welcome to our beautiful new website</p>
   </header>
   <section class="LandingFeature">
     <h2>Featured</h2>
-    Hack Cambridge
+    <p>Hack Cambridge</p>
   </section>
   <section class="LandingUpdateFeed">
-    <div class="PostCard">
-      <span class="PostCard__label">Workshop</span>
-      <h3 class="PostCard__title">Conquering Linux</h3>
+    <div class="LandingUpdateFeed__item">
+      <div class="PostCard">
+        <span class="PostCard__label">Workshop</span>
+        <h3 class="PostCard__title">Conquering Linux</h3>
+      </div>
     </div>
-    <div class="PostCard">
-      <span class="PostCard__label">Video</span>
-      <h3 class="PostCard__title">Partial Recursive Functions 1/5: What are functions?</h3>
+    <div class="LandingUpdateFeed__item">
+      <div class="PostCard">
+        <span class="PostCard__label">Video</span>
+        <h3 class="PostCard__title">Partial Recursive Functions 1/5: What are functions?</h3>
+      </div>
     </div>
   </section>
   <article class="LandingAbout">

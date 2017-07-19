@@ -1,17 +1,20 @@
 .PostCard {
   background: $Color__bright1;
-  padding: 1em;
+  padding: grid(2);
   border-radius: $Layout__normalBorderRadius;
-  margin: 0.4em;
-  flex: 30%;
-  height: 10em;
+  min-height: grid(50);
   color: $Color__lightText;
 }
 
 .PostCard__label {
   display: inline-block;
   background: $Color__lightBackground;
-  padding: 0.3em;
+  padding: grid(1);
+  line-height: 1;
   color: $Color__bright2;
   border-radius: $Layout__smallBorderRadius;
+}
+
+.PostCard__title {
+  font-family: $Text__emphasisFont;
 }

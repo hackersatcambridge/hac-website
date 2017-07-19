@@ -1,0 +1,53 @@
+$Text__primaryFont = Roboto, 'Helvetica Neue', Arial, sans-serif;
+$Text__monospacedFont = 'Space Mono', 'Menlo', 'Courier New', monospaced;
+$Text__emphasisFont = $Text__monospacedFont;
+
+$Text__baseSize = grid(2);
+
+body {
+  font-family: $Text__primaryFont;
+  font-size: $Text__baseSize;
+  line-height: 1.5;
+
+  // This makes really long words automatically break
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+Text__headerScale($scale) {
+  font-size: $Text__baseSize * (1.3 ** $scale);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: ($Text__baseSize / 2);
+}
+
+h1 {
+  Text__headerScale(3);
+}
+
+h2 {
+  Text__headerScale(2);
+}
+
+h3 {
+  Text__headerScale(1);
+}
+
+h4 {
+  Text__headerScale(0);
+}
+
+h5 {
+  Text__headerScale(-1);
+}
+
+h6 {
+  Text__headerScale(-2);
+}
+
+p, ol, ul {
+  margin-top: 0;
+  margin-bottom: $Text__baseSize;
+}
