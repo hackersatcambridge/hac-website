@@ -1,7 +1,29 @@
-{% extends "layouts/default.stencil" %}
+{% extends "layouts/base.stencil" %}
 
 {% block title %}Hackers at Cambridge{% endblock %}
 
 {% block content %}
-  Welcome to our brand new website! Ain't it lovely
+  <header class="">
+    <h1>Hackers at Cambridge</h1>
+    <h2 class="mono">Cambridge's student tech society</h2>
+    Welcome to our beautiful new website
+  </header>
+  <section class="feature">
+    <h2>Featured</h2>
+    Hack Cambridge
+  </section>
+  <section class="feed">
+    <div class="post">
+      <span class="post_type">Workshop</span>
+      <h3 class="post_title">Conquering Linux</h3>
+    </div>
+    <div class="post">
+      <span class="post_type">Video</span>
+      <h3 class="post_title">Partial Recursive Functions 1/5: What are functions?</h3>
+    </div>
+  </section>
+  <article class="about">
+    <h3>Who we are</h3>
+    This is where we talk about ourselves a lot. Yay us! Aren't we just a lovely bunch of folks with a lovely society that everybody should get involved with!
+  </article>
 {% endblock %}

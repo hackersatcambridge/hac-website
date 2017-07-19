@@ -1,8 +1,0 @@
-{% extends "layouts/base.stencil" %}
-
-{% block base-content %}
-  <img src="/static/images/hac-logo-dark.svg" />
-  <main>
-    {% block content %}{% endblock %}
-  </main>
-{% endblock %}

@@ -7,6 +7,6 @@
     <link href="https://fonts.googleapis.com/css?family=Cousine" rel="stylesheet">
   </head>
   <body>
-    {% block base-content %}{% endblock %}
+    {% block content %}{% endblock %}
   </body>
 </html>
