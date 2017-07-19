@@ -1,4 +1,4 @@
-{% extends "layouts/default.stencil" %}
+{% extends "layouts/base.stencil" %}
 
 {% block title %}Workshops{% endblock %}
 
