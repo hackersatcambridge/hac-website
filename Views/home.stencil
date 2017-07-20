@@ -3,27 +3,31 @@
 {% block title %}Hackers at Cambridge{% endblock %}
 
 {% block content %}
-  <header class="">
+  <header class="LandingIntroduction">
     <h1>Hackers at Cambridge</h1>
-    <h2 class="mono">Cambridge's student tech society</h2>
-    Welcome to our beautiful new website
+    <p>Cambridge's student tech society</p>
+    <p>Welcome to our beautiful new website</p>
   </header>
-  <section class="feature">
+  <section class="LandingFeature">
     <h2>Featured</h2>
-    Hack Cambridge
+    <p>Hack Cambridge</p>
   </section>
-  <section class="feed">
-    <div class="post">
-      <span class="post_type">Workshop</span>
-      <h3 class="post_title">Conquering Linux</h3>
+  <section class="LandingUpdateFeed">
+    <div class="LandingUpdateFeed__item">
+      <div class="PostCard">
+        <span class="PostCard__label">Workshop</span>
+        <h3 class="PostCard__title">Conquering Linux</h3>
+      </div>
     </div>
-    <div class="post">
-      <span class="post_type">Video</span>
-      <h3 class="post_title">Partial Recursive Functions 1/5: What are functions?</h3>
+    <div class="LandingUpdateFeed__item">
+      <div class="PostCard">
+        <span class="PostCard__label">Video</span>
+        <h3 class="PostCard__title">Partial Recursive Functions 1/5: What are functions?</h3>
+      </div>
     </div>
   </section>
-  <article class="about">
+  <article class="LandingAbout">
     <h3>Who we are</h3>
-    This is where we talk about ourselves a lot. Yay us! Aren't we just a lovely bunch of folks with a lovely society that everybody should get involved with!
+    <p>This is where we talk about ourselves a lot. Yay us! Aren't we just a lovely bunch of folks with a lovely society that everybody should get involved with!</p>
   </article>
 {% endblock %}

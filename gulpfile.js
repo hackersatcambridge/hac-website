@@ -21,7 +21,7 @@ gulp.task('copy', () =>
 
 // Process the Stylus files into CSS
 gulp.task('styles', () =>
-  gulp.src('static/src/styles/**/*.styl')
+  gulp.src('static/src/styles/main.styl')
     .pipe(changed('static/dist/styles'))
     .pipe(stylus({
       'include css': true,
