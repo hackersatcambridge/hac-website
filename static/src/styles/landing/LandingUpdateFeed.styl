@@ -6,12 +6,29 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: stretch;
 }
 
 .LandingUpdateFeed__item {
-  padding: grid(1);
-  flex: 1 1 auto;
-  width: grid(40);
+  margin-bottom: grid(2);
+  flex-basis: 24%;
+}
+
+@media screen and (max-width: 1200px) {
+  .LandingUpdateFeed__item {
+    flex-basis: 32%;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .LandingUpdateFeed__item {
+    flex-basis: 49%;
+  }
+}
+
+@media screen and (max-width: 660px) {
+  .LandingUpdateFeed__item {
+    flex-basis: 100%;
+  }
 }
