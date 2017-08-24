@@ -36,7 +36,13 @@
     </div>
   </section>
   <article class="LandingAbout">
-    <h3>Who we are</h3>
-    <p>This is where we talk about ourselves a lot. Yay us! Aren't we just a lovely bunch of folks with a lovely society that everybody should get involved with!</p>
+    <div class="LandingAbout__imageContainer">
+      <img class="LandingAbout__image" src="/static/images/whoishac.jpg">
+    </div>
+    <div class="LandingAbout__text">
+      <h1 class="LandingAbout__subtitle Text--sectionHeading">About</h1>
+      <h2 class="LandingAbout__headline">Who are Hackers at Cambridge?</h2>
+      <p>This is where we talk about ourselves a lot. Yay us! Aren't we just a lovely bunch of folks with a lovely society that everybody should get involved with!</p>
+    </div>
   </article>
 {% endblock %}
