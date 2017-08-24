@@ -14,7 +14,7 @@
       <a href="#" class="LandingIntroduction__link">Find out more</a>
     </header>
     <section class="LandingFeature LandingTop__Feature">
-      <h1 class="LandingFeature__subtitle">Featured</h1>
+      <h1 class="LandingFeature__subtitle Text--sectionHeading">Featured</h1>
       <div class="LandingFeature__hero">
         <h2>Hero goes here</h2>
       </div>
