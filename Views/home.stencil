@@ -3,15 +3,24 @@
 {% block title %}Hackers at Cambridge{% endblock %}
 
 {% block content %}
-  <header class="LandingIntroduction">
-    <h1>Hackers at Cambridge</h1>
-    <p>Cambridge's student tech society</p>
-    <p>Welcome to our beautiful new website</p>
-  </header>
-  <section class="LandingFeature">
-    <h2>Featured</h2>
-    <p>Hack Cambridge</p>
-  </section>
+  <div class="LandingTop">
+    <header class="LandingIntroduction LandingTop__Introduction">
+      <div class="LandingIntroduction__titleContainer">
+        <img src="static/images/hac-logo-dark.svg" alt="Hackers at Cambridge" class="LandingIntroduction__titleImage">
+        <div class="LandingIntroduction__tagLine">Cambridge's student tech society</div>
+      </div>
+      
+      <p>We build things, and help other people build things. We also have a bunch of fun.</p>
+      <a href="#" class="LandingIntroduction__link">Find out more</a>
+    </header>
+    <section class="LandingFeature LandingTop__Feature">
+      <h1 class="LandingFeature__subtitle">Featured</h1>
+      <div class="LandingFeature__hero">
+        <h2>Hero goes here</h2>
+      </div>
+      
+    </section>
+  </div>
   <section class="LandingUpdateFeed">
     <div><h1 class="LandingUpdateFeed__title Text--sectionHeading">Updates</h1></div>
     <div class="LandingUpdateFeed__postContainer">
