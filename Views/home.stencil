@@ -14,7 +14,7 @@
       <a href="#" class="LandingIntroduction__link">Find out more</a>
     </header>
     <section class="LandingFeature LandingTop__Feature">
-      <h1 class="LandingFeature__subtitle">Featured</h1>
+      <h1 class="LandingFeature__subtitle Text--sectionHeading">Featured</h1>
       <div class="LandingFeature__hero">
         <h2>Hero goes here</h2>
       </div>
@@ -22,16 +22,58 @@
     </section>
   </div>
   <section class="LandingUpdateFeed">
-    <div class="LandingUpdateFeed__item">
-      <div class="PostCard">
-        <span class="PostCard__label">Workshop</span>
-        <h3 class="PostCard__title">Conquering Linux</h3>
+    <div><h1 class="LandingUpdateFeed__title Text--sectionHeading">Updates</h1></div>
+    <div class="LandingUpdateFeed__postContainer">
+      <div class="LandingUpdateFeed__item">
+        <div class="PostCard">
+          <div class="PostCard__photoBackground" style="background-image: url('/static/images/workshop.jpg')"></div>
+          <div class="PostCard__content">
+            <span class="PostCard__categoryLabel">Workshop</span>
+            <div class="PostCard__title">Conquering Linux</div>
+            <div class="PostCard__description">
+              Be good at computers, not because you can, but because you dream.
+            </div>
+            <div class="PostCard__bottomAction">Find out more</div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="LandingUpdateFeed__item">
-      <div class="PostCard">
-        <span class="PostCard__label">Video</span>
-        <h3 class="PostCard__title">Partial Recursive Functions 1/5: What are functions?</h3>
+      <div class="LandingUpdateFeed__item">
+        <div class="PostCard" style="background-color: #852503">
+          <div class="PostCard__photoBackground" style="background-image: url('/static/images/functions_frame.png')"></div>
+          <div class="PostCard__content">
+            <span class="PostCard__categoryLabel">Video</span>
+            <div class="PostCard__title">Partial Recursive Functions 1: Functions</div>
+            <div class="PostCard__description">
+              Learn all the things.
+            </div>
+            <div class="PostCard__bottomAction">View</div>
+          </div>
+        </div>
+      </div>
+      <div class="LandingUpdateFeed__item">
+        <div class="PostCard" style="background-color: #000000">
+          <div class="PostCard__photoBackground" style="background-image: url('/static/images/intermediate_git.png')"></div>
+          <div class="PostCard__content">
+            <span class="PostCard__categoryLabel">Workshop</span>
+            <div class="PostCard__title">Intermediate Git</div>
+            <div class="PostCard__description">
+              Merge conflicts? Rescuing yourself from a hairy rebase? No sweat.
+            </div>
+            <div class="PostCard__bottomAction">Find out more</div>
+          </div>
+        </div>
+      </div>
+      <div class="LandingUpdateFeed__item">
+        <div class="PostCard" style="background-color: #ECA414">
+          <div class="PostCard__content">
+            <span class="PostCard__categoryLabel">Hackathon</span>
+            <div class="PostCard__title">Game Gig 2017</div>
+            <div class="PostCard__description">
+              Are you game?
+            </div>
+            <div class="PostCard__bottomAction">Sign up</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
