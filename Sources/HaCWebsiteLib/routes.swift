@@ -5,6 +5,7 @@ import KituraStencil
 import SwiftyJSON
 import LoggerAPI
 import HeliumLogger
+import HaCTML
 
 func getWebsiteRouter() -> Router {
   let router = Router()
@@ -17,7 +18,10 @@ func getWebsiteRouter() -> Router {
       next()
     }
     do {
-      try response.render("home", context: [:]).end()
+      try response.send(
+        renderHTML(node: UI.Pages.home())
+      )
+      .end()
     } catch {
       Log.error("Failed to render template \(error)")
     }
@@ -28,9 +32,10 @@ func getWebsiteRouter() -> Router {
       next()
     }
     do {
-      let workshops = WorkshopManager.workshops
-      let context: [String: Any] = [ "workshops": workshops, "test": 123 ]
-      try response.render("workshops", context: context).end()
+      try response.send(
+        renderHTML(node: UI.Pages.workshops(workshops: WorkshopManager.workshops))
+      )
+      .end()
     } catch {
       Log.error("Failed to render template \(error)")
     }

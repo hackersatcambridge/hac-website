@@ -20,6 +20,12 @@
       "version": "1.6.1"
     },
     {
+      "package": "HTMLString",
+      "reason": null,
+      "repositoryURL": "https://github.com/alexaubry/HTMLString",
+      "version": "3.0.0"
+    },
+    {
       "package": "Kitura",
       "reason": null,
       "repositoryURL": "https://github.com/IBM-Swift/Kitura.git",
