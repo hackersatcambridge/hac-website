@@ -28,4 +28,5 @@ public struct Attributes {
   static public let width = numberAttribute("width")
 }
 
-public let A = Attributes.self
+// Creating a more concise namespace for expressivity
+public let Attr = Attributes.self

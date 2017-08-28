@@ -9,27 +9,27 @@ private func thanksString(thanks: Workshop.Thanks) -> String {
 }
 
 private func workshop(_ workshop: Workshop) -> Node {
-  return E.Div.c(
-    E.H2[A.className => "mono"].c(workshop.title),
-    E.H3.c("Description"),
+  return El.Div.c(
+    El.H2[Attr.className => "mono"].c(workshop.title),
+    El.H3.c("Description"),
     TextNode(workshop.description.html, escapeLevel: .dangerouslyRaw),
-    E.H3.c("Prerequisites"),
+    El.H3.c("Prerequisites"),
     TextNode(workshop.prerequisites.html, escapeLevel: .dangerouslyRaw),
-    E.H3.c("Recommended Links"),
-    E.Ul.c(
+    El.H3.c("Recommended Links"),
+    El.Ul.c(
       workshop.recommendations.map({
-        E.Li.c(
-          E.A[A.href => $0.url.absoluteString].c($0.title)
+        El.Li.c(
+          El.A[Attr.href => $0.url.absoluteString].c($0.title)
         )
       })
     ),
-    E.P.c("With thanks to"),
-    E.Ul.c(
+    El.P.c("With thanks to"),
+    El.Ul.c(
       workshop.thanks.map({
-        E.Li.c(thanksString(thanks: $0))
+        El.Li.c(thanksString(thanks: $0))
       })
     ),
-    E.P.c(
+    El.P.c(
       TextNode("Tags: "),
       TextNode(workshop.tags.joined(separator: ", "))
     )
@@ -42,7 +42,7 @@ extension UI.Pages {
       title: "Workshops",
       content: Fragment(
         TextNode("There are \(workshops.count) workshops."),
-        E.Br,
+        El.Br,
         Fragment(workshops.map(workshop))
       )
     )

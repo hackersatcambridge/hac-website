@@ -110,4 +110,5 @@ public struct Elements {
   public static let Wbr = HTMLElement("wbr", selfClosing: true)
 }
 
-public let E = Elements.self
+// Creating a more concise namespace for expressivity
+public let El = Elements.self
