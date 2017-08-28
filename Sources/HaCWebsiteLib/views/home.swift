@@ -30,7 +30,7 @@ extension UI.Pages {
       content: Fragment(
         El.Div[Attr.className => "LandingTop"].c(
           El.Header[Attr.className => "LandingIntroduction LandingTop__introduction"].c(
-            El.Div.c("LandingIntroduction__titleContainer").c(
+            El.Div[Attr.className => "LandingIntroduction__titleContainer"].c(
               El.Img[Attr.className => "LandingIntroduction__titleImage", Attr.src => "/static/images/hac-logo-dark.svg", Attr.alt => "Hackers at Cambridge"],
               El.Div[Attr.className => "LandingIntroduction__tagLine"].c("Cambridge's student tech society")
             ),

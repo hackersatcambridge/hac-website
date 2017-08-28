@@ -5,6 +5,8 @@ public struct HTMLElement {
   let selfClosing: Bool
 
   fileprivate init(tagName: String, attributes: AttributeMap = [], child: Node? = nil, selfClosing: Bool = false) {
+    precondition(!selfClosing || child == nil, "\(tagName) cannot have children")
+
     self.child = child
     self.attributes = attributes
     self.tagName = tagName
@@ -25,6 +27,8 @@ public struct HTMLElement {
   }
   
   private func addChildren(nodes: [Node]) -> HTMLElement {
+    precondition(child == nil, "Cannot add children to an element that already has children")
+
     return clone(child: nodes.count == 1 ? nodes[0] : Fragment(nodes))
   }
   
