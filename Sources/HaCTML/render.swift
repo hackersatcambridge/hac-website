@@ -7,9 +7,9 @@ public func renderHTML(node: Node) -> String {
 extension TextNode: Node {
   public func render() -> String {
     switch (escapeLevel) {
-    case .all:
+    case .preserveViewedCharacters:
       return text.addingUnicodeEntities
-    case .dangerouslyRaw:
+    case .unsafeRaw:
       return text
     }
   }
@@ -50,15 +50,15 @@ func renderAttributeMap(_ attributes: AttributeMap) -> String? {
   return attributes.renderedValues.flatMap(renderAttribute).joined(separator: " ")
 }
 
-func renderAttribute(_ attribute: RenderedAttribute) -> String? {
+func renderAttribute(_ attribute: AppliedAttribute) -> String? {
   let (key, value) = attribute
   
   switch (value) {
-  case .flagOn:
+  case .noValue:
     return key
   case .text(let text):
     return "\(key)=\"\(text.addingUnicodeEntities)\""
-  case .gone:
+  case .removeAttribute:
     return nil
   }
 }

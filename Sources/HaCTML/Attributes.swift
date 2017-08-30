@@ -1,16 +1,16 @@
 private func stringAttribute(_ key: String) -> AttributeKey<String> {
-  return .init(key, render: { .text($0) })
+  return .init(key, apply: { .text($0) })
 }
 
 private func numberAttribute(_ key: String) -> AttributeKey<Int> {
-  return .init(key, render: { .text(String($0)) })
+  return .init(key, apply: { .text(String($0)) })
 }
 
 private func CSSAttribute(_ key: String) -> AttributeKey<[String: String]> {
-  return .init(key, render: { .text($0.map({ "\($0): \($1);" }).joined(separator: " ")) })
+  return .init(key, apply: { .text($0.map({ "\($0): \($1);" }).joined(separator: " ")) })
 }
 
-public struct Attributes {
+public enum Attributes {
   // We are filling this list in incrementally, implementing attributes as we need them so that we can type them correctly
   static public let alt = stringAttribute("alt")
   static public let charset = stringAttribute("charset")

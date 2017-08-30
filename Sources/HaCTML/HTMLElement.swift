@@ -35,21 +35,21 @@ public struct HTMLElement {
   /**
     Returns an HTMLElement identical to this one, with the given Nodes children
    */
-  public func c(_ nodes: Node...) -> HTMLElement {
+  public func containing(_ nodes: Node...) -> HTMLElement {
     return addChildren(nodes: nodes)
   }
   
   /**
     Returns an HTMLElement identical to this one, with the given Nodes as children
    */
-  public func c(_ nodes: [Node]) -> HTMLElement {
+  public func containing(_ nodes: [Node]) -> HTMLElement {
     return addChildren(nodes: nodes)
   }
 
   /**
     Returns an HTMLElement identical to this one, with the given text as its only child
    */
-  public func c(_ text: String) -> HTMLElement {
+  public func containing(_ text: String) -> HTMLElement {
     return addChildren(nodes: [TextNode(text)])
   }
 

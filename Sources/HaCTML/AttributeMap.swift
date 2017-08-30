@@ -32,8 +32,8 @@ struct AttributeMap: ExpressibleByArrayLiteral {
     return AttributeMap(attributes: attributeMap.values + attributes)
   }
   
-  var renderedValues: [RenderedAttribute] {
-    return attributeMap.values.map { attribute in attribute.key.render(attribute.value) }
+  var renderedValues: [AppliedAttribute] {
+    return attributeMap.values.map { attribute in attribute.key.apply(attribute.value) }
   }
   
   var isEmpty: Bool {

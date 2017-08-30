@@ -7,10 +7,10 @@ public struct TextNode {
   
   /**
     - parameters:
-      - _: the text to display
+      - text: the text to display
       - escapeLevel: How much of the text to escape.
    */
-  public init(_ text: String, escapeLevel: EscapeLevel = .all) {
+  public init(_ text: String, escapeLevel: EscapeLevel = .preserveViewedCharacters) {
     self.text = text
     self.escapeLevel = escapeLevel
   }
@@ -21,12 +21,13 @@ public struct TextNode {
   public enum EscapeLevel {
     // TODO: Come up with a solution for text in script/style tags as they are a special case for escaping.
     /**
-      Escape everything that would otherwise render weirdly as text (e.g. < or &)
+      What you read in code is what you see as text in the rendered page. This means escaping everything that would otherwise
+      render weirdly as text (e.g. < or &)
      */
-    case all
+    case preserveViewedCharacters
     /**
       Display the text as-is. This could make the tree invalid HTML, so use at your own peril.
      */
-    case dangerouslyRaw
+    case unsafeRaw
   }
 }

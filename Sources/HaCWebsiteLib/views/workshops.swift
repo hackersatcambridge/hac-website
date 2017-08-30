@@ -9,27 +9,27 @@ private func thanksString(thanks: Workshop.Thanks) -> String {
 }
 
 private func workshop(_ workshop: Workshop) -> Node {
-  return El.Div.c(
-    El.H2[Attr.className => "mono"].c(workshop.title),
-    El.H3.c("Description"),
-    TextNode(workshop.description.html, escapeLevel: .dangerouslyRaw),
-    El.H3.c("Prerequisites"),
-    TextNode(workshop.prerequisites.html, escapeLevel: .dangerouslyRaw),
-    El.H3.c("Recommended Links"),
-    El.Ul.c(
+  return El.Div.containing(
+    El.H2[Attr.className => "mono"].containing(workshop.title),
+    El.H3.containing("Description"),
+    TextNode(workshop.description.html, escapeLevel: .unsafeRaw),
+    El.H3.containing("Prerequisites"),
+    TextNode(workshop.prerequisites.html, escapeLevel: .unsafeRaw),
+    El.H3.containing("Recommended Links"),
+    El.Ul.containing(
       workshop.recommendations.map({
-        El.Li.c(
-          El.A[Attr.href => $0.url.absoluteString].c($0.title)
+        El.Li.containing(
+          El.A[Attr.href => $0.url.absoluteString].containing($0.title)
         )
       })
     ),
-    El.P.c("With thanks to"),
-    El.Ul.c(
+    El.P.containing("With thanks to"),
+    El.Ul.containing(
       workshop.thanks.map({
-        El.Li.c(thanksString(thanks: $0))
+        El.Li.containing(thanksString(thanks: $0))
       })
     ),
-    El.P.c(
+    El.P.containing(
       TextNode("Tags: "),
       TextNode(workshop.tags.joined(separator: ", "))
     )

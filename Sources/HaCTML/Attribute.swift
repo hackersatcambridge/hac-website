@@ -1,29 +1,29 @@
 enum AttributeValue {
   case text(String)
-  case flagOn
-  case gone
+  case noValue
+  case removeAttribute
 }
 
-typealias RenderedAttribute = (String, AttributeValue)
+typealias AppliedAttribute = (String, AttributeValue)
 
 /**
  * Describes a possible key for an attribute of an HTML element and how it might be rendered
  */
 public struct AttributeKey<Value> {
   let keyName: String
-  let renderFunc: (Value) -> AttributeValue
+  let applyFunc: (Value) -> AttributeValue
 
-  internal init(_ key: String, render: @escaping (Value) -> AttributeValue) {
+  internal init(_ key: String, apply: @escaping (Value) -> AttributeValue) {
     self.keyName = key
-    self.renderFunc = render
+    self.applyFunc = apply
   }
   
-  internal func render(_ value: Value) -> RenderedAttribute {
-    return (keyName, renderFunc(value))
+  internal func apply(_ value: Value) -> AppliedAttribute {
+    return (keyName, applyFunc(value))
   }
 
-  fileprivate func asAny() -> AttributeKey<Any> {
-    return AttributeKey<Any>(keyName, render: { self.renderFunc($0 as! Value) })
+  fileprivate var asAny: AttributeKey<Any> {
+    return AttributeKey<Any>(keyName, apply: { self.applyFunc($0 as! Value) })
   }
 }
 
@@ -43,6 +43,6 @@ public struct Attribute {
 }
 
 infix operator =>
-public func => <Value>(_ from: AttributeKey<Value>, _ to: Value) -> Attribute {
-  return Attribute(from.asAny(), to)
+public func => <Value>(_ key: AttributeKey<Value>, _ value: Value) -> Attribute {
+  return Attribute(key.asAny, value)
 }

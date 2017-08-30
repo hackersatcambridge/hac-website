@@ -1,4 +1,4 @@
-public struct Elements {
+public enum Elements {
   public static let A = HTMLElement("a")
   public static let Abbr = HTMLElement("abbr")
   public static let Address = HTMLElement("address")
