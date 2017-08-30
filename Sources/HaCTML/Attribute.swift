@@ -1,13 +1,28 @@
 enum AttributeValue {
+  /**
+    Represents a typical `key="value"` attribute where the value is the contained `String`
+   */
   case text(String)
+
+  /**
+    Represents an attribute without a value, such as the `disabled` attribute when turned on.
+    
+    So `Attr.disabled => true` becomes `.noValue` and then renders as `<element disabled>`.
+   */
   case noValue
+
+  /**
+    Represents an attribute that is not output at all, such as the `disabled` attribute when turned off.
+
+    So `Attr.disabled => false` becomes `.removeAttribute` and then renders as `<element>`.
+   */
   case removeAttribute
 }
 
-typealias AppliedAttribute = (String, AttributeValue)
+typealias AppliedAttribute = (keyName: String, value: AttributeValue)
 
 /**
- * Describes a possible key for an attribute of an HTML element and how it might be rendered
+  Describes a possible key for an attribute of an HTML element and how it might be rendered.
  */
 public struct AttributeKey<Value> {
   let keyName: String
@@ -19,7 +34,7 @@ public struct AttributeKey<Value> {
   }
   
   internal func apply(_ value: Value) -> AppliedAttribute {
-    return (keyName, applyFunc(value))
+    return (keyName: keyName, value: applyFunc(value))
   }
 
   fileprivate var asAny: AttributeKey<Any> {
@@ -28,9 +43,9 @@ public struct AttributeKey<Value> {
 }
 
 /**
- * A concrete realisation of an AttributeKey to an assigned value
- *
- * These can only be created by applying the => operator to an AttributeKey
+  A concrete realisation of an AttributeKey to an assigned value.
+
+  These can only be created by applying the => operator to an AttributeKey.
  */
 public struct Attribute {
   let key: AttributeKey<Any>

@@ -51,13 +51,11 @@ func renderAttributeMap(_ attributes: AttributeMap) -> String? {
 }
 
 func renderAttribute(_ attribute: AppliedAttribute) -> String? {
-  let (key, value) = attribute
-  
-  switch (value) {
+  switch (attribute.value) {
   case .noValue:
-    return key
+    return attribute.keyName
   case .text(let text):
-    return "\(key)=\"\(text.addingUnicodeEntities)\""
+    return "\(attribute.keyName)=\"\(text.addingUnicodeEntities)\""
   case .removeAttribute:
     return nil
   }
