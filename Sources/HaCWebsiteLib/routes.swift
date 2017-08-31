@@ -19,7 +19,7 @@ func getWebsiteRouter() -> Router {
     }
     do {
       try response.send(
-        renderHTML(node: UI.Pages.home())
+        UI.Pages.home().render()
       )
       .end()
     } catch {
@@ -33,7 +33,7 @@ func getWebsiteRouter() -> Router {
     }
     do {
       try response.send(
-        renderHTML(node: UI.Pages.workshops(workshops: WorkshopManager.workshops))
+        UI.Pages.workshops(workshops: WorkshopManager.workshops).render()
       )
       .end()
     } catch {

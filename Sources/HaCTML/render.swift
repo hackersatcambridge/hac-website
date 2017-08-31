@@ -1,9 +1,5 @@
 import HTMLString
 
-public func renderHTML(node: Node) -> String {
-  return node.render()
-}
-
 extension TextNode: Node {
   public func render() -> String {
     switch (escapeLevel) {
@@ -38,7 +34,7 @@ extension HTMLElement: Node {
       return "<\(elementBody) />"
     }
     
-    return "<\(elementBody)>\(self.child.map(renderHTML) ?? "")</\(self.tagName)>"
+    return "<\(elementBody)>\(self.child.map({ $0.render() }) ?? "")</\(self.tagName)>"
   }
 }
 
