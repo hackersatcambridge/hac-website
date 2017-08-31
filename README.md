@@ -56,3 +56,11 @@ docker-compose run web yarn gulp <<GULP COMMAND>>
 ```
 
 As the container shares source files with your project directory, any source files modified inside the container (e.g. `package.json`) will also be modified outside the container (and vice versa).
+
+## Developing
+
+### Writing HTML
+
+You may notice that we aren't using a templating library for rendering HTML to serve. Inspired by the likes of [Elm](http://elm-lang.org/) and [React](https://facebook.github.io/react/), we've written a module _HaCTML_ for making HTML type-safe and Swifty! For an example, have a look at our [home page](Sources/HaCWebsiteLib/views/home.swift).
+
+We're currently experimenting with the API for HaCTML, but once it's a little more stable we hope to release it as a standalone module.
