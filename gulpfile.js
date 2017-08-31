@@ -13,15 +13,15 @@ const EXEC_PATH = './.build/debug/HaCWebsite'
 
 // A straight copy of files that don't require processing
 // You should update this glob if you ever add processing to a new file type
-gulp.task('copy', () =>
-  gulp.src('static/src/**/!(*.styl)')
+function copy () {
+  return gulp.src('static/src/**/!(*.styl)')
     .pipe(changed('static/dist'))
     .pipe(gulp.dest('static/dist'))
-)
+}
 
 // Process the Stylus files into CSS
-gulp.task('styles', () =>
-  gulp.src('static/src/styles/main.styl')
+function buildStyles () {
+  return gulp.src('static/src/styles/main.styl')
     .pipe(changed('static/dist/styles'))
     .pipe(stylus({
       'include css': true,
@@ -36,7 +36,7 @@ gulp.task('styles', () =>
     .pipe(autoprefixer())
     .pipe(gulp.dest('static/dist/styles'))
     .pipe(browserSync.stream())
-)
+}
 
 function trimNewLine (string) {
   return string.replace(/\n$/, '')
@@ -53,73 +53,78 @@ function connectProcessOutput (process, prefix) {
   })
 }
 
-// Runs the `swift build` task
-gulp.task('swift-build', function (done) {
-  const swiftBuild = childProcesses.spawn('swift', ['build'])
+// Runs the `swift build` command
+function swiftBuild (done) {
+  const buildProcess = childProcesses.spawn('swift', ['build'])
   const logPrefix = 'swift-build'
-  connectProcessOutput(swiftBuild, logPrefix)
-  swiftBuild.on('exit', function (code) {
+  connectProcessOutput(buildProcess, logPrefix)
+  buildProcess.on('exit', function (code) {
     if (code === 0) {
       done()
     } else {
+      // The build failed
       // Ring the console 'bell'
       console.log('\u0007')
       done()
     }
   })
-})
+}
 
-function startServer () {
+// Starts our server process
+function startServer (done) {
   serverProcess = childProcesses.spawn(EXEC_PATH)
   serverProcess.on('exit', function (code) {
     serverProcess = null
   })
   connectProcessOutput(serverProcess, 'kitura')
-  setTimeout(browserSync.reload, 300)
+
+  // Wait for Kitura to tell us it's listening
+  serverProcess.stdout.on('data', function (data) {
+    if (data.toString().includes('Listening on port')) {
+      done()
+    }
+  })
 }
 
-// Runs the built Swift package
-gulp.task('reload-server', function (done) {
+// Starts our server process, killing it first if necessary
+function reloadServer (done) {
   if (serverProcess === null) {
-    startServer()
-    done()
+    startServer(done)
   } else {
     serverProcess.kill()
     serverProcess.on('exit', function (code) {
       // The process exited, restart it
-      startServer()
-      done()
+      startServer(done)
     })
   }
-})
+}
 
-// Run the Kitura server
-gulp.task('start-server', function (done) {
-  serverProcess = childProcesses.spawn(EXEC_PATH)
-  connectProcessOutput(serverProcess, 'kitura')
+function reloadBrowser (done) {
+  browserSync.reload()
   done()
-})
+}
 
 // All the tasks that handle the building of static files
-gulp.task('static-build', gulp.parallel('styles', 'copy'))
+const buildStaticAssets = gulp.parallel(buildStyles, copy)
 
-// Watch for changes and perform appropriate actions
-gulp.task('watch', function () {
-  // Start browserSync in proxy mode. Augments the server at localhost:8090
+function watch () {
   browserSync.init({
     proxy: 'http://localhost:8090',
     notify: false,
     open: false,
     ghostMode: false
   })
-  gulp.watch('static/src/styles/**/*.styl', gulp.parallel('styles'))
-  gulp.watch('static/src/**/!(*.styl)', gulp.parallel('copy'))
-  gulp.watch(['Sources/**/*', 'Package.swift'], gulp.series('swift-build', 'reload-server'))
-})
+  gulp.watch('static/src/styles/**/*.styl', gulp.parallel(buildStyles))
+  gulp.watch('static/src/**/!(*.styl)', gulp.parallel(copy))
+  gulp.watch(['Sources/**/*', 'Package.swift'], gulp.series(swiftBuild, reloadServer, reloadBrowser))
+}
 
-gulp.task('build', gulp.parallel('swift-build', 'static-build'))
+const build = gulp.parallel(swiftBuild, buildStaticAssets)
+const serve = gulp.series(build, gulp.parallel(reloadServer, watch))
 
-gulp.task('serve', gulp.series('build', gulp.parallel('reload-server', 'watch')))
+// Expose the serve and build tasks
+gulp.task('build', build)
+gulp.task('serve', serve)
 
 // When the gulp process is terminated, make sure to clean up
 process.on('exit', function () {
