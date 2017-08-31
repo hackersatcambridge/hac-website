@@ -114,10 +114,6 @@ gulp.task('watch', function () {
   })
   gulp.watch('static/src/styles/**/*.styl', gulp.parallel('styles'))
   gulp.watch('static/src/**/!(*.styl)', gulp.parallel('copy'))
-  gulp.watch('Views/**/*.stencil', function (done) {
-    browserSync.reload()
-    done()
-  })
   gulp.watch(['Sources/**/*', 'Package.swift'], gulp.series('swift-build', 'reload-server'))
 })
 

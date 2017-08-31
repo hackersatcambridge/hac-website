@@ -14,8 +14,7 @@ extension UI.Pages {
         El.Head.containing(
           El.Meta[Attr.charset => "UTF-8"],
           El.Title.containing(TextNode(title)),
-          stylesheet(forUrl: "/static/styles/main.css"),
-          stylesheet(forUrl: "https://fonts.googleapis.com/css?family=Cousine")
+          stylesheet(forUrl: "/static/styles/main.css")
         ),
         El.Body.containing(content)
       )

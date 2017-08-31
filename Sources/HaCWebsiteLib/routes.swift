@@ -1,7 +1,6 @@
 import Foundation
 import Kitura
 import DotEnv
-import KituraStencil
 import SwiftyJSON
 import LoggerAPI
 import HeliumLogger
@@ -10,7 +9,6 @@ import HaCTML
 func getWebsiteRouter() -> Router {
   let router = Router()
 
-  router.setDefault(templateEngine: StencilTemplateEngine())
   router.all("/static", middleware: StaticFileServer(path: "./static/dist"))
 
   router.get("/") { request, response, next in
