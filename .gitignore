@@ -6,3 +6,4 @@ Packages/
 node_modules
 /Data
 .env
+/Build
