@@ -17,14 +17,7 @@ struct UpdateCard {
     return El.Div[Attr.className => "PostCard", Attr.style => ["background-color": backgroundColor]].containing(
       El.Div[
         Attr.className => "PostCard__photoBackground",
-        Attr.style => ["background-image": {
-            if let imageURL = imageURL {
-              return "url('\(imageURL)')"
-            } else {
-              return nil
-            }
-          }()
-        ]
+        Attr.style => ["background-image": imageURL.map{ "url('\($0)')" }]
       ],
       El.Div[Attr.className => "PostCard__content"].containing(
         El.Span[Attr.className => "PostCard__categoryLabel"].containing(category.rawValue),
