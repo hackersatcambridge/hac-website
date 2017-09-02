@@ -1,4 +1,4 @@
-# Hackers at Cambridge Website [![Build Status](https://travis-ci.org/hackersatcambridge/hac-website.svg?branch=master)](https://travis-ci.org/hackersatcambridge/hac-website)
+****# Hackers at Cambridge Website [![Build Status](https://travis-ci.org/hackersatcambridge/hac-website.svg?branch=master)](https://travis-ci.org/hackersatcambridge/hac-website)
 > The public website of [Hackers at Cambridge]()
 
 This website is built using the Swift web framework [Kitura](https://github.com/IBM-Swift/Kitura). This allows us to build the site fast and reliably and to learn about and contribute to server-side Swift in the process. 
@@ -6,13 +6,13 @@ This website is built using the Swift web framework [Kitura](https://github.com/
 
 ## Installing and running the website
 
-**Docker**
+### Docker
 
 We use Docker to make installation quick and painless, [make sure you have it installed](https://docs.docker.com/engine/installation/). This has been tested to work with at least `docker 17.03.0-ce, build 60ccb22` and `docker-compose version 1.11.2, build dfed245`.
 
 If you are on Windows, go to docker settings and ensure the drive you are using is shared.
 
-**Installation Instructions**
+### Installation Instructions
 
 - Clone this repository:
 `git clone https://github.com/hackersatcambridge/hac-website.git`
@@ -22,7 +22,7 @@ If you are on Windows, go to docker settings and ensure the drive you are using 
 
 This will build the project run the web server at [`localhost:3000`](http://localhost:3000). It will also watch for changes to the files and rebuild as necessarily. You can stop this process at any time with `^C` (`ctrl` + `C`).
 
-**Subsequent runs**
+### Subsequent runs
 
 When you want to run the project again (and you will, it's great):  
 
