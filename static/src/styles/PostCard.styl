@@ -12,7 +12,6 @@
   text-rendering: optimizeLegibility;
   display: flex;
   flex-direction: column;
-  padding: grid(3.5);
   width: 100%;
 }
 
@@ -37,6 +36,7 @@
 
 .PostCard__content {
   z-index: 2;
+  padding: grid(3.5);
 }
 
 .PostCard__categoryLabel {
@@ -68,8 +68,22 @@
 
 .PostCard__bottomAction {
   text-align: right;
+  padding: grid(3) grid(3.5);
+  transition: padding 0.2s;
 }
 
 .PostCard__bottomAction:after {
-  content: ' ➝';
+  display: inline-block;
+  content: '➝';
+  margin-left: grid(1);
+  transition: margin-left 0.2s;
+}
+
+.PostCard:hover {
+  .PostCard__bottomAction {
+    padding: grid(3) grid(3);
+  }
+  .PostCard__bottomAction:after {
+    margin-left: grid(1.5);
+  }
 }
