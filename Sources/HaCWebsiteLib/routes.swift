@@ -11,19 +11,7 @@ func getWebsiteRouter() -> Router {
 
   router.all("/static", middleware: StaticFileServer(path: "./static/dist"))
 
-  router.get("/") { request, response, next in
-    defer {
-      next()
-    }
-    do {
-      try response.send(
-        UI.Pages.home().render()
-      )
-      .end()
-    } catch {
-      Log.error("Failed to render template \(error)")
-    }
-  }
+  router.get("/", handler: LandingPageController.handler)
 
   router.get("/workshops") { request, response, next in
     defer {

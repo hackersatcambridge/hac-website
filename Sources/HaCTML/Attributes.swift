@@ -1,13 +1,22 @@
 private func stringAttribute(_ key: String) -> AttributeKey<String> {
-  return .init(key, apply: { .text($0) })
+  return AttributeKey(key, apply: { .text($0) })
 }
 
 private func numberAttribute(_ key: String) -> AttributeKey<Int> {
-  return .init(key, apply: { .text(String($0)) })
+  return AttributeKey(key, apply: { .text(String($0)) })
 }
 
-private func CSSAttribute(_ key: String) -> AttributeKey<[String: String]> {
-  return .init(key, apply: { .text($0.map({ "\($0): \($1);" }).joined(separator: " ")) })
+private func CSSAttribute(_ key: String) -> AttributeKey<[String: String?]> {
+  return AttributeKey(key, apply: { dict in
+    .text(
+      // filter out the nil values
+      dict.flatMap {
+        $0 as? (String, String)
+      }.map {
+        "\($0): \($1);"
+      }.joined(separator: " ")
+    )
+  })
 }
 
 public enum Attributes {
