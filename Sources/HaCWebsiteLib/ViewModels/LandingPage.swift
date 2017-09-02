@@ -1,7 +1,7 @@
 import HaCTML
 
 struct LandingPage {
-  let updates: [UpdateCard]
+  let updates: [PostCard]
 
   var node: Node {
     return UI.Pages.base(

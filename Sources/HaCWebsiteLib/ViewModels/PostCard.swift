@@ -1,14 +1,14 @@
 import HaCTML
 
-struct UpdateCard {
-  enum UpdateCategory: String {
+struct PostCard {
+  enum PostCategory: String {
     case workshop = "Workshop"
     case video = "Video"
     case hackathon = "Hackathon"
   }
 
   let title: String
-  let category: UpdateCategory
+  let category: PostCategory
   let description: String
   let backgroundColor: String?
   let imageURL: String?

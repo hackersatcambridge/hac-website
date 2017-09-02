@@ -8,28 +8,28 @@ import SwiftyJSON
 
 struct LandingPageController {
   static let updates = [
-    UpdateCard(
+    PostCard(
       title: "Conquering Linux",
       category: .workshop,
       description: "Be great at computers, not because you can, but because you dream.",
       backgroundColor: "purple",
       imageURL: "/static/images/workshop.jpg"
     ),
-    UpdateCard(
+    PostCard(
       title: "Partial Recursive Functions 1: Functions",
       category: .video,
       description: "Learn all the things.",
       backgroundColor: "#852503",
       imageURL: "/static/images/functions_frame.png"
     ),
-    UpdateCard(
+    PostCard(
       title: "Intermediate Git",
       category: .workshop,
       description: "Merge conflicts? Rescuing yourself from a hairy rebase? No sweat.",
       backgroundColor: "black",
       imageURL: "/static/images/intermediate_git.png"
     ),
-    UpdateCard(
+    PostCard(
       title: "Game Gig 2017",
       category: .hackathon,
       description: "Are you game?",
