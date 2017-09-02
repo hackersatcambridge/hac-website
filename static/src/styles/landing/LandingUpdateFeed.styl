@@ -1,29 +1,30 @@
-.LandingUpdateFeed {
-    padding: grid(3);
-}
-
 .LandingUpdateFeed__postContainer {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: stretch;
+  padding: grid(1) grid(3) grid(3) grid(3);
+}
+
+.LandingUpdateFeed__title {
+  padding-left: grid(4);
 }
 
 .LandingUpdateFeed__item {
-  margin-bottom: grid(2);
-  flex-basis: 24%;
+  padding: grid(1);
+  flex-basis: 25%;
 }
 
 @media screen and (max-width: 1200px) {
   .LandingUpdateFeed__item {
-    flex-basis: 32%;
+    flex-basis: 33.33%;
   }
 }
 
 @media screen and (max-width: 900px) {
   .LandingUpdateFeed__item {
-    flex-basis: 49%;
+    flex-basis: 50%;
   }
 }
 
