@@ -22,7 +22,9 @@ struct UpdateCard {
       El.Div[Attr.className => "PostCard__content"].containing(
         El.Span[Attr.className => "PostCard__categoryLabel"].containing(category.rawValue),
         El.Div[Attr.className => "PostCard__title"].containing(title),
-        El.Div[Attr.className => "PostCard__description"].containing(description),
+        El.Div[Attr.className => "PostCard__description"].containing(description)
+      ),
+      El.Div[Attr.className => "PostCard__footer"].containing(
         El.Div[Attr.className => "PostCard__bottomAction"].containing("Find out more")
       )
     )

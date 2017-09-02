@@ -10,6 +10,10 @@
   cursor: pointer;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  display: flex;
+  flex-direction: column;
+  padding: grid(3.5);
+  width: 100%;
 }
 
 .PostCard__photoBackground {
@@ -32,14 +36,7 @@
 }
 
 .PostCard__content {
-  position: absolute;
-  padding: grid(4);
-  top:0;
-  left:0;
-  bottom:0;
-  right:0;
   z-index: 2;
-  height: 100%;
 }
 
 .PostCard__categoryLabel {
@@ -60,10 +57,17 @@
   margin-bottom: grid(2);
 }
 
+.PostCard__footer {
+  margin-top: 16px;
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  z-index: 2;
+}
+
 .PostCard__bottomAction {
-  position: absolute;
-  bottom: grid(4);
-  right: grid(4)
+  text-align: right;
 }
 
 .PostCard__bottomAction:after {
