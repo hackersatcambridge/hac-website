@@ -21,7 +21,7 @@ struct LandingPage {
             El.A[Attr.href => "#", Attr.className => "LandingIntroduction__link"].containing("Find out more")
           ),
           El.Section[Attr.className => "LandingFeature LandingTop__Feature"].containing(
-            El.H1[Attr.className => "LandingFeature__subtitle"].containing("Featured"),
+            El.H1[Attr.className => "LandingFeature__subtitle Text--sectionHeading"].containing("Featured"),
             El.Div[Attr.className => "LandingFeature__hero"].containing(
               El.H2.containing("Hero goes here")
             )
