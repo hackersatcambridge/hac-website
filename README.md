@@ -32,13 +32,6 @@ When you want to run the project again (and you will, it's great):
 \**Why did we have to do that?* The `.env` file will later be used to store sensitive information like API keys and environment-specific information in here for our server to use.
 
 ## Development
-- ["Um. It looks like your HTML is written in Swift."](#writinghtml)
-- Writing stylesheets (with BEM)
-- Working with the container
-	- What `docker-compose` is doing
-	- Running unit tests
-	- Running other commands
-
 
 ### *"Um. It looks like your HTML is written in Swift."*
 
