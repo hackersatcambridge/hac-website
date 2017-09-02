@@ -40,18 +40,7 @@ You may notice that we aren't using a templating library for rendering HTML. Ins
 We're currently experimenting with the API for HaCTML, and once it's a little more stable we hope to release it as a standalone module.
 
 ### Our Stylesheets and Their BEM
-CSS is great but it's easy to end up with hundreds of classes that overlap, underlap and wrestle with each other and that's when things get a whole lot less fun. To keep our stylesheets from this fate, we adopt the [BEM naming convention](http://getbem.com/naming/) for CSS classes. This stands for Block, Element, Modifier and it makes it a lot easier to think about styling individual components of the site!
-
-The best way to get to grips with this is to skim through [our stylesheets](https://github.com/hackersatcambridge/hac-website/tree/master/static/src/styles).
-
-Here's an example:  
-
-- The info cards on the landing page have the class `PostCard`. A `PostCard` is a 'block', since these cards are meaningful on their own. Notice the CamelCase in this class name.
-
-- The photo on an info card has the class `PostCard__photoBackground`. This is an 'element' since it lives within a block and is specific to that block so doesn't make sense on its own. Notice the double underscore in the class name to separate the block name from the element name.
-
-Once you feel comfortable with this convention, give it a whirl! The team will be happy to give you pointers on this naming convention in code review.
-
+CSS is great but it's easy to end up with hundreds of classes that overlap, underlap and wrestle with each other and that's when things get a whole lot less fun. To keep our stylesheets from this fate, we adopt Airbnb's naming convention for CSS. You can read about that [here](https://github.com/airbnb/css#oocss-and-bem).
 
 ### Unit Testing
 
