@@ -34,9 +34,21 @@ struct LandingPage {
               El.Div[Attr.className => "LandingUpdateFeed__item"].containing($0.node)
             }
           )
-        ),        El.Article[Attr.className => "LandingAbout"].containing(
-          El.H3.containing("Who we are"),
-          El.P.containing("This is where we talk about ourselves a lot. Yay us! Aren't we just a lovely bunch of folks with a lovely society that everybody should get involved with!")
+        ),
+        El.Article[Attr.className => "LandingAbout"].containing(
+          El.Div[Attr.className => "LandingAbout__imageContainer"].containing(
+            El.Img[
+              Attr.className => "LandingAbout__image",
+              Attr.src => "/static/images/whoishac.jpg"
+            ]
+          ),
+          El.Div[Attr.className => "LandingAbout__text"].containing(
+            El.H1[Attr.className => "LandingAbout__subtitle Text--sectionHeading"].containing("About"),
+            El.H2[Attr.className => "LandingAbout__headline"].containing("Who are Hackers at Cambridge?"),
+            El.P.containing(
+              "This is where we talk about ourselves a lot. Yay us! Aren't we just a lovely bunch of folks with a lovely society that everybody should get involved with!"
+            )
+          )
         )
       )
     )
