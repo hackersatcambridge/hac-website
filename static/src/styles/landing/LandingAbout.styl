@@ -1,3 +1,32 @@
 .LandingAbout {
   padding: grid(4);
 }
+
+.LandingAbout__imageContainer {
+  flex: 1;
+}
+
+@media screen and (min-width: 700px) {
+  .LandingAbout {
+    display: flex;
+  }
+  
+  .LandingAbout__imageContainer {
+    padding: grid(5);
+  }
+}
+
+.LandingAbout__image {
+  width: 100%;
+}
+
+.LandingAbout__text {
+  flex: 1;
+}
+
+.LandingAbout__headline {
+  Text__headerScale(2);
+  font-family: $Text__monospacedFont;
+  text-transform: uppercase;
+  font-weight: 900;
+}
