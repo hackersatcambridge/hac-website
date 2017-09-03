@@ -1,0 +1,31 @@
+.LandingIntroduction {
+  padding: grid(4);
+}
+
+.LandingIntroduction__titleContainer {
+  text-align: center;
+  margin-bottom: grid(4);
+}
+
+.LandingIntroduction__titleImage {
+  height: grid(4);
+}
+
+.LandingIntroduction__tagLine {
+  Text__headerScale(0);
+  font-family: $Text__monospacedFont;
+  color: $Color__mediumGrayText;
+}
+
+.LandingIntroduction__link {
+  text-decoration: none;
+  color: $Color__brightText;
+}
+
+.LandingIntroduction__link:after {
+    content:' ➝';
+}
+
+.LandingIntroduction__link:hover {
+  text-decoration: underline;
+}

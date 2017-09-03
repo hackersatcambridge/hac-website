@@ -1,0 +1,35 @@
+.LandingUpdateFeed__postContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: stretch;
+  padding: grid(0) grid(3) grid(3) grid(3);
+}
+
+.LandingUpdateFeed__title {
+  padding-left: grid(4);
+}
+
+.LandingUpdateFeed__item {
+  padding: grid(1);
+  display: flex;
+  width: 25%;
+}
+
+@media screen and (max-width: 1200px) {
+  .LandingUpdateFeed__item {
+    flex-basis: 33.33%;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .LandingUpdateFeed__item {
+    flex-basis: 50%;
+  }
+}
+
+@media screen and (max-width: 660px) {
+  .LandingUpdateFeed__item {
+    flex-basis: 100%;
+  }
+}

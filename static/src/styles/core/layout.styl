@@ -1,0 +1,27 @@
+$Layout__remSize = 10px;
+$Layout__gridSize = 0.8rem;
+
+$Layout__normalBorderRadius = 0.3em;
+$Layout__smallBorderRadius = 0.1em;
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: $Layout__remSize;
+}
+
+body {
+  background: $Color__lightBackground;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+// We are violateing BEM naming rules here purely because this function is going to be used a lot
+grid($amount) {
+  return $Layout__gridSize * $amount;
+}
