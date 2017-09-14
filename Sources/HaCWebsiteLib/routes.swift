@@ -5,6 +5,8 @@ import SwiftyJSON
 import LoggerAPI
 import HeliumLogger
 import HaCTML
+import Fluent
+import PostgreSQLDriver
 
 func getWebsiteRouter() -> Router {
   let router = Router()
@@ -36,6 +38,7 @@ func getWebsiteRouter() -> Router {
 }
 
 public func serveWebsite() {
+  testDatabase()
   // Helium logger provides logging for Kitura processes
   HeliumLogger.use()
   // This speaks to Kitura's 'LoggerAPI' to set the default logger to HeliumLogger.
@@ -43,4 +46,29 @@ public func serveWebsite() {
 
   Kitura.addHTTPServer(onPort: Config.listeningPort, with: getWebsiteRouter())
   Kitura.run() // This call never returns
+}
+
+func testDatabase() {
+  do {
+    let driver = try Driver(
+      masterHostname: "hac-db",
+      readReplicaHostnames: [],
+      user: "richard",
+      password: "test",
+      database: "hac"
+    )
+    Database.default = Database(driver)
+    try Pet.prepare(Database.default!)
+  } catch {
+    print("Failed to initialise database:")
+    dump(error)
+  }
+
+  do {
+    let testPet = Pet(name: "Fluffs", age: 1)
+    try testPet.save()
+  } catch {
+    print("Failed to add record")
+    dump(error)
+  }
 }
