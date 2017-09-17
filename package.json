@@ -9,7 +9,7 @@
     "heroku-postbuild": "gulp static-build"
   },
   "engines": {
-    "node": "6.10.0"
+    "node": "6.11.3"
   },
   "author": "",
   "license": "ISC",

@@ -11,6 +11,8 @@ RUN \
   echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
   apt-get update && \
   apt-get install nodejs yarn && \
+  npm install -g n && \
+  n 6.11.3 && \
   # Install PostgreSQL library
   apt-get install -y libpq-dev
 
