@@ -8,8 +8,12 @@ public struct EventManager {
 
         try! WorkshopManager.update()
         //TODO: source events from database
-        let workshopEvents : [Event] = WorkshopManager.workshops.map{(workshop: Workshop) -> WorkshopEvent in
-            return WorkshopEvent(called: workshop.title, at: Date(), described: "There's Pizza", coloured: "yellow", basedOn: workshop)
+        let workshopEvents : [Event] = WorkshopManager.workshops.map{
+            (workshop: Workshop) -> WorkshopEvent in
+                return WorkshopEvent(called: workshop.title, at: Date(), described: "There's Pizza", 
+                    coloured: "purple", hypePeriod: 7, coolOffPeriod: 7, basedOn: workshop)
+        }.filter{ event in 
+            event.isLive()
         }
         updatedEvents += workshopEvents
 
