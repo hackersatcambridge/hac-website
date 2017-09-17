@@ -19,3 +19,22 @@ public struct EventManager {
         events = updatedEvents
     }
 }
+
+extension Event {
+    func isLive() -> Bool {
+        let currentDate = Date()
+
+        //Measure TTL from end date if possible
+        let ttlSec = Double(self.ttlDays * 24 * 60 * 60)
+        let endDate : Date
+        if let optionalEndDate = self.endTime { 
+            endDate = Date(timeInterval: ttlSec, since: optionalEndDate)
+        } else {
+            endDate = Date(timeInterval: ttlSec, since: self.time)
+        }
+
+        let startDate = self.time - Double(self.hypeDays * 24 * 60 * 60)
+
+        return currentDate < endDate && currentDate > startDate
+    }
+}
