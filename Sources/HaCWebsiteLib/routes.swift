@@ -57,8 +57,9 @@ func testDatabase() {
       password: "test",
       database: "hac"
     )
-    Database.default = Database(driver)
-    try Pet.prepare(Database.default!)
+    let database = Database(driver)
+    Database.default = database
+    try Pet.prepare(database)
   } catch {
     print("Failed to initialise database:")
     dump(error)
