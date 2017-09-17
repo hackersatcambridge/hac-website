@@ -27,4 +27,5 @@ services:
       POSTGRES_USER: richard
       POSTGRES_DB: hac
     ports:
-      - 5432:5432
+      # Expose Database on port 5433 (since Travis ties up 5432 by default)
+      - 5433:5432
