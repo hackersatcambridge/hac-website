@@ -51,3 +51,29 @@ struct LandingPageController {
     }
   }
 }
+
+extension Event {
+  func toPostCard() -> PostCard? {
+    switch self {
+      case is WorkshopEvent:
+        return PostCard(
+          title: self.title,
+          category: .workshop,
+          description: self.eventDescription,
+          backgroundColor: self.colour, //TODO
+          imageURL: self.imageURL
+        )
+      case is HackathonEvent:
+        return PostCard(
+          title: self.title,
+          category: .hackathon,
+          description: self.eventDescription,
+          backgroundColor: self.colour, //TODO
+          imageURL: self.imageURL
+        )
+      default:
+        return nil
+    }
+    
+  }
+}
