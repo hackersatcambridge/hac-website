@@ -13,7 +13,8 @@ public struct EventManager {
         }
         updatedEvents += workshopEvents
 
-        updatedEvents += [HackathonEvent(called: "Game Gig 2017", at: Date(), described: "Fun and Games", coloured: "black", lasting: 3)]
+        updatedEvents += [HackathonEvent(called: "Game Gig 2017", at: Date(), described: "Fun and Games", 
+            coloured: "black", hypePeriod: 7, coolOffPeriod: 7, lasting: 3)]
 
         events = updatedEvents
     }

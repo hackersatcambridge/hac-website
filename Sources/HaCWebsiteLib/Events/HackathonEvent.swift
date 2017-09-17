@@ -5,6 +5,8 @@ struct HackathonEvent : Event {
     let time : Date 
     let eventDescription: String
     let colour : String
+    let hypeDays : Int
+    let ttlDays : Int
     let duration : Int
     var sponsor : String?
     var imageURL : String?
@@ -12,11 +14,14 @@ struct HackathonEvent : Event {
     var venue : String?
     var facebookLink : String?
 
-    init(called title: String, at time: Date, described description: String, coloured colour: String, lasting duration: Int) {
+    init(called title: String, at time: Date, described description: String, coloured colour: String, 
+    hypePeriod: Int, coolOffPeriod ttl: Int, lasting duration: Int) {
         self.title = title
         self.time = time
         self.eventDescription = description
         self.colour = colour
+        self.hypeDays = hypePeriod
+        self.ttlDays = ttl
         self.duration = duration
     }
 }
