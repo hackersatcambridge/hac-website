@@ -1,6 +1,6 @@
 import Foundation
 
-struct HackathonEvent : Event {
+struct HackathonEvent : Event, PostCardRepresentable {
     let title : String
     let time : DateInterval
     let eventDescription: String
@@ -14,6 +14,15 @@ struct HackathonEvent : Event {
         get {
             return self.hypePeriod.contains(Date())
         }
+    }
+    var postCardRepresentation : PostCard {
+        return PostCard(
+          title: self.title,
+          category: .hackathon,
+          description: self.eventDescription,
+          backgroundColor: self.color, //TODO
+          imageURL: self.imageURL
+        )
     }
 
     init(called title: String, at time: DateInterval, described description: String, colored color: String, 

@@ -30,3 +30,7 @@ struct PostCard {
     )
   }
 }
+
+protocol PostCardRepresentable {
+  var postCardRepresentation : PostCard {get}
+}
