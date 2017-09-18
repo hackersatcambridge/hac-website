@@ -12,12 +12,12 @@ struct PostCard {
   let description: String
   let backgroundColor: String?
   let imageURL: String?
-  
+
   var node: Node {
     return El.Div[Attr.className => "PostCard", Attr.style => ["background-color": backgroundColor]].containing(
       El.Div[
         Attr.className => "PostCard__photoBackground",
-        Attr.style => ["background-image": imageURL.map{ "url('\($0)')" }]
+        Attr.style => ["background-image": imageURL.map { "url('\($0)')" }]
       ],
       El.Div[Attr.className => "PostCard__content"].containing(
         El.Span[Attr.className => "PostCard__categoryLabel"].containing(category.rawValue),

@@ -16,7 +16,7 @@ public struct Workshop {
     let to: String
     let reason: String?
 
-    static func ==(lhs: Workshop.Thanks, rhs: Workshop.Thanks) -> Bool {
+    static func == (lhs: Workshop.Thanks, rhs: Workshop.Thanks) -> Bool {
       return lhs.to == rhs.to && lhs.reason == rhs.reason
     }
   }
@@ -24,8 +24,8 @@ public struct Workshop {
   struct Recommendation: Equatable {
     let title: String
     let url: URL
-    
-    static func ==(lhs: Workshop.Recommendation, rhs: Workshop.Recommendation) -> Bool { 
+
+    static func == (lhs: Workshop.Recommendation, rhs: Workshop.Recommendation) -> Bool {
       return lhs.title == rhs.title && lhs.url == rhs.url
     }
   }
@@ -50,7 +50,11 @@ public extension Workshop {
       An error of type Workshop.WorkshopError.malformedMetadata if the Yaml file does not follow the expected structure
    
    */
-  public static func parse(metadataYaml: String, descriptionMarkdown: String, prerequisitesMarkdown: String) throws -> Workshop {
+  public static func parse(
+    metadataYaml: String,
+    descriptionMarkdown: String,
+    prerequisitesMarkdown: String
+  ) throws -> Workshop {
     // Parse Yaml and Markdown
     let metadata = try Yaml.load(metadataYaml)
     let prerequisites = Text(markdown: prerequisitesMarkdown)
@@ -103,7 +107,7 @@ public extension Workshop {
     guard let values = metadata["thanks"].array else {
       return []
     }
-    return try values.map { 
+    return try values.map {
       guard let recipient = $0["to"].string else {
         throw WorkshopError.malformedMetadata("Expected all thanks items to contain 'to' property")
       }
@@ -116,15 +120,17 @@ public extension Workshop {
     guard let values = metadata["recommend"].array else {
       return []
     }
-    return try values.map { 
+    return try values.map {
       guard let title = $0["name"].string else {
         throw WorkshopError.malformedMetadata("Expected all recommendations items to contain 'name' property")
       }
-      guard 
+      guard
         let urlString = $0["url"].string,
         let url = URL(string: urlString)
       else {
-        throw WorkshopError.malformedMetadata("Expected all recommendations items to contain valid URLs in 'url' property")
+        throw WorkshopError.malformedMetadata(
+          "Expected all recommendations items to contain valid URLs in 'url' property"
+        )
       }
       return Workshop.Recommendation(title: title, url: url)
     }

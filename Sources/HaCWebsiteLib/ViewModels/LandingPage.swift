@@ -1,5 +1,7 @@
 import HaCTML
 
+// swiftlint:disable line_length
+
 struct LandingPage {
   let updates: [PostCard]
 

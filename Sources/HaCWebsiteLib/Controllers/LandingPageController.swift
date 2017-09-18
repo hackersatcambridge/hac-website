@@ -39,15 +39,8 @@ struct LandingPageController {
   ]
 
   static var handler: RouterHandler = { request, response, next in
-    defer {
-      next()
-    }
-    do {
-      try response.send(
-        LandingPage(updates: updates).node.render()
-      ).end()
-    } catch {
-      Log.error("Socket error occured")
-    }
+    try response.send(
+      LandingPage(updates: updates).node.render()
+    ).end()
   }
 }

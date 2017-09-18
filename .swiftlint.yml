@@ -1,0 +1,10 @@
+included:
+  - Sources
+excluded:
+  - .build
+disabled_rules:
+  - todo
+type_name:
+  min_length: 1
+identifier_name:
+  min_length: 1

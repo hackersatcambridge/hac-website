@@ -20,7 +20,8 @@ private func CSSAttribute(_ key: String) -> AttributeKey<[String: String?]> {
 }
 
 public enum Attributes {
-  // We are filling this list in incrementally, implementing attributes as we need them so that we can type them correctly
+  // We are filling this list in incrementally,
+  // implementing attributes as we need them so that we can type them correctly
   static public let alt = stringAttribute("alt")
   static public let charset = stringAttribute("charset")
   static public let className = stringAttribute("class")
@@ -38,4 +39,5 @@ public enum Attributes {
 }
 
 // Creating a more concise namespace for expressivity
+// swiftlint:disable:next identifier_name
 public let Attr = Attributes.self

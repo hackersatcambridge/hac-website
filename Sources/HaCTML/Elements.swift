@@ -111,4 +111,5 @@ public enum Elements {
 }
 
 // Creating a more concise namespace for expressivity
+// swiftlint:disable:next identifier_name
 public let El = Elements.self

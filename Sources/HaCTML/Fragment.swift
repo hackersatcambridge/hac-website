@@ -27,11 +27,11 @@
 */
 public struct Fragment {
   let nodes: [Node]
-  
+
   public init(_ nodes: Node...) {
     self.init(nodes)
   }
-  
+
   public init(_ nodes: [Node]) {
     self.nodes = nodes
   }

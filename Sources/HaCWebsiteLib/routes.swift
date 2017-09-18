@@ -13,23 +13,16 @@ func getWebsiteRouter() -> Router {
 
   router.get("/", handler: LandingPageController.handler)
 
-  router.get("/workshops") { request, response, next in
-    defer {
-      next()
-    }
-    do {
-      try response.send(
-        UI.Pages.workshops(workshops: WorkshopManager.workshops).render()
-      )
-      .end()
-    } catch {
-      Log.error("Failed to render template \(error)")
-    }
+  router.get("/workshops") { _, response, next in
+    try response.send(
+      UI.Pages.workshops(workshops: WorkshopManager.workshops).render()
+    ).end()
+    next()
   }
 
   /// Intended for use by GitHub webhooks
-  router.post("/api/refresh_workshops") { request, response, _ in
-    try! WorkshopManager.update()
+  router.post("/api/refresh_workshops") { _, _, _ in
+    try WorkshopManager.update()
   }
 
   return router
