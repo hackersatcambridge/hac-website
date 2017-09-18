@@ -8,7 +8,7 @@ import SwiftyJSON
 
 struct LandingPageController {
 
-  static let eventPostCards : [PostCard] = EventManager.events.flatMap { event in
+  static let eventPostCards : [PostCard] = EventServer.getEvents().flatMap { event in
     return event.toPostCard()
   }
 

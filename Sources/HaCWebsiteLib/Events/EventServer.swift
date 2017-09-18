@@ -1,14 +1,10 @@
 import Foundation
 
-public struct EventManager {
-    private(set) static var events: [Event] = []
+public struct EventServer {
 
-    public static func update() throws{
-        var updatedEvents : [Event] = []
-
-        let duration : Double = 4000000
-        try! WorkshopManager.update()
+    static func getEvents() -> [Event] {
         //TODO: source events from database
+        let duration : Double = 4000000
         let workshopEvents : [Event] = WorkshopManager.workshops.map{
             (workshop: Workshop) -> WorkshopEvent in
                 return WorkshopEvent(called: workshop.title, at: Date(), described: "There's Pizza", 
@@ -16,11 +12,9 @@ public struct EventManager {
         }.filter{ event in 
             event.isLive
         }
-        updatedEvents += workshopEvents
-
-        updatedEvents += [HackathonEvent(called: "Game Gig 2017", at: Date(), described: "Fun and Games", 
+        let hackathonEvents = [HackathonEvent(called: "Game Gig 2017", at: Date(), described: "Fun and Games", 
             coloured: "black", hypePeriod: DateInterval(start: Date(), duration: duration), lasting: 3)]
 
-        events = updatedEvents
+       return workshopEvents + hackathonEvents
     }
 }
