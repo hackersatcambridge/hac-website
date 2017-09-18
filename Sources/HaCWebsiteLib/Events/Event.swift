@@ -8,6 +8,6 @@ protocol Event {
     var hypePeriod : DateInterval {get}
     var imageURL : String? {get}
     var location : Location? {get} //for room names etc.
-    var facebookID : Double? {get}
+    var facebookEventID : Double? {get}
     var shouldShowAsUpdate : Bool {get}
 }

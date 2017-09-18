@@ -9,7 +9,7 @@ struct HackathonEvent : Event, PostCardRepresentable {
     let sponsor : String?
     let imageURL : String?
     let location : Location?
-    let facebookID : Double?
+    let facebookEventID : Double?
     var shouldShowAsUpdate: Bool {
         get {
             return self.hypePeriod.contains(Date())
@@ -27,7 +27,7 @@ struct HackathonEvent : Event, PostCardRepresentable {
 
     init(called title: String, at time: DateInterval, described description: String, colored color: String, 
     hypePeriod: DateInterval, sponsoredBy sponsor: String? = nil, imageURL: String? = nil,
-    at location: Location? = nil, facebookID : Double? = nil ) {
+    at location: Location? = nil, facebookEventID : Double? = nil ) {
         self.title = title
         self.time = time
         self.eventDescription = description
@@ -36,6 +36,6 @@ struct HackathonEvent : Event, PostCardRepresentable {
         self.sponsor = sponsor
         self.imageURL = imageURL
         self.location = location
-        self.facebookID = facebookID
+        self.facebookEventID = facebookEventID
     }
 }

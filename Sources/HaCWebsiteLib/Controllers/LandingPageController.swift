@@ -19,6 +19,13 @@ struct LandingPageController {
       description: "Learn all the things.",
       backgroundColor: "#852503",
       imageURL: "/static/images/functions_frame.png"
+    ),
+    PostCard(
+      title: "TCP Throughput",
+      category: .video,
+      description: "Learn all the things.",
+      backgroundColor: "green",
+      imageURL: "/static/images/workshop.jpg"
     )
   ]
 
