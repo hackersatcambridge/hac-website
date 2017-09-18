@@ -4,7 +4,7 @@ struct HackathonEvent : Event {
     let title : String
     let time : Date 
     let eventDescription: String
-    let colour : String
+    let color : String
     let duration : Int
     let hypePeriod : DateInterval
     var sponsor : String?
@@ -12,18 +12,18 @@ struct HackathonEvent : Event {
     var endTime : Date? 
     var venue : String?
     var facebookLink : String?
-    var isLive: Bool {
+    var shouldShowAsUpdate: Bool {
         get {
             return self.hypePeriod.contains(Date())
         }
     }
 
-    init(called title: String, at time: Date, described description: String, coloured colour: String, 
+    init(called title: String, at time: Date, described description: String, colored color: String, 
     hypePeriod: DateInterval, lasting duration: Int) {
         self.title = title
         self.time = time
         self.eventDescription = description
-        self.colour = colour
+        self.color = color
         self.hypePeriod = hypePeriod
         self.duration = duration
     }

@@ -8,9 +8,7 @@ import SwiftyJSON
 
 struct LandingPageController {
 
-  static let eventPostCards : [PostCard] = EventServer.getEvents().flatMap { event in
-    return event.toPostCard()
-  }
+  static let eventPostCards : [PostCard] = EventServer.getEvents().flatMap{ $0.toPostCard() }
 
   static let videos = [
     PostCard(
@@ -46,7 +44,7 @@ extension Event {
           title: self.title,
           category: .workshop,
           description: self.eventDescription,
-          backgroundColor: self.colour, //TODO
+          backgroundColor: self.color, //TODO
           imageURL: self.imageURL
         )
       case is HackathonEvent:
@@ -54,7 +52,7 @@ extension Event {
           title: self.title,
           category: .hackathon,
           description: self.eventDescription,
-          backgroundColor: self.colour, //TODO
+          backgroundColor: self.color, //TODO
           imageURL: self.imageURL
         )
       default:
