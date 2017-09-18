@@ -1,16 +1,16 @@
 import Foundation
 
-struct HackathonEvent : Event, PostCardRepresentable {
+struct GeneralEvent {
     let title : String
     let time : DateInterval
-    let eventDescription: String
+    let tagLine : String
     let color : String
     let hypePeriod : DateInterval
-    let sponsor : String?
-    let imageURL : String?
+    let eventDescription : Text
+    let imageURL : String? 
     let location : Location?
     let facebookEventID : Double?
-    var shouldShowAsUpdate: Bool {
+    var shouldShowAsUpdate : Bool {
         get {
             return self.hypePeriod.contains(Date())
         }
@@ -18,24 +18,25 @@ struct HackathonEvent : Event, PostCardRepresentable {
     var postCardRepresentation : PostCard {
         return PostCard(
           title: self.title,
-          category: .hackathon,
-          description: self.eventDescription,
+          category: .general,
+          description: self.tagLine,
           backgroundColor: self.color, //TODO
           imageURL: self.imageURL
         )
     }
 
-    init(called title: String, at time: DateInterval, described description: String, colored color: String, 
-    hypePeriod: DateInterval, sponsoredBy sponsor: String? = nil, imageURL: String? = nil,
-    at location: Location? = nil, facebookEventID : Double? = nil ) {
+    init(called title: String, at time: DateInterval, summarised tagLine: String, colored color: String,
+    hypePeriod: DateInterval, description eventDescription: Text, imageURL: String? = nil,
+    at location: Location? = nil, facebookEventID: Double? = nil) {
         self.title = title
         self.time = time
-        self.eventDescription = description
+        self.tagLine = tagLine
         self.color = color
         self.hypePeriod = hypePeriod
-        self.sponsor = sponsor
+        self.eventDescription = eventDescription
         self.imageURL = imageURL
         self.location = location
         self.facebookEventID = facebookEventID
     }
+
 }
