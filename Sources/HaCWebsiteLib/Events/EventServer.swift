@@ -17,7 +17,6 @@ public struct EventServer {
         let hackathon = HackathonEvent(called: "Game Gig 2017", at: DateInterval(start: Date(), duration: duration),
             described: "Fun and Games", colored: "black", hypePeriod: DateInterval(start: Date(), duration: hypeDuration))
         let hackathonEvents = [hackathon]
-
        return workshopEvents + hackathonEvents
     }
 }

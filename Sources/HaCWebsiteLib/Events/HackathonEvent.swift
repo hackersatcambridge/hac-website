@@ -8,7 +8,7 @@ struct HackathonEvent : Event {
     let hypePeriod : DateInterval
     let sponsor : String?
     let imageURL : String?
-    let venue : String?
+    let location : Location?
     let facebookLink : String?
     var shouldShowAsUpdate: Bool {
         get {
@@ -18,7 +18,7 @@ struct HackathonEvent : Event {
 
     init(called title: String, at time: DateInterval, described description: String, colored color: String, 
     hypePeriod: DateInterval, sponsoredBy sponsor: String? = nil, imageURL: String? = nil,
-    at venue: String? = nil, facebookLink : String? = nil ) {
+    at location: Location? = nil, facebookLink : String? = nil ) {
         self.title = title
         self.time = time
         self.eventDescription = description
@@ -26,7 +26,7 @@ struct HackathonEvent : Event {
         self.hypePeriod = hypePeriod
         self.sponsor = sponsor
         self.imageURL = imageURL
-        self.venue = venue
+        self.location = location
         self.facebookLink = facebookLink
     }
 }

@@ -7,7 +7,7 @@ protocol Event {
     var color : String {get}
     var hypePeriod : DateInterval {get}
     var imageURL : String? {get}
-    var venue : String? {get} //for room names etc.
+    var location : Location? {get} //for room names etc.
     var facebookLink : String? {get}
     var shouldShowAsUpdate : Bool {get}
 }
