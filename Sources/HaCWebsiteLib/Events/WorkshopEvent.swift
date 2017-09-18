@@ -7,10 +7,10 @@ struct WorkshopEvent : Event {
     let color : String
     let hypePeriod : DateInterval
     let workshop : Workshop 
-    var imageURL : String?
-    var endTime : Date? 
-    var venue : String?
-    var facebookLink : String?
+    let imageURL : String?
+    let endTime : Date? 
+    let venue : String?
+    let facebookLink : String?
     var shouldShowAsUpdate: Bool {
         get {
             return self.hypePeriod.contains(Date())
@@ -18,13 +18,18 @@ struct WorkshopEvent : Event {
     }
 
     init(called title: String, at time: Date, described description: String, colored color: String, 
-    hypePeriod: DateInterval, basedOn workshop: Workshop) {
+    hypePeriod: DateInterval, basedOn workshop: Workshop, imageURL: String? = nil,
+    finishing endTime: Date? = nil, at venue: String? = nil, facebookLink : String? = nil) {
         self.title = title
         self.time = time
         self.eventDescription = description
         self.color = color
         self.hypePeriod = hypePeriod
         self.workshop = workshop
+        self.imageURL = imageURL
+        self.endTime = endTime
+        self.venue = venue
+        self.facebookLink = facebookLink
     }
 }
 
