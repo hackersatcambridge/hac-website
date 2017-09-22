@@ -7,6 +7,7 @@ struct ExternalWebsiteEvent : Event {
     let color : String
     let hypePeriod : DateInterval
     let tags : [String]
+    let websiteURL : String
     let imageURL : String?
     let location : Location?
     let facebookEventID : Double?
@@ -26,13 +27,14 @@ struct ExternalWebsiteEvent : Event {
     }
 
     init(title: String, time: DateInterval, tagLine : String, color: String, hypePeriod: DateInterval,
-    tags: [String], imageURL: String? = nil, location: Location? = nil, facebookEventID : Double? = nil ) {
+    tags: [String], url: String, imageURL: String? = nil, location: Location? = nil, facebookEventID : Double? = nil ) {
         self.title = title
         self.time = time
         self.tagLine = tagLine
         self.color = color
         self.hypePeriod = hypePeriod
         self.tags = tags
+        self.websiteURL = url
         self.imageURL = imageURL
         self.location = location
         self.facebookEventID = facebookEventID

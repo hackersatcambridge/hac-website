@@ -15,7 +15,8 @@ public struct EventServer {
             event.shouldShowAsUpdate
         }
         let externalEvent = ExternalWebsiteEvent(title: "Game Gig 2017", time: DateInterval(start: Date(), duration: duration),
-            tagLine: "Fun and Games", color: "black", hypePeriod: DateInterval(start: Date(), duration: hypeDuration), tags: [])
+            tagLine: "Fun and Games", color: "black", hypePeriod: DateInterval(start: Date(), duration: hypeDuration),
+            tags: [], url: "")
         let externalEvents = [externalEvent]
        return workshopEvents + externalEvents
     }
