@@ -1,6 +1,6 @@
 import Foundation
 
-struct ExternalWebsiteEvent : Event, PostCardRepresentable {
+struct ExternalWebsiteEvent : Event {
     let title : String
     let time : DateInterval
     let tagLine : String

@@ -1,6 +1,6 @@
 import Foundation
 
-protocol Event {
+protocol Event: PostCardRepresentable {
     var title : String {get}
     var time : DateInterval {get}
     var tagLine : String {get}

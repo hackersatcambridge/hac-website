@@ -1,6 +1,6 @@
 import Foundation
 
-struct WorkshopEvent : Event, PostCardRepresentable {
+struct WorkshopEvent : Event {
     let title : String
     let time : DateInterval
     let tagLine : String

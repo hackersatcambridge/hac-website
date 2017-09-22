@@ -9,7 +9,7 @@ import SwiftyJSON
 struct LandingPageController {
 
   static let eventPostCards : [PostCard] = EventServer.getEvents().flatMap{ event in 
-    (event as? PostCardRepresentable)?.postCardRepresentation
+    event.postCardRepresentation
   }
 
   static let videos = [
