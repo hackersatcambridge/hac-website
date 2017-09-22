@@ -6,6 +6,7 @@ protocol Event: PostCardRepresentable {
     var tagLine : String {get}
     var color : String {get}
     var hypePeriod : DateInterval {get}
+    var tags : [String] {get}
     var imageURL : String? {get}
     var location : Location? {get}
     var facebookEventID : Double? {get}

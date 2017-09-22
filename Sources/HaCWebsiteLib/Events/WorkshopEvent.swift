@@ -7,6 +7,7 @@ struct WorkshopEvent : Event {
     let eventDescription : Text
     let color : String
     let hypePeriod : DateInterval
+    let tags : [String]
     let workshop : Workshop 
     let imageURL : String?
     let location : Location?
@@ -26,15 +27,16 @@ struct WorkshopEvent : Event {
         )
     }
 
-    init(called title: String, at time: DateInterval, summarised tagLine : String, described description: Text,
-    colored color: String, hypePeriod: DateInterval, basedOn workshop: Workshop, imageURL: String? = nil, 
-    at location: Location? = nil, facebookEventID : Double? = nil) {
+    init(title: String, time: DateInterval, tagLine : String, description: Text, color: String,
+    hypePeriod: DateInterval,  tags: [String], workshop: Workshop, imageURL: String? = nil, 
+    location: Location? = nil, facebookEventID : Double? = nil) {
         self.title = title
         self.time = time
         self.tagLine = tagLine
         self.eventDescription = description
         self.color = color
         self.hypePeriod = hypePeriod
+        self.tags = tags
         self.workshop = workshop
         self.imageURL = imageURL
         self.location = location
