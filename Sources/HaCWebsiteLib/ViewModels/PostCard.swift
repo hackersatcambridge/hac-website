@@ -5,6 +5,7 @@ struct PostCard {
     case workshop = "Workshop"
     case video = "Video"
     case hackathon = "Hackathon"
+    case general = "General Event"
   }
 
   let title: String
@@ -29,4 +30,8 @@ struct PostCard {
       )
     )
   }
+}
+
+protocol PostCardRepresentable {
+  var postCardRepresentation : PostCard {get}
 }
