@@ -10,7 +10,7 @@ struct GeneralEvent: PostCardRepresentable {
     let eventDescription : Text
     let imageURL : String? 
     let location : Location?
-    let facebookEventID : Double?
+    let facebookEventID : String?
     var shouldShowAsUpdate : Bool {
         get {
             return self.hypePeriod.contains(Date())
@@ -28,7 +28,7 @@ struct GeneralEvent: PostCardRepresentable {
 
     init(title: String, time: DateInterval, tagLine: String, color: String,hypePeriod: DateInterval, 
     tags:[String], description eventDescription: Text, imageURL: String? = nil, location: Location? = nil,
-    facebookEventID: Double? = nil) {
+    facebookEventID: String? = nil) {
         self.title = title
         self.time = time
         self.tagLine = tagLine

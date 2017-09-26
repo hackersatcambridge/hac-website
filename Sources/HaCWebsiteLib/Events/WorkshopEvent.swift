@@ -11,7 +11,7 @@ struct WorkshopEvent : Event {
     let workshop : Workshop 
     let imageURL : String?
     let location : Location?
-    let facebookEventID : Double?
+    let facebookEventID : String?
     var shouldShowAsUpdate: Bool {
         get {
             return self.hypePeriod.contains(Date())
@@ -29,7 +29,7 @@ struct WorkshopEvent : Event {
 
     init(title: String, time: DateInterval, tagLine : String, description: Text, color: String,
     hypePeriod: DateInterval,  tags: [String], workshop: Workshop, imageURL: String? = nil, 
-    location: Location? = nil, facebookEventID : Double? = nil) {
+    location: Location? = nil, facebookEventID : String? = nil) {
         self.title = title
         self.time = time
         self.tagLine = tagLine

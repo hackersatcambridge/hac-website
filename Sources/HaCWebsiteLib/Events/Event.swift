@@ -9,6 +9,6 @@ protocol Event: PostCardRepresentable {
     var tags : [String] {get}
     var imageURL : String? {get}
     var location : Location? {get}
-    var facebookEventID : Double? {get}
+    var facebookEventID : String? {get}
     var shouldShowAsUpdate : Bool {get}
 }

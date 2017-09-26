@@ -10,7 +10,7 @@ struct ExternalWebsiteEvent : Event {
     let websiteURL : String
     let imageURL : String?
     let location : Location?
-    let facebookEventID : Double?
+    let facebookEventID : String?
     var shouldShowAsUpdate: Bool {
         get {
             return self.hypePeriod.contains(Date())
@@ -27,7 +27,7 @@ struct ExternalWebsiteEvent : Event {
     }
 
     init(title: String, time: DateInterval, tagLine : String, color: String, hypePeriod: DateInterval,
-    tags: [String], url: String, imageURL: String? = nil, location: Location? = nil, facebookEventID : Double? = nil ) {
+    tags: [String], url: String, imageURL: String? = nil, location: Location? = nil, facebookEventID : String? = nil ) {
         self.title = title
         self.time = time
         self.tagLine = tagLine
