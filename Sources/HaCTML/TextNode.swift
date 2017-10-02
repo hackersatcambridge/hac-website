@@ -4,7 +4,7 @@
 public struct TextNode {
   let text: String
   let escapeLevel: EscapeLevel
-  
+
   /**
     - parameters:
       - text: the text to display
@@ -21,8 +21,8 @@ public struct TextNode {
   public enum EscapeLevel {
     // TODO: Come up with a solution for text in script/style tags as they are a special case for escaping.
     /**
-      What you read in code is what you see as text in the rendered page. This means escaping everything that would otherwise
-      render weirdly as text (e.g. < or &)
+      What you read in code is what you see as text in the rendered page.
+      This means escaping everything that would otherwise render weirdly as text (e.g. < or &)
      */
     case preserveViewedCharacters
     /**

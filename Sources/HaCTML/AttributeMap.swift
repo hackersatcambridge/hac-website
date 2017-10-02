@@ -5,10 +5,10 @@ struct AttributeMap: ExpressibleByArrayLiteral {
   typealias Element = Attribute
 
   // TODO: Make the key for this AttributeKey, so we can have multiple AttributeKeys with the same name
-  private let attributeMap: Dictionary<String, Attribute>
+  private let attributeMap: [String: Attribute]
 
   init(attributes arrayLiteral: [Element]) {
-    var newAttributes = Dictionary<String, Attribute>()
+    var newAttributes = [String: Attribute]()
 
     for attribute in arrayLiteral {
       newAttributes[attribute.key.keyName] = attribute
@@ -16,7 +16,7 @@ struct AttributeMap: ExpressibleByArrayLiteral {
 
     attributeMap = newAttributes
   }
-  
+
   init (arrayLiteral: Element...) {
     self.init(attributes: arrayLiteral)
   }
@@ -25,17 +25,18 @@ struct AttributeMap: ExpressibleByArrayLiteral {
     // TODO: Implement this as a subscript once we move to Swift 4
     //   It can't be one now as generic subscripts aren't allowed prior to Swift 4,
     //   and this function is generic
+    // swiftlint:disable:next force_cast
     return attributeMap[key.keyName]?.value as! Value?
   }
 
   func merge(attributes: [Attribute]) -> AttributeMap {
     return AttributeMap(attributes: attributeMap.values + attributes)
   }
-  
+
   var renderedValues: [AppliedAttribute] {
     return attributeMap.values.map { attribute in attribute.key.apply(attribute.value) }
   }
-  
+
   var isEmpty: Bool {
     return self.attributeMap.isEmpty
   }

@@ -14,7 +14,11 @@ public struct WorkshopManager {
     We don't want this function running many times concurrently, hence 'unsafe'
   */
   private static func unsafePull() {
-    GitUtils.cloneOrPull(repoURL: "https://github.com/hackersatcambridge/workshops.git", in: DotEnv.get("DATA_DIR")!, directory: "workshops")
+    GitUtils.cloneOrPull(
+      repoURL: "https://github.com/hackersatcambridge/workshops.git",
+      in: DotEnv.get("DATA_DIR")!,
+      directory: "workshops"
+    )
   }
 
   /**
@@ -39,7 +43,7 @@ public struct WorkshopManager {
         let metadataYaml = try String(contentsOfFile: metadataPath, encoding: .utf8)
         let descriptionMarkdown = try String(contentsOfFile: descriptionPath, encoding: .utf8)
         let prerequisitesMarkdown = try String(contentsOfFile: prerequisitesPath, encoding: .utf8)
-         
+
         let newWorkshop = try Workshop.parse(
           metadataYaml: metadataYaml,
           descriptionMarkdown: descriptionMarkdown,

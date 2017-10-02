@@ -2,20 +2,20 @@ import Foundation
 
 public struct Config {
   public static func envVar(forKey key: String) -> String? {
-    return ProcessInfo.processInfo.environment[key];
+    return ProcessInfo.processInfo.environment[key]
   }
 
   public static var listeningPort: Int {
     if let portString = envVar(forKey: "PORT"), let port = Int(portString) {
-      return port;
+      return port
     }
 
-    return 8090;
+    return 8090
   }
 
   private static func checkEnvVarsExist(for keys: String...) {
     for key in keys {
-      guard let _ = envVar(forKey: key) else {
+      guard envVar(forKey: key) != nil else {
         fatalError("Missing environment variable: \(key)")
       }
     }

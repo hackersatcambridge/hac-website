@@ -32,12 +32,13 @@ public struct AttributeKey<Value> {
     self.keyName = key
     self.applyFunc = apply
   }
-  
+
   internal func apply(_ value: Value) -> AppliedAttribute {
     return (keyName: keyName, value: applyFunc(value))
   }
 
   fileprivate var asAny: AttributeKey<Any> {
+    // swiftlint:disable:next force_cast
     return AttributeKey<Any>(keyName, apply: { self.applyFunc($0 as! Value) })
   }
 }
