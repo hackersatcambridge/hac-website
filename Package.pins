@@ -14,16 +14,22 @@
       "version": "0.2.5"
     },
     {
-      "package": "CPostgreSQL",
+      "package": "CEpoll",
       "reason": null,
-      "repositoryURL": "https://github.com/vapor-community/cpostgresql.git",
-      "version": "2.1.0"
+      "repositoryURL": "https://github.com/IBM-Swift/CEpoll.git",
+      "version": "0.1.1"
     },
     {
       "package": "Core",
       "reason": null,
       "repositoryURL": "https://github.com/vapor/core.git",
       "version": "2.1.2"
+    },
+    {
+      "package": "CPostgreSQL",
+      "reason": null,
+      "repositoryURL": "https://github.com/vapor-community/cpostgresql.git",
+      "version": "2.1.0"
     },
     {
       "package": "Debugging",
@@ -36,12 +42,6 @@
       "reason": null,
       "repositoryURL": "https://github.com/vapor/fluent.git",
       "version": "2.3.0"
-    },
-    {
-      "package": "HTMLString",
-      "reason": null,
-      "repositoryURL": "https://github.com/alexaubry/HTMLString",
-      "version": "3.0.0"
     },
     {
       "package": "HeliumLogger",
@@ -62,16 +62,16 @@
       "version": "1.6.3"
     },
     {
-      "package": "Kitura-TemplateEngine",
-      "reason": null,
-      "repositoryURL": "https://github.com/IBM-Swift/Kitura-TemplateEngine.git",
-      "version": "1.6.0"
-    },
-    {
       "package": "Kitura-net",
       "reason": null,
       "repositoryURL": "https://github.com/IBM-Swift/Kitura-net.git",
       "version": "1.6.2"
+    },
+    {
+      "package": "Kitura-TemplateEngine",
+      "reason": null,
+      "repositoryURL": "https://github.com/IBM-Swift/Kitura-TemplateEngine.git",
+      "version": "1.6.0"
     },
     {
       "package": "KituraMarkdown",
@@ -92,6 +92,12 @@
       "version": "2.1.1"
     },
     {
+      "package": "OpenSSL",
+      "reason": null,
+      "repositoryURL": "https://github.com/IBM-Swift/OpenSSL.git",
+      "version": "0.3.7"
+    },
+    {
       "package": "PostgreSQL",
       "reason": null,
       "repositoryURL": "https://github.com/vapor-community/postgresql.git",
@@ -110,6 +116,12 @@
       "version": "1.2.0"
     },
     {
+      "package": "Socket",
+      "reason": null,
+      "repositoryURL": "https://github.com/IBM-Swift/BlueSocket.git",
+      "version": "0.12.61"
+    },
+    {
       "package": "SQLite",
       "reason": null,
       "repositoryURL": "https://github.com/vapor/sqlite.git",
@@ -120,12 +132,6 @@
       "reason": null,
       "repositoryURL": "https://github.com/IBM-Swift/BlueSSLService.git",
       "version": "0.12.48"
-    },
-    {
-      "package": "Socket",
-      "reason": null,
-      "repositoryURL": "https://github.com/IBM-Swift/BlueSocket.git",
-      "version": "0.12.61"
     },
     {
       "package": "SwiftDotEnv",
