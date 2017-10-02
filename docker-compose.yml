@@ -1,4 +1,4 @@
-version: '2'
+version: '3.1'
 volumes:
   node_modules:
   yarn_cache:
@@ -9,12 +9,23 @@ services:
     command: sh -c "yarn; yarn gulp serve"
     tty: true
     ports:
-    - "3000:3000"
-    - "3001:3001"
+      - 3000:3000
+      - 3001:3001
     environment:
-      - DATA_DIR=/root/hac-website/Data
+      DATA_DIR: /root/hac-website/Data
     volumes:
-    - build:/root/hac-website/.build
-    - node_modules:/root/hac-website/node_modules
-    - yarn_cache:/yarn_cache
-    - .:/root/hac-website/
+      - build:/root/hac-website/.build
+      - node_modules:/root/hac-website/node_modules
+      - yarn_cache:/yarn_cache
+      - .:/root/hac-website/
+    depends_on:
+      - hac-db
+  hac-db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: test
+      POSTGRES_USER: richard
+      POSTGRES_DB: hac
+    ports:
+      # Expose Database on port 5433 (since Travis ties up 5432 by default)
+      - 5433:5432

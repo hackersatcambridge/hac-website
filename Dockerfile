@@ -13,7 +13,9 @@ RUN \
   apt-get update && \
   apt-get install nodejs yarn && \
   npm install -g n && \
-  n 6.11.3
+  n 6.11.3 && \
+  # Install PostgreSQL library
+  apt-get install -y libpq-dev
 
 RUN yarn config set cache-folder /yarn_cache
 

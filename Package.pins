@@ -2,16 +2,46 @@
   "autoPin": true,
   "pins": [
     {
+      "package": "Bits",
+      "reason": null,
+      "repositoryURL": "https://github.com/vapor/bits.git",
+      "version": "1.1.0"
+    },
+    {
       "package": "CCurl",
       "reason": null,
       "repositoryURL": "https://github.com/IBM-Swift/CCurl.git",
       "version": "0.2.5"
     },
     {
-      "package": "CEpoll",
+      "package": "CPostgreSQL",
       "reason": null,
-      "repositoryURL": "https://github.com/IBM-Swift/CEpoll.git",
-      "version": "0.1.0"
+      "repositoryURL": "https://github.com/vapor-community/cpostgresql.git",
+      "version": "2.1.0"
+    },
+    {
+      "package": "Core",
+      "reason": null,
+      "repositoryURL": "https://github.com/vapor/core.git",
+      "version": "2.1.2"
+    },
+    {
+      "package": "Debugging",
+      "reason": null,
+      "repositoryURL": "https://github.com/vapor/debugging.git",
+      "version": "1.1.0"
+    },
+    {
+      "package": "Fluent",
+      "reason": null,
+      "repositoryURL": "https://github.com/vapor/fluent.git",
+      "version": "2.3.0"
+    },
+    {
+      "package": "HTMLString",
+      "reason": null,
+      "repositoryURL": "https://github.com/alexaubry/HTMLString",
+      "version": "3.0.0"
     },
     {
       "package": "HeliumLogger",
@@ -32,16 +62,16 @@
       "version": "1.6.3"
     },
     {
-      "package": "Kitura-net",
-      "reason": null,
-      "repositoryURL": "https://github.com/IBM-Swift/Kitura-net.git",
-      "version": "1.6.2"
-    },
-    {
       "package": "Kitura-TemplateEngine",
       "reason": null,
       "repositoryURL": "https://github.com/IBM-Swift/Kitura-TemplateEngine.git",
       "version": "1.6.0"
+    },
+    {
+      "package": "Kitura-net",
+      "reason": null,
+      "repositoryURL": "https://github.com/IBM-Swift/Kitura-net.git",
+      "version": "1.6.2"
     },
     {
       "package": "KituraMarkdown",
@@ -56,22 +86,46 @@
       "version": "1.6.0"
     },
     {
-      "package": "OpenSSL",
+      "package": "Node",
       "reason": null,
-      "repositoryURL": "https://github.com/IBM-Swift/OpenSSL.git",
-      "version": "0.3.6"
+      "repositoryURL": "https://github.com/vapor/node.git",
+      "version": "2.1.1"
     },
     {
-      "package": "Socket",
+      "package": "PostgreSQL",
       "reason": null,
-      "repositoryURL": "https://github.com/IBM-Swift/BlueSocket.git",
-      "version": "0.12.61"
+      "repositoryURL": "https://github.com/vapor-community/postgresql.git",
+      "version": "2.1.0"
+    },
+    {
+      "package": "PostgreSQLDriver",
+      "reason": null,
+      "repositoryURL": "https://github.com/vapor-community/postgresql-driver.git",
+      "version": "2.0.1"
+    },
+    {
+      "package": "Random",
+      "reason": null,
+      "repositoryURL": "https://github.com/vapor/random.git",
+      "version": "1.2.0"
+    },
+    {
+      "package": "SQLite",
+      "reason": null,
+      "repositoryURL": "https://github.com/vapor/sqlite.git",
+      "version": "2.1.0"
     },
     {
       "package": "SSLService",
       "reason": null,
       "repositoryURL": "https://github.com/IBM-Swift/BlueSSLService.git",
       "version": "0.12.48"
+    },
+    {
+      "package": "Socket",
+      "reason": null,
+      "repositoryURL": "https://github.com/IBM-Swift/BlueSocket.git",
+      "version": "0.12.61"
     },
     {
       "package": "SwiftDotEnv",

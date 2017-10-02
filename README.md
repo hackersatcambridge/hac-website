@@ -33,6 +33,14 @@ When you want to run the project again (and you will, it's great):
 
 ## Development
 
+### Environment Variables
+
+Your `.env` file should contain the following items in the format: _key_=_value_
+
+| Key | Value Example |
+| - | - |
+| DATABASE_URL | postgres://richard:test@hac-db:5432/hac |
+
 ### *"Um. It looks like your HTML is written in Swift."*
 
 You may notice that we aren't using a templating library for rendering HTML. Inspired by the likes of [Elm](http://elm-lang.org/) and [React](https://facebook.github.io/react/), we've written a module _HaCTML_ for making HTML type-safe and Swifty! For an example, have a look at our [home page](Sources/HaCWebsiteLib/ViewModels/LandingPage.swift).
