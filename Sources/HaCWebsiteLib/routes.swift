@@ -47,29 +47,3 @@ public func serveWebsite() {
   Kitura.addHTTPServer(onPort: Config.listeningPort, with: getWebsiteRouter())
   Kitura.run() // This call never returns
 }
-
-func testDatabase() {
-  do {
-    let driver = try Driver(
-      masterHostname: "hac-db",
-      readReplicaHostnames: [],
-      user: "richard",
-      password: "test",
-      database: "hac"
-    )
-    let database = Database(driver)
-    Database.default = database
-    try Pet.prepare(database)
-  } catch {
-    print("Failed to initialise database:")
-    dump(error)
-  }
-
-  do {
-    let testPet = Pet(name: "Fluffs", age: 1)
-    try testPet.save()
-  } catch {
-    print("Failed to add record")
-    dump(error)
-  }
-}
