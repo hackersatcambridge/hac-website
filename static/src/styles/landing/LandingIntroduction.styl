@@ -1,5 +1,6 @@
 .LandingIntroduction {
   padding: grid(4);
+  text-align: center;
 }
 
 .LandingIntroduction__titleContainer {
@@ -30,12 +31,42 @@
   text-decoration: underline;
 }
 
-.LandingIntroduction__titleIconRow {
+.LandingIntroduction__social {
+  margin: grid(3) 0;
+}
+
+.LandingIntroduction__socialText {
+  font-size: 1em;
+  color: $Color__mediumGrayText;
+  margin-bottom: grid(1.5);
+}
+
+.LandingIntroduction__socialIconRow {
   text-align: center;
 }
 
-.LandingIntroduction__titleLinkIconImg {
-  height: 40px;
-  width: 40px;
-  margin: 20px;
+.LandingIntroduction__socialLinkIconImg {
+  height: grid(4);
+  width: grid(4);
+  margin: 0 grid(3);
+  opacity: 0.9;
+  transition: opacity 0.2s;
+}
+
+.LandingIntroduction__socialLinkIconImg:hover {
+  opacity: 1;
+}
+
+.LandingIntroduction__callToActionButton {
+  padding: grid(1) grid(4);
+  background: $Color__bright1;
+  text-decoration: none;
+  display: inline-block;
+  color: white;
+  border-radius: 3px;
+  transition: background 0.2s;
+}
+
+.LandingIntroduction__callToActionButton:hover {
+  background: darken($Color__bright1, 20%);
 }

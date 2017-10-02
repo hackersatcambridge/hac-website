@@ -19,43 +19,43 @@ struct LandingPage {
               ],
               El.Div[Attr.className => "LandingIntroduction__tagLine"].containing("Cambridge's student tech society")
             ),
-            El.P.containing("We build things, and help other people build things. We also have a bunch of fun"),
-            El.A[Attr.href => "#", Attr.className => "LandingIntroduction__link"].containing("Find out more"),
-            El.Div[Attr.className => "LandingIntroduction__titleIconRow"].containing(
-              El.A[Attr.href => "https://github.com/hackersatcambridge/", Attr.className => "LandingIntroduction__titleLinkIcon"].containing(
-                El.Img[
-                  Attr.className => "LandingIntroduction__titleLinkIconImg",
-                  Attr.src => "/static/images/github_icon.svg",
-                  Attr.alt => "GitHub"
-                ]
-              ),
-              El.A[Attr.href => "https://www.facebook.com/hackersatcambridge", Attr.className => "LandingIntroduction__titleLinkIcon"].containing(
-                El.Img[
-                  Attr.className => "LandingIntroduction__titleLinkIconImg",
-                  Attr.src => "/static/images/facebook_icon.svg",
-                  Attr.alt => "Facebook"
-                ]
-              ),
-              El.A[Attr.href => "https://twitter.com/hackersatcam", Attr.className => "LandingIntroduction__titleLinkIcon"].containing(
-                El.Img[
-                  Attr.className => "LandingIntroduction__titleLinkIconImg",
-                  Attr.src => "/static/images/twitter_icon.svg",
-                  Attr.alt => "Twitter"
-                ]
-              ),
-              El.A[Attr.href => "https://www.youtube.com/channel/UCNY6ekV9z84ZYL4qUDusTFw", Attr.className => "LandingIntroduction__titleLinkIcon"].containing(
-                El.Img[
-                  Attr.className => "LandingIntroduction__titleLinkIconImg",
-                  Attr.src => "/static/images/youtube_icon.svg",
-                  Attr.alt => "YouTube"
-                ]
-              ),
-              El.A[Attr.href => "https://medium.com/hackers-at-cambridge", Attr.className => "LandingIntroduction__titleLinkIcon"].containing(
-                El.Img[
-                  Attr.className => "LandingIntroduction__titleLinkIconImg",
-                  Attr.src => "/static/images/medium_icon.svg",
-                  Attr.alt => "Medium"
-                ]
+            El.P.containing("We are a community focused on learning about, and building things with technology."),
+            El.A[Attr.href => "http://eepurl.com/ckeD2b"].containing(
+              El.Div[Attr.className => "LandingIntroduction__callToActionButton"].containing(
+                "Join our mailing list"
+              )
+            ),
+            El.Div[Attr.className => "LandingIntroduction__social"].containing(
+              El.Div[Attr.className => "LandingIntroduction__socialText"].containing("And find us on"),
+              El.Div[Attr.className => "LandingIntroduction__socialIconRow"].containing(
+                El.A[Attr.href => "https://github.com/hackersatcambridge/", Attr.className => "LandingIntroduction__socialLinkIcon"].containing(
+                  El.Img[
+                    Attr.className => "LandingIntroduction__socialLinkIconImg",
+                    Attr.src => "/static/images/github_icon.svg",
+                    Attr.alt => "GitHub"
+                  ]
+                ),
+                El.A[Attr.href => "https://www.facebook.com/hackersatcambridge", Attr.className => "LandingIntroduction__socialLinkIcon"].containing(
+                  El.Img[
+                    Attr.className => "LandingIntroduction__socialLinkIconImg",
+                    Attr.src => "/static/images/facebook_icon.svg",
+                    Attr.alt => "Facebook"
+                  ]
+                ),
+                El.A[Attr.href => "https://www.youtube.com/channel/UCNY6ekV9z84ZYL4qUDusTFw", Attr.className => "LandingIntroduction__socialLinkIcon"].containing(
+                  El.Img[
+                    Attr.className => "LandingIntroduction__socialLinkIconImg",
+                    Attr.src => "/static/images/youtube_icon.svg",
+                    Attr.alt => "YouTube"
+                  ]
+                ),
+                El.A[Attr.href => "https://medium.com/hackers-at-cambridge", Attr.className => "LandingIntroduction__socialLinkIcon"].containing(
+                  El.Img[
+                    Attr.className => "LandingIntroduction__socialLinkIconImg",
+                    Attr.src => "/static/images/medium_icon.svg",
+                    Attr.alt => "Medium"
+                  ]
+                )
               )
             )
           ),
