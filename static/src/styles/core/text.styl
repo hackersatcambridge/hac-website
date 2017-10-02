@@ -60,3 +60,17 @@ p, ol, ul {
   Text__headerScale(0);
   color: $Color__mediumGrayText;
 }
+
+/**
+ * Text that is not visibly rendered but is read by screen readers and crawlers
+ */
+.Text--screenReader {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
