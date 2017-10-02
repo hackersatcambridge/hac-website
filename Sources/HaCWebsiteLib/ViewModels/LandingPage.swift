@@ -4,12 +4,12 @@ import HaCTML
 
 struct LandingPage {
   let updates: [PostCard]
-  let youtube_url = "https://www.youtube.com/hackersatcambridge"
-  let facebook_url = "https://www.facebook.com/hackersatcambridge"
-  let github_url = "https://github.com/hackersatcambridge/"
-  let twitter_url = "https://twitter.com/hackersatcam"
-  let medium_url = "https://medium.com/hackers-at-cambridge"
-  let calendar_url = "https://calendar.google.com/calendar/embed?src=10isedeg17ugvrvg73jq9p5gts%40group.calendar.google.com&ctz=Europe/London"
+  let youtubeUrl = "https://www.youtube.com/hackersatcambridge"
+  let facebookUrl = "https://www.facebook.com/hackersatcambridge"
+  let githubUrl = "https://github.com/hackersatcambridge/"
+  let twitterUrl = "https://twitter.com/hackersatcam"
+  let mediumUrl = "https://medium.com/hackers-at-cambridge"
+  let calendarUrl = "https://calendar.google.com/calendar/embed?src=10isedeg17ugvrvg73jq9p5gts%40group.calendar.google.com&ctz=Europe/London"
 
   var node: Node {
     return UI.Pages.base(
@@ -28,35 +28,36 @@ struct LandingPage {
             El.P.containing("We build things, and help other people build things. We also have a bunch of fun"),
             El.A[Attr.href => "#", Attr.className => "LandingIntroduction__link"].containing("Find out more"),
             El.Div[Attr.className => "LandingIntroduction__titleIconRow"].containing(
-              El.A[Attr.href => github_url, Attr.className => "LandingIntroduction__titleLinkIcon"].containing(
+              El.A[Attr.href => githubUrl, Attr.className => "LandingIntroduction__titleLinkIcon"].containing(
                 El.Img[
                   Attr.className => "LandingIntroduction__titleLinkIconImg",
                   Attr.src => "/static/images/github_icon.svg",
                   Attr.alt => "GitHub"
                 ]
               ),
-              El.A[Attr.href => facebook_url, Attr.className => "LandingIntroduction__titleLinkIcon"].containing(
+              El.A[Attr.href => facebookUrl
+          , Attr.className => "LandingIntroduction__titleLinkIcon"].containing(
                 El.Img[
                   Attr.className => "LandingIntroduction__titleLinkIconImg",
                   Attr.src => "/static/images/facebook_icon.svg",
                   Attr.alt => "Facebook"
                 ]
               ),
-              El.A[Attr.href => twitter_url, Attr.className => "LandingIntroduction__titleLinkIcon"].containing(
+              El.A[Attr.href => twitterUrl, Attr.className => "LandingIntroduction__titleLinkIcon"].containing(
                 El.Img[
                   Attr.className => "LandingIntroduction__titleLinkIconImg",
                   Attr.src => "/static/images/twitter_icon.svg",
                   Attr.alt => "Twitter"
                 ]
               ),
-              El.A[Attr.href => youtube_url, Attr.className => "LandingIntroduction__titleLinkIcon"].containing(
+              El.A[Attr.href => youtubeUrl, Attr.className => "LandingIntroduction__titleLinkIcon"].containing(
                 El.Img[
                   Attr.className => "LandingIntroduction__titleLinkIconImg",
                   Attr.src => "/static/images/youtube_icon.svg",
                   Attr.alt => "YouTube"
                 ]
               ),
-              El.A[Attr.href => medium_url, Attr.className => "LandingIntroduction__titleLinkIcon"].containing(
+              El.A[Attr.href => mediumUrl, Attr.className => "LandingIntroduction__titleLinkIcon"].containing(
                 El.Img[
                   Attr.className => "LandingIntroduction__titleLinkIconImg",
                   Attr.src => "/static/images/medium_icon.svg",
@@ -112,7 +113,7 @@ struct LandingPage {
             ),
             El.P.containing(
               TextNode("If you've missed one of our workshops and would like to catch up, check out our "),
-              El.A[Attr.href => youtube_url].containing("YouTube"),
+              El.A[Attr.href => youtubeUrl].containing("YouTube"),
               TextNode(" page for recordings. ")
             ),
             El.P.containing(
@@ -157,7 +158,8 @@ struct LandingPage {
             ),
             El.P.containing(
               TextNode("Find us on our "),
-              El.A[Attr.href => facebook_url].containing("Facebook"),
+              El.A[Attr.href => facebookUrl
+          ].containing("Facebook"),
               TextNode(" page to stay up to date.")
             )
           ),
