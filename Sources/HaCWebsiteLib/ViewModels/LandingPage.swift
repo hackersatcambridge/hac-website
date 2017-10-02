@@ -73,14 +73,14 @@ struct LandingPage {
             )
           )
         ),
-        El.Section[Attr.className => "LandingUpdateFeed"].containing(
-          El.H1[Attr.className => "LandingUpdateFeed__title Text--sectionHeading"].containing("Updates"),
-          El.Div[Attr.className => "LandingUpdateFeed__postContainer"].containing(
-            updates.map {
-              El.Div[Attr.className => "LandingUpdateFeed__item"].containing($0.node)
-            }
-          )
-        ),
+        // El.Section[Attr.className => "LandingUpdateFeed"].containing(
+        //   El.H1[Attr.className => "LandingUpdateFeed__title Text--sectionHeading"].containing("Updates"),
+        //   El.Div[Attr.className => "LandingUpdateFeed__postContainer"].containing(
+        //     updates.map {
+        //       El.Div[Attr.className => "LandingUpdateFeed__item"].containing($0.node)
+        //     }
+        //   )
+        // ),
         El.Article[Attr.className => "LandingAbout", Attr.id => "about"].containing(
           El.Div[Attr.className => "LandingAbout__imageContainer"].containing(
             El.Img[
