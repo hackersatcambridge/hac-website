@@ -37,7 +37,7 @@ func testDatabase() {
     }
 
     let driver = try Driver(
-      masterHostname: "hac-db",
+      masterHostname: databaseURLComponents.host,
       readReplicaHostnames: [],
       user: databaseURLComponents.user,
       password: databaseURLComponents.password,
