@@ -25,8 +25,8 @@ struct LandingPage {
               ],
               El.Div[Attr.className => "LandingIntroduction__tagLine"].containing("Cambridge's student tech society")
             ),
-            El.P.containing("We build things, and help other people build things. We also have a bunch of fun"),
-            El.A[Attr.href => "#", Attr.className => "LandingIntroduction__link"].containing("Find out more"),
+            El.P.containing("We build things, and help other people build things. We also have a bunch of fun."),
+            El.A[Attr.href => "#about", Attr.className => "LandingIntroduction__link"].containing("Find out more"),
             El.Div[Attr.className => "LandingIntroduction__titleIconRow"].containing(
               El.A[Attr.href => githubUrl, Attr.className => "LandingIntroduction__titleLinkIcon"].containing(
                 El.Img[
@@ -73,15 +73,15 @@ struct LandingPage {
             )
           )
         ),
-        El.Section[Attr.className => "LandingUpdateFeed"].containing(
-          El.H1[Attr.className => "LandingUpdateFeed__title Text--sectionHeading"].containing("Updates"),
-          El.Div[Attr.className => "LandingUpdateFeed__postContainer"].containing(
-            updates.map {
-              El.Div[Attr.className => "LandingUpdateFeed__item"].containing($0.node)
-            }
-          )
-        ),
-        El.Article[Attr.className => "LandingAbout"].containing(
+        // El.Section[Attr.className => "LandingUpdateFeed"].containing(
+        //   El.H1[Attr.className => "LandingUpdateFeed__title Text--sectionHeading"].containing("Updates"),
+        //   El.Div[Attr.className => "LandingUpdateFeed__postContainer"].containing(
+        //     updates.map {
+        //       El.Div[Attr.className => "LandingUpdateFeed__item"].containing($0.node)
+        //     }
+        //   )
+        // ),
+        El.Article[Attr.className => "LandingAbout", Attr.id => "about"].containing(
           El.Div[Attr.className => "LandingAbout__imageContainer"].containing(
             El.Img[
               Attr.className => "LandingAbout__image",
