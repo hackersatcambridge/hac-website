@@ -123,6 +123,7 @@ const build = gulp.parallel(swiftBuild, buildStaticAssets)
 const serve = gulp.series(build, gulp.parallel(reloadServer, watch))
 
 // Expose the serve and build tasks
+gulp.task('static-build', buildStaticAssets)
 gulp.task('build', build)
 gulp.task('serve', serve)
 
