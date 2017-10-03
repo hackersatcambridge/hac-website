@@ -67,19 +67,19 @@ struct LandingPage {
           El.Section[Attr.className => "LandingFeature LandingTop__feature"].containing(
             El.H1[Attr.className => "LandingFeature__subtitle Text--sectionHeading"].containing("Featured"),
             El.Div[Attr.className => "LandingFeature__hero"].containing(
-              El.H2.containing("Hero goes here")
+              ImageHero(backgroundColor: "#8900AC", imagePath: "/static/images/hac_squash.svg", alternateText: "HaC Squash on 12 October").node
             )
           )
         ),
-        El.Section[Attr.className => "LandingUpdateFeed"].containing(
-          El.H1[Attr.className => "LandingUpdateFeed__title Text--sectionHeading"].containing("Updates"),
-          El.Div[Attr.className => "LandingUpdateFeed__postContainer"].containing(
-            updates.map {
-              El.Div[Attr.className => "LandingUpdateFeed__item"].containing($0.node)
-            }
-          )
-        ),
-        El.Article[Attr.className => "LandingAbout"].containing(
+        // El.Section[Attr.className => "LandingUpdateFeed"].containing(
+        //   El.H1[Attr.className => "LandingUpdateFeed__title Text--sectionHeading"].containing("Updates"),
+        //   El.Div[Attr.className => "LandingUpdateFeed__postContainer"].containing(
+        //     updates.map {
+        //       El.Div[Attr.className => "LandingUpdateFeed__item"].containing($0.node)
+        //     }
+        //   )
+        // ),
+        El.Article[Attr.className => "LandingAbout", Attr.id => "about"].containing(
           El.Div[Attr.className => "LandingAbout__imageContainer"].containing(
             El.Img[
               Attr.className => "LandingAbout__image",
