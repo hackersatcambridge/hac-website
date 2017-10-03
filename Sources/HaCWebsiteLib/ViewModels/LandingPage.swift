@@ -7,7 +7,6 @@ struct LandingPage {
   let youtubeUrl = "https://www.youtube.com/hackersatcambridge"
   let facebookUrl = "https://www.facebook.com/hackersatcambridge"
   let githubUrl = "https://github.com/hackersatcambridge/"
-  let twitterUrl = "https://twitter.com/hackersatcam"
   let mediumUrl = "https://medium.com/hackers-at-cambridge"
   let calendarUrl = "https://calendar.google.com/calendar/embed?src=10isedeg17ugvrvg73jq9p5gts%40group.calendar.google.com&ctz=Europe/London"
 
@@ -25,44 +24,43 @@ struct LandingPage {
               ],
               El.Div[Attr.className => "LandingIntroduction__tagLine"].containing("Cambridge's student tech society")
             ),
-            El.P.containing("We build things, and help other people build things. We also have a bunch of fun."),
-            El.A[Attr.href => "#about", Attr.className => "LandingIntroduction__link"].containing("Find out more"),
-            El.Div[Attr.className => "LandingIntroduction__titleIconRow"].containing(
-              El.A[Attr.href => githubUrl, Attr.className => "LandingIntroduction__titleLinkIcon"].containing(
-                El.Img[
-                  Attr.className => "LandingIntroduction__titleLinkIconImg",
-                  Attr.src => "/static/images/github_icon.svg",
-                  Attr.alt => "GitHub"
-                ]
-              ),
-              El.A[Attr.href => facebookUrl
-          , Attr.className => "LandingIntroduction__titleLinkIcon"].containing(
-                El.Img[
-                  Attr.className => "LandingIntroduction__titleLinkIconImg",
-                  Attr.src => "/static/images/facebook_icon.svg",
-                  Attr.alt => "Facebook"
-                ]
-              ),
-              El.A[Attr.href => twitterUrl, Attr.className => "LandingIntroduction__titleLinkIcon"].containing(
-                El.Img[
-                  Attr.className => "LandingIntroduction__titleLinkIconImg",
-                  Attr.src => "/static/images/twitter_icon.svg",
-                  Attr.alt => "Twitter"
-                ]
-              ),
-              El.A[Attr.href => youtubeUrl, Attr.className => "LandingIntroduction__titleLinkIcon"].containing(
-                El.Img[
-                  Attr.className => "LandingIntroduction__titleLinkIconImg",
-                  Attr.src => "/static/images/youtube_icon.svg",
-                  Attr.alt => "YouTube"
-                ]
-              ),
-              El.A[Attr.href => mediumUrl, Attr.className => "LandingIntroduction__titleLinkIcon"].containing(
-                El.Img[
-                  Attr.className => "LandingIntroduction__titleLinkIconImg",
-                  Attr.src => "/static/images/medium_icon.svg",
-                  Attr.alt => "Medium"
-                ]
+            El.P.containing("We are a community focused on learning about and building things with technology."),
+            El.A[Attr.href => "http://eepurl.com/ckeD2b"].containing(
+              El.Div[Attr.className => "LandingIntroduction__callToActionButton"].containing(
+                "Join our mailing list"
+              )
+            ),
+            El.Div[Attr.className => "LandingIntroduction__social"].containing(
+              El.Div[Attr.className => "LandingIntroduction__socialText"].containing("And find us on"),
+              El.Div[Attr.className => "LandingIntroduction__socialIconRow"].containing(
+                El.A[Attr.href => githubUrl, Attr.className => "LandingIntroduction__socialLinkIcon"].containing(
+                  El.Img[
+                    Attr.className => "LandingIntroduction__socialLinkIconImg",
+                    Attr.src => "/static/images/github_icon.svg",
+                    Attr.alt => "GitHub"
+                  ]
+                ),
+                El.A[Attr.href => facebookUrl, Attr.className => "LandingIntroduction__socialLinkIcon"].containing(
+                  El.Img[
+                    Attr.className => "LandingIntroduction__socialLinkIconImg",
+                    Attr.src => "/static/images/facebook_icon.svg",
+                    Attr.alt => "Facebook"
+                  ]
+                ),
+                El.A[Attr.href => youtubeUrl, Attr.className => "LandingIntroduction__socialLinkIcon"].containing(
+                  El.Img[
+                    Attr.className => "LandingIntroduction__socialLinkIconImg",
+                    Attr.src => "/static/images/youtube_icon.svg",
+                    Attr.alt => "YouTube"
+                  ]
+                ),
+                El.A[Attr.href => mediumUrl, Attr.className => "LandingIntroduction__socialLinkIcon"].containing(
+                  El.Img[
+                    Attr.className => "LandingIntroduction__socialLinkIconImg",
+                    Attr.src => "/static/images/medium_icon.svg",
+                    Attr.alt => "Medium"
+                  ]
+                )
               )
             )
           ),
