@@ -2,13 +2,19 @@ import Foundation
 import Yaml
 
 public struct Workshop {
+  // From metadata.yaml
   let title: String
+  let date: String?
+  let time: String?
+  let location: String?
   let authors: [String]
   let presenters: [String]
   let thanks: [Thanks]
   let recommendations: [Recommendation]
   let links: [URL]
   let tags: [String]
+
+  // From specific markdown files
   let prerequisites: Text
   let description: Text
 
@@ -63,6 +69,9 @@ public extension Workshop {
     // Process the Yaml
     return Workshop(
       title: try title(from: metadata),
+      date: metadata["date"].string,
+      time: metadata["time"].string,
+      location: metadata["location"].string,
       authors: try authors(from: metadata),
       presenters: try presenters(from: metadata),
       thanks: try thanks(from: metadata),

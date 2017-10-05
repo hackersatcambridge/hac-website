@@ -1,5 +1,17 @@
 import HaCTML
 
+/**
+  Outputs a key-value pair if and only if 'value' is not nil
+*/
+private func OptionalFieldNode(key: String, value: String?, placeholder: String? = nil) -> Node {
+  if let v = value {
+    return El.P.containing(TextNode(key + ": "), TextNode(v))
+  } else {
+    return El.P.containing(TextNode(key + ": "), TextNode("TBD"))
+    // return EmptyNode()
+  }
+}
+
 private func thanksString(thanks: Workshop.Thanks) -> String {
   if let reason = thanks.reason {
     return "\(thanks.to) for \(reason)"
@@ -23,6 +35,9 @@ private func workshop(_ workshop: Workshop) -> Node {
         )
       })
     ),
+    OptionalFieldNode(key: "Date", value: workshop.date),
+    OptionalFieldNode(key: "Time", value: workshop.time),
+    OptionalFieldNode(key: "Location", value: workshop.location),
     El.P.containing("With thanks to"),
     El.Ul.containing(
       workshop.thanks.map({

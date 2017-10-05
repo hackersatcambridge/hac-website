@@ -11,6 +11,12 @@ extension TextNode: Node {
   }
 }
 
+extension EmptyNode: Node {
+  public func render() -> String {
+    return ""
+  }
+}
+
 extension Fragment: Node {
   public func render() -> String {
     return self.nodes.map({ $0.render() }).joined()

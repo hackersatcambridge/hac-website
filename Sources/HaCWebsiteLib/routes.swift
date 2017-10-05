@@ -14,12 +14,6 @@ func getWebsiteRouter() -> Router {
   router.all("/static", middleware: StaticFileServer(path: "./static/dist"))
 
   router.get("/", handler: LandingPageController.handler)
-  router.get("/workshops") { _, response, next in
-    try response.send(
-      UI.Pages.workshops(workshops: WorkshopManager.workshops).render()
-    ).end()
-    next()
-  }
 
   /// Intended for use by GitHub webhooks
   router.post("/api/refresh_workshops") { _, _, _ in
@@ -31,6 +25,12 @@ func getWebsiteRouter() -> Router {
   ///                                ///
   router.get("/beta/landing-update-feed", handler: LandingUpdateFeedController.handler)
   
+  router.get("/beta/workshops") { _, response, next in
+    try response.send(
+      UI.Pages.workshops(workshops: WorkshopManager.workshops).render()
+    ).end()
+    next()
+  }
   return router
 }
 
