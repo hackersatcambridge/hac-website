@@ -2,7 +2,7 @@ import HaCTML
 
 // swiftlint:disable line_length
 
-struct EventStream {
+struct LandingUpdateFeed {
   let updates: [PostCard]
 
   var node: Node {

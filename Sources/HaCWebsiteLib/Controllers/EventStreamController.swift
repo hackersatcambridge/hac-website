@@ -6,7 +6,7 @@ import HeliumLogger
 import DotEnv
 import SwiftyJSON
 
-struct EventStreamController {
+struct LandingUpdateFeedController {
 
   static let eventPostCards : [PostCard] = EventServer.getEvents().flatMap{ event in 
     event.postCardRepresentation
@@ -33,7 +33,7 @@ struct EventStreamController {
 
   static var handler: RouterHandler = { request, response, next in
     try response.send(
-      EventStream(updates: updates).node.render()
+      LandingUpdateFeed(updates: updates).node.render()
     ).end()
   }
 }

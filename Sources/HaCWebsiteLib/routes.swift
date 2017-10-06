@@ -29,7 +29,7 @@ func getWebsiteRouter() -> Router {
   ///                                ///
   /// ---- FEATURES IN-PROGRESS ---- ///
   ///                                ///
-  router.get("/beta/event-stream", handler: EventStreamController.handler)
+  router.get("/beta/landing-update-feed", handler: LandingUpdateFeedController.handler)
   
   return router
 }
