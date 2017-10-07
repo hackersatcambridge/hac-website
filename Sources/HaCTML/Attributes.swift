@@ -33,6 +33,7 @@ public enum Attributes {
   static public let src = stringAttribute("src")
   static public let srcset = stringAttribute("srcset")
   static public let style = CSSAttribute("style")
+  static public let target = stringAttribute("target")
   static public let type = stringAttribute("type")
   static public let tabIndex = numberAttribute("tab-index")
   static public let width = numberAttribute("width")
