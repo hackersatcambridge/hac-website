@@ -14,7 +14,6 @@ func getWebsiteRouter() -> Router {
   router.all("/static", middleware: StaticFileServer(path: "./static/dist"))
 
   router.get("/", handler: LandingPageController.handler)
-
   router.get("/workshops") { _, response, next in
     try response.send(
       UI.Pages.workshops(workshops: WorkshopManager.workshops).render()
@@ -27,6 +26,11 @@ func getWebsiteRouter() -> Router {
     try WorkshopManager.update()
   }
 
+  ///                                ///
+  /// ---- FEATURES IN-PROGRESS ---- ///
+  ///                                ///
+  router.get("/beta/landing-update-feed", handler: LandingUpdateFeedController.handler)
+  
   return router
 }
 
