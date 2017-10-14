@@ -13,6 +13,7 @@ extension UI.Pages {
       El.Html[Attr.lang => "en"].containing(
         El.Head.containing(
           El.Meta[Attr.charset => "UTF-8"],
+          El.Meta[Attr.name => "viewport", Attr.content => "width=device-width, initial-scale=1"],
           El.Title.containing(TextNode(title)),
           stylesheet(forUrl: "/static/styles/main.css")
         ),
