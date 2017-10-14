@@ -1,4 +1,5 @@
-****# Hackers at Cambridge Website [![Build Status](https://travis-ci.org/hackersatcambridge/hac-website.svg?branch=master)](https://travis-ci.org/hackersatcambridge/hac-website)
+# Hackers at Cambridge Website
+[![Build Status](https://travis-ci.org/hackersatcambridge/hac-website.svg?branch=master)](https://travis-ci.org/hackersatcambridge/hac-website)
 > The public website of [Hackers at Cambridge]()
 
 This website is built using the Swift web framework [Kitura](https://github.com/IBM-Swift/Kitura). This allows us to build the site fast and reliably and to learn about and contribute to server-side Swift in the process. 
@@ -17,7 +18,7 @@ If you are on Windows, go to docker settings and ensure the drive you are using 
 - Clone this repository:
 `git clone https://github.com/hackersatcambridge/hac-website.git`
 - Navigate to the hac-website directory that you've now cloned
-- Create an empty file named `.env` and save it*
+- Create an empty file named `.env`, add the key-value pairs described below, and save it*
 - Now run `docker-compose up`
 
 This will build the project run the web server at [`localhost:3000`](http://localhost:3000). It will also watch for changes to the files and rebuild as necessarily. You can stop this process at any time with `^C` (`ctrl` + `C`).
@@ -29,7 +30,7 @@ When you want to run the project again (and you will, it's great):
 - If the Dockerfile has been changed, run `docker-compose build`
 - run `docker-compose up`
 
-\**Why did we have to do that?* The `.env` file will later be used to store sensitive information like API keys and environment-specific information in here for our server to use.
+\**Why did we have to do that?* The `.env` file is used to store sensitive information like API keys and environment-specific information in here for our server to use. We load it with dummy or alternative data locally.
 
 ## Development
 
