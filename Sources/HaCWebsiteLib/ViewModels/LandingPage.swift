@@ -155,7 +155,7 @@ struct LandingPage {
             El.Div[Attr.className => "LandingAbout__imageContainer"].containing(
               El.Img[
                 Attr.className => "LandingAbout__image",
-                Attr.src => "/static/images/whoishac.jpg"
+                Attr.src => "/static/images/hashcode.jpg"
               ]
             ),
             El.Div[Attr.className => "LandingAbout__text"].containing(
