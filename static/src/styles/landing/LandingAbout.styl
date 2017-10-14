@@ -1,18 +1,20 @@
-.LandingAbout {
+.LandingAbout__section {
   padding: grid(4);
 }
 
-.LandingAbout__imageContainer {
-  flex: 1;
-}
-
 @media screen and (min-width: 700px) {
-  .LandingAbout {
+  .LandingAbout__section {
     display: flex;
   }
-  
-  .LandingAbout__imageContainer {
+
+  .LandingAbout__section:nth-child(even) .LandingAbout__imageContainer {
+    order: 10;
+  }
+
+  .LandingAbout__imageContainer,
+  .LandingAbout__text  {
     padding: grid(5);
+    flex:1;
   }
 }
 
