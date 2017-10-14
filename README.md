@@ -34,6 +34,11 @@ When you want to run the project again (and you will, it's great):
 
 ## Development
 
+### Contributing
+
+Please look at the [CONTRIBUTING.md](CONTRIBUTING.md) on how to contribute to
+the project!
+
 ### Environment Variables
 
 Your `.env` file should contain the following items in the format: _key_=_value_
@@ -47,9 +52,6 @@ Your `.env` file should contain the following items in the format: _key_=_value_
 You may notice that we aren't using a templating library for rendering HTML. Inspired by the likes of [Elm](http://elm-lang.org/) and [React](https://facebook.github.io/react/), we've written a module _HaCTML_ for making HTML type-safe and Swifty! For an example, have a look at our [home page](Sources/HaCWebsiteLib/ViewModels/LandingPage.swift).
 
 We're currently experimenting with the API for HaCTML, and once it's a little more stable we hope to release it as a standalone module.
-
-### Our Stylesheets and Their BEM
-CSS is great but it's easy to end up with hundreds of classes that overlap, underlap and wrestle with each other and that's when things get a whole lot less fun. To keep our stylesheets from this fate, we adopt Airbnb's naming convention for CSS. You can read about that [here](https://github.com/airbnb/css#oocss-and-bem).
 
 ### Unit Testing
 
