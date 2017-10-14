@@ -26,7 +26,7 @@ struct LandingPage {
             ),
             El.P.containing("We are a community focused on learning about and building things with technology."),
             El.A[Attr.href => "http://eepurl.com/ckeD2b"].containing(
-              El.Div[Attr.className => "LandingIntroduction__callToActionButton"].containing(
+              El.Div[Attr.className => "Interaction__bigButton"].containing(
                 "Join our mailing list"
               )
             ),
