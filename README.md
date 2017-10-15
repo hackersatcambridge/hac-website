@@ -36,7 +36,7 @@ When you want to run the project again (and you will, it's great):
 
 ### Environment Variables
 
-Your `.env` file should contain the following items in the format: _key_=_value_
+Your `.env` file should contain the following items in the format: _key_=_"value"_
 
 | Key | Value Example |
 | - | - |

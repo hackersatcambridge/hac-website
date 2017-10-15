@@ -18,15 +18,15 @@ struct LandingPage {
           El.Header[Attr.className => "LandingIntroduction LandingTop__introduction"].containing(
             El.Div[Attr.className => "LandingIntroduction__titleContainer"].containing(
               El.Img[
-                Attr.className => "LandingIntroduction__titleImage",
+                Attr.className => "SiteLogo",
                 Attr.src => "/static/images/hac-logo-dark.svg",
                 Attr.alt => "Hackers at Cambridge"
               ],
-              El.Div[Attr.className => "LandingIntroduction__tagLine"].containing("Cambridge's student tech society")
+              El.Div[Attr.className => "TagLine"].containing("Cambridge's student tech society")
             ),
             El.P.containing("We are a community focused on learning about and building things with technology."),
             El.A[Attr.href => "http://eepurl.com/ckeD2b"].containing(
-              El.Div[Attr.className => "LandingIntroduction__callToActionButton"].containing(
+              El.Div[Attr.className => "BigButton"].containing(
                 "Join our mailing list"
               )
             ),
