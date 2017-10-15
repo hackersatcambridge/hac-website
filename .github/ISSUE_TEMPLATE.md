@@ -23,5 +23,3 @@ Delete as appropriate
 ## Why it could be helpful
 
 ...
-
-PLEASE DON'T FORGET TO APPROPRIATELY TAG THE ISSUE AS A BUG OR ENHANCEMENT!
