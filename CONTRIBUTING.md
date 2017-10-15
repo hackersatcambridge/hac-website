@@ -14,14 +14,7 @@ label.
 
 # Issues
 
-In order to make our lives as easy as possible when submitting an issue, please
-try and make everything as clear as possible. Label the issue appropriately
-whether it's a
-[`bug`](https://github.com/hackersatcambridge/hac-website/issues?q=is%3Aopen+is%3Aissue+label%3Abug)
-or a possible
-[`enhancement`](https://github.com/hackersatcambridge/hac-website/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement),
-and ensure that if it is a bug, that as much information as possible is there to
-help us reproduce it.
+Try to stick to the template where possible!
 
 # Pull Requests
 
