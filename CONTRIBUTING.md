@@ -27,6 +27,9 @@ help us reproduce it.
 
 If the pull request should resolve any issues, please list them in a comment!
 
+Furthermore, if you are making any frontend changes, please include some
+screenshots of them!
+
 # Commits
 
 The subject line should be in the imperative and be less than 50 characters
