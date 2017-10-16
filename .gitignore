@@ -7,3 +7,4 @@ node_modules
 /Data
 .env
 /Build
+swift_build.log

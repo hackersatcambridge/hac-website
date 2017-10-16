@@ -1,3 +1,4 @@
+import Foundation
 import HaCTML
 
 private let defaultTitle = "Cambridge's student tech society | Hackers at Cambridge"
@@ -8,6 +9,16 @@ private func stylesheet(forUrl urlString: String) -> Node {
 
 extension UI.Pages {
   static func base(title: String = defaultTitle, content: Node) -> Node {
+    let error: Node
+    let errorData: Data? = try? Data(contentsOf: URL(fileURLWithPath: "swift_build.log"))
+    if let outputData = errorData { 
+	error = Fragment(
+        El.P[Attr.className => "Error"].containing(String(data: outputData, encoding: String.Encoding.utf8) as String!)
+      )
+    } else {
+      error = Fragment(El.Div)
+    }
+
     return Fragment(
       El.Doctype,
       El.Html[Attr.lang => "en"].containing(
@@ -18,7 +29,7 @@ extension UI.Pages {
 	  El.Title.containing(TextNode(title)),
           stylesheet(forUrl: "/static/styles/main.css")
         ),
-        El.Body.containing(content)
+        El.Body.containing(error, content)
       )
     )
   }
