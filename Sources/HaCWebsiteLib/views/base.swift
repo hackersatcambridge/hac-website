@@ -13,7 +13,9 @@ extension UI.Pages {
     let errorData: Data? = try? Data(contentsOf: URL(fileURLWithPath: "swift_build.log"))
     if let outputData = errorData {
       error = Fragment(
-        El.P[Attr.className => "Error"].containing(String(data: outputData, encoding: String.Encoding.utf8) as String!)
+        El.Pre.containing(
+          El.Code[Attr.className => "BuildOutput__Error"].containing(String(data: outputData, encoding: String.Encoding.utf8) as String!)
+        )
       )
     } else {
       error = Fragment(El.Div)
