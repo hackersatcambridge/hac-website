@@ -14,7 +14,8 @@ extension UI.Pages {
         El.Head.containing(
           El.Meta[Attr.charset => "UTF-8"],
           El.Meta[Attr.name => "viewport", Attr.content => "width=device-width, initial-scale=1"],
-          El.Title.containing(TextNode(title)),
+          El.Link[Attr.rel => "icon", Attr.type => "favicon/png", Attr.href => "/static/images/favicon.png"],
+	  El.Title.containing(TextNode(title)),
           stylesheet(forUrl: "/static/styles/main.css")
         ),
         El.Body.containing(content)
