@@ -11,9 +11,11 @@ extension UI.Pages {
   static func base(title: String = defaultTitle, content: Node) -> Node {
     let error: Node
     let errorData: Data? = try? Data(contentsOf: URL(fileURLWithPath: "swift_build.log"))
-    if let outputData = errorData { 
-	error = Fragment(
-        El.P[Attr.className => "Error"].containing(String(data: outputData, encoding: String.Encoding.utf8) as String!)
+    if let outputData = errorData {
+      error = Fragment(
+        El.Pre.containing(
+          El.Code[Attr.className => "BuildOutput__Error"].containing(String(data: outputData, encoding: String.Encoding.utf8) as String!)
+        )
       )
     } else {
       error = Fragment(El.Div)
@@ -26,9 +28,9 @@ extension UI.Pages {
           El.Meta[Attr.charset => "UTF-8"],
           El.Meta[Attr.name => "viewport", Attr.content => "width=device-width, initial-scale=1"],
           El.Link[Attr.rel => "icon", Attr.type => "favicon/png", Attr.href => "/static/images/favicon.png"],
-	  El.Title.containing(TextNode(title)),
-          stylesheet(forUrl: "/static/styles/main.css")
-        ),
+          El.Title.containing(TextNode(title)),
+            stylesheet(forUrl: "/static/styles/main.css")
+          ),
         El.Body.containing(error, content)
       )
     )

@@ -174,7 +174,7 @@ struct LandingPage {
               )
             )
           )
-        ) 
+        )
       )
     )
   }

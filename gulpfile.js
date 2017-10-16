@@ -57,24 +57,24 @@ function connectProcessOutput (process, prefix) {
 // Runs the `swift build` command
 function swiftBuild (done) {
   var stream = fs.createWriteStream("swift_build.log");
-  
+
   stream.once('open', function(fd) {
     const buildProcess = childProcesses.spawn('swift', ['build'])
-    
+
     buildProcess.stdout.on('data', data => {
       stream.write(data);
     });
     buildProcess.stderr.on('data', data => {
       stream.write(data);
     });
-	
+
     const logPrefix = 'swift-build'
     connectProcessOutput(buildProcess, logPrefix)
     buildProcess.on('exit', function (code) {
       stream.end();
       if (code === 0) {
         fs.unlink("swift_build.log");
-	done()
+        done()
       } else {
         // The build failed
         // Ring the console 'bell'
