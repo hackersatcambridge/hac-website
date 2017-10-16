@@ -5,6 +5,7 @@ const stylus = require('gulp-stylus')
 const browserSync = require('browser-sync').create()
 const childProcesses = require('child_process')
 const chalk = require('chalk')
+const fs = require('fs')
 
 // Define a global serverProcess that we can use to keep track of the running server instance
 let serverProcess = null
@@ -55,19 +56,33 @@ function connectProcessOutput (process, prefix) {
 
 // Runs the `swift build` command
 function swiftBuild (done) {
-  const buildProcess = childProcesses.spawn('swift', ['build'])
-  const logPrefix = 'swift-build'
-  connectProcessOutput(buildProcess, logPrefix)
-  buildProcess.on('exit', function (code) {
-    if (code === 0) {
-      done()
-    } else {
-      // The build failed
-      // Ring the console 'bell'
-      console.log('\u0007')
-      done()
-    }
-  })
+  var stream = fs.createWriteStream("swift_build.log");
+
+  stream.once('open', function(fd) {
+    const buildProcess = childProcesses.spawn('swift', ['build'])
+
+    buildProcess.stdout.on('data', data => {
+      stream.write(data);
+    });
+    buildProcess.stderr.on('data', data => {
+      stream.write(data);
+    });
+
+    const logPrefix = 'swift-build'
+    connectProcessOutput(buildProcess, logPrefix)
+    buildProcess.on('exit', function (code) {
+      stream.end();
+      if (code === 0) {
+        fs.unlink("swift_build.log");
+        done()
+      } else {
+        // The build failed
+        // Ring the console 'bell'
+        console.log('\u0007')
+        done()
+      }
+    });
+  });
 }
 
 // Starts our server process
