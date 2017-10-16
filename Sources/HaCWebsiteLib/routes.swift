@@ -11,8 +11,6 @@ import PostgreSQLDriver
 func getWebsiteRouter() -> Router {
   let router = Router()
 
-  router.all("/static", middleware: StaticFileServer(path: "./static/dist"))
-
   router.get("/", handler: LandingPageController.handler)
   router.get("/workshops") { _, response, next in
     try response.send(
@@ -20,6 +18,9 @@ func getWebsiteRouter() -> Router {
     ).end()
     next()
   }
+
+  router.all("/static", middleware: StaticFileServer(path: "./static/dist"))
+  router.all("/", middleware: NotFoundHandler())
 
   /// Intended for use by GitHub webhooks
   router.post("/api/refresh_workshops") { _, _, _ in
@@ -30,7 +31,7 @@ func getWebsiteRouter() -> Router {
   /// ---- FEATURES IN-PROGRESS ---- ///
   ///                                ///
   router.get("/beta/landing-update-feed", handler: LandingUpdateFeedController.handler)
-  
+
   return router
 }
 
