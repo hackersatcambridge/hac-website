@@ -70,7 +70,7 @@ struct LandingPage {
               ImageHero(
                 background: .color("#2e5daf"),
                 imagePath: "/static/images/intro1feature.jpg",
-                alternateText: "HaC Into to Programming Workshop on 18 October",
+                alternateText: "HaC Intro to Programming Workshop on 18 October",
                 destinationURL: "https://www.facebook.com/events/131007020886907"
               ).node
             )
