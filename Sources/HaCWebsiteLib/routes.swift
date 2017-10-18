@@ -20,6 +20,7 @@ func getWebsiteRouter() -> Router {
   }
 
   router.all("/static", middleware: StaticFileServer(path: "./static/dist"))
+  router.all("/", middleware: RedirectsMiddleware())
   router.all("/", middleware: NotFoundHandler())
 
   /// Intended for use by GitHub webhooks
