@@ -71,7 +71,7 @@ struct LandingPage {
                 background: .color("#2e5daf"),
                 imagePath: "/static/images/intro1feature.jpg",
                 alternateText: "HaC Intro to Programming Workshop on 18 October",
-                destinationURL: "https://www.facebook.com/events/131007020886907"
+                destinationURL: "https://www.hackersatcambridge.com/intro-to-programming"
               ).node
             )
           )
