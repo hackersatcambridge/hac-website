@@ -11,26 +11,20 @@ import PostgreSQLDriver
 func getWebsiteRouter() -> Router {
   let router = Router()
 
-  router.get("/", handler: LandingPageController.handler)
-  router.get("/workshops") { _, response, next in
-    try response.send(
-      UI.Pages.workshops(workshops: WorkshopManager.workshops).render()
-    ).end()
-    next()
-  }
+  router.all("/", middleware: RedirectsMiddleware(redirects: [
+    "/intro-to-programming": "https://github.com/hackersatcambridge/workshops/blob/master/workshops/introduction_to_programming/session_1/description.md"
+  ]))
 
   router.all("/static", middleware: StaticFileServer(path: "./static/dist"))
-  router.all("/", middleware: RedirectsMiddleware())
   router.all("/", middleware: NotFoundHandler())
 
   /// Intended for use by GitHub webhooks
-  router.post("/api/refresh_workshops") { _, _, _ in
-    try WorkshopManager.update()
-  }
+  router.post("/api/refresh_workshops", handler: GitHubWebhookController.handler)
 
-  ///                                ///
-  /// ---- FEATURES IN-PROGRESS ---- ///
-  ///                                ///
+  router.get("/", handler: LandingPageController.handler)
+  router.get("/workshops", handler: WorkshopsController.handler)
+
+  // MARK: Features in progress
   router.get("/beta/landing-update-feed", handler: LandingUpdateFeedController.handler)
 
   return router
