@@ -67,12 +67,7 @@ struct LandingPage {
           El.Section[Attr.className => "LandingFeature LandingTop__feature"].containing(
             El.H1[Attr.className => "LandingFeature__subtitle Text--sectionHeading"].containing("Featured"),
             El.Div[Attr.className => "LandingFeature__hero"].containing(
-              ImageHero(
-                background: .color("#2e5daf"),
-                imagePath: "/static/images/intro1feature.jpg",
-                alternateText: "HaC Intro to Programming Workshop on 18 October",
-                destinationURL: "https://www.hackersatcambridge.com/intro-to-programming"
-              ).node
+              LandingFeatures.IntroToProgramming2().node
             )
           )
         ),
