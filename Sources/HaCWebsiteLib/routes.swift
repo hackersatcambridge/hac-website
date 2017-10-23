@@ -16,7 +16,6 @@ func getWebsiteRouter() -> Router {
   ]))
 
   router.all("/static", middleware: StaticFileServer(path: "./static/dist"))
-  router.all("/", middleware: NotFoundHandler())
 
   /// Intended for use by GitHub webhooks
   router.post("/api/refresh_workshops", handler: GitHubWebhookController.handler)
@@ -26,6 +25,9 @@ func getWebsiteRouter() -> Router {
 
   // MARK: Features in progress
   router.get("/beta/landing-update-feed", handler: LandingUpdateFeedController.handler)
+
+  router.all("/", middleware: NotFoundHandler())
+
 
   return router
 }
