@@ -1,7 +1,7 @@
 import Foundation
 import Kitura
 
-public class NotFoundHandler: RouterMiddleware {
+public class NotFoundMiddleware: RouterMiddleware {
 
   public func handle(request: RouterRequest, response: RouterResponse, next: @escaping () -> Void) {
     defer {
