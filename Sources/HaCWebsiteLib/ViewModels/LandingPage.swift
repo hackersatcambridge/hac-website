@@ -67,7 +67,7 @@ struct LandingPage {
           El.Section[Attr.className => "LandingFeature LandingTop__feature"].containing(
             El.H1[Attr.className => "LandingFeature__subtitle Text--sectionHeading"].containing("Featured"),
             El.Div[Attr.className => "LandingFeature__hero"].containing(
-              LandingFeatures.IntroToProgramming2().node
+              LandingFeatures.BashWorkshop().node
             )
           )
         ),
