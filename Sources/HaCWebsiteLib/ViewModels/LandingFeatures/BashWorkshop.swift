@@ -8,8 +8,8 @@ extension LandingFeatures {
 
     /// Returns a link to the most currently relevant information about this workshop
     var link: String {
-      // 2017-10-25 19:00
-      let workshopStartDate = Date(timeIntervalSince1970: 1508939310)
+      // 2017-10-25 18:45
+      let workshopStartDate = Date(timeIntervalSince1970: 1508953500)
       let currentDate = Date()
       if workshopStartDate < currentDate {
         return descriptionLink
