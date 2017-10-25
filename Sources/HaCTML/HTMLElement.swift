@@ -26,23 +26,23 @@ public struct HTMLElement {
     )
   }
 
-  private func addChildren(nodes: [Node]) -> HTMLElement {
+  private func addChildren(nodes: [Node?]) -> HTMLElement {
     precondition(child == nil, "Cannot add children to an element that already has children")
-
-    return clone(child: nodes.count == 1 ? nodes[0] : Fragment(nodes))
+    let nonNilNodes = nodes.flatMap({ $0 })
+    return clone(child: nonNilNodes.count == 1 ? nonNilNodes[0] : Fragment(nonNilNodes))
   }
 
   /**
     Returns an HTMLElement identical to this one, with the given Nodes children
    */
-  public func containing(_ nodes: Node...) -> HTMLElement {
+  public func containing(_ nodes: Node?...) -> HTMLElement {
     return addChildren(nodes: nodes)
   }
 
   /**
     Returns an HTMLElement identical to this one, with the given Nodes as children
    */
-  public func containing(_ nodes: [Node]) -> HTMLElement {
+  public func containing(_ nodes: [Node?]) -> HTMLElement {
     return addChildren(nodes: nodes)
   }
 
