@@ -1,7 +1,7 @@
 /**
   Anything in an HTML tree
  */
-public protocol Node {
+public protocol Node: Nodeable {
   // This is very intentionally not an enum.
   //
   // Firstly, having something be simultaneously a Node and a concrete
@@ -14,4 +14,10 @@ public protocol Node {
    * Turn this node into an HTML string
    */
   func render() -> String
+}
+
+public extension Node {
+  var node: Node {
+    return self
+  }
 }

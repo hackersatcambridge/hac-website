@@ -67,7 +67,7 @@ struct LandingPage {
           El.Section[Attr.className => "LandingFeature LandingTop__feature"].containing(
             El.H1[Attr.className => "LandingFeature__subtitle Text--sectionHeading"].containing("Featured"),
             El.Div[Attr.className => "LandingFeature__hero"].containing(
-              LandingFeatures.BashWorkshop().node
+              LandingFeatures.BashWorkshop()
             )
           )
         ),
@@ -117,9 +117,9 @@ struct LandingPage {
                 "Run by members of the community and open to everyone, our workshops aim to help and encourage you to work on technology side projects. "
               ),
               El.P.containing(
-                TextNode("If you've missed one of our workshops and would like to catch up, check out our "),
+                "If you've missed one of our workshops and would like to catch up, check out our ",
                 El.A[Attr.href => youtubeUrl].containing("YouTube"),
-                TextNode(" page for recordings. ")
+                " page for recordings. "
               ),
               El.P.containing(
                 "If you would like to help out at one of our workshops, join the demonstrators group here, we'd love to have you! "
