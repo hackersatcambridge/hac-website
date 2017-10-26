@@ -7,14 +7,14 @@ struct ImageHero: Nodeable {
   let alternateText: String
   let destinationURL: String?
   let dateToDisplay: Date?
-  let textColor: Color
+  let textShade: TextShade
 
   init(
     background: BackgroundType,
     imagePath: String,
     alternateText: String,
     destinationURL: String? = nil,
-    textColor: Color = .light,
+    textShade: TextShade = .light,
     dateToDisplay: Date? = nil
   ) {
     self.background = background
@@ -22,7 +22,7 @@ struct ImageHero: Nodeable {
     self.alternateText = alternateText
     self.destinationURL = destinationURL
     self.dateToDisplay = dateToDisplay
-    self.textColor = textColor
+    self.textShade = textShade
   }
 
   var node: Node {
@@ -38,7 +38,7 @@ struct ImageHero: Nodeable {
     case color(String)
   }
 
-  enum Color {
+  enum TextShade {
     case dark
     case light
   }
@@ -51,8 +51,8 @@ struct ImageHero: Nodeable {
     return dateToDisplay.map(Dates.individualDayFormatter.string)
   }
 
-  private var textColorClass: String {
-    switch (textColor) {
+  private var textShadeClass: String {
+    switch (textShade) {
       case .light:
         return "ImageHero--text-light"
       case .dark:
@@ -61,7 +61,7 @@ struct ImageHero: Nodeable {
   }
 
   private var blockElement: HTMLElement {
-    let className = "ImageHero \(textColorClass)"
+    let className = "ImageHero \(textShadeClass)"
 
     if let destinationURL = self.destinationURL {
       return El.A[Attr.className => "\(className) ImageHero--linkable", Attr.href => destinationURL, Attr.target => "_blank"]
