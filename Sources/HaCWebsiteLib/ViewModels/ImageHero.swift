@@ -1,7 +1,7 @@
 import HaCTML
 import Foundation
 
-struct ImageHero {
+struct ImageHero: Nodeable {
   let background: BackgroundType
   let imagePath: String
   let alternateText: String
@@ -44,7 +44,7 @@ struct ImageHero {
   }
 
   private var dateBlock: Node? {
-    return formattedDate.map({ dateString in El.Div[Attr.className => "ImageHero__date"].containing(dateString) })
+    return formattedDate?.containedBy(element: El.Div[Attr.className => "ImageHero__date"])
   }
 
   private var formattedDate: String? {

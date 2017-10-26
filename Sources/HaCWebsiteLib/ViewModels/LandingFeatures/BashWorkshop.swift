@@ -2,7 +2,7 @@ import HaCTML
 import Foundation
 
 extension LandingFeatures {
-  struct BashWorkshop {
+  struct BashWorkshop: Nodeable {
     let facebookLink = "https://www.facebook.com/events/245447659318325"
     let descriptionLink = "/bash"
     // 2017-10-25 18:45

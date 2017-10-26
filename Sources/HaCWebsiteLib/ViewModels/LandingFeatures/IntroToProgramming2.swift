@@ -1,7 +1,7 @@
 import HaCTML
 
 extension LandingFeatures {
-  struct IntroToProgramming2 {
+  struct IntroToProgramming2: Nodeable {
     var node: Node {
       return ImageHero(
         background: .color("#eb7b1f"),
