@@ -4,11 +4,21 @@ import HaCTML
 
 struct LandingPage {
   let updates: [PostCard]
+  let feature: LandingFeature?
   let youtubeUrl = "https://www.youtube.com/hackersatcambridge"
   let facebookUrl = "https://www.facebook.com/hackersatcambridge"
   let githubUrl = "https://github.com/hackersatcambridge/"
   let mediumUrl = "https://medium.com/hackers-at-cambridge"
   let calendarUrl = "https://calendar.google.com/calendar/embed?src=10isedeg17ugvrvg73jq9p5gts%40group.calendar.google.com&ctz=Europe/London"
+
+  var featureNode: Nodeable? {
+    return feature.map{ feature in 
+      El.Section[Attr.className => "LandingFeature LandingTop__feature"].containing(
+        El.H1[Attr.className => "LandingFeature__subtitle Text--sectionHeading"].containing("Featured"),
+        El.Div[Attr.className => "LandingFeature__hero"].containing(feature)
+      )
+    }
+  }
 
   var node: Node {
     return UI.Pages.base(
@@ -64,12 +74,7 @@ struct LandingPage {
               )
             )
           ),
-          El.Section[Attr.className => "LandingFeature LandingTop__feature"].containing(
-            El.H1[Attr.className => "LandingFeature__subtitle Text--sectionHeading"].containing("Featured"),
-            El.Div[Attr.className => "LandingFeature__hero"].containing(
-              LandingFeatures.BashWorkshop()
-            )
-          )
+          featureNode
         ),
         // El.Section[Attr.className => "LandingUpdateFeed"].containing(
         //   El.H1[Attr.className => "LandingUpdateFeed__title Text--sectionHeading"].containing("Updates"),

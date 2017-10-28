@@ -1,0 +1,38 @@
+.EventFeature {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: relative;
+  cursor: pointer;
+  
+  transition-property: opacity;
+  transition-duration: 0.2s;
+  color: #fff;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.EventFeature__date {
+  position: absolute;
+  left: grid(1);
+  right: grid(1);
+  bottom: grid(1);
+  text-align: right;
+
+  font-family: $Text__primaryFont;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 500;
+  Text__headerScale(0);
+  opacity: 0.8;
+}
+
+.EventFeature--text-dark {
+  color: $Color__dark;
+}
+
+.EventFeature--text-light {
+  color: $Color__light;
+}
