@@ -46,7 +46,7 @@ struct EventFeature: LandingFeature {
     let endPadding: TimeInterval = 60 * 60 // 60 mins to allow for overrunning event
     let eventIsCurrentlyHappening =
       startDate - startPadding < currentDate &&
-      endDate + endPadding < currentDate
+      currentDate < endDate + endPadding
     if eventIsCurrentlyHappening {
       return liveLink
     } else {
