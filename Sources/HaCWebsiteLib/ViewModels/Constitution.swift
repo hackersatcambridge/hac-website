@@ -7,7 +7,7 @@ struct Constitution {
     return UI.Pages.base(
       title: "Hackers at Cambridge",
       content: Fragment(
-        El.Div[Attr.className => "LandingTop"].containing(
+        El.Div[Attr.className => "Constitution"].containing(
           TextNode(Text(markdown: mdText).html, escapeLevel: .unsafeRaw)
         )
       )
