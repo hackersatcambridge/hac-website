@@ -4,7 +4,7 @@ import DotEnv
 
 public struct ConstitutionManager {
   /// The list of workshops as derived from the workshops directory last time it was updated
-  public static var mdConstitution: String = "Baby got HaC"
+  public static var mdConstitution: String = "For some reason the constitution cannot be displayed, please contact the site administrators."
 
   /// Used to avoid multiple git pulls being run simultaneously
   private static let serialQueue = DispatchQueue(label: "com.hac.website.const-pull-queue")
