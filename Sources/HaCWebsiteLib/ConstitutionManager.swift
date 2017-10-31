@@ -7,7 +7,7 @@ public struct ConstitutionManager {
   public static var mdConstitution: String = "Baby got HaC"
 
   /// Used to avoid multiple git pulls being run simultaneously
-  private static let serialQueue = DispatchQueue(label: "com.hac.website.ws-pull-queue")
+  private static let serialQueue = DispatchQueue(label: "com.hac.website.const-pull-queue")
 
   private static let data_directory = "constitution"
 
