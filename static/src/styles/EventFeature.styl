@@ -14,12 +14,20 @@
   }
 }
 
+.EventFeature--text-dark {
+  color: $Color__dark;
+}
+
+.EventFeature--text-light {
+  color: $Color__light;
+}
+
 .EventFeature__date {
   position: absolute;
-  left: grid(1);
   right: grid(1);
   bottom: grid(1);
   text-align: right;
+  display: inline-block;
 
   font-family: $Text__primaryFont;
   text-transform: uppercase;
@@ -29,10 +37,8 @@
   opacity: 0.8;
 }
 
-.EventFeature--text-dark {
-  color: $Color__dark;
-}
-
-.EventFeature--text-light {
-  color: $Color__light;
+.EventFeature__date--live {
+  padding: grid(0.3) grid(1);
+  border-radius: grid(0.5);
+  border: 0.2em solid #FEBC2B;
 }
