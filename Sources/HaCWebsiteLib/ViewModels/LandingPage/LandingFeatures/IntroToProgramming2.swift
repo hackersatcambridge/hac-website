@@ -4,8 +4,10 @@ import Foundation
 extension LandingFeatures {
   static var introToProgramming2: LandingFeature {
     return EventFeature(
-      startDate: Date.from(year: 2017, month: 10, day: 23, hour: 19, minute: 00),
-      endDate: Date.from(year: 2017, month: 10, day: 23, hour: 20, minute: 30),
+      eventPeriod: DateInterval(
+        start: Date.from(year: 2017, month: 10, day: 23, hour: 19, minute: 00),
+        duration: 1.5 * 60 * 60
+      ),
       eventLink: "https://www.facebook.com/events/131007020886907",
       liveLink: "/intro-to-programming",
       hero: ImageHero(
@@ -17,4 +19,3 @@ extension LandingFeatures {
     )
   }
 }
-
