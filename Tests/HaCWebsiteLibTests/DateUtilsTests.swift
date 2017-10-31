@@ -2,7 +2,14 @@ import XCTest
 @testable import HaCWebsiteLib
 
 class DateUtilsTests: HaCWebsiteLibTestCase {
-  func testDate() {
+  func testSingleDigitDate() {
+    let readableDate = Date.from(year: 2017, month: 3, day: 2, hour: 9, minute: 0)
+    let timestampDate = Date(timeIntervalSince1970: 1488445200)
+
+    XCTAssertEqual(readableDate, timestampDate)
+  }
+
+  func testDoubleDigitDate() {
     let readableDate = Date.from(year: 2017, month: 10, day: 25, hour: 19, minute: 00)
     let timestampDate = Date(timeIntervalSince1970: 1508954400)
 
@@ -20,7 +27,8 @@ class DateUtilsTests: HaCWebsiteLibTestCase {
 
   static var allTests : [(String, (DateUtilsTests) -> () -> Void)] {
     return [
-      ("testDate", testDate),
+      ("testSingleDigitDate", testSingleDigitDate),
+      ("testDoubleDigitDate", testDoubleDigitDate),
       ("testTwiceOccuringDate", testTwiceOccurringDate)
     ]
   }
