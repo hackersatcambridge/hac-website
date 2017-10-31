@@ -3,34 +3,33 @@ import Dispatch
 import DotEnv
 
 public struct ConstitutionManager {
-  /// The list of workshops as derived from the workshops directory last time it was updated
+  /// The markdown of the constitution from the GitHub repository
   public static var mdConstitution: String = "For some reason the constitution cannot be displayed, please contact the site administrators."
 
   /// Used to avoid multiple git pulls being run simultaneously
   private static let serialQueue = DispatchQueue(label: "com.hac.website.const-pull-queue")
 
-  private static let data_directory = "constitution"
+  private static let dataDirectory = "constitution"
 
   /**
-    Ensures that an up-to-date copy of the workshops repo is available locally
+    Ensures that an up-to-date copy of the constitution repo is available locally
     We don't want this function running many times concurrently, hence 'unsafe'
   */
   private static func unsafePull() {
     GitUtils.cloneOrPull(
       repoURL: "https://github.com/hackersatcambridge/constitution.git",
       in: DotEnv.get("DATA_DIR")!,
-      directory: data_directory
+      directory: dataDirectory
     )
   }
 
   /**
-    Parses each workshop from the workshops repo, creating a Workshop instance
-    These are stored publicly in WorkshopManager.workshops
+    Grabs the constitution markdown and loads it into a string.
 
-    - throws: If the workshops directory does not exist
+    - throws: If the constitution directory does not exist
   */
   private static func getConstitution() throws {
-    let constitutionPath = DotEnv.get("DATA_DIR")! + "/\(data_directory)/constitution.md"
+    let constitutionPath = DotEnv.get("DATA_DIR")! + "/\(dataDirectory)/constitution.md"
       do {
         let constitutionMarkdown = try String(contentsOfFile: constitutionPath, encoding: .utf8)
         mdConstitution = constitutionMarkdown
@@ -39,7 +38,7 @@ public struct ConstitutionManager {
   }
 
   /**
-    Update the workshops array by pulling changes from the repo.
+    Update the constitution by pulling changes from the repo.
     This should be called whenever it is likely that changes
     have been made to the repo.
   */
