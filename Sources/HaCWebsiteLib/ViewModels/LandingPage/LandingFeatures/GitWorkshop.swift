@@ -9,7 +9,7 @@ extension LandingFeatures {
         duration: 1.5 * 60 * 60
       ),
       eventLink: "https://www.facebook.com/events/1906244696304681",
-      liveLink: nil, // TODO
+      liveLink: "/git",
       hero: ImageHero(
         background: .color("#F1283B"),
         imagePath: "/static/images/git-foreground.svg",
