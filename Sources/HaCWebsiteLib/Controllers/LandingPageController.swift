@@ -33,7 +33,10 @@ struct LandingPageController {
 
   static var handler: RouterHandler = { request, response, next in
     try response.send(
-      LandingPage(updates: updates).node.render()
+      LandingPage(
+        updates: updates,
+        feature: LandingFeatures.currentFeature
+      ).node.render()
     ).end()
   }
 }

@@ -1,7 +1,6 @@
 .ImageHero {
   width: 100%;
   height: 100%;
-  padding: grid(3);
   display: block;
   position: relative;
 
@@ -14,21 +13,6 @@
   color: #fff;
 }
 
-.ImageHero__date {
-  position: absolute;
-  left: grid(1);
-  right: grid(1);
-  bottom: grid(1);
-  text-align: right;
-
-  font-family: $Text__primaryFont;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  font-weight: 500;
-  Text__headerScale(0);
-  opacity: 0.8;
-}
-
 .ImageHero__image {
   width: 100%;
   height: 100%;
@@ -37,24 +21,10 @@
   background-repeat: no-repeat;
 }
 
-.ImageHero--linkable {
-  cursor: pointer;
-
-  &:hover {
-    opacity: 0.8;
-  }
-}
-
 .ImageHero--text-dark {
   color: $Color__dark;
 }
 
 .ImageHero--text-light {
   color: $Color__light;
-}
-
-@media screen and (min-width: grid(40)) {
-  .ImageHero {
-    padding: grid(6);
-  }
 }
