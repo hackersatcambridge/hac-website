@@ -21,8 +21,8 @@ func getWebsiteRouter() -> Router {
 
   /// Intended for use by GitHub webhooks
   // TODO: make the GitHubWebhookController configurable!
-  router.post("/api/refresh_workshops", handler: GitHubWebhookController.handler)
-  router.post("/api/refresh_constitution", handler: GitHubWebhookController.handler)
+  router.post("/api/refresh_workshops", handler: GitHubWebhookController.handler(updater: WorkshopManager.update))
+  router.post("/api/refresh_constitution", handler: GitHubWebhookController.handler(updater: ConstitutionManager.update))
 
 
   router.get("/", handler: LandingPageController.handler)
