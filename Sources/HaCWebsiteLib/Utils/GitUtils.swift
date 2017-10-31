@@ -44,7 +44,7 @@ public struct GitUtils {
     let localRepoPath = localPath + "/" + directory
     guard directoryExists(atPath: localRepoPath) else {
       shallowBranchClone(
-        repoURL: "https://github.com/hackersatcambridge/workshops.git",
+        repoURL: repoURL,
         in: localPath,
         directory: directory
       )
