@@ -27,9 +27,16 @@ struct EventFeature: LandingFeature {
   }
 
   var dateBlock: Nodeable {
-    return El.Div[Attr.className => "EventFeature__date"].containing(
-      DateUtils.individualDayFormatter.string(from: eventPeriod.start)
-    )
+    if currentlyHappening {
+      return El.Div[Attr.className => "EventFeature__date EventFeature__date--live"].containing(
+        "On now"
+      )
+    } else {
+      return El.Div[Attr.className => "EventFeature__date"].containing(
+        DateUtils.individualDayFormatter.string(from: eventPeriod.start)
+      )
+    }
+    
   }
 
   var expiryDate: Date {
@@ -37,10 +44,8 @@ struct EventFeature: LandingFeature {
     return eventPeriod.end + 2 * 60 * 60
   }
 
-  /// Returns a link to the most currently relevant information about this event
-  var currentLink: String {
-    guard let liveLink = liveLink else { return eventLink }
-
+  /// Whether the event is currently in progress
+  var currentlyHappening: Bool {
     let currentDate = Date()
     let startPadding: TimeInterval = 15 * 60 // 15 mins
     let endPadding: TimeInterval = 60 * 60 // 60 mins to allow for overrunning event
@@ -48,8 +53,14 @@ struct EventFeature: LandingFeature {
       start: eventPeriod.start - startPadding,
       end: eventPeriod.end + endPadding
     )
+    return paddedEventPeriod.contains(currentDate)
+  }
 
-    if paddedEventPeriod.contains(currentDate) {
+  /// Returns a link to the most currently relevant information about this event
+  var currentLink: String {
+    guard let liveLink = liveLink else { return eventLink }
+
+    if currentlyHappening {
       return liveLink
     } else {
       return eventLink
