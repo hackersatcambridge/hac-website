@@ -1,7 +1,9 @@
 import Kitura
 
 struct GitHubWebhookController {
-  static var handler: RouterHandler = { _, _, _ in
-    try WorkshopManager.update()
+  static func handler(updater: @escaping () throws -> Void) -> RouterHandler {
+    return { _, _, _ in
+      try updater()
+    }
   }
 }

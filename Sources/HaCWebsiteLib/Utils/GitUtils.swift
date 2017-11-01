@@ -3,7 +3,7 @@ import Foundation
 public struct GitUtils {
   /**
     Runs a `git clone` command at the specified path, cloning into the specified directory
-    
+
     - parameters:
       - repoURL: The URL to the Git repository to clone
       - localPath: The local path in which to run the `clone`
@@ -21,7 +21,7 @@ public struct GitUtils {
 
   /**
     Runs a `git pull` command at the specified path
-  
+
     - parameters:
       - in: The path to the local repository in which to pull
       - remote: The name of the remote to pull from
@@ -34,7 +34,7 @@ public struct GitUtils {
 
   /**
     Clones a Git repository if it doesn't already exist at the specified location, updating it otherwise
-   
+
     - parameters:
       - repoURL: The URL to the Git repository
       - localPath: The local path to the parent directory of the repository
@@ -51,17 +51,17 @@ public struct GitUtils {
 
       return
     }
-    
+
     pull(in: localRepoPath)
   }
 }
 
 /**
   Executes a shell command synchronously, returning the exit code
-  
+
   - parameters:
     - args: The arguments to the shell command, starting with the command itself
-    
+
   - returns:
     The exit code of the command
 */
