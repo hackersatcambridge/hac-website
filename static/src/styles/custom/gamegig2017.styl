@@ -1,38 +1,66 @@
 .GameGigTopBanner {
-  background-color: #e65100;
+  background-color: #000;
   color: #fff;
   width: 100%;
   height: 64px;
 }
 
-.GameGigTopBanner_Left {
+.GameGigTopBanner__left {
   float: left;
 }
 
-.GameGigTopBanner_Center {
+.GameGigTopBanner__center {
   text-align: center;
 }
 
-.GameGigTopBanner_Right {
+.GameGigTopBanner__right {
   float: right;
 }
 
-.GameGigCardsContainer {
+.CountDownTimer__pre {
+  text-align: center;
   width: 100%;
-  height: 100%;
-  display: block;
-  position: relative;
-  cursor: pointer;
+  font-size: 50px;
+}
 
-  transition-property: opacity;
-  transition-duration: 0.2s;
-  //color: #fff;
+.CountDownTimer {
+  text-align: center;
+  width: 100%;
+  font-size: 100px;
+}
+
+.GameGigCardsContainer {
+
 }
 
 .GameGigCard {
-
+  // text-align: center;
+  width: 100%;
+  padding: 20px;
+  color: #fff;
+  background: #000;
+  border: 3px solid #fff;
+  border-radius: 10px;
 }
 
-.GameGigCard_Title {
+.GameGigCard__title {
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 25px;
+}
 
+.GameGigNavBar {
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  bottom: 0px;
+  position: fixed;
+  background-color: #000000;
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+
+.GameGigNavBar__item {
+  font-size: 25px;
+  padding: 10px;
 }

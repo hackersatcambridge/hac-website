@@ -2,6 +2,13 @@ import HaCTML
 
 // swiftlint:disable line_length
 
+
+extension String {
+  func idMangle() -> String {
+    return self.replacingOccurrences(of: " ", with: "-").lowercased()
+  }
+}
+
 // TODO: investigate if the information here can be extracted from the landing feature
 struct GameGig2017: Hackathon {
   let gameEngines = [
@@ -31,9 +38,15 @@ struct GameGig2017: Hackathon {
     ("21:00", "LT1 Prizes and wrap-up")
   ]
 
+  /**
+   * Creates a GameGigCard element, the title becomes its id (spaces are replaced with hyphons)
+   */
   func GameGigCard(title: String, content: Nodeable) -> Node {
     return El.Div[Attr.className => "GameGigCard"].containing(
-      El.Span[Attr.className => "GameGigCard_Title"].containing(title),
+      El.Span[
+        Attr.className => "GameGigCard__title",
+        Attr.id => title.idMangle()
+      ].containing(title),
       content
     )
   }
@@ -84,26 +97,48 @@ struct GameGig2017: Hackathon {
 
   func GameGigTopBanner() -> Node {
     return El.Div[Attr.className => "GameGigTopBanner"].containing(
-      El.Div[Attr.className => "GameGigTopBanner_Left"].containing("Hackers at Cambridge Game Gig 80's"),
-      El.Div[Attr.className => "GameGigTopBanner_Center"].containing("Powered by Studio Gobo and Electric Square"),
-      El.Div[Attr.className => "GameGigTopBanner_Right"].containing(CurrentTime())
+      El.Div[Attr.className => "GameGigTopBanner__right"].containing(CurrentTime()),
+      El.Div[Attr.className => "GameGigTopBanner__left"].containing("Hackers at Cambridge Game Gig 80's")
+    )
+  }
+
+  func NavBar(elements: [(String, Nodeable)]) -> Node {
+    return El.Div[Attr.className => "GameGigNavBar"].containing(
+      El.Span[Attr.className => "GameGigNavBar__logo"].containing("Powered by Studio Gobo and Electric Square"),
+      Fragment(elements.map{ title, content in
+        El.Span[Attr.className => "GameGigNavBar__item"].containing(
+          El.A[
+            Attr.href => "#\(title.idMangle())"
+          ].containing(
+            title
+          )
+        )
+      })
     )
   }
 
   var node: Node {
+    // Define the list of game gig "cards" that are displayed as content
+    let gameGigCards = [
+      ("Schedule", Schedule(schedule: schedule)),
+      ("Feed", TwitterFeed()),
+      ("Get Involved", ListOfLinks(dict: socialMediaLinks)),
+      ("Game Engines", ListOfLinks(dict: gameEngines)),
+      ("Tutorials", ListOfLinks(dict: tutorials)),
+      ("Rules", Rules())
+    ]
+
     return UI.Pages.base(
       title: "Hackers at Cambridge Game Gig 80's",
       customStylesheets: ["gamegig2017"],
       content: Fragment(
         GameGigTopBanner(),
+        NavBar(elements: gameGigCards),
         CountDownTimer().node,
         GameGigCardsContainer(content: Fragment(
-          GameGigCard(title: "Schedule", content: Schedule(schedule: schedule)),
-          GameGigCard(title: "Feed", content: TwitterFeed()),
-          GameGigCard(title: "Get Involved", content: ListOfLinks(dict: socialMediaLinks)),
-          GameGigCard(title: "Game Engines", content: ListOfLinks(dict: gameEngines)),
-          GameGigCard(title: "Tutorials", content: ListOfLinks(dict: tutorials)),
-          GameGigCard(title: "Rules", content: Rules())
+          gameGigCards.map{ title, content in
+            GameGigCard(title: title, content: content)
+          }
         ))
       )
     )
