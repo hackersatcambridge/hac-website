@@ -8,7 +8,8 @@ protocol JavaScriptable {
 
 extension String: JavaScriptable {
   var javaScript : String {
-    // PROPERLY ESCAPE THIS! (eg. conver newlines to backslash)
+    // TODO: PROPERLY ESCAPE THIS! (eg. conver newlines to backslash)
+    // NOTE: A JSON LIBRARY COULD BE USED FOR THIS!
     return "\"\(self)\""
   }
 }
