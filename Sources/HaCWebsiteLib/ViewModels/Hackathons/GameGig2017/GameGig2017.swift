@@ -134,7 +134,7 @@ struct GameGig2017: Hackathon {
       content: Fragment(
         GameGigTopBanner(),
         NavBar(elements: gameGigCards),
-        CountDownTimer().node,
+        CountDownTimer(),
         GameGigCardsContainer(content: Fragment(
           gameGigCards.map{ title, content in
             GameGigCard(title: title, content: content)

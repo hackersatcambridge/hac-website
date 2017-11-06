@@ -12,7 +12,7 @@ struct LandingPage {
   let calendarUrl = "https://calendar.google.com/calendar/embed?src=10isedeg17ugvrvg73jq9p5gts%40group.calendar.google.com&ctz=Europe/London"
 
   var featureNode: Nodeable? {
-    return feature.map{ feature in 
+    return feature.map{ feature in
       El.Section[Attr.className => "LandingFeature LandingTop__feature"].containing(
         El.H1[Attr.className => "LandingFeature__subtitle Text--sectionHeading"].containing("Featured"),
         El.Div[Attr.className => "LandingFeature__hero"].containing(feature)
@@ -80,7 +80,7 @@ struct LandingPage {
         //   El.H1[Attr.className => "LandingUpdateFeed__title Text--sectionHeading"].containing("Updates"),
         //   El.Div[Attr.className => "LandingUpdateFeed__postContainer"].containing(
         //     updates.map {
-        //       El.Div[Attr.className => "LandingUpdateFeed__item"].containing($0.node)
+        //       El.Div[Attr.className => "LandingUpdateFeed__item"].containing($0)
         //     }
         //   )
         // ),
