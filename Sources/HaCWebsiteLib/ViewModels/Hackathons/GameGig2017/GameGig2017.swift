@@ -29,6 +29,7 @@ struct GameGig2017: Hackathon {
     ("Web Dev with Mozilla", "https://globalgamejam.org/news/dev-web-mozilla")
   ]
 
+  // TODO: make this a list of tuples so that order is preserved
   let schedule = [
     ("10:00", "Arrival"),
     ("10:30", "Start Jamming!"),
@@ -61,8 +62,8 @@ struct GameGig2017: Hackathon {
     )
   }
 
-  func TwitterFeed() -> Nodeable {
-    return El.P.containing(
+  func GameGigTwitterFeed() -> Nodeable {
+    return El.Div[Attr.className => "GameGigTwitterFeed"].containing(
       TextNode(
         "<a class=\"twitter-timeline\" data-dnt=\"true\" href=\"https://twitter.com/hashtag/hacgamegig\" data-widget-id=\"927201930149093377\">#hacgamegig Tweets</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+\"://platform.twitter.com/widgets.js\";fjs.parentNode.insertBefore(js,fjs);}}(document,\"script\",\"twitter-wjs\");</script>",
         escapeLevel: .unsafeRaw
@@ -121,7 +122,7 @@ struct GameGig2017: Hackathon {
     // Define the list of game gig "cards" that are displayed as content
     let gameGigCards = [
       ("Schedule", Schedule(schedule: schedule)),
-      ("Feed", TwitterFeed()),
+      ("Feed", GameGigTwitterFeed()),
       ("Get Involved", ListOfLinks(dict: socialMediaLinks)),
       ("Game Engines", ListOfLinks(dict: gameEngines)),
       ("Tutorials", ListOfLinks(dict: tutorials)),
