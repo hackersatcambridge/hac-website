@@ -12,7 +12,7 @@ func getWebsiteRouter() -> Router {
   let router = Router()
 
   router.all("/", middleware: RedirectsMiddleware(redirects: [
-    "/intro-to-programming": "https://github.com/hackersatcambridge/workshops/blob/master/workshops/introduction_to_programming/session_1/description.md",
+    "/intro-to-programming": "https://github.com/hackersatcambridge/intro-to-programming",
     "/bash": "https://github.com/hackersatcambridge/workshops/blob/master/workshops/tools_for_programmers/01_intro_to_bash/description.md",
     "/git": "https://github.com/hackersatcambridge/git-workshop-2017"
   ]))

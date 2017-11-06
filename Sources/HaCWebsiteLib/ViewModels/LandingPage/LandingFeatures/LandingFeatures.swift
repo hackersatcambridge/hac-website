@@ -6,7 +6,9 @@ enum LandingFeatures {
     LandingFeatures.introToProgramming1,
     LandingFeatures.introToProgramming2,
     LandingFeatures.bashWorkshop,
-    LandingFeatures.gitWorkshop
+    LandingFeatures.gitWorkshop,
+    LandingFeatures.introToProgramming3,
+    LandingFeatures.programmingInRust
   ]
 
   /// Gets the most currently appropriate feature
