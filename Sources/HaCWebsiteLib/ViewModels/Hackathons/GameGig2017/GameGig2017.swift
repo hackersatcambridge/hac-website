@@ -5,30 +5,30 @@ import HaCTML
 // TODO: investigate if the information here can be extracted from the landing feature
 struct GameGig2017: Hackathon {
   let gameEngines = [
-    "Unreal Engine": "https://www.unrealengine.com",
-    "Unity": "https://unity3d.com/",
-    "LÖVE": "https://love2d.org/",
-    "GameMaker": "lhttps://www.yoyogames.com/gamemaker",
-    "raylib": "http://www.raylib.com/"
+    ("Unreal Engine", "https://www.unrealengine.com"),
+    ("Unity", "https://unity3d.com/"),
+    ("LÖVE", "https://love2d.org/"),
+    ("GameMaker", "lhttps://www.yoyogames.com/gamemaker"),
+    ("raylib", "http://www.raylib.com/")
   ]
 
   let socialMediaLinks = [
-    "Facebook Page": "https://www.facebook.com/hackersatcambridge",
-    "Facebook Event": "https://www.facebook.com/events/124219834921040/",
-    "Twitter": "https://twitter.com/hackersatcam"
+    ("Facebook Page", "https://www.facebook.com/hackersatcambridge"),
+    ("Facebook Event", "https://www.facebook.com/events/124219834921040/"),
+    ("Twitter", "https://twitter.com/hackersatcam")
   ]
 
   let tutorials = [
-    "Web Dev with Mozilla": "https://globalgamejam.org/news/dev-web-mozilla"
+    ("Web Dev with Mozilla", "https://globalgamejam.org/news/dev-web-mozilla")
   ]
 
   let schedule = [
-    "10:00": "Arrival",
-    "10:30": "Start Jamming!",
-    "12:00": "Lunch",
-    "18:00": "Dinner",
-    "20:00": "Stop Jamming!",
-    "21:00": "LT1 Prizes and wrap-up"
+    ("10:00", "Arrival"),
+    ("10:30", "Start Jamming!"),
+    ("12:00", "Lunch"),
+    ("18:00", "Dinner"),
+    ("20:00", "Stop Jamming!"),
+    ("21:00", "LT1 Prizes and wrap-up")
   ]
 
   func GameGigCard(title: String, content: Nodeable) -> Node {
@@ -38,11 +38,11 @@ struct GameGig2017: Hackathon {
     )
   }
 
-  func ListOfLinks(dict: [String: String]) -> Nodeable {
+  func ListOfLinks(dict: [(String, String)]) -> Nodeable {
     return El.Ul.containing(
-      dict.map {
+      dict.map { (key, value) in
         El.Li.containing(
-          El.A[Attr.href => $0.value].containing($0.key)
+          El.A[Attr.href => value].containing(key)
         )
       }
     )

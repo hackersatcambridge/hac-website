@@ -2,15 +2,15 @@ import HaCTML
 
 // TODO: add the ability to highlight the item in the schedule best on the time!
 struct Schedule : Nodeable {
-  let schedule: [String: String]
+  let schedule: [(String, String)]
 
   var node: Node {
     return El.Ul.containing(
-      schedule.map {
+      schedule.map {key, value in
         El.Li.containing(
-          $0.key,
+          key,
           " ",
-          $0.value
+          value
         )
       }
     )
