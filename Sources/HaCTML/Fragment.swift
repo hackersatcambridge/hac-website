@@ -28,11 +28,11 @@
 public struct Fragment {
   let nodes: [Node]
 
-  public init(_ nodes: Node...) {
+  public init(_ nodes: Nodeable...) {
     self.init(nodes)
   }
 
-  public init(_ nodes: [Node]) {
-    self.nodes = nodes
+  public init(_ nodes: [Nodeable]) {
+    self.nodes = nodes.map{ $0.node }
   }
 }
