@@ -2,10 +2,15 @@ import HaCTML
 import Foundation
 
 struct CountDownTimer : Nodeable {
-  let id = "CountDownTimer\(UUID().description)"
-  let preId = "CountDownTimerPre\(UUID().description)"
   let startDate : Date
   let endDate : Date
+  let id = "CountDownTimer\(UUID().description)"
+
+  let preId = "CountDownTimerPre\(UUID().description)" // the id of the countdown message
+  let beforeEventMessage = "Time left to start"
+  let duringEventMessage = "Time remaining"
+  let afterEventMessage = "Time's up!"
+
   var node: Node {
     return Fragment(
       El.Div[
@@ -18,7 +23,13 @@ struct CountDownTimer : Nodeable {
       ].containing("YOU SHOULD SEE THE TIME REMAINING HERE"),
       Script(
         file: "Hackathons/CountDownTimer.js",
-        escapes: ["id": id, "preId": preId, "startDate": startDate, "endDate": endDate]
+        escapes: [
+          "startDate": startDate, "endDate": endDate,
+          "id": id, "preId": preId,
+          "beforeEventMessage": beforeEventMessage,
+          "duringEventMessage": duringEventMessage,
+          "afterEventMessage" : afterEventMessage
+        ]
       )
     )
   }

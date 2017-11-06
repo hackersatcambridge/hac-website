@@ -3,22 +3,25 @@ function updateCountDownTimer() {
     const endDate = {{endDate}};
     const CountDownTimerId = {{id}};
     const CountDownTimerPreId = {{preId}};
+    const beforeEventMessage = {{beforeEventMessage}}
+    const duringEventMessage = {{duringEventMessage}}
+    const afterEventMessage = {{afterEventMessage}}
 
     const current = new Date();
 
     let timeLeft = 0;
     if(current < startDate) {
-        document.getElementById(CountDownTimerPreId).innerHTML = "Time left to start";
+        document.getElementById(CountDownTimerPreId).innerHTML = beforeEventMessage;
         timeLeft = startDate.getTime() - current.getTime();
     } else {
-        document.getElementById(CountDownTimerPreId).innerHTML = "Time remaining";
+        document.getElementById(CountDownTimerPreId).innerHTML = duringEventMessage;
         timeLeft = endDate.getTime() - current.getTime();
     }
 
     // Abort if time is up
     if(timeLeft < 0)
     {
-        document.getElementById(CountDownTimerId).innerHTML = "Time's up!";
+        document.getElementById(CountDownTimerId).innerHTML = afterEventMessage;
         return;
     }
 
