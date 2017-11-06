@@ -4,8 +4,8 @@ import Foundation
 struct CountDownTimer : Nodeable {
   let id = "CountDownTimer\(UUID().description)"
   let preId = "CountDownTimerPre\(UUID().description)"
-  let startDate = Date.from(year: 2017, month: 12, day: 1, hour: 10, minute: 30)
-  let endDate = Date.from(year: 2017, month: 12, day: 1, hour: 20, minute: 0)
+  let startDate : Date
+  let endDate : Date
   var node: Node {
     return Fragment(
       El.Div[

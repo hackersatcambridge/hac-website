@@ -1,4 +1,5 @@
 import HaCTML
+import Foundation
 
 // swiftlint:disable line_length
 
@@ -28,6 +29,9 @@ struct GameGig2017: Hackathon {
   let tutorials = [
     ("Web Dev with Mozilla", "https://globalgamejam.org/news/dev-web-mozilla")
   ]
+
+  let gigStartDate = Date.from(year: 2017, month: 12, day: 1, hour: 10, minute: 30)
+  let gigEndDate = Date.from(year: 2017, month: 12, day: 1, hour: 20, minute: 0)
 
   // TODO: make this a list of tuples so that order is preserved
   let schedule = [
@@ -135,7 +139,7 @@ struct GameGig2017: Hackathon {
       content: Fragment(
         GameGigTopBanner(),
         NavBar(elements: gameGigCards),
-        CountDownTimer(),
+        CountDownTimer(startDate: gigStartDate, endDate: gigEndDate),
         GameGigCardsContainer(content: Fragment(
           gameGigCards.map{ title, content in
             GameGigCard(title: title, content: content)
