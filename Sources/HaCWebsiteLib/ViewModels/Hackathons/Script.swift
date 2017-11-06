@@ -17,15 +17,15 @@ extension Date: JavaScriptable {
   var javaScript : String {
     let calendar = Calendar.current
     let year = calendar.component(.year, from: self)
-    let month = calendar.component(.month, from: self)
+    // We have to subtract 1 from the month as JavaScript months count from 0
+    // See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
+    let month = calendar.component(.month, from: self) - 1
     let day = calendar.component(.day, from: self)
     let hour = calendar.component(.hour, from: self)
     let minute = calendar.component(.minute, from: self)
     let second = calendar.component(.second, from: self)
-    let milisecond = 0
-    // TODO: work out how JavaScript dates work
-    // TODO: handle timezones
-    return "new Date(\(year),\(month)-1,\(day),\(hour),\(minute),\(second),\(milisecond))"
+    let milliseconds = 0
+    return "new Date(Date.UTC(\(year),\(month),\(day),\(hour),\(minute),\(second),\(milliseconds)))"
   }
 }
 
@@ -50,6 +50,7 @@ struct Script : Nodeable {
     do {
       var script = try String(contentsOfFile: pathToFile, encoding: .utf8)
       escapes.map({ key, value in
+        // TODO: find out if there is a way of doing these escapes in a Type-Safe manner!
         script = script.replacingOccurrences(of: "{{\(key)}}", with: "\(value.javaScript)")
       })
       return El.Script.containing(TextNode(script, escapeLevel: .unsafeRaw))
