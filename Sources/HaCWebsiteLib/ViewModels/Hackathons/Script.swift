@@ -54,7 +54,6 @@ struct Script : Nodeable {
       })
       return El.Script.containing(TextNode(script, escapeLevel: .unsafeRaw))
     } catch {
-      // TODO: find a way to do this
       return El.Script.containing(TextNode("console.log(\"failed to load \(pathToFile)\");", escapeLevel: .unsafeRaw))
     }
   }

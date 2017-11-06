@@ -7,12 +7,10 @@ struct CurrentTime : Nodeable {
   var node: Node {
     return Fragment(
       El.Span[Attr.id => id, Attr.className => "CurrentTime"].containing("Current Time"),
-      // TODO: get this script to be loaded from CurrentTime.js
-      //Script(file: "CurrentTime.js", escapes: ["className": CurrentTime.className])
-      El.Script.containing(TextNode(
-        "function updateClock() { const current = new Date(); document.getElementById(\"\(id)\").innerHTML = current.getHours()+\":\"+ (current.getMinutes()<10?\"0\":\"\") + current.getMinutes(); } updateClock(); setInterval(updateClock,1000);",
-        escapeLevel: .unsafeRaw
-      ))
+      Script(
+        file: "Hackathons/CurrentTime.js",
+        escapes: ["id": id]
+      )
     )
   }
 }
