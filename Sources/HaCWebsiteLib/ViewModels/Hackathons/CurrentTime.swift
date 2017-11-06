@@ -6,7 +6,7 @@ struct CurrentTime : Nodeable {
 
   var node: Node {
     return Fragment(
-      El.Span[Attr.id => id].containing("Current Time"),
+      El.Span[Attr.id => id, Attr.className => "CurrentTime"].containing("Current Time"),
       // TODO: get this script to be loaded from CurrentTime.js
       //Script(file: "CurrentTime.js", escapes: ["className": CurrentTime.className]).node
       El.Script.containing(TextNode(

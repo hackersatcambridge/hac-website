@@ -33,7 +33,7 @@ struct GameGig2017: Hackathon {
 
   func GameGigCard(title: String, content: Nodeable) -> Node {
     return El.Div[Attr.className => "GameGigCard"].containing(
-      El.Span[Attr.className => "CardTitle"].containing(title),
+      El.Span[Attr.className => "GameGigCard_Title"].containing(title),
       content
     )
   }
@@ -76,31 +76,30 @@ struct GameGig2017: Hackathon {
     )
   }
 
-  func Column(width: Int, content: Nodeable) -> Node {
-    return El.Div[Attr.className => "col s12 m\(width)"].containing(
+  func GameGigCardsContainer(content: Nodeable) -> Node {
+    return El.Div[Attr.className => "GameGigCardsContainer"].containing(
       content
     )
   }
 
-  func TopBanner() -> Node {
-    return El.Div[Attr.className => "TopBanner"].containing(
-      TextNode("Hackers at Cambridge Game Gig 80's"),
-      TextNode("Powered by Studio Gobo and Electric Square"),
-      CurrentTime()
+  func GameGigTopBanner() -> Node {
+    return El.Div[Attr.className => "GameGigTopBanner"].containing(
+      El.Div[Attr.className => "GameGigTopBanner_Left"].containing("Hackers at Cambridge Game Gig 80's"),
+      El.Div[Attr.className => "GameGigTopBanner_Center"].containing("Powered by Studio Gobo and Electric Square"),
+      El.Div[Attr.className => "GameGigTopBanner_Right"].containing(CurrentTime())
     )
   }
 
   var node: Node {
     return UI.Pages.base(
       title: "Hackers at Cambridge Game Gig 80's",
+      customStylesheets: ["gamegig2017"],
       content: Fragment(
-        TopBanner(),
+        GameGigTopBanner(),
         CountDownTimer().node,
-        Column(width: 4, content: Fragment(
+        GameGigCardsContainer(content: Fragment(
           GameGigCard(title: "Schedule", content: Schedule(schedule: schedule)),
-          GameGigCard(title: "Feed", content: TwitterFeed())
-        )),
-        Column(width: 8, content: Fragment(
+          GameGigCard(title: "Feed", content: TwitterFeed()),
           GameGigCard(title: "Get Involved", content: ListOfLinks(dict: socialMediaLinks)),
           GameGigCard(title: "Game Engines", content: ListOfLinks(dict: gameEngines)),
           GameGigCard(title: "Tutorials", content: ListOfLinks(dict: tutorials)),

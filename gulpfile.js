@@ -22,7 +22,7 @@ function copy () {
 
 // Process the Stylus files into CSS
 function buildStyles () {
-  return gulp.src('static/src/styles/main.styl')
+  return gulp.src(['static/src/styles/main.styl', 'static/src/styles/custom/*.styl'])
     .pipe(changed('static/dist/styles'))
     .pipe(stylus({
       'include css': true,
