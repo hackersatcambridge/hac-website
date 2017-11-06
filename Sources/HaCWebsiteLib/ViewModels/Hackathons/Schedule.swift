@@ -8,9 +8,9 @@ struct Schedule : Nodeable {
     return El.Ul.containing(
       schedule.map {
         El.Li.containing(
-          TextNode($0.key),
-          TextNode(" "),
-          TextNode($0.value)
+          $0.key,
+          " ",
+          $0.value
         )
       }
     )
