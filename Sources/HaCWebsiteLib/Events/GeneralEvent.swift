@@ -1,13 +1,15 @@
 import Foundation
 
-struct GeneralEvent: PostCardRepresentable {
+struct GeneralEvent: Event {
+    //This is missing a workshop attribute from the deprecated WorkshopEvent.swift
     let title : String
     let time : DateInterval
     let tagLine : String
     let color : String
     let hypePeriod : DateInterval
     let tags : [String]
-    let eventDescription : Markdown
+    let eventDescription : Text
+    let websiteURL : String?
     let imageURL : String? 
     let location : Location?
     let facebookEventID : String?
@@ -26,9 +28,9 @@ struct GeneralEvent: PostCardRepresentable {
         )
     }
 
-    init(title: String, time: DateInterval, tagLine: String, color: String,hypePeriod: DateInterval, 
-    tags:[String], description eventDescription: Markdown, imageURL: String? = nil, location: Location? = nil,
-    facebookEventID: String? = nil) {
+    init(title: String, time: DateInterval, tagLine: String, color: String, hypePeriod: DateInterval, 
+    tags:[String], description eventDescription: Text, websiteURL : String? = nil, imageURL: String? = nil, 
+    location: Location? = nil, facebookEventID: String? = nil) {
         self.title = title
         self.time = time
         self.tagLine = tagLine
@@ -36,6 +38,7 @@ struct GeneralEvent: PostCardRepresentable {
         self.hypePeriod = hypePeriod
         self.tags = tags
         self.eventDescription = eventDescription
+        self.websiteURL = websiteURL
         self.imageURL = imageURL
         self.location = location
         self.facebookEventID = facebookEventID
