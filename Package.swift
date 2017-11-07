@@ -1,20 +1,45 @@
+// swift-tools-version:4.0
 import PackageDescription
 
 let package = Package(
   name: "HaCWebsite",
-  targets: [
-    Target(name: "HaCWebsiteLib", dependencies: ["HaCTML"]),
-    Target(name: "HaCWebsite", dependencies: ["HaCWebsiteLib"]),
-    Target(name: "HaCTML")
+  products: [
+    .library(name: "HaCTML", targets: ["HaCTML"]),
+    .library(name: "HaCWebsiteLib", targets: ["HaCWebsiteLib"]),
+    .executable(name: "HaCWebsite", targets: ["HaCWebsite"])
   ],
   dependencies: [
-    .Package(url: "https://github.com/IBM-Swift/Kitura.git", majorVersion: 1, minor: 6),
-    .Package(url: "https://github.com/IBM-Swift/HeliumLogger.git", majorVersion: 1, minor: 6),
-    .Package(url: "https://github.com/IBM-Swift/Kitura-Markdown.git", majorVersion: 0),
-    .Package(url: "https://github.com/hackersatcambridge/YamlSwift.git", majorVersion: 4, minor: 0),
-    .Package(url: "https://github.com/jaredkhan/SwiftDotEnv.git", majorVersion: 1, minor: 2),
-    .Package(url: "https://github.com/alexaubry/HTMLString", majorVersion: 3, minor: 0),
-    .Package(url: "https://github.com/vapor/fluent.git", majorVersion: 2, minor: 3),
-    .Package(url: "https://github.com/vapor-community/postgresql-driver.git", majorVersion: 2, minor: 0)
-  ]
+    .package(url: "https://github.com/IBM-Swift/Kitura.git", .upToNextMinor(from: "1.7.9")),
+    .package(url: "https://github.com/IBM-Swift/HeliumLogger.git", .upToNextMinor(from: "1.7.1")),
+    .package(url: "https://github.com/IBM-Swift/Kitura-Markdown.git", .upToNextMajor(from: "0.9.1")),
+    .package(url: "https://github.com/hackersatcambridge/YamlSwift.git", .upToNextMinor(from: "4.0.0")),
+    .package(url: "https://github.com/jaredkhan/SwiftDotEnv.git", .upToNextMinor(from: "1.2.0")),
+    .package(url: "https://github.com/alexaubry/HTMLString", .upToNextMinor(from: "3.0.0")),
+    .package(url: "https://github.com/vapor/fluent.git", .upToNextMinor(from: "2.4.0")),
+    .package(url: "https://github.com/vapor-community/postgresql-driver.git", .upToNextMinor(from: "2.1.0"))
+  ],
+  targets: [
+    .target(name: "HaCTML", dependencies: [
+      "HTMLString"
+    ]),
+    .target(name: "HaCWebsiteLib", dependencies: [
+      "HaCTML",
+      "Kitura",
+      "HeliumLogger",
+      "KituraMarkdown",
+      "Yaml",
+      "SwiftDotEnv",
+      "HTMLString",
+      "Fluent",
+      "PostgreSQLDriver"
+    ]),
+    .target(name: "HaCWebsite", dependencies: [
+      "HaCWebsiteLib"
+    ]),
+    .testTarget(name: "HaCWebsiteLibTests", dependencies: [
+      "HaCWebsiteLib"
+    ])
+  ],
+  // Tell SwiftPM which versions of Swift we can run on
+  swiftLanguageVersions: [4]
 )
