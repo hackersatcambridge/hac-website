@@ -50,7 +50,7 @@ struct Script : Nodeable {
     let pathToFile = directory + "/" + file
     do {
       var script = try String(contentsOfFile: pathToFile, encoding: .utf8)
-      escapes.map({ key, value in
+      escapes.map({ (key, value) in
         // TODO: find out if there is a way of doing these escapes in a Type-Safe manner!
         script = script.replacingOccurrences(of: "{{\(key)}}", with: "\(value.javaScript)")
       })
