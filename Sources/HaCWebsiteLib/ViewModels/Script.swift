@@ -14,6 +14,12 @@ extension String: JavaScriptable {
   }
 }
 
+extension URL: JavaScriptable {
+  var javaScript : String {
+    return "\(self)".javaScript
+  }
+}
+
 extension Date: JavaScriptable {
   var javaScript : String {
     let calendar = Calendar.current
@@ -50,10 +56,10 @@ struct Script : Nodeable {
     let pathToFile = directory + "/" + file
     do {
       var script = try String(contentsOfFile: pathToFile, encoding: .utf8)
-      escapes.map({ (key, value) in
+      for (key, value) in escapes {
         // TODO: find out if there is a way of doing these escapes in a Type-Safe manner!
         script = script.replacingOccurrences(of: "{{\(key)}}", with: "\(value.javaScript)")
-      })
+      }
       return El.Script.containing(TextNode(script, escapeLevel: .unsafeRaw))
     } catch {
       return El.Script.containing(TextNode("console.log(\"failed to load \(pathToFile)\");", escapeLevel: .unsafeRaw))
