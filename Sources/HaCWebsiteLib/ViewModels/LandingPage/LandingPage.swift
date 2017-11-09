@@ -34,7 +34,7 @@ struct LandingPage {
               ],
               El.Div[Attr.className => "TagLine"].containing("Cambridge's student tech society")
             ),
-            El.P.containing("We are a community focused on learning about and building things with technology."),
+            El.P[Attr.className => "LandingIntroduction__missionStatement"].containing("We are a community focused on learning about and building things with technology."),
             El.A[Attr.href => "http://eepurl.com/ckeD2b"].containing(
               El.Div[Attr.className => "BigButton"].containing(
                 "Join our mailing list"
