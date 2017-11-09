@@ -9,7 +9,7 @@ extension LandingFeatures {
         duration: 1.5 * 60 * 60
       ),
       eventLink: "https://www.facebook.com/events/832214590292163",
-      liveLink: nil, // TODO
+      liveLink: "https://github.com/hackersatcambridge/intro-to-rust-workshop",
       hero: ImageHero(
         background: .image("/static/images/rustbg.png"),
         imagePath: "/static/images/rustfg.png",
