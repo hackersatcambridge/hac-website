@@ -2,6 +2,7 @@ import Kitura
 import KituraNet
 import SwiftyJSON
 import Foundation
+import DotEnv
 
 struct EventApiController {
   static var handler: RouterHandler = { request, response, next in
@@ -13,6 +14,10 @@ struct EventApiController {
     }
     switch parsedBody {
 			case .json(let json):
+				if !isCorrectPassword(json: json) {
+					try response.send(status: HTTPStatusCode.unauthorized).end()
+					return
+				}
 				let event = parseEvent(json: json)
 				try event.save()
 				response.send("Successfully added your event to the database\n")
@@ -22,6 +27,14 @@ struct EventApiController {
     }
     next()
   }
+
+	static func isCorrectPassword(json: JSON) -> Bool {
+		let password = json["password"].stringValue
+		guard let realPassword = DotEnv.get("API_PASSWORD") else {
+			return false
+		}
+		return password == realPassword
+	}
 
 	static func parseEvent(json : JSON) -> GeneralEvent {
 		let title = json["title"].stringValue
