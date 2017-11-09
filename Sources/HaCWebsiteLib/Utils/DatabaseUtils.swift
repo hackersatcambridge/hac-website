@@ -28,34 +28,36 @@ extension URL {
   }
 }
 
-func testDatabase() {
-  do {
-    guard let databaseURLString = DotEnv.get("DATABASE_URL"),
-      let databaseURL = URL(string: databaseURLString),
-      let databaseURLComponents = databaseURL.databaseURLComponents else {
-      fatalError("Couldn't find valid DATABASE_URL environment variable")
-    }
-
-    let driver = try Driver(
+func getDatabaseDriver() throws -> PostgreSQLDriver.Driver {
+  guard let databaseURLString = DotEnv.get("DATABASE_URL"),
+    let databaseURL = URL(string: databaseURLString),
+    let databaseURLComponents = databaseURL.databaseURLComponents 
+  else {
+    fatalError("Couldn't find valid DATABASE_URL environment variable")
+  }
+  let driver = try Driver(
       masterHostname: databaseURLComponents.host,
       readReplicaHostnames: [],
       user: databaseURLComponents.user,
       password: databaseURLComponents.password,
       database: databaseURLComponents.database
     )
+  return driver
+}
+
+func prepareDatabase() {
+  do {
+    let driver = try getDatabaseDriver()
     let database = Database(driver)
     Database.default = database
-    try Pet.prepare(database)
+		try GeneralEvent.prepare(database)
   } catch {
-    print("Failed to initialise database:")
-    dump(error)
-  }
-
-  do {
-    let testPet = Pet(name: "Fluffs", age: 1)
-    try testPet.save()
-  } catch {
-    print("Failed to add record")
-    dump(error)
+    print("Failed to prepare database")
   }
 }
+
+/* 
+EXAMPLE OF READING EVENT
+let query = try GeneralEvent.makeQuery()
+let event : GeneralEvent? = try query.filter("title", .equals, "Conquering Linux").first()
+*/
