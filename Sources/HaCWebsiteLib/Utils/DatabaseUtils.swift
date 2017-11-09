@@ -36,12 +36,12 @@ func getDatabaseDriver() throws -> PostgreSQLDriver.Driver {
     fatalError("Couldn't find valid DATABASE_URL environment variable")
   }
   let driver = try Driver(
-      masterHostname: databaseURLComponents.host,
-      readReplicaHostnames: [],
-      user: databaseURLComponents.user,
-      password: databaseURLComponents.password,
-      database: databaseURLComponents.database
-    )
+    masterHostname: databaseURLComponents.host,
+    readReplicaHostnames: [],
+    user: databaseURLComponents.user,
+    password: databaseURLComponents.password,
+    database: databaseURLComponents.database
+  )
   return driver
 }
 
@@ -50,7 +50,7 @@ func prepareDatabase() {
     let driver = try getDatabaseDriver()
     let database = Database(driver)
     Database.default = database
-		try GeneralEvent.prepare(database)
+    try GeneralEvent.prepare(database)
   } catch {
     print("Failed to prepare database")
   }
