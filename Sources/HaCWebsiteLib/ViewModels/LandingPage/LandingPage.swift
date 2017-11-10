@@ -96,16 +96,13 @@ struct LandingPage {
               El.H1[Attr.className => "LandingAbout__subtitle Text--sectionHeading"].containing("About"),
               El.H2[Attr.className => "LandingAbout__headline"].containing("Who are Hackers at Cambridge?"),
               El.P.containing(
-                "Don't let the name scare you, aren't the kind of hackers that try our best to get around complex (or simple) security systems! We are simply an enthusiastic group of people who love technology."
+                "Don't let the name scare you, we aren't the kind of hackers that try our best to get around complex security systems! We are simply an enthusiastic group of people who love technology."
               ),
               El.P.containing(
                 "Are you a student in Cambridge? Do you want to improve your Tech skills? Then you’ve come to the right place!"
               ),
               El.P.containing(
-                "At HaC it’s our mission to empower everyone to build whatever they want. Whether you are a complete beginner, or a seasoned pro we run events for you."
-              ),
-              El.P.containing(
-                "Here's a taste of what we get up to..."
+                "At HaC it’s our mission to empower everyone to build whatever technology project they want. Whether you are a complete beginner or a seasoned pro, we're here to help you develop and share your skills."
               )
             )
           ),
@@ -119,7 +116,7 @@ struct LandingPage {
             El.Div[Attr.className => "LandingAbout__text"].containing(
               El.H1[Attr.className => "LandingAbout__headline"].containing("Workshops"),
               El.P.containing(
-                "Run by members of the community and open to everyone, our workshops aim to help and encourage you to work on technology side projects. "
+                "Run by members of the community and open to everyone, our workshops aim to inspire and to teach practical technology skills."
               ),
               El.P.containing(
                 "If you've missed one of our workshops and would like to catch up, check out our ",
@@ -127,7 +124,9 @@ struct LandingPage {
                 " page for recordings. "
               ),
               El.P.containing(
-                "If you would like to help out at one of our workshops, join the demonstrators group here, we'd love to have you! "
+                "If you would like to help out at one of our workshops, join the ",
+                "demonstrators group",
+                " here, we'd love to have you! "
               )
             )
           ),
@@ -144,7 +143,7 @@ struct LandingPage {
                 "At the end of the Michaelmas we run the annual Hackers at Cambridge Game Gig - a fun and friendly competition where 100 Cambridge students from a wide variety of courses get together to make games in 12 hours"
               ),
               El.P.containing(
-                "At the end of the Lent we additionally run an annual themed hackathon. Last year we partnered with charities in order to tackle problems around the world."
+                "At the end of the Lent term we additionally run an annual themed hackathon. Last year we partnered with charities in order to tackle problems around the world."
               ),
               El.P.containing(
                 "These competitions naturally come with lots of awesome free food."
