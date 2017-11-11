@@ -9,7 +9,7 @@ public struct EventServer {
         let workshopEvents : [Event] = WorkshopManager.workshops.map{
             (workshop: Workshop) -> WorkshopEvent in
                 return WorkshopEvent(title: workshop.title, time:  DateInterval(start: Date(), duration: duration),
-                    tagLine: "There's Pizza", description: Text(markdown : "Thing"), color: "purple", 
+                    tagLine: "There's Pizza", description: Markdown("Thing"), color: "purple",
                     hypePeriod: DateInterval(start: Date(), duration: hypeDuration), tags: [], workshop: workshop)
         }.filter{ event in 
             event.shouldShowAsUpdate
