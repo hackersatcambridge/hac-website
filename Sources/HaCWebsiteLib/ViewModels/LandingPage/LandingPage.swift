@@ -10,6 +10,7 @@ struct LandingPage {
   let githubUrl = "https://github.com/hackersatcambridge/"
   let mediumUrl = "https://medium.com/hackers-at-cambridge"
   let calendarUrl = "https://calendar.google.com/calendar/embed?src=10isedeg17ugvrvg73jq9p5gts%40group.calendar.google.com&ctz=Europe/London"
+  let demonstratorsGroupUrl = "https://www.facebook.com/groups/1567785333234852/"
 
   var featureNode: Nodeable? {
     return feature.map{ feature in 
@@ -95,18 +96,11 @@ struct LandingPage {
             El.Div[Attr.className => "LandingAbout__text"].containing(
               El.H1[Attr.className => "LandingAbout__subtitle Text--sectionHeading"].containing("About"),
               El.H2[Attr.className => "LandingAbout__headline"].containing("Who are Hackers at Cambridge?"),
-              El.P.containing(
-                "Don't let the name scare you, aren't the kind of hackers that try our best to get around complex (or simple) security systems! We are simply an enthusiastic group of people who love technology."
-              ),
-              El.P.containing(
-                "Are you a student in Cambridge? Do you want to improve your Tech skills? Then you’ve come to the right place!"
-              ),
-              El.P.containing(
-                "At HaC it’s our mission to empower everyone to build whatever they want. Whether you are a complete beginner, or a seasoned pro we run events for you."
-              ),
-              El.P.containing(
-                "Here's a taste of what we get up to..."
-              )
+              Markdown("""
+                Don't let the name scare you, we aren't the kind of hackers that try our best to get around complex security systems. We are simply an enthusiastic group of people who love technology.
+
+                At HaC it’s our mission to empower everyone to build whatever technology project they want. Whether you are a complete beginner or a seasoned pro, we're here to help you develop and share your tech skills.
+              """)
             )
           ),
           El.Article[Attr.className => "LandingAbout__section"].containing(
@@ -118,17 +112,13 @@ struct LandingPage {
             ),
             El.Div[Attr.className => "LandingAbout__text"].containing(
               El.H1[Attr.className => "LandingAbout__headline"].containing("Workshops"),
-              El.P.containing(
-                "Run by members of the community and open to everyone, our workshops aim to help and encourage you to work on technology side projects. "
-              ),
-              El.P.containing(
-                "If you've missed one of our workshops and would like to catch up, check out our ",
-                El.A[Attr.href => youtubeUrl].containing("YouTube"),
-                " page for recordings. "
-              ),
-              El.P.containing(
-                "If you would like to help out at one of our workshops, join the demonstrators group here, we'd love to have you! "
-              )
+              Markdown("""
+                Run by members of the community and open to everyone, our workshops aim to inspire and to teach practical technology skills.
+
+                If you've missed one of our workshops and would like to catch up, check out our [YouTube page](\(youtubeUrl)) for recordings.
+
+                If you would like to help out at one of our workshops, join the [demonstrators group](\(demonstratorsGroupUrl)), we'd love to have you! 
+              """)
             )
           ),
           El.Article[Attr.className => "LandingAbout__section"].containing(
@@ -140,15 +130,13 @@ struct LandingPage {
             ),
             El.Div[Attr.className => "LandingAbout__text"].containing(
               El.H1[Attr.className => "LandingAbout__headline"].containing("Hackathons and Game Jams"),
-              El.P.containing(
-                "At the end of the Michaelmas we run the annual Hackers at Cambridge Game Gig - a fun and friendly competition where 100 Cambridge students from a wide variety of courses get together to make games in 12 hours"
-              ),
-              El.P.containing(
-                "At the end of the Lent we additionally run an annual themed hackathon. Last year we partnered with charities in order to tackle problems around the world."
-              ),
-              El.P.containing(
-                "These competitions naturally come with lots of awesome free food."
-              )
+              Markdown("""
+                At the end of the Michaelmas we run the annual Hackers at Cambridge Game Gig - a fun and friendly competition where 100 Cambridge students from a wide variety of courses get together to make games in 12 hours
+
+                At the end of the Lent term we additionally run an annual themed hackathon. Last year we partnered with charities in order to tackle problems around the world.
+
+                These competitions naturally come with lots of awesome free food.
+              """)
             )
           ),
           El.Article[Attr.className => "LandingAbout__section"].containing(
@@ -160,18 +148,13 @@ struct LandingPage {
             ),
             El.Div[Attr.className => "LandingAbout__text"].containing(
               El.H1[Attr.className => "LandingAbout__headline"].containing("HaC Nights"),
-              El.P.containing(
-                "HaC Nights are weekly events we run for people of all experience levels! If you have something you’re working on - be it a project, some supervision work or coursework – then a HaC night is a great social environment for getting things done."
-              ),
-              El.P.containing(
-                "We’ll bring the food, you bring the work and if you get stuck, there’s bound to be someone in the room who can help you out!"
-              ),
-              El.P.containing(
-                TextNode("Find us on our "),
-                El.A[Attr.href => facebookUrl
-            ].containing("Facebook"),
-                TextNode(" page to stay up to date.")
-              )
+              Markdown("""
+                HaC Nights are weekly events we run for people of all experience levels! If you have something you’re working on - be it a project, some supervision work or coursework – then a HaC night is a great social environment for getting things done.
+
+                We’ll bring the food, you bring the work and if you get stuck, there’s bound to be someone in the room who can help you out!
+
+                Find us on [our Facebook page](\(facebookUrl)) to stay up to date
+              """)
             )
           )
         )
