@@ -1,3 +1,5 @@
+import HTMLString
+
 public struct HTMLElement {
   let child: Node?
   let attributes: AttributeMap
@@ -52,5 +54,26 @@ public struct HTMLElement {
    */
   public subscript(_ attributes: Attribute...) -> HTMLElement {
     return clone(attributes: self.attributes.merge(attributes: attributes))
+  }
+}
+
+extension HTMLElement: Node {
+  public func render() -> String {
+    if self.tagName == "DOCTYPE" {
+      return "<!DOCTYPE html>"
+    }
+
+    let attributeString = self.attributes.rendered.map({ " " + $0 }) ?? ""
+    let elementBody = self.tagName + attributeString
+
+    if self.selfClosing {
+      if self.child != nil {
+        print("Not rendering children of self closing element \(self.tagName)")
+      }
+
+      return "<\(elementBody) />"
+    }
+
+    return "<\(elementBody)>\(self.child.map({ $0.render() }) ?? "")</\(self.tagName)>"
   }
 }
