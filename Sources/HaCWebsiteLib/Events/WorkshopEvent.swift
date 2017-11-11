@@ -4,7 +4,7 @@ struct WorkshopEvent : Event {
     let title : String
     let time : DateInterval
     let tagLine : String
-    let eventDescription : Text
+    let eventDescription : Markdown
     let color : String
     let hypePeriod : DateInterval
     let tags : [String]
@@ -27,7 +27,7 @@ struct WorkshopEvent : Event {
         )
     }
 
-    init(title: String, time: DateInterval, tagLine : String, description: Text, color: String,
+    init(title: String, time: DateInterval, tagLine : String, description: Markdown, color: String,
     hypePeriod: DateInterval,  tags: [String], workshop: Workshop, imageURL: String? = nil, 
     location: Location? = nil, facebookEventID : String? = nil) {
         self.title = title

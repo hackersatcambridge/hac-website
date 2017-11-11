@@ -9,8 +9,8 @@ public struct Workshop {
   let recommendations: [Recommendation]
   let links: [URL]
   let tags: [String]
-  let prerequisites: Text
-  let description: Text
+  let prerequisites: Markdown
+  let description: Markdown
 
   struct Thanks: Equatable {
     let to: String
@@ -57,8 +57,8 @@ public extension Workshop {
   ) throws -> Workshop {
     // Parse Yaml and Markdown
     let metadata = try Yaml.load(metadataYaml)
-    let prerequisites = Text(markdown: prerequisitesMarkdown)
-    let description = Text(markdown: descriptionMarkdown)
+    let prerequisites = Markdown(prerequisitesMarkdown)
+    let description = Markdown(descriptionMarkdown)
 
     // Process the Yaml
     return Workshop(

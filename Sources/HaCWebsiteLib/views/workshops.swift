@@ -12,9 +12,9 @@ private func workshop(_ workshop: Workshop) -> Node {
   return El.Div.containing(
     El.H2[Attr.className => "mono"].containing(workshop.title),
     El.H3.containing("Description"),
-    TextNode(workshop.description.html, escapeLevel: .unsafeRaw),
+    workshop.description,
     El.H3.containing("Prerequisites"),
-    TextNode(workshop.prerequisites.html, escapeLevel: .unsafeRaw),
+    workshop.prerequisites,
     El.H3.containing("Recommended Links"),
     El.Ul.containing(
       workshop.recommendations.map({
