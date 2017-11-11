@@ -7,7 +7,7 @@ struct GeneralEvent: PostCardRepresentable {
     let color : String
     let hypePeriod : DateInterval
     let tags : [String]
-    let eventDescription : Text
+    let eventDescription : Markdown
     let imageURL : String? 
     let location : Location?
     let facebookEventID : String?
@@ -27,7 +27,7 @@ struct GeneralEvent: PostCardRepresentable {
     }
 
     init(title: String, time: DateInterval, tagLine: String, color: String,hypePeriod: DateInterval, 
-    tags:[String], description eventDescription: Text, imageURL: String? = nil, location: Location? = nil,
+    tags:[String], description eventDescription: Markdown, imageURL: String? = nil, location: Location? = nil,
     facebookEventID: String? = nil) {
         self.title = title
         self.time = time

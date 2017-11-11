@@ -8,7 +8,7 @@ struct Constitution {
       title: "Hackers at Cambridge",
       content: Fragment(
         El.Div[Attr.className => "Constitution"].containing(
-          TextNode(Text(markdown: mdText).html, escapeLevel: .unsafeRaw)
+          Markdown(mdText)
         )
       )
     )
