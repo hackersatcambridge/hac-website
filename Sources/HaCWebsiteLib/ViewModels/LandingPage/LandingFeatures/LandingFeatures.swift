@@ -8,7 +8,8 @@ enum LandingFeatures {
     LandingFeatures.bashWorkshop,
     LandingFeatures.gitWorkshop,
     LandingFeatures.introToProgramming3,
-    LandingFeatures.programmingInRust
+    LandingFeatures.programmingInRust,
+    LandingFeatures.gamesWithLove
   ]
 
   /// Gets the most currently appropriate feature
