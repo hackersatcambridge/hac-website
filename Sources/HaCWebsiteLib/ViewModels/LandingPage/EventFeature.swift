@@ -31,6 +31,10 @@ struct EventFeature: LandingFeature {
       return El.Div[Attr.className => "EventFeature__date EventFeature__date--live"].containing(
         "On now"
       )
+    } else if isToday {
+      return El.Div[Attr.className => "EventFeature__date EventFeature__date--live"].containing(
+        "Today"
+      )
     } else {
       return El.Div[Attr.className => "EventFeature__date"].containing(
         DateUtils.individualDayFormatter.string(from: eventPeriod.start)
