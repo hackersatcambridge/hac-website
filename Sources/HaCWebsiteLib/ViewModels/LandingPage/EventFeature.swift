@@ -56,6 +56,11 @@ struct EventFeature: LandingFeature {
     return paddedEventPeriod.contains(currentDate)
   }
 
+  // Whether the event is on the same day
+  var isToday: Bool {
+    return NSCalendar.current.isDateInToday(eventPeriod.start)
+  }
+
   /// Returns a link to the most currently relevant information about this event
   var currentLink: String {
     guard let liveLink = liveLink else { return eventLink }
