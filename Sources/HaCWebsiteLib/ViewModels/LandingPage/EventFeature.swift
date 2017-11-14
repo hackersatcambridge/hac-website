@@ -28,11 +28,11 @@ struct EventFeature: LandingFeature {
 
   var dateBlock: Nodeable {
     if currentlyHappening {
-      return El.Div[Attr.className => "EventFeature__date EventFeature__date--live"].containing(
+      return El.Div[Attr.className => "EventFeature__date EventFeature__date--highlight"].containing(
         "On now"
       )
     } else if isToday {
-      return El.Div[Attr.className => "EventFeature__date EventFeature__date--live"].containing(
+      return El.Div[Attr.className => "EventFeature__date EventFeature__date--highlight"].containing(
         "Today"
       )
     } else {
