@@ -25,7 +25,7 @@
   </div>
   ````
 */
-public struct Fragment {
+public struct Fragment: Node {
   let nodes: [Node]
 
   public init(_ nodes: Nodeable...) {
@@ -34,5 +34,9 @@ public struct Fragment {
 
   public init(_ nodes: [Nodeable]) {
     self.nodes = nodes.map{ $0.node }
+  }
+
+  public func render() -> String {
+    return self.nodes.map({ $0.render() }).joined()
   }
 }
