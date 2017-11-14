@@ -30,7 +30,6 @@ func getWebsiteRouter() -> Router {
 
   // MARK: Features in progress
   router.get("/beta/landing-update-feed", handler: LandingUpdateFeedController.handler)
-  router.get("/sandbox/event-feature", handler: EventBetaController.handler)
 
   router.all("/", middleware: NotFoundMiddleware())
 
