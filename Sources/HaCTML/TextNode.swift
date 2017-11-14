@@ -1,7 +1,7 @@
 /**
   Some text in an HTML tree.
 */
-public struct TextNode {
+public struct TextNode: Node {
   let text: String
   let escapeLevel: EscapeLevel
 
@@ -29,5 +29,14 @@ public struct TextNode {
       Display the text as-is. This could make the tree invalid HTML, so use at your own peril.
      */
     case unsafeRaw
+  }
+
+  public func render() -> String {
+    switch escapeLevel {
+    case .preserveViewedCharacters:
+      return text.addingUnicodeEntities
+    case .unsafeRaw:
+      return text
+    }
   }
 }
