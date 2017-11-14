@@ -60,7 +60,7 @@ struct EventFeature: LandingFeature {
     return paddedEventPeriod.contains(currentDate)
   }
 
-  // Whether the event is on the same day
+  /// Whether the event is on the same day
   var isToday: Bool {
     return NSCalendar.current.isDateInToday(eventPeriod.start)
   }
