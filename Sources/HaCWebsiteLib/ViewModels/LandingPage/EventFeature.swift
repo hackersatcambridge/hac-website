@@ -62,7 +62,11 @@ struct EventFeature: LandingFeature {
 
   /// Whether the event is on the same day
   var isToday: Bool {
-    return NSCalendar.current.isDateInToday(eventPeriod.start)
+    var calendar = NSCalendar.current
+    if let timeZone = TimeZone(identifier: "GMT") {
+      calendar.timeZone = timeZone
+    }
+    return calendar.isDateInToday(eventPeriod.start)
   }
 
   /// Returns a link to the most currently relevant information about this event
