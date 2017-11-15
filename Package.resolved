@@ -2,15 +2,6 @@
   "object": {
     "pins": [
       {
-        "package": "BCrypt",
-        "repositoryURL": "https://github.com/vapor/bcrypt.git",
-        "state": {
-          "branch": null,
-          "revision": "3ee4aca16ba6ebfb1ad48cc5fd4dfb163c6d6be8",
-          "version": "1.1.0"
-        }
-      },
-      {
         "package": "Bits",
         "repositoryURL": "https://github.com/vapor/bits.git",
         "state": {
@@ -74,21 +65,12 @@
         }
       },
       {
-        "package": "Crypto",
-        "repositoryURL": "https://github.com/vapor/crypto.git",
+        "package": "Cryptor",
+        "repositoryURL": "https://github.com/IBM-Swift/BlueCryptor.git",
         "state": {
           "branch": null,
-          "revision": "bf4470b9da79024aab79c85de80374f6c29e3864",
-          "version": "2.1.1"
-        }
-      },
-      {
-        "package": "CTLS",
-        "repositoryURL": "https://github.com/vapor/ctls.git",
-        "state": {
-          "branch": null,
-          "revision": "fddec6a4643d6e85b6bb6dc54b1b5cdbabd395d2",
-          "version": "1.1.2"
+          "revision": "16f9c7ddcbe11bbd32106a791ebef2108a4e9183",
+          "version": "0.8.21"
         }
       },
       {
@@ -101,21 +83,12 @@
         }
       },
       {
-        "package": "Engine",
-        "repositoryURL": "https://github.com/vapor/engine.git",
-        "state": {
-          "branch": null,
-          "revision": "decf702d774ac630dfe0441ff76b4bb68257b77a",
-          "version": "2.2.1"
-        }
-      },
-      {
         "package": "Fluent",
         "repositoryURL": "https://github.com/vapor/fluent.git",
         "state": {
           "branch": null,
-          "revision": "9f94af35b177b5a5fdc40a81703e68c072c5013d",
-          "version": "2.4.1"
+          "revision": "2c66e5c6c99dac19554e1cb8957e6de256009efc",
+          "version": "2.4.2"
         }
       },
       {
@@ -150,8 +123,26 @@
         "repositoryURL": "https://github.com/vapor/json.git",
         "state": {
           "branch": null,
-          "revision": "735800d8f2e75ebe3be25559eb6a781f4666dcfc",
-          "version": "2.2.1"
+          "revision": "744a8fbc25a94f598d77662fd71eaa25d789c3fe",
+          "version": "2.0.0"
+        }
+      },
+      {
+        "package": "Kitura-Credentials",
+        "repositoryURL": "https://github.com/IBM-Swift/Kitura-Credentials.git",
+        "state": {
+          "branch": null,
+          "revision": "0d67b58bd62df6094d44f3dfdc2a1d7d85f2e3ce",
+          "version": "2.0.0"
+        }
+      },
+      {
+        "package": "Kitura-CredentialsHTTP",
+        "repositoryURL": "https://github.com/IBM-Swift/Kitura-CredentialsHTTP.git",
+        "state": {
+          "branch": null,
+          "revision": "4473713432329cdedb7c15acf71f0c62e937702c",
+          "version": "2.0.0"
         }
       },
       {
@@ -159,17 +150,17 @@
         "repositoryURL": "https://github.com/IBM-Swift/Kitura-net.git",
         "state": {
           "branch": null,
-          "revision": "c29812e62855d34d32305e1dc06d2f1df5224df7",
-          "version": "1.7.19"
+          "revision": "96c196ef01533f199642e7d39cff51dd50c05faf",
+          "version": "1.7.20"
         }
       },
       {
-        "package": "Kitura-net",
-        "repositoryURL": "https://github.com/IBM-Swift/Kitura-net.git",
+        "package": "Kitura-Session",
+        "repositoryURL": "https://github.com/IBM-Swift/Kitura-Session.git",
         "state": {
           "branch": null,
-          "revision": "c29812e62855d34d32305e1dc06d2f1df5224df7",
-          "version": "1.7.19"
+          "revision": "e526feb5931caf54918b0e68cf18fa2646fbab09",
+          "version": "2.0.0"
         }
       },
       {
@@ -191,6 +182,15 @@
         }
       },
       {
+        "package": "KituraContracts",
+        "repositoryURL": "https://github.com/IBM-Swift/KituraContracts.git",
+        "state": {
+          "branch": null,
+          "revision": "60ad79cfffeeb9693f53dd68067783d4fde5dc4d",
+          "version": "0.0.14"
+        }
+      },
+      {
         "package": "KituraMarkdown",
         "repositoryURL": "https://github.com/IBM-Swift/Kitura-Markdown.git",
         "state": {
@@ -206,15 +206,6 @@
           "branch": null,
           "revision": "6b62fe66da9b8794d6581e5c341710eea3173cd4",
           "version": "1.7.1"
-        }
-      },
-      {
-        "package": "Multipart",
-        "repositoryURL": "https://github.com/vapor/multipart.git",
-        "state": {
-          "branch": null,
-          "revision": "8e541b2e6fc64a3741eca2aa48ee2c3f23cbe17c",
-          "version": "2.1.1"
         }
       },
       {
@@ -308,15 +299,6 @@
         }
       },
       {
-        "package": "Sockets",
-        "repositoryURL": "https://github.com/vapor/sockets.git",
-        "state": {
-          "branch": null,
-          "revision": "70d14c0e223257176f5ef69a595f7cad5de7a88b",
-          "version": "2.2.1"
-        }
-      },
-      {
         "package": "SQLite",
         "repositoryURL": "https://github.com/vapor/sqlite.git",
         "state": {
@@ -350,24 +332,6 @@
           "branch": null,
           "revision": "1190845cf7d25a5c8ea7653fe03dcdd39a082056",
           "version": "17.0.0"
-        }
-      },
-      {
-        "package": "TLS",
-        "repositoryURL": "https://github.com/vapor/tls.git",
-        "state": {
-          "branch": null,
-          "revision": "6c6eedb6761cddc6b6c87142a27eec13fa1701ec",
-          "version": "2.1.1"
-        }
-      },
-      {
-        "package": "Vapor",
-        "repositoryURL": "https://github.com/vapor/vapor.git",
-        "state": {
-          "branch": null,
-          "revision": "0747ab4819f90c9be451847f80a153184526ad79",
-          "version": "2.3.0"
         }
       },
       {

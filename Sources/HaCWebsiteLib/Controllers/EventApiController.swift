@@ -64,7 +64,7 @@ struct EventApiController {
     let location = getOptionalLocation(json: json) 
     let time = DateInterval(start: startDate, end: endDate)
     let hypePeriod = DateInterval(start: hypeStartDate, end: hypeEndDate)
-    let eventDescription = Text(markdown: markdownDescription)
+    let eventDescription = Markdown(markdownDescription)
 
     //Optional parameters
     let websiteURL = json["websiteURL"].string

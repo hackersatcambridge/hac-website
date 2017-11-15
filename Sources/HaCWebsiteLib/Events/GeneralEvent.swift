@@ -10,7 +10,7 @@ final class GeneralEvent: Event, Entity {
   let color : String
   let hypePeriod : DateInterval
   let tags : [String]
-  let eventDescription : Text
+  let eventDescription : Markdown
   let websiteURL : String?
   let imageURL : String? 
   let location : Location?
@@ -31,7 +31,7 @@ final class GeneralEvent: Event, Entity {
   }
 
   init(title: String, time: DateInterval, tagLine: String, color: String, hypePeriod: DateInterval, 
-  tags:[String], description eventDescription: Text, websiteURL : String? = nil, imageURL: String? = nil, 
+  tags:[String], description eventDescription: Markdown, websiteURL : String? = nil, imageURL: String? = nil, 
   location: Location? = nil, facebookEventID: String? = nil) {
     self.title = title
     self.time = time
@@ -63,7 +63,7 @@ final class GeneralEvent: Event, Entity {
 
     time = DateInterval(start: startDate, end: endDate)
     hypePeriod = DateInterval(start: hypeStartDate, end: hypeEndDate)
-    eventDescription = Text(markdown : markdown)
+    eventDescription = Markdown(markdown)
     guard let long : Double = try row.get("longitude"),
       let lat : Double = try row.get("latitude"),
       let address : String = try row.get("address"),
@@ -84,7 +84,7 @@ final class GeneralEvent: Event, Entity {
     try row.set("hypeStartDate", hypePeriod.start)
     try row.set("hypeEndDate", hypePeriod.end)
     try row.set("tags", tags)
-    try row.set("markdown", eventDescription.markdown)
+    try row.set("markdown", eventDescription.raw)
     try row.set("websiteURL", websiteURL)
     try row.set("imageURL", imageURL)
     try row.set("longitude", location?.longitude)
