@@ -37,7 +37,26 @@ struct AttributeMap: ExpressibleByArrayLiteral {
     return attributeMap.values.map { attribute in attribute.key.apply(attribute.value) }
   }
 
+  var rendered: String? {
+    guard !isEmpty else {
+      return nil
+    }
+
+    return renderedValues.flatMap(AttributeMap.renderAppliedAttribute).joined(separator: " ")
+  }
+
   var isEmpty: Bool {
     return self.attributeMap.isEmpty
+  }
+
+  static func renderAppliedAttribute(_ attribute: AppliedAttribute) -> String? {
+    switch attribute.value {
+    case .noValue:
+      return attribute.keyName
+    case .text(let text):
+      return "\(attribute.keyName)=\"\(text.addingUnicodeEntities)\""
+    case .removeAttribute:
+      return nil
+    }
   }
 }
