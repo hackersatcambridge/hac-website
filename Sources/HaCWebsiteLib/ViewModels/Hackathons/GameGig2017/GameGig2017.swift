@@ -73,10 +73,9 @@ struct GameGig2017: Hackathon {
         El.Li.containing("You are free to do whatever you like with your game after the Game Gig. You own the copyright to all the material you create during the Game Gig."),
         El.Li.containing("You are free to use any tools or libraries available to you to create your game. You can start with any pre-existing code or content that you like and you are free to use third-party assets, as long as you let the judges know what you created yourself and what you didn't. Failure to do so could risk disqualification."),
         El.Li.containing("It's your responsibility to make sure that you have the right to use third-party assets (for example, that they are public domain or available under an appropriate license)."),
-        El.Li.containing(TextNode(
-          Text(markdown: "Be kind and considerate to your fellow hackers and our volunteers. We're all here to have fun! By participating in the hackathon, you agree to abide by this [Code of Conduct](https://hackcodeofconduct.org/).").html,
-          escapeLevel: .unsafeRaw
-        ))
+        El.Li.containing(
+          Markdown("Be kind and considerate to your fellow hackers and our volunteers. We're all here to have fun! By participating in the hackathon, you agree to abide by this [Code of Conduct](https://hackcodeofconduct.org/).")
+        )
       )
     )
   }
