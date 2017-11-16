@@ -25,11 +25,12 @@ func getWebsiteRouter() -> Router {
 
 
   router.get("/", handler: LandingPageController.handler)
-  router.get("/workshops", handler: WorkshopsController.handler)
   router.get("/constitution", handler: ConstitutionController.handler)
 
   // MARK: Features in progress
   router.get("/beta/landing-update-feed", handler: LandingUpdateFeedController.handler)
+  router.get("/beta/workshops", handler: WorkshopsController.handler)
+  router.get("/beta/workshops/intro-to-swift", handler: WorkshopsController.workshopHandler)
 
   router.all("/", middleware: NotFoundMiddleware())
 
