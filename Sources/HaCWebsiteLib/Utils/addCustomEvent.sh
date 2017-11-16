@@ -1,1 +1,1 @@
-curl -X POST -H "Content-Type: application/json" -d @customEvent.json http://localhost:3000/api/add_event
+curl -X POST -H "Content-Type: application/json" -d @customEvent.json http://charlie:secret@localhost:3000/api/add_event
