@@ -1,5 +1,13 @@
+### Example curl command to add an event from a JSON file in the same directory
+
+``` 
+curl -X POST -H "Content-Type: application/json" -d @customEvent.json http://charlie:secret@localhost:3000/api/add_event 
+```
+
+### Example JSON with required fields of a GeneralEvent class
+```
 {
-    "title":"Hehe Workshop Title",
+    "title":"Workshop Title",
     "startDate":"2017-11-20T12:01:12.123", 
     "endDate":"2017-11-21T12:01:12.123", 
     "tagLine":"This-is-a-tagline", 
@@ -13,7 +21,8 @@
     "markdownDescription":"plain markdown",
     "latitude":0, 
     "longitude": 0, 
-    "venue":"cambridge clab", 
-    "address": "an address", 
+    "venue":"cambridge computer lab", 
+    "address": "an address",
     "facebookEventID":"109"
 }
+```
