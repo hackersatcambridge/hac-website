@@ -114,16 +114,15 @@ struct GameGig2017: Hackathon {
     )
   }
 
-  func GameGigTopBanner() -> Node {
-    return El.Div[Attr.className => "GameGigTopBanner"].containing(
-      El.Div[Attr.className => "GameGigTopBanner__right"].containing(CurrentTime()),
-      El.Div[Attr.className => "GameGigTopBanner__left"].containing("Hackers at Cambridge Game Gig 80's")
-    )
-  }
-
   func NavBar(elements: [(String, Nodeable)]) -> Node {
     return El.Div[Attr.className => "GameGigNavBar"].containing(
-      El.Span[Attr.className => "GameGigNavBar__logo"].containing("Powered by Studio Gobo and Electric Square"),
+      El.Span[Attr.className => "GameGigNavBar__logo"].containing(
+        "Powered by Studio Gobo and ",
+        El.Img[
+            Attr.src => "/static/images/sponsors/electricsquare-logo.svg",
+            Attr.alt => "Electric Square"
+          ]
+      ),
       Fragment(elements.map{ title, content in
         El.Span[Attr.className => "GameGigNavBar__item"].containing(
           El.A[
@@ -132,7 +131,8 @@ struct GameGig2017: Hackathon {
             title
           )
         )
-      })
+      }),
+      El.Span[Attr.className => "GameGigNavBar__time"].containing(CurrentTime())
     )
   }
 
@@ -174,10 +174,10 @@ struct GameGig2017: Hackathon {
     // Define the list of game gig "cards" that are displayed as content
     let gameGigCards = [
       ("Schedule", Schedule(schedule: schedule)),
-      ("Feed", GameGigTwitterFeed()),
       ("Get Involved", ListOfLinks(dict: socialMediaLinks)),
-      ("Game Engines", ListOfLinks(dict: gameEngines)),
       ("Tutorials", ListOfLinks(dict: tutorials)),
+      ("Game Engines", ListOfLinks(dict: gameEngines)),
+      ("Feed", GameGigTwitterFeed()),
       ("Rules", Rules())
     ]
 
@@ -185,7 +185,6 @@ struct GameGig2017: Hackathon {
       title: "Hackers at Cambridge Game Gig 80's",
       customStylesheets: ["gamegig2017"],
       content: Fragment(
-        GameGigTopBanner(),
         NavBar(elements: gameGigCards),
         CountDownTimer(startDate: gigStartDate, endDate: gigEndDate),
         GameGigCardsContainer(content: Fragment(
