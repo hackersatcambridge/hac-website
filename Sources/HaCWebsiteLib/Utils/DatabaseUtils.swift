@@ -28,30 +28,32 @@ extension URL {
   }
 }
 
-func getDatabaseDriver() throws -> PostgreSQLDriver.Driver {
-  guard let databaseURLString = DotEnv.get("DATABASE_URL"),
-    let databaseURL = URL(string: databaseURLString),
-    let databaseURLComponents = databaseURL.databaseURLComponents 
-  else {
-    fatalError("Couldn't find valid DATABASE_URL environment variable")
+enum DatabaseUtils {
+  public static func prepareDatabase() {
+    do {
+      let driver = try getDatabaseDriver()
+      let database = Database(driver)
+      Database.default = database
+      try GeneralEvent.prepare(database)
+    } catch {
+      print("Failed to prepare database")
+    }
   }
-  let driver = try Driver(
-    masterHostname: databaseURLComponents.host,
-    readReplicaHostnames: [],
-    user: databaseURLComponents.user,
-    password: databaseURLComponents.password,
-    database: databaseURLComponents.database
-  )
-  return driver
 }
 
-func prepareDatabase() {
-  do {
-    let driver = try getDatabaseDriver()
-    let database = Database(driver)
-    Database.default = database
-    try GeneralEvent.prepare(database)
-  } catch {
-    print("Failed to prepare database")
+private func getDatabaseDriver() throws -> PostgreSQLDriver.Driver {
+    guard let databaseURLString = DotEnv.get("DATABASE_URL"),
+      let databaseURL = URL(string: databaseURLString),
+      let databaseURLComponents = databaseURL.databaseURLComponents 
+    else {
+      fatalError("Couldn't find valid DATABASE_URL environment variable")
+    }
+    let driver = try Driver(
+      masterHostname: databaseURLComponents.host,
+      readReplicaHostnames: [],
+      user: databaseURLComponents.user,
+      password: databaseURLComponents.password,
+      database: databaseURLComponents.database
+    )
+    return driver
   }
-}
