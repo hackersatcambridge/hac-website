@@ -55,9 +55,3 @@ func prepareDatabase() {
     print("Failed to prepare database")
   }
 }
-
-/* 
-EXAMPLE OF READING EVENT
-let query = try GeneralEvent.makeQuery()
-let event : GeneralEvent? = try query.filter("title", .equals, "Conquering Linux").first()
-*/
