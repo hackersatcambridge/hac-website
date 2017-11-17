@@ -29,12 +29,12 @@ struct EventApiController {
     next()
   }
 
-  static func saveEvent(json: [String : Any]) throws {
+  private static func saveEvent(json: [String : Any]) throws {
     let event = try parseEvent(json: json)
     try event.save()
   }
 
-  static func parseEvent(json : [String : Any]) throws -> GeneralEvent {
+  private static func parseEvent(json : [String : Any]) throws -> GeneralEvent {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.zzz"
 
@@ -69,7 +69,7 @@ struct EventApiController {
       facebookEventID: facebookEventID)
   }
 
-  static func getOptionalLocation(json: [String : Any]) -> Location? {
+  private static func getOptionalLocation(json: [String : Any]) -> Location? {
     guard let latitude = json["latitude"] as? Int,
     let longitude = json["longitude"] as? Int else {
       return nil
@@ -80,7 +80,7 @@ struct EventApiController {
       address: address, venue: venue)
   }
 
-  static func getOptionalTags(json: [String : Any]) -> [String]? {
+  private static func getOptionalTags(json: [String : Any]) -> [String]? {
     //Returns an array of tags or nil if the array is empty/doesn't exist in the json
     guard let tagsArray = json["tags"] as? [String] else {
       return nil
