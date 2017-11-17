@@ -25,7 +25,7 @@ final class GeneralEvent: Event, Entity {
         title: self.title,
         category: .general,
         description: self.tagLine,
-        backgroundColor: self.color, //TODO
+        backgroundColor: self.color,
         imageURL: self.imageURL
     )
   }
