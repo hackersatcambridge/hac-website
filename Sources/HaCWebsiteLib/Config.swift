@@ -22,6 +22,6 @@ public struct Config {
   }
 
   public static func checkEnvVars() {
-    checkEnvVarsExist(for: "DATA_DIR", "BACKEND_JS_DIR")
+    checkEnvVarsExist(for: "DATA_DIR")
   }
 }

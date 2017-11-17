@@ -51,7 +51,7 @@ struct UnsafeRawJavaScript {
 struct Script : Nodeable {
   let file : String
   let escapes : [String: JavaScriptable]
-  let directory : String = DotEnv.get("BACKEND_JS_DIR")!
+  let directory = "/root/hac-website/Sources/HaCWebsiteLib/ViewModels"
   var node: Node {
     let pathToFile = directory + "/" + file
     do {
