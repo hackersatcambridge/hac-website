@@ -69,13 +69,13 @@ struct GameGig2017: Hackathon {
       We've created a few simple rules to help the process go smoothly for
       everyone.
 
-      - Please respect and look after the Intel Lab, FW11 and the Computer Lab.
+      - **Please note that Computer Science applicants for the University of
+        Cambridge are taking CSAT tests in LT1, so please be quite when
+        moving between rooms, and don't make too much noise.**
+
+      - Also respect and look after the Intel Lab, FW11 and the Computer Lab.
         Note that food or drink may only be consumed in FW11, and we will be
         checking!
-
-      - Also not that Computer Science applicants for the University of
-        Cambridge are taking CSAT tests in LT1, so please be quite when
-        moving between rooms, and don't make too much noise.
 
       - You can work on your game in a team of up to four people.
 
