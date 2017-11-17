@@ -70,7 +70,7 @@ struct GameGig2017: Hackathon {
       everyone.
 
       - **Please note that Computer Science applicants for the University of
-        Cambridge are taking CSAT tests in LT1, so please be quite when
+        Cambridge are taking CSAT tests in LT1, so please be quiet when
         moving between rooms, and don't make too much noise. This is especially
         important between the hours of 10:00-12:00 and 15:00-17:00 when the
         actual tests will be taking place. DO NOT TAKE THEIR REFRESHMENTS.**
