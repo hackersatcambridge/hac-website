@@ -62,7 +62,6 @@ struct GameGig2017: Hackathon {
     )
   }
 
-  // TODO: grab the rulse from the constitution Repo
   func Rules() -> Nodeable {
     return Markdown("""
       The aim of the Hackers at Cambridge Game Gig 3000 is to create a fun,
@@ -75,7 +74,7 @@ struct GameGig2017: Hackathon {
         checking!
 
       - Also not that Computer Science applicants for the University of
-        Cambridge are taking CSAT applications in LT1, so please be quite when
+        Cambridge are taking CSAT tests in LT1, so please be quite when
         moving between rooms, and don't make too much noise.
 
       - You can work on your game in a team of up to four people.
