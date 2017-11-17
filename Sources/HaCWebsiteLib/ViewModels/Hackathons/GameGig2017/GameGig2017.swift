@@ -71,7 +71,9 @@ struct GameGig2017: Hackathon {
 
       - **Please note that Computer Science applicants for the University of
         Cambridge are taking CSAT tests in LT1, so please be quite when
-        moving between rooms, and don't make too much noise.**
+        moving between rooms, and don't make too much noise. This is especially
+        important between the hours of 10:00-12:00 and 15:00-17:00 when the
+        actual tests will be taking place. DO NOT TAKE THEIR REFRESHMENTS.**
 
       - Also respect and look after the Intel Lab, FW11 and the Computer Lab.
         Note that food or drink may only be consumed in FW11, and we will be
@@ -117,11 +119,24 @@ struct GameGig2017: Hackathon {
   func NavBar(elements: [(String, Nodeable)]) -> Node {
     return El.Div[Attr.className => "GameGigNavBar"].containing(
       El.Span[Attr.className => "GameGigNavBar__logo"].containing(
-        "Powered by Studio Gobo and ",
-        El.Img[
+        "Powered by ",
+        El.A[Attr.href => "http://studiogobo.com/",
+             Attr.target => "_blank"
+        ].containing(
+          El.Img[
+            Attr.src => "/static/images/sponsors/studiogobo-logo.svg",
+            Attr.alt => "Studio Gobo"
+          ]
+        ),
+        " and ",
+        El.A[Attr.href => "https://www.electricsquare.com/",
+             Attr.target => "_blank"
+        ].containing(
+          El.Img[
             Attr.src => "/static/images/sponsors/electricsquare-logo.svg",
             Attr.alt => "Electric Square"
           ]
+        )
       ),
       Fragment(elements.map{ title, content in
         El.Span[Attr.className => "GameGigNavBar__item"].containing(
