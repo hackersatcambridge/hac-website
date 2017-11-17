@@ -9,7 +9,8 @@ let package = Package(
     .executable(name: "HaCWebsite", targets: ["HaCWebsite"])
   ],
   dependencies: [
-    .package(url: "https://github.com/IBM-Swift/Kitura.git", .upToNextMinor(from: "1.7.9")),
+    .package(url: "https://github.com/IBM-Swift/Kitura.git", .upToNextMinor(from: "2.0.0")),
+    .package(url: "https://github.com/IBM-Swift/SwiftyJSON.git", .upToNextMinor(from: "17.0.0")),
     .package(url: "https://github.com/IBM-Swift/HeliumLogger.git", .upToNextMinor(from: "1.7.1")),
     .package(url: "https://github.com/IBM-Swift/Kitura-Markdown.git", .upToNextMajor(from: "0.9.1")),
     .package(url: "https://github.com/hackersatcambridge/YamlSwift.git", .upToNextMinor(from: "4.0.0")),
@@ -25,6 +26,7 @@ let package = Package(
     .target(name: "HaCWebsiteLib", dependencies: [
       "HaCTML",
       "Kitura",
+      "SwiftyJSON",
       "HeliumLogger",
       "KituraMarkdown",
       "Yaml",
