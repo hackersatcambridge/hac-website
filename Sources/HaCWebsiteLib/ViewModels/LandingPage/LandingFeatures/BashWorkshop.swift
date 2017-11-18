@@ -11,8 +11,8 @@ extension LandingFeatures {
       eventLink: "https://www.facebook.com/events/245447659318325",
       liveLink: "/bash",
       hero: ImageHero(
-        background: .image("/static/images/bash-bg.jpg"),
-        imagePath: "/static/images/bash-text.svg",
+        background: .image(Assets.publicPath("/images/bash-bg.jpg")),
+        imagePath: Assets.publicPath("/images/bash-text.svg"),
         alternateText: "HaC Tools for Programmers: Bash on 25 October"
       ),
       textShade: .light
