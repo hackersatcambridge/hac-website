@@ -11,7 +11,9 @@ This website is built using the Swift web framework [Kitura](https://github.com/
 
 We use Docker to make installation quick and painless, [make sure you have it installed](https://docs.docker.com/engine/installation/). This has been tested to work with at least `docker 17.03.0-ce, build 60ccb22` and `docker-compose version 1.11.2, build dfed245`.
 
-If you are on Windows, go to docker settings and ensure the drive you are using is shared.
+If you are on GNU/Linux, you will also need to [install Docker Compose](https://docs.docker.com/compose/install/) seperately
+
+If you are on Windows, go to Docker settings and ensure the drive you are using is shared.
 
 ### Installation Instructions
 
@@ -31,6 +33,15 @@ When you want to run the project again (and you will, it's great):
 - run `docker-compose up`
 
 \**Why did we have to do that?* The `.env` file is used to store sensitive information like API keys and environment-specific information in here for our server to use. We load it with dummy or alternative data locally.
+
+## Notes on using Windows
+If you are on Windows, go to Docker settings and ensure the drive you are using is shared.
+
+We also use use [Gulp](https://gulpjs.com/) for hot-reloading and building of the website when we make edits during development, however as [inotify doesn't work on shared drives](https://github.com/docker/for-win/issues/56), hot-reloading doesn't work out of the box.
+
+There is an [alternative solution available](http://blog.subjectify.us/miscellaneous/2017/04/24/docker-for-windows-watch-bindings.html), which essentially requires the following.
+
+Run `pip install docker-windows-volume-watcher`, then, after you have done `docker-compose up`, open another console window and run `docker-volume-watcher`.
 
 ## Development
 
