@@ -9,6 +9,7 @@ enum LandingFeatures {
     LandingFeatures.gitWorkshop,
     LandingFeatures.introToProgramming3,
     LandingFeatures.programmingInRust,
+    LandingFeatures.introToProgramming4,
     LandingFeatures.gamesWithLove
   ]
 

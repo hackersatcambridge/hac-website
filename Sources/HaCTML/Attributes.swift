@@ -42,5 +42,4 @@ public enum Attributes {
 }
 
 // Creating a more concise namespace for expressivity
-// swiftlint:disable:next identifier_name
 public let Attr = Attributes.self

@@ -24,7 +24,9 @@ func getWebsiteRouter() -> Router {
   /// Intended for use by GitHub webhooks
   router.post("/api/refresh_workshops", handler: GitHubWebhookController.handler(updater: WorkshopManager.update))
   router.post("/api/refresh_constitution", handler: GitHubWebhookController.handler(updater: ConstitutionManager.update))
-
+  router.post("/api/add_event", allowPartialMatch: false, middleware: BodyParser())
+  router.post("/api/add_event", middleware: CredentialsServer.credentials)
+  router.post("/api/add_event", handler: EventApiController.handler) 
 
   router.get("/", handler: LandingPageController.handler)
   router.get("/workshops", handler: WorkshopsController.handler)
@@ -40,7 +42,7 @@ func getWebsiteRouter() -> Router {
 }
 
 public func serveWebsite() {
-  testDatabase()
+  DatabaseUtils.prepareDatabase()
   // Helium logger provides logging for Kitura processes
   HeliumLogger.use()
   // This speaks to Kitura's 'LoggerAPI' to set the default logger to HeliumLogger.
