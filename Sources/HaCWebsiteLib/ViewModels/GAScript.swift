@@ -3,8 +3,11 @@ import Foundation
 import DotEnv
 
 struct GAScript: Nodeable {
-  let googleAnalyticsId = DotEnv.get("GOOGLE_ANALYTICS_ID")!
+  let googleAnalyticsId = DotEnv.get("GOOGLE_ANALYTICS_ID")
   var node: Node {
+    guard let googleAnalyticsId = googleAnalyticsId else {
+      return TextNode("")
+    }
     return TextNode(
       """
       <!-- Global site tag (gtag.js) - Google Analytics -->
