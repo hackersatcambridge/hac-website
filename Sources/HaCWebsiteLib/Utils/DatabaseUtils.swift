@@ -28,14 +28,26 @@ extension URL {
   }
 }
 
-func testDatabase() {
-  do {
+enum DatabaseUtils {
+  public static func prepareDatabase() {
+    do {
+      let driver = try getDatabaseDriver()
+      let database = Database(driver)
+      Database.default = database
+      try GeneralEvent.prepare(database)
+    } catch {
+      print("Failed to prepare database")
+    }
+  }
+}
+
+private func getDatabaseDriver() throws -> PostgreSQLDriver.Driver {
     guard let databaseURLString = DotEnv.get("DATABASE_URL"),
       let databaseURL = URL(string: databaseURLString),
-      let databaseURLComponents = databaseURL.databaseURLComponents else {
+      let databaseURLComponents = databaseURL.databaseURLComponents 
+    else {
       fatalError("Couldn't find valid DATABASE_URL environment variable")
     }
-
     let driver = try Driver(
       masterHostname: databaseURLComponents.host,
       readReplicaHostnames: [],
@@ -43,19 +55,5 @@ func testDatabase() {
       password: databaseURLComponents.password,
       database: databaseURLComponents.database
     )
-    let database = Database(driver)
-    Database.default = database
-    try Pet.prepare(database)
-  } catch {
-    print("Failed to initialise database:")
-    dump(error)
+    return driver
   }
-
-  do {
-    let testPet = Pet(name: "Fluffs", age: 1)
-    try testPet.save()
-  } catch {
-    print("Failed to add record")
-    dump(error)
-  }
-}

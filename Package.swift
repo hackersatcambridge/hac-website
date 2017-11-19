@@ -17,7 +17,8 @@ let package = Package(
     .package(url: "https://github.com/jaredkhan/SwiftDotEnv.git", .upToNextMinor(from: "1.2.0")),
     .package(url: "https://github.com/alexaubry/HTMLString", .upToNextMinor(from: "3.0.0")),
     .package(url: "https://github.com/vapor/fluent.git", .upToNextMinor(from: "2.4.0")),
-    .package(url: "https://github.com/vapor-community/postgresql-driver.git", .upToNextMinor(from: "2.1.0"))
+    .package(url: "https://github.com/vapor-community/postgresql-driver.git", .upToNextMinor(from: "2.1.0")),
+    .package(url: "https://github.com/IBM-Swift/Kitura-CredentialsHTTP.git", .upToNextMinor(from: "2.0.0"))
   ],
   targets: [
     .target(name: "HaCTML", dependencies: [
@@ -33,7 +34,8 @@ let package = Package(
       "SwiftDotEnv",
       "HTMLString",
       "Fluent",
-      "PostgreSQLDriver"
+      "PostgreSQLDriver",
+      "CredentialsHTTP"
     ]),
     .target(name: "HaCWebsite", dependencies: [
       "HaCWebsiteLib"
