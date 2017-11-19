@@ -13,23 +13,25 @@ struct CountDownTimer : Nodeable {
 
   var node: Node {
     return Fragment(
-      El.Div[
-        Attr.className => "CountDownTimer__pre",
-        Attr.id => preId
-      ].containing(""),
-      El.Div[
-        Attr.className => "CountDownTimer",
-        Attr.id => id
-      ].containing("YOU SHOULD SEE THE TIME REMAINING HERE"),
-      Script(
-        file: "Hackathons/CountDownTimer.js",
-        escapes: [
-          "startDate": startDate, "endDate": endDate,
-          "id": id, "preId": preId,
-          "beforeEventMessage": beforeEventMessage,
-          "duringEventMessage": duringEventMessage,
-          "afterEventMessage" : afterEventMessage
-        ]
+      El.Div[Attr.className => "CountDownTimer"].containing(
+        El.Div[
+          Attr.className => "CountDownTimer__pre",
+          Attr.id => preId
+        ].containing(""),
+        El.Div[
+          Attr.className => "CountDownTimer_time",
+          Attr.id => id
+        ].containing("YOU SHOULD SEE THE TIME REMAINING HERE"),
+        Script(
+          file: "Hackathons/CountDownTimer.js",
+          escapes: [
+            "startDate": startDate, "endDate": endDate,
+            "id": id, "preId": preId,
+            "beforeEventMessage": beforeEventMessage,
+            "duringEventMessage": duringEventMessage,
+            "afterEventMessage" : afterEventMessage
+          ]
+        )
       )
     )
   }

@@ -8,7 +8,7 @@ body {
 a {
   text-decoration: none;
   padding: none;
-  --link-color: hotpink;
+  --link-color: #fd7cb3;
 }
 
 a:link {
@@ -31,16 +31,35 @@ a:active {
 
 nav-bar-height = 50px;
 
-.CountDownTimer__pre {
-  text-align: center;
-  width: 100%;
-  font-size: 50px;
+.GameGigTopBar {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 20px;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.GameGigTopBar img {
+  flex-basis: 400px;
+  flex-grow: 1;
+  flex-shrink: 2;
 }
 
 .CountDownTimer {
+  flex-basis: 400px;
+  flex-grow: 1;
+  flex-shrink: 2;
+}
+
+.CountDownTimer__pre {
   text-align: center;
-  width: 100%;
-  font-size: 100px;
+  font-size: 4vw;
+}
+
+.CountDownTimer_time {
+  text-align: center;
+  font-size: 8vw;
 }
 
 .GameGigCardsContainer {
@@ -61,7 +80,7 @@ nav-bar-height = 50px;
   color: #fff;
   background-color: rgba(20, 20, 0, 0.9);
   background-size: 100% 100%;
-  border: 3px solid #ffbbbb;
+  border: 3px solid #feb2fd;
   border-radius: 10px;
   box-shadow: 0px 0px 20px red;
 }
@@ -70,6 +89,11 @@ nav-bar-height = 50px;
   text-transform: uppercase;
   font-weight: 900;
   font-size: 25px;
+  color: #f0defe;
+  text-shadow: 1px 1px 0px #A878C0,
+               -1px 1px 0px #A878C0,
+               1px -1px 0px #A878C0,
+               -1px -1px 0px #A878C0;
 }
 
 .GamgeGigTwitterFeed {

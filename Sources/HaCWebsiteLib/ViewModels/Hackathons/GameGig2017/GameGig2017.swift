@@ -192,7 +192,7 @@ struct GameGig2017: Hackathon {
       ("Get Involved", ListOfLinks(dict: socialMediaLinks)),
       ("Tutorials", ListOfLinks(dict: tutorials)),
       ("Game Engines", ListOfLinks(dict: gameEngines)),
-      ("Feed", GameGigTwitterFeed()),
+      //("Feed", GameGigTwitterFeed()),
       ("Rules", Rules())
     ]
 
@@ -201,7 +201,10 @@ struct GameGig2017: Hackathon {
       customStylesheets: ["gamegig2017"],
       content: Fragment(
         NavBar(elements: gameGigCards),
-        CountDownTimer(startDate: gigStartDate, endDate: gigEndDate),
+        El.Div[Attr.className => "GameGigTopBar"].containing(
+          El.Img[Attr.src => "/static/images/gamegig3000-logo.png"],
+          CountDownTimer(startDate: gigStartDate, endDate: gigEndDate)
+        ),
         GameGigCardsContainer(content: Fragment(
           gameGigCards.map{ title, content in
             GameGigCard(title: title, content: content)
