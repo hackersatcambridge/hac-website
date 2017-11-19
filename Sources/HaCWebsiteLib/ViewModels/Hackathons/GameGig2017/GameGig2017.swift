@@ -118,7 +118,7 @@ struct GameGig2017: Hackathon {
 
   func NavBar(elements: [(String, Nodeable)]) -> Node {
     return El.Div[Attr.className => "GameGigNavBar"].containing(
-      El.Span[Attr.className => "GameGigNavBar__logo"].containing(
+      El.Span[Attr.className => "GameGigNavBar__poweredby"].containing(
         "Powered by ",
         El.A[Attr.href => "http://studiogobo.com/",
              Attr.target => "_blank"

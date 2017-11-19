@@ -112,21 +112,31 @@ nav-bar-height = 50px;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-around;
-  align-items: centre;
+  align-items: center;
 
   color: #fff;
   text-shadow: 0px 0px 5px #509000;
-  background-color: rgba(20, 0, 0, 0.9);
+  background-color: rgba(120, 100, 150, 0.9);
 }
 
-.GameGigNavBar__logo img {
+.GameGigNavBar__poweredby {
+  height: nav-bar-height;
+  flex-grow: 1;
+  font-size: 1vw;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.GameGigNavBar__poweredby img {
   display: inline-block;
-  max-height: 100%;
-  max-width: 100%;
+  max-height: 2vw;
+  //max-width: 50px;
+  //flex-shrink: 10;
 }
 
 .GameGigNavBar__item,
 .GameGigNavBar__time {
-  font-size: 25px;
+  font-size: 2vw;
   padding: 10px;
 }
