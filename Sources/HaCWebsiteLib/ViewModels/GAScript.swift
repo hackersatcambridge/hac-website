@@ -1,5 +1,4 @@
 import HaCTML
-import Foundation
 import DotEnv
 
 struct GAScript: Nodeable {
