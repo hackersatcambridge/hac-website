@@ -17,7 +17,9 @@ func getWebsiteRouter() -> Router {
     "/git": "https://github.com/hackersatcambridge/git-workshop-2017"
   ]))
 
-  Assets.addTo(router: router)
+  let assetsConfig = Assets.AssetsConfig(urlBase: "/static")
+  Assets.initialize(config: assetsConfig)
+  router.all(assetsConfig.urlBase, middleware: Assets.fileServingMiddleware)
 
   /// Intended for use by GitHub webhooks
   router.post("/api/refresh_workshops", handler: GitHubWebhookController.handler(updater: WorkshopManager.update))

@@ -2,11 +2,23 @@ import Kitura
 import SwiftyJSON
 import Foundation
 
+/**
+  Utilities for accessing public assets for the website
+ */
 enum Assets {
-  static private let filesystemPath = "./static/dist"
-  static private let manifestPath = filesystemPath + "/manifest.json"
-  static private let urlPath = "/static"
+  /**
+    Location of manifest mapping logical file names to real locations (open it for an example)
+   */
+  static private let manifestPath = "./static/dist/manifest.json"
+
+  /**
+    Middleware serving all of our public assets. Where this is mounted on must be kept in
+    sync with `config.urlBase`
+   */
+  static public let fileServingMiddleware = StaticFileServer(path: "./static/dist")
+
   static private var resolver: AssetResolver? = nil
+  static private var config: AssetsConfig? = nil
 
   private static func resolveAssetPath(_ assetPath: String) -> String {
     if (self.resolver == nil) || (!Config.isProduction)  {
@@ -20,12 +32,33 @@ enum Assets {
     fatalError("Could not create AssetResolver")
   }
 
-  static func publicPath(_ assetPath: String) -> String {
-    return urlPath + "/" + resolveAssetPath(assetPath)
+  /**
+    Initialize with configuration. This must be done exactly once before using the public API
+   */
+  public static func initialize(config: AssetsConfig) {
+    precondition(self.config == nil)
+
+    self.config = config
   }
 
-  static func addTo(router: Router) {
-    router.all(urlPath, middleware: StaticFileServer(path: filesystemPath))
+  /**
+    Get the path for publicly accessing a static asset.
+
+    This is to abstract away how we as programmers identify assets (files we write to)
+    from how our web browsers will. Files may have names changed, and we may even be serving
+    assets from a CDN (a different domain).
+
+    Asset paths must be relative to the distribution directory of built assets in this project
+   */
+  static func publicPath(_ assetPath: String) -> String {
+    return config!.urlBase + "/" + resolveAssetPath(assetPath)
+  }
+
+  struct AssetsConfig {
+    /**
+      Where assets are served relative to on our website
+     */
+    public let urlBase: String
   }
 }
 
