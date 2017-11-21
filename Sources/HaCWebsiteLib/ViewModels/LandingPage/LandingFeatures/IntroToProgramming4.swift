@@ -12,7 +12,7 @@ extension LandingFeatures {
       liveLink: "/intro-to-programming",
       hero: ImageHero(
         background: .color("#2E6E17"),
-        imagePath: "/static/images/intro4feature.svg",
+        imagePath: Assets.publicPath("/images/intro4feature.svg"),
         alternateText: "HaC Intro to Programming Workshop"
       ),
       textShade: .light

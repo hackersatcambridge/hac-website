@@ -30,7 +30,7 @@ struct LandingPage {
             El.Div[Attr.className => "LandingIntroduction__titleContainer"].containing(
               El.Img[
                 Attr.className => "SiteLogo",
-                Attr.src => "/static/images/hac-logo-dark.svg",
+                Attr.src => Assets.publicPath("/images/hac-logo-dark.svg"),
                 Attr.alt => "Hackers at Cambridge"
               ],
               El.Div[Attr.className => "TagLine"].containing("Cambridge's student tech society")
@@ -47,28 +47,28 @@ struct LandingPage {
                 El.A[Attr.href => githubUrl, Attr.className => "LandingIntroduction__socialLinkIcon"].containing(
                   El.Img[
                     Attr.className => "LandingIntroduction__socialLinkIconImg",
-                    Attr.src => "/static/images/github_icon.svg",
+                    Attr.src => Assets.publicPath("/images/github_icon.svg"),
                     Attr.alt => "GitHub"
                   ]
                 ),
                 El.A[Attr.href => facebookUrl, Attr.className => "LandingIntroduction__socialLinkIcon"].containing(
                   El.Img[
                     Attr.className => "LandingIntroduction__socialLinkIconImg",
-                    Attr.src => "/static/images/facebook_icon.svg",
+                    Attr.src => Assets.publicPath("/images/facebook_icon.svg"),
                     Attr.alt => "Facebook"
                   ]
                 ),
                 El.A[Attr.href => youtubeUrl, Attr.className => "LandingIntroduction__socialLinkIcon"].containing(
                   El.Img[
                     Attr.className => "LandingIntroduction__socialLinkIconImg",
-                    Attr.src => "/static/images/youtube_icon.svg",
+                    Attr.src => Assets.publicPath("/images/youtube_icon.svg"),
                     Attr.alt => "YouTube"
                   ]
                 ),
                 El.A[Attr.href => mediumUrl, Attr.className => "LandingIntroduction__socialLinkIcon"].containing(
                   El.Img[
                     Attr.className => "LandingIntroduction__socialLinkIconImg",
-                    Attr.src => "/static/images/medium_icon.svg",
+                    Attr.src => Assets.publicPath("/images/medium_icon.svg"),
                     Attr.alt => "Medium"
                   ]
                 )
@@ -90,7 +90,7 @@ struct LandingPage {
             El.Div[Attr.className => "LandingAbout__imageContainer"].containing(
               El.Img[
                 Attr.className => "LandingAbout__image",
-                Attr.src => "/static/images/whoishac.jpg"
+                Attr.src => Assets.publicPath("/images/whoishac.jpg")
               ]
             ),
             El.Div[Attr.className => "LandingAbout__text"].containing(
@@ -107,7 +107,7 @@ struct LandingPage {
             El.Div[Attr.className => "LandingAbout__imageContainer"].containing(
               El.Img[
                 Attr.className => "LandingAbout__image",
-                Attr.src => "/static/images/hacworkshop.jpg"
+                Attr.src => Assets.publicPath("/images/hacworkshop.jpg")
               ]
             ),
             El.Div[Attr.className => "LandingAbout__text"].containing(
@@ -125,7 +125,7 @@ struct LandingPage {
             El.Div[Attr.className => "LandingAbout__imageContainer"].containing(
               El.Img[
                 Attr.className => "LandingAbout__image",
-                Attr.src => "/static/images/hachackathon.jpg"
+                Attr.src => Assets.publicPath("/images/hachackathon.jpg")
               ]
             ),
             El.Div[Attr.className => "LandingAbout__text"].containing(
@@ -143,7 +143,7 @@ struct LandingPage {
             El.Div[Attr.className => "LandingAbout__imageContainer"].containing(
               El.Img[
                 Attr.className => "LandingAbout__image",
-                Attr.src => "/static/images/hashcode.jpg"
+                Attr.src => Assets.publicPath("/images/hashcode.jpg")
               ]
             ),
             El.Div[Attr.className => "LandingAbout__text"].containing(
