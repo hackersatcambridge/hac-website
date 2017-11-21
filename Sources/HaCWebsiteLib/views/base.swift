@@ -31,7 +31,11 @@ extension UI.Pages {
           El.Title.containing(TextNode(title)),
           stylesheet(forUrl: Assets.publicPath("styles/main.css"))
         ),
-        El.Body.containing(error, content)
+        El.Body.containing(
+          error,
+          content,
+          GAScript()
+        )
       )
     )
   }
