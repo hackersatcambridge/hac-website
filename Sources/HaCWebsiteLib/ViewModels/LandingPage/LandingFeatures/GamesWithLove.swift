@@ -11,8 +11,8 @@ extension LandingFeatures {
       eventLink: "https://www.facebook.com/events/128537371191407",
       liveLink: "/make-games-with-love",
       hero: ImageHero(
-        background: .image("/static/images/gameswithlove-bg.png"),
-        imagePath: "/static/images/gameswithlove.svg",
+        background: .image(Assets.publicPath("/images/gameswithlove-bg.png")),
+        imagePath: Assets.publicPath("/images/gameswithlove.svg"),
         alternateText: "HaC Make games quickly with LÖVE on the 29th of November"
       ),
       textShade: .light

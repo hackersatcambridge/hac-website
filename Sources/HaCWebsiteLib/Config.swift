@@ -24,4 +24,9 @@ public struct Config {
   public static func checkEnvVars() {
     checkEnvVarsExist(for: "DATA_DIR")
   }
+
+  public static var isProduction: Bool {
+    // We use NODE_ENV to check for production as that's what our build tooling uses
+    return envVar(forKey: "NODE_ENV") == "production"
+  }
 }
