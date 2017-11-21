@@ -11,8 +11,8 @@ extension LandingFeatures {
       eventLink: "https://www.facebook.com/events/832214590292163",
       liveLink: "https://github.com/hackersatcambridge/intro-to-rust-workshop",
       hero: ImageHero(
-        background: .image("/static/images/rustbg.png"),
-        imagePath: "/static/images/rustfg.png",
+        background: .image(Assets.publicPath("/images/rustbg.png")),
+        imagePath: Assets.publicPath("/images/rustfg.png"),
         alternateText: "HaC Programming in Rust on 9 November"
       ),
       textShade: .light

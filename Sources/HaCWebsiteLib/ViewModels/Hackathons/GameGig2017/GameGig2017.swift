@@ -124,7 +124,7 @@ struct GameGig2017: Hackathon {
              Attr.target => "_blank"
         ].containing(
           El.Img[
-            Attr.src => "/static/images/sponsors/studiogobo-logo.svg",
+            Attr.src => Assets.publicPath("/images/sponsors/studiogobo-logo.svg"),
             Attr.alt => "Studio Gobo"
           ]
         ),
@@ -133,7 +133,7 @@ struct GameGig2017: Hackathon {
              Attr.target => "_blank"
         ].containing(
           El.Img[
-            Attr.src => "/static/images/sponsors/electricsquare-logo.svg",
+            Attr.src => Assets.publicPath("/images/sponsors/electricsquare-logo.svg"),
             Attr.alt => "Electric Square"
           ]
         )
@@ -202,7 +202,7 @@ struct GameGig2017: Hackathon {
       content: Fragment(
         NavBar(elements: gameGigCards),
         El.Div[Attr.className => "GameGigTopBar"].containing(
-          El.Img[Attr.src => "/static/images/gamegig3000-logo.png"],
+          El.Img[Attr.src => Assets.publicPath("/images/gamegig3000-logo.png")],
           CountDownTimer(startDate: gigStartDate, endDate: gigEndDate)
         ),
         GameGigCardsContainer(content: Fragment(

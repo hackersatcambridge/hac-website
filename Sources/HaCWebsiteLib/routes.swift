@@ -19,7 +19,9 @@ func getWebsiteRouter() -> Router {
     "/game-gig": "https://hackersatcambridge.com/hackathons/2017/game-gig-3000"
   ]))
 
-  router.all("/static", middleware: StaticFileServer(path: "./static/dist"))
+  let assetsConfig = Assets.AssetsConfig(urlBase: "/static")
+  Assets.initialize(config: assetsConfig)
+  router.all(assetsConfig.urlBase, middleware: Assets.fileServingMiddleware)
 
   /// Intended for use by GitHub webhooks
   router.post("/api/refresh_workshops", handler: GitHubWebhookController.handler(updater: WorkshopManager.update))
