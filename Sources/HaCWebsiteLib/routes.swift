@@ -1,5 +1,6 @@
 import Foundation
 import Kitura
+import KituraCompression
 import DotEnv
 import SwiftyJSON
 import LoggerAPI
@@ -38,6 +39,9 @@ func getWebsiteRouter() -> Router {
   router.get("/beta/landing-update-feed", handler: LandingUpdateFeedController.handler)
 
   router.all("/", middleware: NotFoundMiddleware())
+
+  // Enable http gzip compression globally
+  router.all(middleware: Compression())
 
 
   return router
