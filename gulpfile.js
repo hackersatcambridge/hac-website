@@ -40,7 +40,8 @@ function buildStatic () {
           main: './main.js',
           // Styles entry points
           'styles/main': './styles/main.styl',
-          // Ideally we want this to be a wildcard match of some form
+          // TODO: Ideally we want this to be a wildcard match of some form
+          // so we can automatically pick-up new custom styles.
           'styles/custom/gamegig2017': './styles/custom/gamegig2017.styl'
         },
         output: {
