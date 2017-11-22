@@ -16,7 +16,7 @@ func getWebsiteRouter() -> Router {
     "/bash": "https://github.com/hackersatcambridge/workshops/blob/master/workshops/tools_for_programmers/01_intro_to_bash/description.md",
     "/git": "https://github.com/hackersatcambridge/git-workshop-2017",
     "/make-games-with-love": "https://github.com/hackersatcambridge/make-games-with-love",
-    "/game-gig": "https://hackersatcambridge.com/hackathons/2017/game-gig-3000"
+    "/gamegig": "https://www.facebook.com/events/124219834921040/"
   ]))
 
   let assetsConfig = Assets.AssetsConfig(urlBase: "/static")
