@@ -23,12 +23,11 @@ public struct GitUtil {
     self.directoryName = directoryName
   }
 
-  /// A safe version of `unsafeUpdate`
-  public func update(then callback: @escaping () throws -> Void = {}) rethrows {
+  /// A synchronous, thread-safe call to pull the latest version of the repository to disk
+  public func update() {
     // Use a serial queue to avoid concurrent Git processes in the same directory
-    try serialQueue.sync {
+    serialQueue.sync {
       unsafeUpdate()
-      try callback()
     }
   }
 

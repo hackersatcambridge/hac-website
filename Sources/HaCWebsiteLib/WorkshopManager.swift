@@ -10,10 +10,9 @@ public struct WorkshopManager {
 
   /// Update the `workshops` list
   public static func update() {
+    gitUtil.update()
     do {
-      try gitUtil.update(then: {
-        try self.processWorkshopFiles()
-      })
+      try self.processWorkshopFiles()
     } catch {
       print("Failed to process workshop files")
     }

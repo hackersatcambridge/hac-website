@@ -13,10 +13,9 @@ public struct ConstitutionManager {
 
   /// Pulls any updates from the remote repo and updates the in-memory constitution
   public static func update() {
+    gitUtil.update()
     do {
-      try gitUtil.update(then: {
-        try self.loadConstitution()
-      }) 
+      try self.loadConstitution()
     } catch {
       print("Failed to load constitution from file")
     }
