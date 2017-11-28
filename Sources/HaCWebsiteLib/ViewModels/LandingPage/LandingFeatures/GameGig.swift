@@ -9,10 +9,10 @@ extension LandingFeatures {
         duration: 10 * 60 * 60
       ),
       eventLink: "https://www.facebook.com/events/124219834921040/",
-      liveLink: "/game-gig",
+      liveLink: "/gamegig",
       hero: ImageHero(
-        background: .image("/static/images/gamegig-bg.png"),
-        imagePath: "/static/images/gamegig.svg",
+        background: .image(Assets.publicPath("/images/gamegig3000/gamegig-background.jpg")),
+        imagePath: Assets.publicPath("images/gamegig3000/gamegig-foreground.png"),
         alternateText: "HaC Game Gig 3000 on the 1st of December 2017!"
       ),
       textShade: .light

@@ -17,7 +17,7 @@ func getWebsiteRouter() -> Router {
     "/git": "https://github.com/hackersatcambridge/git-workshop-2017",
     "/binary-exploitation": "https://github.com/hackersatcambridge/binary-exploitation/blob/master/handout.md",
     "/make-games-with-love": "https://github.com/hackersatcambridge/make-games-with-love",
-    "/gamegig": "https://www.facebook.com/events/124219834921040/"
+    "/gamegig": "/event/2017/gamegig3000"
   ]))
 
   let assetsConfig = Assets.AssetsConfig(urlBase: "/static")
@@ -29,15 +29,17 @@ func getWebsiteRouter() -> Router {
   router.post("/api/refresh_constitution", handler: GitHubWebhookController.handler(updater: ConstitutionManager.update))
   router.post("/api/add_event", allowPartialMatch: false, middleware: BodyParser())
   router.post("/api/add_event", middleware: CredentialsServer.credentials)
-  router.post("/api/add_event", handler: EventApiController.handler) 
+  router.post("/api/add_event", handler: EventApiController.handler)
 
   router.get("/", handler: LandingPageController.handler)
   router.get("/workshops", handler: WorkshopsController.handler)
   router.get("/constitution", handler: ConstitutionController.handler)
 
+  /// Custom event pages
+  router.get("/event/2017/gamegig3000", handler: HackathonController.handler(hackathon: GameGig2017()))
+
   // MARK: Features in progress
   router.get("/beta/landing-update-feed", handler: LandingUpdateFeedController.handler)
-  router.get("/beta/gamegig2017", handler: HackathonController.handler(hackathon: GameGig2017()))
 
   router.all("/", middleware: NotFoundMiddleware())
 
