@@ -16,7 +16,7 @@ func getWebsiteRouter() -> Router {
     "/bash": "https://github.com/hackersatcambridge/workshops/blob/master/workshops/tools_for_programmers/01_intro_to_bash/description.md",
     "/git": "https://github.com/hackersatcambridge/git-workshop-2017",
     "/binary-exploitation": "https://github.com/hackersatcambridge/binary-exploitation/blob/master/handout.md",
-    "/make-games-with-love": "https://github.com/hackersatcambridge/make-games-with-love",
+    "/love": "https://github.com/hackersatcambridge/workshop-love2d/blob/master/content/notes/notes.md",
     "/gamegig": "https://www.facebook.com/events/124219834921040/"
   ]))
 
@@ -29,7 +29,7 @@ func getWebsiteRouter() -> Router {
   router.post("/api/refresh_constitution", handler: GitHubWebhookController.handler(updater: ConstitutionManager.update))
   router.post("/api/add_event", allowPartialMatch: false, middleware: BodyParser())
   router.post("/api/add_event", middleware: CredentialsServer.credentials)
-  router.post("/api/add_event", handler: EventApiController.handler) 
+  router.post("/api/add_event", handler: EventApiController.handler)
 
   router.get("/", handler: LandingPageController.handler)
   router.get("/workshops", handler: WorkshopsController.handler)
