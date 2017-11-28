@@ -1,5 +1,7 @@
+@require '../core/index';
+
 body {
-  background: url("/static/images/gamegig3000-bg.jpg") no-repeat center center fixed;
+  background: url("../../images/gamegig3000/gamegig-background.jpg") no-repeat center center fixed;
   background-size: cover;
   color: white;
   text-shadow: 0px 0px 10px blue;
@@ -29,9 +31,24 @@ a:active {
   color: red;
 }
 
-nav-bar-height = 50px;
+$GameGig2017__navBarHeight = 50px;
 
-.GameGigTopBar {
+.GameGigHero {
+  width: 100%;
+  padding: grid(10) grid(0);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.GameGigHero__image {
+  width: 100%;
+  max-width: grid(120);
+  flex: 0 1 auto;
+}
+
+/*.GameGigTopBar {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -44,6 +61,46 @@ nav-bar-height = 50px;
   flex-basis: 400px;
   flex-grow: 1;
   flex-shrink: 2;
+  max-width: 100%;
+}*/
+
+.GameGigTopBar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: grid(16);
+  padding: grid(2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.GameGigTopBar__image {
+  display: block;
+  height: auto;
+  flex: 0 1 auto;
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+.GameGigTopBar__filler {
+  width: 0;
+  min-width: grid(2);
+  max-width: grid(10);
+  flex: 1 0 auto;
+}
+
+.GameGigTopBar__electricSquare {
+  width: 200px;
+}
+
+.GameGigTopBar__gobo {
+  width: 150px;
 }
 
 .CountDownTimer {
@@ -68,7 +125,7 @@ nav-bar-height = 50px;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
-  margin-bottom: nav-bar-height;
+  margin-bottom: $GameGig2017__navBarHeight;
 }
 
 .GameGigCard {
@@ -103,7 +160,7 @@ nav-bar-height = 50px;
 
 .GameGigNavBar {
   width: 100%;
-  height: nav-bar-height;
+  height: $GameGig2017__navBarHeight;
   z-index: 999;
   bottom: 0px;
   position: fixed;
@@ -120,7 +177,7 @@ nav-bar-height = 50px;
 }
 
 .GameGigNavBar__poweredby {
-  height: nav-bar-height;
+  height: $GameGig2017__navBarHeight;
   flex-grow: 1;
   font-size: 1vw;
   display: flex;

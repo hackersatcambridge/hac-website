@@ -46,7 +46,7 @@ function buildStatic () {
         },
         output: {
           filename: `[name]${dotHash}.js`,
-          publicPath: '/static'
+          publicPath: '/static/'
         },
         module: {
           // We add rules explicitly for every file type

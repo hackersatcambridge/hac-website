@@ -32,7 +32,11 @@ extension UI.Pages {
           stylesheet(forUrl: Assets.publicPath("/styles/main.css")),
           Fragment(customStylesheets.map { stylesheet(forUrl: Assets.publicPath("/styles/custom/\($0).css")) })
         ),
-        El.Body.containing(error, content)
+        El.Body.containing(
+          error,
+          content,
+          GAScript()
+        )
       )
     )
   }

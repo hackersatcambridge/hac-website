@@ -30,6 +30,24 @@ struct GameGig2017: Hackathon {
     ("Web Dev with Mozilla", "https://globalgamejam.org/news/dev-web-mozilla")
   ]
 
+  let GoboLogo = El.A[Attr.href => "http://studiogobo.com/",
+    Attr.target => "_blank"
+  ].containing(
+    El.Img[
+      Attr.src => Assets.publicPath("/images/sponsors/studiogobo-logo.svg"),
+      Attr.alt => "Studio Gobo"
+    ]
+  )
+
+  let ElectricSquareLogo = El.A[Attr.href => "https://www.electricsquare.com/",
+    Attr.target => "_blank"
+  ].containing(
+    El.Img[
+      Attr.src => Assets.publicPath("/images/sponsors/electricsquare-logo.svg"),
+      Attr.alt => "Electric Square"
+    ]
+  )
+
   /**
    * Creates a GameGigCard element, the title becomes its id (spaces are replaced with hyphons)
    */
@@ -116,27 +134,16 @@ struct GameGig2017: Hackathon {
     )
   }
 
+  /**
+    Not currently used but may be useful for future events
+   */
   func NavBar(elements: [(String, Nodeable)]) -> Node {
     return El.Div[Attr.className => "GameGigNavBar"].containing(
       El.Span[Attr.className => "GameGigNavBar__poweredby"].containing(
         "Powered by ",
-        El.A[Attr.href => "http://studiogobo.com/",
-             Attr.target => "_blank"
-        ].containing(
-          El.Img[
-            Attr.src => Assets.publicPath("/images/sponsors/studiogobo-logo.svg"),
-            Attr.alt => "Studio Gobo"
-          ]
-        ),
+        GoboLogo,
         " and ",
-        El.A[Attr.href => "https://www.electricsquare.com/",
-             Attr.target => "_blank"
-        ].containing(
-          El.Img[
-            Attr.src => Assets.publicPath("/images/sponsors/electricsquare-logo.svg"),
-            Attr.alt => "Electric Square"
-          ]
-        )
+        ElectricSquareLogo
       ),
       Fragment(elements.map{ title, content in
         El.Span[Attr.className => "GameGigNavBar__item"].containing(
@@ -200,11 +207,15 @@ struct GameGig2017: Hackathon {
       title: "Hackers at Cambridge Game Gig 80's",
       customStylesheets: ["gamegig2017"],
       content: Fragment(
-        NavBar(elements: gameGigCards),
-        El.Div[Attr.className => "GameGigTopBar"].containing(
-          El.Img[Attr.src => Assets.publicPath("/images/gamegig3000-logo.png")],
-          CountDownTimer(startDate: gigStartDate, endDate: gigEndDate)
+        El.Div[Attr.className => "GameGigHero"].containing(
+          El.Img[Attr.className => "GameGigHero__image", Attr.src => Assets.publicPath("/images/gamegig3000/gamegig-foreground.png")]
         ),
+        El.Div[Attr.className => "GameGigTopBar"].containing(
+          ElectricSquareLogo[Attr.className => "GameGigTopBar__image GameGigTopBar__electricSquare"],
+          El.Div[Attr.className => "GameGigTopBar__filler"],
+          GoboLogo[Attr.className => "GameGigTopBar__image GameGigTopBar__gobo"]
+        ),
+        CountDownTimer(startDate: gigStartDate, endDate: gigEndDate),
         GameGigCardsContainer(content: Fragment(
           gameGigCards.map{ title, content in
             GameGigCard(title: title, content: content)
