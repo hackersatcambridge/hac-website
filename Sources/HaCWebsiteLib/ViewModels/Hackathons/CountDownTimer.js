@@ -3,9 +3,9 @@ function updateCountDownTimer() {
     const endDate = {{endDate}};
     const CountDownTimerId = {{id}};
     const CountDownTimerPreId = {{preId}};
-    const beforeEventMessage = {{beforeEventMessage}}
-    const duringEventMessage = {{duringEventMessage}}
-    const afterEventMessage = {{afterEventMessage}}
+    const beforeEventMessage = {{beforeEventMessage}};
+    const duringEventMessage = {{duringEventMessage}};
+    const afterEventMessage = {{afterEventMessage}};
 
     const current = new Date();
 
