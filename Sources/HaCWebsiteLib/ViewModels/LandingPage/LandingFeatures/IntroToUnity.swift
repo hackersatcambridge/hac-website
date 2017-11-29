@@ -11,11 +11,11 @@ extension LandingFeatures {
       eventLink: "https://www.facebook.com/events/887062184790929/",
       liveLink: nil,
       hero: ImageHero(
-        background: .image(Assets.publicPath("/images/introtounity-bg.png")),
-        imagePath: Assets.publicPath("/images/introtounity.svg"),
+        background: .color("#000"),
+        imagePath: Assets.publicPath("/images/unity/fg.svg"),
         alternateText: "Intro to Unity on the 1st of December"
       ),
-      textShade: .dark
+      textShade: .light
     )
   }
 }
