@@ -1,6 +1,14 @@
 import HaCTML
 import Foundation
 
+/*
+A count down timer for an event alongside a count down message.
+
+The two necessary things for this are a startDate and and endDate. You can also
+set custom messages. They will show different things based on whether the timer
+is counting-down to the start of the event, to the end of the event, or if the
+event is over.
+*/
 struct CountDownTimer : Nodeable {
   let startDate : Date
   let endDate : Date
