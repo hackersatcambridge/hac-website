@@ -9,7 +9,7 @@ struct CurrentTime : Nodeable {
       El.Span[Attr.id => id, Attr.className => "CurrentTime"].containing("Current Time"),
       Script(
         file: "Hackathons/CurrentTime.js",
-        escapes: ["id": id]
+        definitions: ["id": id]
       )
     )
   }

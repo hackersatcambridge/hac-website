@@ -32,7 +32,7 @@ struct CountDownTimer : Nodeable {
         ].containing("YOU SHOULD SEE THE TIME REMAINING HERE"),
         Script(
           file: "Hackathons/CountDownTimer.js",
-          escapes: [
+          definitions: [
             "startDate": startDate, "endDate": endDate,
             "id": id, "preId": preId,
             "beforeEventMessage": beforeEventMessage,

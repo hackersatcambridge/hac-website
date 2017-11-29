@@ -50,13 +50,13 @@ struct UnsafeRawJavaScript {
  */
 struct Script : Nodeable {
   let file : String
-  let escapes : [String: JavaScriptable]
+  let definitions : [String: JavaScriptable]
   let directory = "/root/hac-website/Sources/HaCWebsiteLib/ViewModels"
   var node: Node {
     let pathToFile = directory + "/" + file
     do {
       var script = try String(contentsOfFile: pathToFile, encoding: .utf8)
-      for (key, value) in escapes {
+      for (key, value) in definitions {
         // TODO: find out if there is a way of doing these escapes in a Type-Safe manner!
         script = script.replacingOccurrences(of: "{{\(key)}}", with: "\(value.javaScript)")
       }
