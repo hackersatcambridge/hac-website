@@ -49,10 +49,8 @@ struct UnsafeRawJavaScript {
 }
 
 /**
- * This class is used in order load front-end scripts from a file relative to the current path for browsing pleasure.
- *
- * It depends on the build system loading files into the 'Data' folder before running.
- */
+This class is used in order load front-end scripts from a file relative to the current path for browsing pleasure.
+*/
 struct Script : Nodeable {
   let file : String
   let definitions : [String: JavaScriptable]
