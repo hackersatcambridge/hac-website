@@ -14,10 +14,15 @@ func getWebsiteRouter() -> Router {
   router.all("/", middleware: RedirectsMiddleware(redirects: [
     "/intro-to-programming": "https://github.com/hackersatcambridge/intro-to-programming",
     "/bash": "https://github.com/hackersatcambridge/workshops/blob/master/workshops/tools_for_programmers/01_intro_to_bash/description.md",
-    "/git": "https://github.com/hackersatcambridge/git-workshop-2017"
+    "/git": "https://github.com/hackersatcambridge/git-workshop-2017",
+    "/binary-exploitation": "https://github.com/hackersatcambridge/binary-exploitation/blob/master/handout.md",
+    "/make-games-with-love": "https://github.com/hackersatcambridge/make-games-with-love",
+    "/gamegig": "https://www.facebook.com/events/124219834921040/"
   ]))
 
-  router.all("/static", middleware: StaticFileServer(path: "./static/dist"))
+  let assetsConfig = Assets.AssetsConfig(urlBase: "/static")
+  Assets.initialize(config: assetsConfig)
+  router.all(assetsConfig.urlBase, middleware: Assets.fileServingMiddleware)
 
   /// Intended for use by GitHub webhooks
   router.post("/api/refresh_workshops", handler: GitHubWebhookController.handler(updater: WorkshopManager.update))

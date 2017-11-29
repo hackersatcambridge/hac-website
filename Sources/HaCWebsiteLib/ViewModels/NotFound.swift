@@ -9,7 +9,7 @@ struct NotFound {
         El.Div[Attr.className => "NotFound"].containing(
           El.Img[
             Attr.className => "SiteLogo",
-            Attr.src => "/static/images/hac-logo-dark.svg",
+            Attr.src => Assets.publicPath("/images/hac-logo-dark.svg"),
             Attr.alt => "Hackers at Cambridge"
           ],
           El.Div[Attr.className => "TagLine"].containing("Cambridge's student tech society"),

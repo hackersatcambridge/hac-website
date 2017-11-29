@@ -100,3 +100,4 @@ docker-compose run web yarn gulp <<GULP COMMAND>>
 ```
 
 As the container shares source files with your project directory, any source files modified inside the container (e.g. `package.json`) will also be modified outside the container (and vice versa).
+
