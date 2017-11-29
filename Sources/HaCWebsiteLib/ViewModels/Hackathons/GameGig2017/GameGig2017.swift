@@ -30,7 +30,7 @@ struct GameGig2017: Hackathon {
     ("Web Dev with Mozilla", "https://globalgamejam.org/news/dev-web-mozilla")
   ]
 
-  let GoboLogo = El.A[Attr.href => "http://studiogobo.com/",
+  let goboLogo = El.A[Attr.href => "http://studiogobo.com/",
     Attr.target => "_blank"
   ].containing(
     El.Img[
@@ -39,7 +39,7 @@ struct GameGig2017: Hackathon {
     ]
   )
 
-  let ElectricSquareLogo = El.A[Attr.href => "https://www.electricsquare.com/",
+  let electricSquareLogo = El.A[Attr.href => "https://www.electricsquare.com/",
     Attr.target => "_blank"
   ].containing(
     El.Img[
@@ -49,8 +49,8 @@ struct GameGig2017: Hackathon {
   )
 
   /**
-   * Creates a GameGigCard element, the title becomes its id (spaces are replaced with hyphons)
-   */
+  Creates a GameGigCard element, the title becomes its id (spaces are replaced with hyphons).
+  */
   func GameGigCard(title: String, content: Nodeable) -> Node {
     return El.Div[Attr.className => "GameGigCard"].containing(
       El.Span[
@@ -141,9 +141,9 @@ struct GameGig2017: Hackathon {
     return El.Div[Attr.className => "GameGigNavBar"].containing(
       El.Span[Attr.className => "GameGigNavBar__poweredby"].containing(
         "Powered by ",
-        GoboLogo,
+        goboLogo,
         " and ",
-        ElectricSquareLogo
+        electricSquareLogo
       ),
       Fragment(elements.map{ title, content in
         El.Span[Attr.className => "GameGigNavBar__item"].containing(
@@ -211,9 +211,9 @@ struct GameGig2017: Hackathon {
           El.Img[Attr.className => "GameGigHero__image", Attr.src => Assets.publicPath("/images/gamegig3000/gamegig-foreground.png")]
         ),
         El.Div[Attr.className => "GameGigTopBar"].containing(
-          ElectricSquareLogo[Attr.className => "GameGigTopBar__image GameGigTopBar__electricSquare"],
+          electricSquareLogo[Attr.className => "GameGigTopBar__image GameGigTopBar__electricSquare"],
           El.Div[Attr.className => "GameGigTopBar__filler"],
-          GoboLogo[Attr.className => "GameGigTopBar__image GameGigTopBar__gobo"]
+          goboLogo[Attr.className => "GameGigTopBar__image GameGigTopBar__gobo"]
         ),
         CountDownTimer(startDate: gigStartDate, endDate: gigEndDate),
         GameGigCardsContainer(content: Fragment(
