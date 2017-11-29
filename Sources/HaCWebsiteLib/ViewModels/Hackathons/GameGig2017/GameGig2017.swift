@@ -50,6 +50,8 @@ struct GameGig2017: Hackathon {
 
   /**
   Creates a GameGigCard element, the title becomes its id (spaces are replaced with hyphons).
+
+  A GameGigCard is a self-contained element that represents a floating card on a background. It is used for sections.
   */
   func GameGigCard(title: String, content: Nodeable) -> Node {
     return El.Div[Attr.className => "GameGigCard"].containing(
@@ -68,15 +70,6 @@ struct GameGig2017: Hackathon {
           El.A[Attr.href => value].containing(key)
         )
       }
-    )
-  }
-
-  func GameGigTwitterFeed() -> Nodeable {
-    return El.Div[Attr.className => "GameGigTwitterFeed"].containing(
-      TextNode(
-        "<a class=\"twitter-timeline\" data-dnt=\"true\" href=\"https://twitter.com/hashtag/hacgamegig\" data-widget-id=\"927201930149093377\">#hacgamegig Tweets</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+\"://platform.twitter.com/widgets.js\";fjs.parentNode.insertBefore(js,fjs);}}(document,\"script\",\"twitter-wjs\");</script>",
-        escapeLevel: .unsafeRaw
-      )
     )
   }
 
@@ -199,7 +192,6 @@ struct GameGig2017: Hackathon {
       ("Get Involved", ListOfLinks(dict: socialMediaLinks)),
       ("Tutorials", ListOfLinks(dict: tutorials)),
       ("Game Engines", ListOfLinks(dict: gameEngines)),
-      //("Feed", GameGigTwitterFeed()),
       ("Rules", Rules())
     ]
 
