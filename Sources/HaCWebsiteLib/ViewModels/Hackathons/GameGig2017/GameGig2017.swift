@@ -152,39 +152,25 @@ struct GameGig2017: Hackathon {
     )
   }
 
-  // Convert a given time in String format, (eg. "12:00"), to the corresponding
-  // Swift Date object representing that time on the day of the event itself
-  let eventDate = Date.from(year: 2017, month: 12, day: 1, hour: 0, minute: 0)
-  func gameGigDate(_ time: String) -> Date {
-      // To the dirty work by converting the events date to a string, appending the time, and convertin to a date again
-      let outFormatter = DateFormatter()
-      outFormatter.dateFormat = "yyyy-MM-dd"
-      outFormatter.timeZone = TimeZone(identifier: "Europe/London")
-      outFormatter.locale = Locale(identifier: "en_GB")
-
-      let dateTimeString = outFormatter.string(from: eventDate) + " " + time
-
-      let formatter = DateFormatter()
-      formatter.dateFormat = "yyyy-MM-dd HH:mm"
-      formatter.timeZone = TimeZone(identifier: "Europe/London")
-      formatter.locale = Locale(identifier: "en_GB")
-      let dateTime = formatter.date(from: dateTimeString)
-      return dateTime ?? Date()
+  // Get a Swift Date object for given hour/minute on the GameGig
+  func gameGigDate(hour: Int, minute: Int) -> Date {
+      return Date.from(year: 2017, month: 12, day: 1, hour: hour, minute: minute)
   }
 
   var node: Node {
     // Define all  time related info
-    let gigStartDate = gameGigDate("10:30")
-    let gigEndDate = gameGigDate("20:30")
+    let gigStartDate = gameGigDate(hour: 10, minute: 30)
+    let gigEndDate = gameGigDate(hour: 20, minute: 30)
 
 
     let schedule = [
-      ("Arrival", gameGigDate("10:00")),
+      ("Arrival", gameGigDate(hour: 10, minute: 00)),
       ("Start Jamming!", gigStartDate),
-      ("Lunch", gameGigDate("12:00")),
-      ("Dinner", gameGigDate("18:00")),
+      ("Intro to Unity Workshop", gigStartDate),
+      ("Lunch", gameGigDate(hour: 12, minute: 00)),
+      ("Dinner", gameGigDate(hour: 18, minute: 00)),
       ("Stop Jamming!", gigEndDate),
-      ("LT1 Prizes and wrap-up", gameGigDate("21:00"))
+      ("LT1 Prizes and wrap-up", gameGigDate(hour: 21, minute: 00))
     ]
 
     // Define the list of game gig "cards" that are displayed as content
