@@ -67,7 +67,7 @@ struct GameGig2017: Hackathon {
     return El.Ul.containing(
       dict.map { (key, value) in
         El.Li.containing(
-          El.A[Attr.href => value].containing(key)
+          El.A[Attr.href => value, Attr.target => "_blank"].containing(key)
         )
       }
     )
