@@ -17,7 +17,7 @@ func getWebsiteRouter() -> Router {
     "/git": "https://github.com/hackersatcambridge/git-workshop-2017",
     "/binary-exploitation": "https://github.com/hackersatcambridge/binary-exploitation/blob/master/handout.md",
     "/make-games-with-love": "https://github.com/hackersatcambridge/make-games-with-love",
-    "/gamegig": "/event/2017/gamegig3000"
+    "/gamegig": "/events/2017/gamegig3000"
   ]))
 
   let assetsConfig = Assets.AssetsConfig(urlBase: "/static")
@@ -36,7 +36,7 @@ func getWebsiteRouter() -> Router {
   router.get("/constitution", handler: ConstitutionController.handler)
 
   /// Custom event pages
-  router.get("/event/2017/gamegig3000", handler: HackathonController.handler(hackathon: GameGig2017()))
+  router.get("/events/2017/gamegig3000", handler: HackathonController.handler(hackathon: GameGig2017()))
 
   // MARK: Features in progress
   router.get("/beta/landing-update-feed", handler: LandingUpdateFeedController.handler)
