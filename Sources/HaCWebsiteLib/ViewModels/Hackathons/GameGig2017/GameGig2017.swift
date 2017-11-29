@@ -116,7 +116,8 @@ struct GameGig2017: Hackathon {
 
       - Be kind and considerate to your fellow hackers and our volunteers.
         We're all here to have fun! By participating in the hackathon, you agree
-        to abide by this [Code of Conduct](https://hackcodeofconduct.org/).
+        to abide by this
+        [Code of Conduct](https://hackcodeofconduct.org/537-hac_game_gig_3000).
       """
     )
   }
