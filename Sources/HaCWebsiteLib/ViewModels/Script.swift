@@ -2,6 +2,11 @@ import HaCTML
 import DotEnv
 import Foundation
 
+/*
+This protocol lets objects be encoded as JavaScript objects.
+
+A good example is encoding swift Date objects as native JavaScript ones.
+*/
 protocol JavaScriptable {
   var javaScript: String {get}
 }
