@@ -12,8 +12,8 @@ public struct NewWorkshop {
   /// Non-contributors we would like to thank for helping to inspire, develop or facilitate this workshop
   let thanks: [String]
 
-  /// Links that attendees may which to read after the workhsop
-  let furtherReadingLinks: [(String, URL)]
+  /// Links that attendees may wish to read after the workhsop
+  let furtherReadingLinks: [Link]
 
   /// A link to a video recording of this workshop
   let recordingLink: URL?
@@ -40,15 +40,12 @@ public struct NewWorkshop {
   /// Prose describing the nature of the workshop
   let description: Markdown
 
-  /// Prose describing who the workshop is aimed at
-  let whoItsFor: Markdown
-
   /// Prose describing what attendees should already know
   let prerequisites: Markdown
 
   /// Prose describing how attendees should prepare for the workshop
   let setupInstructions: Markdown
 
-  /// The URL to the workshop repository
-  let repositoryURL: URL
+  /// The ID of the workshop as determined by its workshop repository URL
+  let workshopId: String
 }
