@@ -54,8 +54,10 @@ This class is used in order load front-end scripts from a file relative to the c
 struct Script : Nodeable {
   let file : String
   let definitions : [String: JavaScriptable]
-  let directory = "/root/hac-website/Sources/HaCWebsiteLib/ViewModels"
+
   var node: Node {
+    let websiteRoot = FileManager.default.currentDirectoryPath
+    let directory = websiteRoot + "/Sources/HaCWebsiteLib/ViewModels"
     let pathToFile = directory + "/" + file
     do {
       var script = try String(contentsOfFile: pathToFile, encoding: .utf8)
