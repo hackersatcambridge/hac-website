@@ -12,6 +12,7 @@ enum LandingFeatures {
     LandingFeatures.introToProgramming4,
     LandingFeatures.binaryExploitation,
     LandingFeatures.gamesWithLove,
+    LandingFeatures.gameGig,
     LandingFeatures.introToUnity
   ]
 

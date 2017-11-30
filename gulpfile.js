@@ -40,10 +40,13 @@ function buildStatic () {
           main: './main.js',
           // Styles entry points
           'styles/main': './styles/main.styl',
+          // TODO: Ideally we want this to be a wildcard match of some form
+          // so we can automatically pick-up new custom styles.
+          'styles/custom/gamegig2017': './styles/custom/gamegig2017.styl'
         },
         output: {
           filename: `[name]${dotHash}.js`,
-          publicPath: '/static'
+          publicPath: '/static/'
         },
         module: {
           // We add rules explicitly for every file type

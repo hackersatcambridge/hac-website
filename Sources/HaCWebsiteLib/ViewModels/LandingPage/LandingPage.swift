@@ -13,7 +13,7 @@ struct LandingPage {
   let demonstratorsGroupUrl = "https://www.facebook.com/groups/1567785333234852/"
 
   var featureNode: Nodeable? {
-    return feature.map{ feature in 
+    return feature.map{ feature in
       El.Section[Attr.className => "LandingFeature LandingTop__feature"].containing(
         El.H1[Attr.className => "LandingFeature__subtitle Text--sectionHeading"].containing("Featured"),
         El.Div[Attr.className => "LandingFeature__hero"].containing(feature)
@@ -81,7 +81,7 @@ struct LandingPage {
         //   El.H1[Attr.className => "LandingUpdateFeed__title Text--sectionHeading"].containing("Updates"),
         //   El.Div[Attr.className => "LandingUpdateFeed__postContainer"].containing(
         //     updates.map {
-        //       El.Div[Attr.className => "LandingUpdateFeed__item"].containing($0.node)
+        //       El.Div[Attr.className => "LandingUpdateFeed__item"].containing($0)
         //     }
         //   )
         // ),
