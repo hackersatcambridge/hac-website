@@ -2,7 +2,7 @@ import Foundation
 
 /// Models a hyperlink
 struct Link {
-  let title: String
+  let text: String
   let url: URL
 }
 
