@@ -1,0 +1,200 @@
+@require '../core/index';
+
+body {
+  background: url("../../images/gamegig3000/gamegig-background.jpg") no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  text-shadow: 0px 0px 10px blue;
+}
+
+$GameGig2017__linkColor = #fd7cb3;
+
+a {
+  text-decoration: none;
+  padding: none;
+}
+
+a:link {
+  color: $GameGig2017__linkColor;
+}
+
+a:visited {
+  color: $GameGig2017__linkColor;
+}
+
+a:hover {
+  color: lightpink;
+  text-shadow: 0px 0px 5px white;
+  transition: all 0.2s ease-in-out;
+}
+
+a:active {
+  color: red;
+}
+
+$GameGig2017__navBarHeight = 50px;
+
+.GameGigHero {
+  width: 100%;
+  padding: grid(10) grid(0);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.GameGigHero__image {
+  width: 100%;
+  max-width: grid(120);
+  flex: 0 1 auto;
+}
+
+/*.GameGigTopBar {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 20px;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.GameGigTopBar img {
+  flex-basis: 400px;
+  flex-grow: 1;
+  flex-shrink: 2;
+  max-width: 100%;
+}*/
+
+.GameGigTopBar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: grid(16);
+  padding: grid(2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.GameGigTopBar__image {
+  display: block;
+  height: auto;
+  flex: 0 1 auto;
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+.GameGigTopBar__filler {
+  width: 0;
+  min-width: grid(2);
+  max-width: grid(10);
+  flex: 1 0 auto;
+}
+
+.GameGigTopBar__electricSquare {
+  width: 200px;
+}
+
+.GameGigTopBar__gobo {
+  width: 150px;
+}
+
+.CountDownTimer {
+  flex-basis: 400px;
+  flex-grow: 1;
+  flex-shrink: 2;
+}
+
+.CountDownTimer__pre {
+  text-align: center;
+  font-size: 4vw;
+}
+
+.CountDownTimer_time {
+  text-align: center;
+  font-size: 8vw;
+}
+
+.GameGigCardsContainer {
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-bottom: $GameGig2017__navBarHeight;
+}
+
+.GameGigCard {
+  // text-align: center;
+  margin: 20px;
+  flex-grow: 2;
+  flex-shrink: 1;
+  padding: 20px;
+  color: #fff;
+  background-color: rgba(20, 20, 0, 0.9);
+  background-size: 100% 100%;
+  border: 3px solid #feb2fd;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px red;
+}
+
+.GameGigCard__title {
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 25px;
+  color: #f0defe;
+  text-shadow: 1px 1px 0px #A878C0,
+               -1px 1px 0px #A878C0,
+               1px -1px 0px #A878C0,
+               -1px -1px 0px #A878C0;
+}
+
+.GamgeGigTwitterFeed {
+  // TODO: workout how to center the twitter feed. (Or otherwise style it?)
+  text-align: center;
+}
+
+.GameGigNavBar {
+  width: 100%;
+  height: $GameGig2017__navBarHeight;
+  z-index: 999;
+  bottom: 0px;
+  position: fixed;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+
+  color: #fff;
+  text-shadow: 0px 0px 5px #509000;
+  background-color: rgba(120, 100, 150, 0.9);
+}
+
+.GameGigNavBar__poweredby {
+  height: $GameGig2017__navBarHeight;
+  flex-grow: 1;
+  font-size: 1vw;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.GameGigNavBar__poweredby img {
+  display: inline-block;
+  max-height: 2vw;
+  //max-width: 50px;
+  //flex-shrink: 10;
+}
+
+.GameGigNavBar__item,
+.GameGigNavBar__time {
+  font-size: 2vw;
+  padding: 10px;
+}

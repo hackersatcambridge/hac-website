@@ -12,7 +12,7 @@ struct LandingUpdateFeed {
         El.Section[Attr.className => "LandingUpdateFeed"].containing(
           El.Div[Attr.className => "LandingUpdateFeed__postContainer"].containing(
             updates.map {
-              El.Div[Attr.className => "LandingUpdateFeed__item"].containing($0.node)
+              El.Div[Attr.className => "LandingUpdateFeed__item"].containing($0)
             }
           )
         )
