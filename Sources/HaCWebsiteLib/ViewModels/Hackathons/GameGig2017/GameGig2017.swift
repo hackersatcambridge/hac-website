@@ -23,10 +23,12 @@ struct GameGig2017: Hackathon {
   let socialMediaLinks = [
     ("Facebook Page", "https://www.facebook.com/hackersatcambridge"),
     ("Facebook Event", "https://www.facebook.com/events/124219834921040/"),
-    ("Twitter", "https://twitter.com/hackersatcam")
+    ("Twitter", "https://twitter.com/hackersatcam"),
+    ("Cambridge Game Careers", "https://www.facebook.com/groups/CambridgeGamesCareers/")
   ]
 
   let tutorials = [
+    ("Unity 101", "/unity"),
     ("Web Dev with Mozilla", "https://globalgamejam.org/news/dev-web-mozilla")
   ]
 
