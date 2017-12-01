@@ -197,10 +197,10 @@ struct GameGig2017: Hackathon {
         ),
         El.Div[Attr.className => "GameGigProjectSubmittor"].containing(
           El.A[
-            Attr.href => "https://docs.google.com/forms/d/e/1FAIpQLSdcD0FsTt11ex8lIXcbv8B1Vzmh4Q6WF2fb0mfPzhrY7h90hw/viewform?usp=sf_link",
+            Attr.href => "https://docs.google.com/forms/d/e/1FAIpQLSfkVkCLEzj2ZCFgywBppfC8ak26-2KciMWD9BtVMmJdEA2AqA/viewform?usp=sf_link",
             Attr.className => "GameGigProjectSubmittor__link"
           ].containing(
-            "Submit Your Project!"
+            "Vote for your favorite project!"
           )
         ),
         CountDownTimer(startDate: gigStartDate, endDate: gigEndDate),
