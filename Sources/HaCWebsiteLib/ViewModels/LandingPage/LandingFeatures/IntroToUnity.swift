@@ -9,7 +9,7 @@ extension LandingFeatures {
         duration: 1 * 60 * 60
       ),
       eventLink: "https://www.facebook.com/events/887062184790929/",
-      liveLink: nil,
+      liveLink: "/unity",
       hero: ImageHero(
         background: .image(Assets.publicPath("/images/unity/bg.png")),
         imagePath: Assets.publicPath("/images/unity/fg.svg"),
