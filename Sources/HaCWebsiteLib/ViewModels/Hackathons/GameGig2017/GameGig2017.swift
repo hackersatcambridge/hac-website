@@ -167,7 +167,7 @@ struct GameGig2017: Hackathon {
       ("Arrival", gameGigDate(hour: 10, minute: 00)),
       ("Start Jamming!", gigStartDate),
       ("Intro to Unity Workshop", gigStartDate),
-      ("Lunch", gameGigDate(hour: 12, minute: 00)),
+      ("Lunch", gameGigDate(hour: 13, minute: 00)),
       ("Dinner", gameGigDate(hour: 18, minute: 00)),
       ("Stop Jamming!", gigEndDate),
       ("LT1 Prizes and wrap-up", gameGigDate(hour: 21, minute: 00))
