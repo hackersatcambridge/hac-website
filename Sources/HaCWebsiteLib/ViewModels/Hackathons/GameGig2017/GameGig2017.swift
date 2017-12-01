@@ -93,7 +93,7 @@ struct GameGig2017: Hackathon {
 
       - You can work on your game in a team of up to four people.
 
-      - Game-making commences at 10:30 and finishes at 20:00.
+      - Game-making commences at 10:30 and finishes at 20:30.
 
       - You are free to do whatever you like with your game after the Game Gig.
         You own the copyright to all the material you create during the event.
@@ -194,6 +194,14 @@ struct GameGig2017: Hackathon {
           electricSquareLogo[Attr.className => "GameGigTopBar__image GameGigTopBar__electricSquare"],
           El.Div[Attr.className => "GameGigTopBar__filler"],
           goboLogo[Attr.className => "GameGigTopBar__image GameGigTopBar__gobo"]
+        ),
+        El.Div[Attr.className => "GameGigProjectSubmittor"].containing(
+          El.A[
+            Attr.href => "https://docs.google.com/forms/d/e/1FAIpQLSdcD0FsTt11ex8lIXcbv8B1Vzmh4Q6WF2fb0mfPzhrY7h90hw/viewform?usp=sf_link",
+            Attr.className => "GameGigProjectSubmittor__link"
+          ].containing(
+            "Submit Your Project!"
+          )
         ),
         CountDownTimer(startDate: gigStartDate, endDate: gigEndDate),
         GameGigCardsContainer(content: Fragment(
