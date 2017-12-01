@@ -27,6 +27,7 @@ struct GameGig2017: Hackathon {
   ]
 
   let tutorials = [
+    ("Unity 101", "/unity"),
     ("Web Dev with Mozilla", "https://globalgamejam.org/news/dev-web-mozilla")
   ]
 
