@@ -17,7 +17,7 @@ func getWebsiteRouter() -> Router {
     "/git": "https://github.com/hackersatcambridge/git-workshop-2017",
     "/binary-exploitation": "https://github.com/hackersatcambridge/binary-exploitation/blob/master/handout.md",
     "/love": "https://github.com/hackersatcambridge/workshop-love2d/blob/master/content/notes/notes.md",
-    "/game-gig": "https://www.facebook.com/events/124219834921040/",
+    "/game-gig": "/events/2017/gamegig3000",
     "/gamegig": "/events/2017/gamegig3000",
     "/unity": "https://github.com/hackersatcambridge/workshop-unity/blob/master/content/notes/notes.md"
   ]))
