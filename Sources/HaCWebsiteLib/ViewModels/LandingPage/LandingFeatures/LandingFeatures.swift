@@ -12,7 +12,8 @@ enum LandingFeatures {
     LandingFeatures.introToProgramming4,
     LandingFeatures.binaryExploitation,
     LandingFeatures.gamesWithLove,
-    LandingFeatures.gameGig
+    LandingFeatures.gameGig,
+    LandingFeatures.introToUnity
   ]
 
   /// Gets the most currently appropriate feature

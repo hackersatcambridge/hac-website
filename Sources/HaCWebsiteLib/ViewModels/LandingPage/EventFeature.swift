@@ -40,7 +40,7 @@ struct EventFeature: LandingFeature {
         DateUtils.individualDayFormatter.string(from: eventPeriod.start)
       )
     }
-    
+
   }
 
   var expiryDate: Date {
