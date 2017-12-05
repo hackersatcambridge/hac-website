@@ -1,6 +1,7 @@
 import Credentials
 import CredentialsHTTP
 import DotEnv
+import LoggerAPI
 
 struct CredentialsServer {
   static var credentials : Credentials {

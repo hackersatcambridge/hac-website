@@ -14,6 +14,7 @@ services:
     environment:
       DATA_DIR: /root/hac-website/Data
       DATABASE_URL: postgres://richard:test@hac-db:5432/hac
+      API_PASSWORD: secret
     volumes:
       - build:/root/hac-website/.build
       - node_modules:/root/hac-website/node_modules
