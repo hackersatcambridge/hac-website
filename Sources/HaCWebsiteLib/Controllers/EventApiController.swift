@@ -16,6 +16,9 @@ struct EventApiController {
     if case .json(let json) = parsedBody {
       do {
         try saveEvent(json: json)
+        EventServer.update()
+        LandingPageController.update()
+        LandingUpdateFeedController.update()
         try response.send("Successfully added your event to the database\n").end()
       }
       catch EventParsingError.missingParameters {

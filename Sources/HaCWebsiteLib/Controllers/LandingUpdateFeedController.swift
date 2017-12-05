@@ -8,8 +8,15 @@ import SwiftyJSON
 
 struct LandingUpdateFeedController {
 
-  static let eventPostCards : [PostCard] = EventServer.getCurrentEvents().flatMap{ event in 
+  static var eventPostCards : [PostCard] = EventServer.getCurrentEvents().flatMap{ event in 
     event.postCardRepresentation
+  }
+
+  static func update() {
+    eventPostCards = EventServer.getCurrentEvents().flatMap{ event in 
+      event.postCardRepresentation
+    }
+    updates = eventPostCards + videos
   }
 
   static let videos = [
@@ -29,7 +36,7 @@ struct LandingUpdateFeedController {
     )
   ]
 
-  static let updates = eventPostCards + videos
+  static var updates = eventPostCards + videos
 
   static var handler: RouterHandler = { request, response, next in
     try response.send(
