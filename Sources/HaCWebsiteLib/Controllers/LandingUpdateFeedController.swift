@@ -8,7 +8,7 @@ import SwiftyJSON
 
 struct LandingUpdateFeedController {
 
-  static let eventPostCards : [PostCard] = EventServer.getAllEvents().flatMap{ event in 
+  static let eventPostCards : [PostCard] = EventServer.getCurrentEvents().flatMap{ event in 
     event.postCardRepresentation
   }
 
