@@ -29,6 +29,8 @@ func getWebsiteRouter() -> Router {
   /// Intended for use by GitHub webhooks
   router.post("/api/refresh_workshops", handler: GitHubWebhookController.handler(updater: WorkshopManager.update))
   router.post("/api/refresh_constitution", handler: GitHubWebhookController.handler(updater: ConstitutionManager.update))
+
+  // Used to add events to the database (see `/Docs/Api` for documentation)
   router.post("/api/add_event", allowPartialMatch: false, middleware: BodyParser())
   router.post("/api/add_event", middleware: CredentialsServer.credentials)
   router.post("/api/add_event", handler: EventApiController.handler)
