@@ -3,23 +3,25 @@ import Dispatch
 import DotEnv
 
 public struct WorkshopManager {
+  private static let directoryName = "workshops"
+
   /// The list of workshops as derived from the workshops directory last time it was updated
   public private(set) static var workshops: [Workshop] = []
 
-  /// Used to avoid multiple git pulls being run simultaneously
-  private static let serialQueue = DispatchQueue(label: "com.hac.website.ws-pull-queue")
-
-  /**
-    Ensures that an up-to-date copy of the workshops repo is available locally
-    We don't want this function running many times concurrently, hence 'unsafe'
-  */
-  private static func unsafePull() {
-    GitUtils.cloneOrPull(
-      repoURL: "https://github.com/hackersatcambridge/workshops.git",
-      in: DotEnv.get("DATA_DIR")!,
-      directory: "workshops"
-    )
+  /// Update the `workshops` list
+  public static func update() {
+    gitUtil.update()
+    do {
+      try self.processWorkshopFiles()
+    } catch {
+      print("Failed to process workshop files")
+    }
   }
+
+  private static let gitUtil = GitUtil(
+    remoteRepoURL: "https://github.com/hackersatcambridge/workshops",
+    directoryName: "workshops"
+  )
 
   /**
     Parses each workshop from the workshops repo, creating a Workshop instance
@@ -29,7 +31,7 @@ public struct WorkshopManager {
   */
   private static func processWorkshopFiles() throws {
     var updatedWorkshops: [Workshop] = []
-    let workshopsPath = DotEnv.get("DATA_DIR")! + "/workshops/examples"
+    let workshopsPath = gitUtil.localRepoPath + "/examples"
 
     let paths = try FileManager.default.contentsOfDirectory(atPath: workshopsPath)
     for path in paths {
@@ -57,16 +59,5 @@ public struct WorkshopManager {
     workshops = updatedWorkshops
   }
 
-  /**
-    Update the workshops array by pulling changes from the repo.
-    This should be called whenever it is likely that changes
-    have been made to the repo.
-  */
-  public static func update() throws {
-    // Use a serial queue to avoid concurrent Git processes
-    try serialQueue.sync {
-      unsafePull()
-      try processWorkshopFiles()
-    }
-  }
+
 }
