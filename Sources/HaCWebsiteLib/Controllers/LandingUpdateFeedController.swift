@@ -8,17 +8,6 @@ import SwiftyJSON
 
 struct LandingUpdateFeedController {
 
-  static var eventPostCards : [PostCard] = EventServer.getCurrentEvents().flatMap{ event in 
-    event.postCardRepresentation
-  }
-
-  static func update() {
-    eventPostCards = EventServer.getCurrentEvents().flatMap{ event in 
-      event.postCardRepresentation
-    }
-    updates = eventPostCards + videos
-  }
-
   static let videos = [
     PostCard(
       title: "Partial Recursive Functions 1: Functions",
@@ -36,9 +25,11 @@ struct LandingUpdateFeedController {
     )
   ]
 
-  static var updates = eventPostCards + videos
-
   static var handler: RouterHandler = { request, response, next in
+    let eventPostCards : [PostCard] = EventServer.getCurrentEvents().flatMap{ event in 
+      event.postCardRepresentation
+    }
+    let updates = eventPostCards + videos
     try response.send(
       LandingUpdateFeed(updates: updates).node.render()
     ).end()

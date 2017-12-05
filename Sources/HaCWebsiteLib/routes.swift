@@ -51,7 +51,6 @@ func getWebsiteRouter() -> Router {
 
 public func serveWebsite() {
   DatabaseUtils.prepareDatabase()
-  EventServer.update()
   // Helium logger provides logging for Kitura processes
   HeliumLogger.use()
   // This speaks to Kitura's 'LoggerAPI' to set the default logger to HeliumLogger.
