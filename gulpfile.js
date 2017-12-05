@@ -1,41 +1,86 @@
 const gulp = require('gulp')
-const autoprefixer = require('gulp-autoprefixer')
 const changed = require('gulp-changed')
-const stylus = require('gulp-stylus')
 const browserSync = require('browser-sync').create()
 const childProcesses = require('child_process')
 const chalk = require('chalk')
 const fs = require('fs')
+const path = require('path')
+const webpack = require('webpack')
+const webpackStream = require('webpack-stream')
+const ManifestPlugin = require('webpack-manifest-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 // Define a global serverProcess that we can use to keep track of the running server instance
 let serverProcess = null
 
-const EXEC_PATH = './.build/debug/HaCWebsite'
+// Whether our webpack task should be watching or not
+let isStaticBuildWatching = false
 
-// A straight copy of files that don't require processing
-// You should update this glob if you ever add processing to a new file type
-function copy () {
-  return gulp.src('static/src/**/!(*.styl)')
-    .pipe(changed('static/dist'))
-    .pipe(gulp.dest('static/dist'))
+const PROJECT_ROOT = __dirname;
+const EXEC_PATH = './.build/debug/HaCWebsite'
+const isProduction = process.env.NODE_ENV === 'production'
+
+function setWatchOnBuildStatic () {
+  isStaticBuildWatching = true
+  return Promise.resolve()
 }
 
-// Process the Stylus files into CSS
-function buildStyles () {
-  return gulp.src('static/src/styles/main.styl')
-    .pipe(changed('static/dist/styles'))
-    .pipe(stylus({
-      'include css': true,
-      paths: ['./node_modules']
-    }))
-    .on('error', function (err) {
-      console.log('[' + chalk.red('Stylus error...') + ']')
-      console.log(err.message)
-      console.log('\u0007')
-      this.emit('end')
-    })
-    .pipe(autoprefixer())
-    .pipe(gulp.dest('static/dist/styles'))
+function buildStatic () {
+  // To prevent lots of files and add ease to live reloading,
+  // We don't want to hash filenames in dev mode
+  const dotHash = isProduction ? '.[hash]' : ''
+
+  return gulp.src('static/src/main.js')
+    .pipe(
+      webpackStream({
+        watch: isStaticBuildWatching,
+        context: path.join(PROJECT_ROOT, 'static/src'),
+        entry: {
+          // Scripts entry points
+          main: './main.js',
+          // Styles entry points
+          'styles/main': './styles/main.styl',
+          // TODO: Ideally we want this to be a wildcard match of some form
+          // so we can automatically pick-up new custom styles.
+          'styles/custom/gamegig2017': './styles/custom/gamegig2017.styl'
+        },
+        output: {
+          filename: `[name]${dotHash}.js`,
+          publicPath: '/static/'
+        },
+        module: {
+          // We add rules explicitly for every file type
+          // If you need to support a new file extension, edit a rule below
+          // or add a new one
+          rules: [
+            {
+              test: /\.styl$/,
+              use: ExtractTextPlugin.extract({
+                use: 'css-loader!postcss-loader!stylus-loader',
+              }),
+            },
+            {
+              test: /\.(png|jpg|gif|woff|woff2|ttf|eot|svg)$/,
+              loader: 'file-loader',
+              options: {
+                name: `[path][name]${dotHash}.[ext]`,
+              }
+            }
+          ]
+        },
+        resolve: {
+          extensions: ['.js', '.styl']
+        },
+        plugins: [
+          new ManifestPlugin({
+            fileName: 'manifest.json'
+          }),
+          new ExtractTextPlugin(`[name]${dotHash}.css`),
+        ]
+      }, webpack)
+    )
+    .pipe(changed('static/dist', { hasChanged: changed.compareContents }))
+    .pipe(gulp.dest('static/dist/'))
     .pipe(browserSync.stream())
 }
 
@@ -119,9 +164,6 @@ function reloadBrowser (done) {
   done()
 }
 
-// All the tasks that handle the building of static files
-const buildStaticAssets = gulp.parallel(buildStyles, copy)
-
 function watch () {
   browserSync.init({
     proxy: 'http://localhost:8090',
@@ -129,16 +171,14 @@ function watch () {
     open: false,
     ghostMode: false
   })
-  gulp.watch('static/src/styles/**/*.styl', gulp.parallel(buildStyles))
-  gulp.watch('static/src/**/!(*.styl)', gulp.parallel(copy))
   gulp.watch(['Sources/**/*', 'Package.swift'], gulp.series(swiftBuild, reloadServer, reloadBrowser))
 }
 
-const build = gulp.parallel(swiftBuild, buildStaticAssets)
-const serve = gulp.series(build, gulp.parallel(reloadServer, watch))
+const build = gulp.parallel(swiftBuild, buildStatic)
+const serve = gulp.series(setWatchOnBuildStatic, swiftBuild, gulp.parallel(buildStatic, reloadServer, watch))
 
 // Expose the serve and build tasks
-gulp.task('static-build', buildStaticAssets)
+gulp.task('static-build', buildStatic)
 gulp.task('build', build)
 gulp.task('serve', serve)
 

@@ -28,15 +28,19 @@ struct EventFeature: LandingFeature {
 
   var dateBlock: Nodeable {
     if currentlyHappening {
-      return El.Div[Attr.className => "EventFeature__date EventFeature__date--live"].containing(
+      return El.Div[Attr.className => "EventFeature__date EventFeature__date--highlight"].containing(
         "On now"
+      )
+    } else if isToday {
+      return El.Div[Attr.className => "EventFeature__date EventFeature__date--highlight"].containing(
+        "Today"
       )
     } else {
       return El.Div[Attr.className => "EventFeature__date"].containing(
         DateUtils.individualDayFormatter.string(from: eventPeriod.start)
       )
     }
-    
+
   }
 
   var expiryDate: Date {
@@ -54,6 +58,15 @@ struct EventFeature: LandingFeature {
       end: eventPeriod.end + endPadding
     )
     return paddedEventPeriod.contains(currentDate)
+  }
+
+  /// Whether the event is on the same day
+  var isToday: Bool {
+    var calendar = NSCalendar.current
+    if let timeZone = TimeZone(identifier: "Europe/London") {
+      calendar.timeZone = timeZone
+    }
+    return calendar.isDateInToday(eventPeriod.start)
   }
 
   /// Returns a link to the most currently relevant information about this event

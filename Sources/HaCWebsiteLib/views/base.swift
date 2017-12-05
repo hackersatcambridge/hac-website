@@ -8,7 +8,7 @@ private func stylesheet(forUrl urlString: String) -> Node {
 }
 
 extension UI.Pages {
-  static func base(title: String = defaultTitle, content: Node) -> Node {
+  static func base(title: String = defaultTitle, customStylesheets: [String] = [], content: Node) -> Node {
     let error: Node
     let errorData: Data? = try? Data(contentsOf: URL(fileURLWithPath: "swift_build.log"))
     if let outputData = errorData {
@@ -27,11 +27,16 @@ extension UI.Pages {
         El.Head.containing(
           El.Meta[Attr.charset => "UTF-8"],
           El.Meta[Attr.name => "viewport", Attr.content => "width=device-width, initial-scale=1"],
-          El.Link[Attr.rel => "icon", Attr.type => "favicon/png", Attr.href => "/static/images/favicon.png"],
+          El.Link[Attr.rel => "icon", Attr.type => "favicon/png", Attr.href => Assets.publicPath("/images/favicon.png")],
           El.Title.containing(TextNode(title)),
-            stylesheet(forUrl: "/static/styles/main.css")
-          ),
-        El.Body.containing(error, content)
+          stylesheet(forUrl: Assets.publicPath("/styles/main.css")),
+          Fragment(customStylesheets.map { stylesheet(forUrl: Assets.publicPath("/styles/custom/\($0).css")) })
+        ),
+        El.Body.containing(
+          error,
+          content,
+          GAScript()
+        )
       )
     )
   }

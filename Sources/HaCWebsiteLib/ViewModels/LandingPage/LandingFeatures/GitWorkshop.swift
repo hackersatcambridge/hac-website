@@ -12,7 +12,7 @@ extension LandingFeatures {
       liveLink: "/git",
       hero: ImageHero(
         background: .color("#F1283B"),
-        imagePath: "/static/images/git-foreground.svg",
+        imagePath: Assets.publicPath("/images/git-foreground.svg"),
         alternateText: "HaC Tools for Programmers: Bash on 25 October"
       ),
       textShade: .light

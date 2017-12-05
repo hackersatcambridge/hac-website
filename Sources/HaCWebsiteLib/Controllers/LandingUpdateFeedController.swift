@@ -8,30 +8,28 @@ import SwiftyJSON
 
 struct LandingUpdateFeedController {
 
-  static let eventPostCards : [PostCard] = EventServer.getEvents().flatMap{ event in 
-    event.postCardRepresentation
-  }
-
   static let videos = [
     PostCard(
       title: "Partial Recursive Functions 1: Functions",
       category: .video,
       description: "Learn all the things.",
       backgroundColor: "#852503",
-      imageURL: "/static/images/functions_frame.png"
+      imageURL: Assets.publicPath("/images/functions_frame.png")
     ),
     PostCard(
       title: "TCP Throughput",
       category: .video,
       description: "Learn all the things.",
       backgroundColor: "green",
-      imageURL: "/static/images/workshop.jpg"
+      imageURL: Assets.publicPath("/images/workshop.jpg")
     )
   ]
 
-  static let updates = eventPostCards + videos
-
   static var handler: RouterHandler = { request, response, next in
+    let eventPostCards : [PostCard] = EventServer.getCurrentEvents().flatMap{ event in 
+      event.postCardRepresentation
+    }
+    let updates = eventPostCards + videos
     try response.send(
       LandingUpdateFeed(updates: updates).node.render()
     ).end()

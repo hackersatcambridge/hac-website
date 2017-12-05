@@ -9,7 +9,11 @@ enum LandingFeatures {
     LandingFeatures.gitWorkshop,
     LandingFeatures.introToProgramming3,
     LandingFeatures.programmingInRust,
-    LandingFeatures.introToProgramming4
+    LandingFeatures.introToProgramming4,
+    LandingFeatures.binaryExploitation,
+    LandingFeatures.gamesWithLove,
+    LandingFeatures.gameGig,
+    LandingFeatures.introToUnity
   ]
 
   /// Gets the most currently appropriate feature
