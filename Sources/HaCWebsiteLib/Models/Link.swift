@@ -8,6 +8,6 @@ struct Link {
 
 extension Link: Equatable {
   static func == (l: Link, r: Link) -> Bool {
-    return (l.title, l.url) == (r.title, r.url)
+    return (l.text, l.url) == (r.text, r.url)
   }
 }
