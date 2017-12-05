@@ -23,10 +23,12 @@ struct GameGig2017: Hackathon {
   let socialMediaLinks = [
     ("Facebook Page", "https://www.facebook.com/hackersatcambridge"),
     ("Facebook Event", "https://www.facebook.com/events/124219834921040/"),
-    ("Twitter", "https://twitter.com/hackersatcam")
+    ("Twitter", "https://twitter.com/hackersatcam"),
+    ("Cambridge Game Careers", "https://www.facebook.com/groups/CambridgeGamesCareers/")
   ]
 
   let tutorials = [
+    ("Unity 101", "/unity"),
     ("Web Dev with Mozilla", "https://globalgamejam.org/news/dev-web-mozilla")
   ]
 
@@ -92,7 +94,7 @@ struct GameGig2017: Hackathon {
 
       - You can work on your game in a team of up to four people.
 
-      - Game-making commences at 10:30 and finishes at 20:00.
+      - Game-making commences at 10:30 and finishes at 20:30.
 
       - You are free to do whatever you like with your game after the Game Gig.
         You own the copyright to all the material you create during the event.
@@ -167,7 +169,7 @@ struct GameGig2017: Hackathon {
       ("Arrival", gameGigDate(hour: 10, minute: 00)),
       ("Start Jamming!", gigStartDate),
       ("Intro to Unity Workshop", gigStartDate),
-      ("Lunch", gameGigDate(hour: 12, minute: 00)),
+      ("Lunch", gameGigDate(hour: 13, minute: 00)),
       ("Dinner", gameGigDate(hour: 18, minute: 00)),
       ("Stop Jamming!", gigEndDate),
       ("LT1 Prizes and wrap-up", gameGigDate(hour: 21, minute: 00))
@@ -193,6 +195,14 @@ struct GameGig2017: Hackathon {
           electricSquareLogo[Attr.className => "GameGigTopBar__image GameGigTopBar__electricSquare"],
           El.Div[Attr.className => "GameGigTopBar__filler"],
           goboLogo[Attr.className => "GameGigTopBar__image GameGigTopBar__gobo"]
+        ),
+        El.Div[Attr.className => "GameGigProjectSubmittor"].containing(
+          El.A[
+            Attr.href => "https://docs.google.com/forms/d/e/1FAIpQLSfkVkCLEzj2ZCFgywBppfC8ak26-2KciMWD9BtVMmJdEA2AqA/viewform?usp=sf_link",
+            Attr.className => "GameGigProjectSubmittor__link"
+          ].containing(
+            "Vote for your favorite project!"
+          )
         ),
         CountDownTimer(startDate: gigStartDate, endDate: gigEndDate),
         GameGigCardsContainer(content: Fragment(
