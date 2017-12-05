@@ -8,10 +8,6 @@ import SwiftyJSON
 
 struct LandingPageController {
 
-  static let eventPostCards : [PostCard] = EventServer.getEvents().flatMap{ event in 
-    event.postCardRepresentation
-  }
-
   static let videos = [
     PostCard(
       title: "Partial Recursive Functions 1: Functions",
@@ -29,9 +25,11 @@ struct LandingPageController {
     )
   ]
 
-  static let updates = eventPostCards + videos
-
   static var handler: RouterHandler = { request, response, next in
+    let eventPostCards : [PostCard] = EventServer.getCurrentEvents().flatMap{ event in 
+      event.postCardRepresentation
+    }
+    let updates = eventPostCards + videos
     try response.send(
       LandingPage(
         updates: updates,
