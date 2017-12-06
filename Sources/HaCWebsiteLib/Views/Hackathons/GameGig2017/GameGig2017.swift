@@ -184,7 +184,7 @@ struct GameGig2017: Hackathon {
       ("Rules", Rules())
     ]
 
-    return UI.Pages.base(
+    return Page(
       title: "Hackers at Cambridge Game Gig 80's",
       customStylesheets: ["gamegig2017"],
       content: Fragment(
@@ -211,6 +211,6 @@ struct GameGig2017: Hackathon {
           }
         ))
       )
-    )
+    ).node
   }
 }

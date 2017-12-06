@@ -1,6 +1,6 @@
 import HaCTML
 
-struct PostCard : Nodeable {
+struct PostCard: Nodeable {
   enum PostCategory: String {
     case workshop = "Workshop"
     case video = "Video"

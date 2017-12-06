@@ -2,7 +2,7 @@ import HaCTML
 
 // swiftlint:disable line_length
 
-struct LandingPage {
+struct LandingPage: Nodeable {
   let updates: [PostCard]
   let feature: LandingFeature?
   let youtubeUrl = "https://www.youtube.com/hackersatcambridge"
@@ -22,7 +22,7 @@ struct LandingPage {
   }
 
   var node: Node {
-    return UI.Pages.base(
+    return Page(
       title: "Hackers at Cambridge",
       content: Fragment(
         El.Div[Attr.className => "LandingTop"].containing(
@@ -159,6 +159,6 @@ struct LandingPage {
           )
         )
       )
-    )
+    ).node
   }
 }
