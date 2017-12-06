@@ -1,7 +1,7 @@
 import HaCTML
 import Foundation
 
-struct Constitution {
+struct Constitution: Nodeable {
   let mdText: String
   var node: Node {
     return Page(

@@ -2,7 +2,7 @@ import HaCTML
 
 // swiftlint:disable line_length
 
-struct LandingPage {
+struct LandingPage: Nodeable {
   let updates: [PostCard]
   let feature: LandingFeature?
   let youtubeUrl = "https://www.youtube.com/hackersatcambridge"

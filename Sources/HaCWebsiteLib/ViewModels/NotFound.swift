@@ -1,7 +1,6 @@
 import HaCTML
 
 struct NotFound: Nodeable {
-  
   var node: Node {
     return Page(
       title: "Page Not Found",
