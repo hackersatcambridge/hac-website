@@ -36,7 +36,6 @@ func getWebsiteRouter() -> Router {
   router.post("/api/add_event", handler: EventApiController.handler)
 
   router.get("/", handler: LandingPageController.handler)
-  router.get("/workshops", handler: WorkshopsController.handler)
   router.get("/constitution", handler: ConstitutionController.handler)
 
   /// Custom event pages
