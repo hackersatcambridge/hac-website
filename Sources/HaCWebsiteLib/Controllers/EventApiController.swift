@@ -28,6 +28,10 @@ struct EventApiController {
         Log.info("Database event adding failed - missing parameters")
         response.statusCode = HTTPStatusCode.badRequest
         try response.send("Sorry - looks like you didn't include all the necessary fields\n").end()
+      } catch EventParsingError.invalidHypePeriod {
+        Log.info("Database event adding failed - invalid hype period")
+        response.statusCode = HTTPStatusCode.badRequest
+        try response.send("Sorry - looks like the hype period was invalid\n").end()
       }
     } else {
       // TODO: Log info about what went wrong?
@@ -43,24 +47,26 @@ struct EventApiController {
     try event.save()
   }
 
-  private static func parseEvent(json : [String : Any]) throws -> GeneralEvent {
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.zzz"
-
+  public static func parseEvent(json : [String : Any]) throws -> GeneralEvent {
     guard let title = json["title"] as? String,
-    let startDateString = json["startDate"] as? String,
-    let endDateString = json["endDate"] as? String,
+    let startDate = Date.from(string: json["startDate"] as? String),
+    let endDate = Date.from(string: json["endDate"] as? String),
     let tagLine = json["tagLine"] as? String,
     let color = json["color"] as? String,
-    let hypeStartDateString = json["hypeStartDate"] as? String,
-    let hypeEndDateString = json["hypeEndDate"] as? String,
-    let startDate = dateFormatter.date(from: startDateString),
-    let endDate = dateFormatter.date(from: endDateString),
-    let hypeStartDate = dateFormatter.date(from: hypeStartDateString),
-    let hypeEndDate = dateFormatter.date(from: hypeEndDateString),
+    let hypeStartDate = Date.from(string: json["hypeStartDate"] as? String),
+    let hypeEndDate = Date.from(string: json["hypeEndDate"] as? String),
     let tags = getOptionalTags(json: json),
     let markdownDescription = json["markdownDescription"] as? String else {
       throw EventParsingError.missingParameters
+    }
+
+    // Make sure the event itself falls within the hype period
+    // If it doesn't, we throw an invalidHypePeriod exception
+    if !((hypeStartDate.compare(startDate) == .orderedAscending) &&
+       (startDate.compare(hypeEndDate)   == .orderedAscending) &&
+       (hypeStartDate.compare(endDate)   == .orderedAscending) &&
+       (endDate.compare(hypeEndDate)     == .orderedAscending)) {
+         throw EventParsingError.invalidHypePeriod
     }
 
     let location = getOptionalLocation(json: json)
@@ -103,4 +109,5 @@ struct EventApiController {
 
 enum EventParsingError: Swift.Error {
   case missingParameters
+  case invalidHypePeriod
 }

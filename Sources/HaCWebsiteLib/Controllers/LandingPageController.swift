@@ -26,7 +26,7 @@ struct LandingPageController {
   ]
 
   static var handler: RouterHandler = { request, response, next in
-    let eventPostCards : [PostCard] = EventServer.getCurrentEvents().flatMap{ event in 
+    let eventPostCards : [PostCard] = EventServer.getCurrentlyHypedEvents().flatMap{ event in
       event.postCardRepresentation
     }
     let updates = eventPostCards + videos
