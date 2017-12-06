@@ -6,7 +6,7 @@ struct LandingUpdateFeed {
   let updates: [PostCard]
 
   var node: Node {
-    return UI.Pages.base(
+    return Page(
       title: "Hackers at Cambridge",
       content: Fragment(
         El.Section[Attr.className => "LandingUpdateFeed"].containing(
@@ -17,6 +17,6 @@ struct LandingUpdateFeed {
           )
         )
       )
-    )
+    ).node
   }
 }

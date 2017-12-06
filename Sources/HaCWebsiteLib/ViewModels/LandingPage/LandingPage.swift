@@ -22,7 +22,7 @@ struct LandingPage {
   }
 
   var node: Node {
-    return UI.Pages.base(
+    return Page(
       title: "Hackers at Cambridge",
       content: Fragment(
         El.Div[Attr.className => "LandingTop"].containing(
@@ -159,6 +159,6 @@ struct LandingPage {
           )
         )
       )
-    )
+    ).node
   }
 }

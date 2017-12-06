@@ -1,9 +1,9 @@
 import HaCTML
 
-struct NotFound {
+struct NotFound: Nodeable {
   
   var node: Node {
-    return UI.Pages.base(
+    return Page(
       title: "Page Not Found",
       content: Fragment(
         El.Div[Attr.className => "NotFound"].containing(
@@ -22,6 +22,6 @@ struct NotFound {
           )
         )
       )
-    )
+    ).node
   }
 }
