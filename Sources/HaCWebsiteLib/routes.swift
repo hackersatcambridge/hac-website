@@ -45,7 +45,7 @@ func getWebsiteRouter() -> Router {
   router.get("/beta/landing-update-feed", handler: LandingUpdateFeedController.handler)
 
   router.all("/", middleware: NotFoundMiddleware())
-
+  router.error(ErrorRoutingMiddleware())
 
   return router
 }
