@@ -1,5 +1,4 @@
 import Foundation
-import Dispatch
 import DotEnv
 
 public struct WorkshopManager {

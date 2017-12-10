@@ -11,8 +11,11 @@ public struct GitUtil {
   private let cloneRoot = DotEnv.get("DATA_DIR")!
 
   private let remoteRepoURL: String
+
+  /// The name of the directory within the clone root where this repo will be held
   private let directoryName: String
 
+  /// The local path at which the utility will store and update the repo contents
   public var localRepoPath: String {
     return cloneRoot + "/" + directoryName
   }
