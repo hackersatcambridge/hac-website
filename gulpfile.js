@@ -84,10 +84,6 @@ function buildStatic () {
     .pipe(browserSync.stream())
 }
 
-function trimNewLine (string) {
-  return string.replace(/\n$/, '')
-}
-
 // Hooks up the stdout adn stderr of a child process to the gulp output
 function connectProcessOutput (process, prefix) {
   const logPrefix = prefix == null ? '' : '[' + chalk.blue(prefix) + '] '
