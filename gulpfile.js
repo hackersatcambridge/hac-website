@@ -92,10 +92,10 @@ function trimNewLine (string) {
 function connectProcessOutput (process, prefix) {
   const logPrefix = prefix == null ? '' : '[' + chalk.blue(prefix) + '] '
   process.stdout.on('data', function (data) {
-    console.log(logPrefix, trimNewLine(data.toString()))
+    data.toString().split('\n').map(line => console.log(logPrefix, line));
   })
   process.stderr.on('data', function (data) {
-    console.log(logPrefix, chalk.red(trimNewLine(data.toString())))
+    data.toString().split('\n').map(line => console.log(logPrefix, chalk.red(line)))
   })
 }
 
