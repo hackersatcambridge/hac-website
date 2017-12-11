@@ -136,7 +136,7 @@ function startServer (done) {
   serverProcess.on('exit', function (code) {
     serverProcess = null
   })
-  connectProcessOutput(serverProcess, 'kitura')
+  connectProcessOutput(serverProcess, 'web-server')
 
   // Wait for Kitura to tell us it's listening
   serverProcess.stdout.on('data', function (data) {
