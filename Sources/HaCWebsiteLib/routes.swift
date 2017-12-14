@@ -41,8 +41,8 @@ func getWebsiteRouter() -> Router {
   router.all("/", middleware: NotFoundMiddleware())
 
   // Enable http gzip compression globally
+  // Compression is the last step in middleware chain, add all route handlers above
   router.all(middleware: Compression())
-
 
   return router
 }
