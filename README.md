@@ -2,8 +2,9 @@
 [![Build Status](https://travis-ci.org/hackersatcambridge/hac-website.svg?branch=master)](https://travis-ci.org/hackersatcambridge/hac-website)
 > The public website of [Hackers at Cambridge]()
 
-This website is built using the Swift web framework [Kitura](https://github.com/IBM-Swift/Kitura). This allows us to build the site fast and reliably and to learn about and contribute to server-side Swift in the process. 
+This website is built using the Swift web framework [Kitura](https://github.com/IBM-Swift/Kitura). This allows us to build the site fast and reliably and to learn about and contribute to server-side Swift in the process.
 
+For more reasons as to why we chose to do things this way, please [read our blog post about it](https://medium.com/hackers-at-cambridge/why-were-writing-our-website-in-swift-2e620ae7b72b).
 
 ## Installing and running the website
 
@@ -11,26 +12,34 @@ This website is built using the Swift web framework [Kitura](https://github.com/
 
 We use Docker to make installation quick and painless, [make sure you have it installed](https://docs.docker.com/engine/installation/). This has been tested to work with at least `docker 17.03.0-ce, build 60ccb22` and `docker-compose version 1.11.2, build dfed245`.
 
-If you are on Windows, go to docker settings and ensure the drive you are using is shared.
+If you are on GNU/Linux, you will also need to [install Docker Compose](https://docs.docker.com/compose/install/) seperately
+
+If you are on Windows, go to Docker settings and ensure the drive you are using is shared.
 
 ### Installation Instructions
 
 - Clone this repository:
 `git clone https://github.com/hackersatcambridge/hac-website.git`
 - Navigate to the hac-website directory that you've now cloned
-- Create an empty file named `.env`, add the key-value pairs described below, and save it*
 - Now run `docker-compose up`
 
 This will build the project run the web server at [`localhost:3000`](http://localhost:3000). It will also watch for changes to the files and rebuild as necessarily. You can stop this process at any time with `^C` (`ctrl` + `C`).
 
 ### Subsequent runs
 
-When you want to run the project again (and you will, it's great):  
+When you want to run the project again (and you will, it's great):
 
 - If the Dockerfile has been changed, run `docker-compose build`
 - run `docker-compose up`
 
-\**Why did we have to do that?* The `.env` file is used to store sensitive information like API keys and environment-specific information in here for our server to use. We load it with dummy or alternative data locally.
+## Notes on using Windows
+If you are on Windows, go to Docker settings and ensure the drive you are using is shared.
+
+We also use use [Gulp](https://gulpjs.com/) for hot-reloading and building of the website when we make edits during development, however as [inotify doesn't work on shared drives](https://github.com/docker/for-win/issues/56), hot-reloading doesn't work out of the box.
+
+There is an [alternative solution available](http://blog.subjectify.us/miscellaneous/2017/04/24/docker-for-windows-watch-bindings.html), which essentially requires the following.
+
+Run `pip install docker-windows-volume-watcher`, then, after you have done `docker-compose up`, open another console window and run `docker-volume-watcher`.
 
 ## Development
 
@@ -38,14 +47,6 @@ When you want to run the project again (and you will, it's great):
 
 Please look at the [CONTRIBUTING.md](CONTRIBUTING.md) on how to contribute to
 the project!
-
-### Environment Variables
-
-Your `.env` file should contain the following items in the format: _key_=_"value"_
-
-| Key | Value Example |
-| - | - |
-| DATABASE_URL | postgres://richard:test@hac-db:5432/hac |
 
 ### *"Um. It looks like your HTML is written in Swift."*
 
@@ -90,3 +91,6 @@ docker-compose run web yarn gulp <<GULP COMMAND>>
 
 As the container shares source files with your project directory, any source files modified inside the container (e.g. `package.json`) will also be modified outside the container (and vice versa).
 
+## Documentation
+
+Documentation on further features can be found in the [`/Docs`](/Docs) folder.

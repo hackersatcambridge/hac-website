@@ -6,7 +6,7 @@ import HeliumLogger
 import DotEnv
 import SwiftyJSON
 
-struct LandingPageController {
+struct LandingUpdateFeedController {
 
   static let videos = [
     PostCard(
@@ -31,10 +31,7 @@ struct LandingPageController {
     }
     let updates = eventPostCards + videos
     try response.send(
-      LandingPage(
-        updates: updates,
-        feature: LandingFeatures.currentFeature
-      ).node.render()
+      LandingUpdateFeed(updates: updates).node.render()
     ).end()
   }
 }
