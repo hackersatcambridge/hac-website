@@ -83,6 +83,15 @@
         }
       },
       {
+        "package": "CZlib",
+        "repositoryURL": "https://github.com/IBM-Swift/CZlib.git",
+        "state": {
+          "branch": null,
+          "revision": "a781e6ef055fb8f0d608fe30a28e6a0f62ae498b",
+          "version": "0.1.2"
+        }
+      },
+      {
         "package": "Debugging",
         "repositoryURL": "https://github.com/vapor/debugging.git",
         "state": {
@@ -188,6 +197,15 @@
           "branch": null,
           "revision": "8e75a213bf4dd7b5effd03848335e344535969aa",
           "version": "1.7.2"
+        }
+      },
+      {
+        "package": "KituraCompression",
+        "repositoryURL": "https://github.com/IBM-Swift/Kitura-Compression.git",
+        "state": {
+          "branch": null,
+          "revision": "1cf4aaba3a5a5fac8a1209175128c99be3916b45",
+          "version": "2.0.0"
         }
       },
       {
