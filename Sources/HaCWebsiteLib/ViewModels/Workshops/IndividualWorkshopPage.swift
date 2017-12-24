@@ -2,7 +2,7 @@ import HaCTML
 
 // swiftlint:disable line_length
 
-struct WorkshopPage {
+struct IndividualWorkshopPage {
   var node: Node {
     return UI.Pages.base(
       title: "Hackers at Cambridge",

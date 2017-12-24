@@ -38,7 +38,7 @@ struct WorkshopsController {
 
   static var handler: RouterHandler = { request, response, next in
     try response.send(
-      WorkshopsPage(
+      WorkshopsIndexPage(
         upcomingWorkshops: upcomingWorkshopCards,
         previousWorkshops: previousWorkshopCards
       ).node.render()
@@ -47,7 +47,7 @@ struct WorkshopsController {
 
   static var workshopHandler: RouterHandler = { request, response, next in 
     try response.send(
-      WorkshopPage().node.render()
+      IndividualWorkshopPage().node.render()
     ).end()
   }
 

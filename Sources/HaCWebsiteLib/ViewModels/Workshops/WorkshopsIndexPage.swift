@@ -2,7 +2,7 @@ import HaCTML
 
 // swiftlint:disable line_length
 
-struct WorkshopsPage {
+struct WorkshopsIndexPage {
 
   let upcomingWorkshops: [PostCard]
   let previousWorkshops: [PostCard]
