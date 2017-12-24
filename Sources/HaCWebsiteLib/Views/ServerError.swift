@@ -1,20 +1,19 @@
 import HaCTML
 
-struct NotFound {
-  
+struct ServerError: Nodeable {
   var node: Node {
-    return UI.Pages.base(
-      title: "Page Not Found",
+    return Page(
+      title: "Server Error",
       content: Fragment(
-        El.Div[Attr.className => "NotFound"].containing(
+        El.Div[Attr.className => "ServerError"].containing(
           El.Img[
             Attr.className => "SiteLogo",
             Attr.src => Assets.publicPath("/images/hac-logo-dark.svg"),
             Attr.alt => "Hackers at Cambridge"
           ],
           El.Div[Attr.className => "TagLine"].containing("Cambridge's student tech society"),
-          El.H1[Attr.className => "NotFound__title"].containing("404"),
-          El.P.containing("We can't find the page you're looking for..."),
+          El.H1[Attr.className => "ServerError__title"].containing("500"),
+          El.P.containing("An internal error has occured..."),
           El.A[Attr.href => "/"].containing(
             El.Div[Attr.className => "BigButton"].containing(
               "Home"
@@ -22,6 +21,6 @@ struct NotFound {
           )
         )
       )
-    )
+    ).node
   }
 }

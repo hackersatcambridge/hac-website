@@ -2,7 +2,7 @@ import HaCTML
 
 // swiftlint:disable line_length
 
-struct WorkshopsPage {
+struct WorkshopsIndexPage {
 
   let upcomingWorkshops: [PostCard]
   let previousWorkshops: [PostCard]
@@ -50,7 +50,7 @@ struct WorkshopsPage {
   }
 
   var node: Node {
-    return UI.Pages.base(
+    return Page(
       title: "Hackers at Cambridge",
       content: Fragment(
         introduction, // What are workshops?
@@ -59,6 +59,6 @@ struct WorkshopsPage {
         previous, // Previously run workshops for interested parties to see
         getInvolved // How to get involved with workshops
       )
-    )
+    ).node
   }
 }

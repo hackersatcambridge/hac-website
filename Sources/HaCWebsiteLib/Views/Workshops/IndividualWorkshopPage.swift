@@ -4,14 +4,14 @@ import HaCTML
 
 struct IndividualWorkshopPage {
   var node: Node {
-    return UI.Pages.base(
+    return Page(
       title: "Hackers at Cambridge",
       content: Fragment(
         hero, // A big beautiful header
         description, // Who, What, Why
         content // The content of the workshop
       )
-    )
+    ).node
   }
 
   var hero: Node {

@@ -84,18 +84,14 @@ function buildStatic () {
     .pipe(browserSync.stream())
 }
 
-function trimNewLine (string) {
-  return string.replace(/\n$/, '')
-}
-
 // Hooks up the stdout adn stderr of a child process to the gulp output
 function connectProcessOutput (process, prefix) {
   const logPrefix = prefix == null ? '' : '[' + chalk.blue(prefix) + '] '
   process.stdout.on('data', function (data) {
-    console.log(logPrefix, trimNewLine(data.toString()))
+    data.toString().split('\n').map(line => console.log(logPrefix, line));
   })
   process.stderr.on('data', function (data) {
-    console.log(logPrefix, chalk.red(trimNewLine(data.toString())))
+    data.toString().split('\n').map(line => console.log(logPrefix, chalk.red(line)))
   })
 }
 
@@ -136,7 +132,7 @@ function startServer (done) {
   serverProcess.on('exit', function (code) {
     serverProcess = null
   })
-  connectProcessOutput(serverProcess, 'kitura')
+  connectProcessOutput(serverProcess, 'web-server')
 
   // Wait for Kitura to tell us it's listening
   serverProcess.stdout.on('data', function (data) {
