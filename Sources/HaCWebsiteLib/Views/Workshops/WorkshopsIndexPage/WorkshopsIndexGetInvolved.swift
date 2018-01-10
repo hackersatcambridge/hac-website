@@ -81,8 +81,8 @@ struct WorkshopsIndexGetInvolved: Nodeable {
 
         We love talking to new people about this so if you're interested in getting involved or would like to learn more, don't hesitate to get in touch
       """),
-      El.A[Attr.href => "mailto:team@hackersatcambridge.com", Attr.className => "BigButton BigButton--inline"].containing("Email team@hackersatcambridge.com"),
-      El.A[Attr.href => "https://m.me/hackersatcambridge", Attr.className => "BigButton BigButton--facebook BigButton--inline"].containing("Message us on Facebook")
+      El.A[Attr.href => "https://m.me/hackersatcambridge", Attr.className => "BigButton BigButton--facebook BigButton--inline"].containing("Message us on Facebook"),
+      "or email us at team@hackersatcambridge.com"
     )
   }
 }
