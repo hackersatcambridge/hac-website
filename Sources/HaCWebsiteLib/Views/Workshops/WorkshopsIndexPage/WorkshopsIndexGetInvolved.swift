@@ -5,7 +5,7 @@ struct WorkshopsIndexGetInvolved: Nodeable {
   var node: Node {
     return El.Div[Attr.className => "WorkshopsIndexPage__getInvolved WorkshopsIndexGetInvolved"].containing(
       getInvolvedIntro,
-      getInvolvedPeople,
+      getInvolvedRoles,
       getInvolvedCallToAction
     )
   }
@@ -20,10 +20,10 @@ struct WorkshopsIndexGetInvolved: Nodeable {
     )
   }
 
-  private var getInvolvedPeople: Node {
-    return El.Div[Attr.className => "WorkshopsIndexGetInvolved__people WorkshopsIndexGetInvolvedPeople"].containing(
-      El.Div[Attr.className => "WorkshopsIndexGetInvolvedPeople__person WorkshopsIndexGetInvolvedPerson"].containing(
-        El.Div[Attr.className => "WorkshopsIndexGetInvolvedPerson__contentCard"].containing(
+  private var getInvolvedRoles: Node {
+    return El.Div[Attr.className => "WorkshopsIndexGetInvolved__roles WorkshopsIndexGetInvolvedRoles"].containing(
+      El.Div[Attr.className => "WorkshopsIndexGetInvolvedRoles__role WorkshopsIndexGetInvolvedRole"].containing(
+        El.Div[Attr.className => "WorkshopsIndexGetInvolvedRole__contentCard"].containing(
           El.H2[Attr.className => "Text--sectionHeading"].containing("Presenter"),
           Markdown("""
             The presenter leads the production of the content for the workshop
@@ -31,8 +31,8 @@ struct WorkshopsIndexGetInvolved: Nodeable {
           """)
         )
       ),
-      El.Div[Attr.className => "WorkshopsIndexGetInvolvedPeople__person WorkshopsIndexGetInvolvedPerson"].containing(
-        El.Div[Attr.className => "WorkshopsIndexGetInvolvedPerson__contentCard"].containing(
+      El.Div[Attr.className => "WorkshopsIndexGetInvolvedRoles__role WorkshopsIndexGetInvolvedRole"].containing(
+        El.Div[Attr.className => "WorkshopsIndexGetInvolvedRole__contentCard"].containing(
           El.H2[Attr.className => "Text--sectionHeading"].containing("Editor"),
           Markdown("""
             The editor is the primary source of feedback on the workshop content.
@@ -40,8 +40,8 @@ struct WorkshopsIndexGetInvolved: Nodeable {
           """)
         )
       ),
-      El.Div[Attr.className => "WorkshopsIndexGetInvolvedPeople__person WorkshopsIndexGetInvolvedPerson"].containing(
-        El.Div[Attr.className => "WorkshopsIndexGetInvolvedPerson__contentCard"].containing(
+      El.Div[Attr.className => "WorkshopsIndexGetInvolvedRoles__role WorkshopsIndexGetInvolvedRole"].containing(
+        El.Div[Attr.className => "WorkshopsIndexGetInvolvedRole__contentCard"].containing(
           El.H2[Attr.className => "Text--sectionHeading"].containing("Organiser"),
           Markdown("""
             The organiser is the person that coordinates with departments, venues, graphics designers and web developers
@@ -49,8 +49,8 @@ struct WorkshopsIndexGetInvolved: Nodeable {
           """)
         )
       ),
-      El.Div[Attr.className => "WorkshopsIndexGetInvolvedPeople__person WorkshopsIndexGetInvolvedPerson"].containing(
-        El.Div[Attr.className => "WorkshopsIndexGetInvolvedPerson__contentCard"].containing(
+      El.Div[Attr.className => "WorkshopsIndexGetInvolvedRoles__role WorkshopsIndexGetInvolvedRole"].containing(
+        El.Div[Attr.className => "WorkshopsIndexGetInvolvedRole__contentCard"].containing(
           El.H2[Attr.className => "Text--sectionHeading"].containing("Demonstrators"),
           Markdown("""
             Demonstrators are people who develop an understanding of the content before the workshop and come along to offer
@@ -59,8 +59,8 @@ struct WorkshopsIndexGetInvolved: Nodeable {
           """)
         )
       ),
-      El.Div[Attr.className => "WorkshopsIndexGetInvolvedPeople__person WorkshopsIndexGetInvolvedPerson"].containing(
-        El.Div[Attr.className => "WorkshopsIndexGetInvolvedPerson__contentCard"].containing(
+      El.Div[Attr.className => "WorkshopsIndexGetInvolvedRoles__role WorkshopsIndexGetInvolvedRole"].containing(
+        El.Div[Attr.className => "WorkshopsIndexGetInvolvedRole__contentCard"].containing(
           El.H2[Attr.className => "Text--sectionHeading"].containing("Focus Group"),
           Markdown("""
             Focus Groups are small groups that volunteer to provide early feedback on the workshop.
