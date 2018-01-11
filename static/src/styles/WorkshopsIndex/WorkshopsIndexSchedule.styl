@@ -1,5 +1,4 @@
 .WorkshopsIndexSchedule {
-  display: flex;
   padding: grid(4);
 }
   
@@ -9,5 +8,15 @@
 
 .WorkshopsIndexSchedule__upcoming {
   flex: 1;
-  padding: grid(4) 0 0 1em;
+  padding: grid(4) 0;
+}
+
+@media screen and (min-width: 900px) {
+  .WorkshopsIndexSchedule {
+    display: flex;
+    align-items: top;
+  }
+  .WorkshopsIndexSchedule__upcoming {
+    padding: grid(4) 0 0 1em;
+  }
 }
