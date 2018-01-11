@@ -7,7 +7,7 @@ struct BackBar: Nodeable {
       Attr.className => "BackBar"
     ].containing(
       El.A[Attr.className => "BackBar__backButton", Attr.href => "/"].containing(
-        El.Div[Attr.className => "BigButton"].containing(
+        El.Div[Attr.className => "BigButton BigButton--back"].containing(
           "Home"
         )
       ),
