@@ -83,6 +83,15 @@
         }
       },
       {
+        "package": "CZlib",
+        "repositoryURL": "https://github.com/IBM-Swift/CZlib.git",
+        "state": {
+          "branch": null,
+          "revision": "a781e6ef055fb8f0d608fe30a28e6a0f62ae498b",
+          "version": "0.1.2"
+        }
+      },
+      {
         "package": "Debugging",
         "repositoryURL": "https://github.com/vapor/debugging.git",
         "state": {
@@ -191,21 +200,21 @@
         }
       },
       {
+        "package": "KituraCompression",
+        "repositoryURL": "https://github.com/IBM-Swift/Kitura-Compression.git",
+        "state": {
+          "branch": null,
+          "revision": "1cf4aaba3a5a5fac8a1209175128c99be3916b45",
+          "version": "2.0.0"
+        }
+      },
+      {
         "package": "KituraContracts",
         "repositoryURL": "https://github.com/IBM-Swift/KituraContracts.git",
         "state": {
           "branch": null,
           "revision": "60ad79cfffeeb9693f53dd68067783d4fde5dc4d",
           "version": "0.0.14"
-        }
-      },
-      {
-        "package": "KituraMarkdown",
-        "repositoryURL": "https://github.com/IBM-Swift/Kitura-Markdown.git",
-        "state": {
-          "branch": null,
-          "revision": "2c6b847f1fc8119de72a36a7af6fd581e0e35991",
-          "version": "0.9.1"
         }
       },
       {
