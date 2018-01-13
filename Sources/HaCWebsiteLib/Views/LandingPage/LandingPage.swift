@@ -95,7 +95,7 @@ struct LandingPage: Nodeable {
             ),
             El.Div[Attr.className => "LandingAbout__text"].containing(
               El.H1[Attr.className => "LandingAbout__subtitle Text--sectionHeading"].containing("About"),
-              El.H2[Attr.className => "LandingAbout__headline"].containing("Who are Hackers at Cambridge?"),
+              El.H2[Attr.className => "Text--headline"].containing("Who are Hackers at Cambridge?"),
               Markdown("""
                 Don't let the name scare you, we aren't the kind of hackers that try our best to get around complex security systems. We are simply an enthusiastic group of people who love technology.
 
@@ -111,7 +111,7 @@ struct LandingPage: Nodeable {
               ]
             ),
             El.Div[Attr.className => "LandingAbout__text"].containing(
-              El.H1[Attr.className => "LandingAbout__headline"].containing("Workshops"),
+              El.H1[Attr.className => "Text--headline"].containing("Workshops"),
               Markdown("""
                 Run by members of the community and open to everyone, our workshops aim to inspire and to teach practical technology skills.
 
@@ -129,7 +129,7 @@ struct LandingPage: Nodeable {
               ]
             ),
             El.Div[Attr.className => "LandingAbout__text"].containing(
-              El.H1[Attr.className => "LandingAbout__headline"].containing("Hackathons and Game Jams"),
+              El.H1[Attr.className => "Text--headline"].containing("Hackathons and Game Jams"),
               Markdown("""
                 At the end of the Michaelmas we run the annual Hackers at Cambridge Game Gig - a fun and friendly competition where 100 Cambridge students from a wide variety of courses get together to make games in 12 hours
 
@@ -147,7 +147,7 @@ struct LandingPage: Nodeable {
               ]
             ),
             El.Div[Attr.className => "LandingAbout__text"].containing(
-              El.H1[Attr.className => "LandingAbout__headline"].containing("HaC Nights"),
+              El.H1[Attr.className => "Text--headline"].containing("HaC Nights"),
               Markdown("""
                 HaC Nights are weekly events we run for people of all experience levels! If you have something you’re working on - be it a project, some supervision work or coursework – then a HaC night is a great social environment for getting things done.
 
