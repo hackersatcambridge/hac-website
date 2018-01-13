@@ -2,13 +2,15 @@ import HaCTML
 import Foundation
 
 struct BackBar: Nodeable {
+  let backLinkText: String
+  let backLinkURL: String
   var node: Node {
     return El.Div[
       Attr.className => "BackBar"
     ].containing(
-      El.A[Attr.className => "BackBar__backButton", Attr.href => "/"].containing(
+      El.A[Attr.className => "BackBar__backButton", Attr.href => backLinkURL].containing(
         El.Div[Attr.className => "BigButton BigButton--back"].containing(
-          "Home"
+          backLinkText
         )
       ),
       El.A[Attr.href => "/", Attr.className => "BackBar__branding"].containing(

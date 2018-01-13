@@ -13,7 +13,7 @@ struct WorkshopsIndexPage {
     return Page(
       title: "Hackers at Cambridge",
       content: El.Div[Attr.className => "WorkshopsIndexPage"].containing(
-        BackBar(),
+        BackBar(backLinkText: "Home", backLinkURL: "/"),
         WorkshopsIndexAbout(),
         WorkshopsIndexSchedule(),
         WorkshopsIndexGetInvolved()
