@@ -31,7 +31,7 @@ public struct HTMLElement {
   private func addChildren(nodeables: [Nodeable?]) -> HTMLElement {
     precondition(child == nil, "Cannot add children to an element that already has children")
 
-    return clone(child: Fragment(nodeables.flatMap({ $0?.node })))
+    return clone(child: Fragment(nodeables))
   }
 
   /**
