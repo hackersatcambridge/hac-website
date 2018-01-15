@@ -39,9 +39,7 @@ extension NewWorkshop {
     workshopId = try NewWorkshop.getWorkshopId(localPath: localPath)
     let remoteRepoUrl = "https://github.com/hackersatcambridge/workshop-" + workshopId
 
-    // TODO: Save the presenterGuide.
-    // This is currently run but not saved so that it still runs checks on the file
-    _ = try NewWorkshop.getPresenterGuide(localPath: localPath)
+    presenterGuide = try NewWorkshop.getPresenterGuide(localPath: localPath)
     promoImageBackground = try NewWorkshop.getPromoImageBackground(localPath: localPath, workshopId: workshopId)
     promoImageForeground = try NewWorkshop.getPromoImageForeground(localPath: localPath, workshopId: workshopId).absoluteString
     description = try NewWorkshop.getDescription(localPath: localPath)
