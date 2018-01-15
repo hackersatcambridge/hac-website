@@ -9,6 +9,10 @@ struct Markdown {
     raw = markdown
   }
 
+  init(contentsOfFile filePath: String) throws {
+    self.init(try String(contentsOfFile: filePath, encoding: .utf8))
+  }
+
   var html: String {
     return KituraMarkdown.render(from: raw)
   }

@@ -82,6 +82,7 @@ public extension Workshop {
     }
   }
 
+  /// Get an array of strings from a key in the metadata
   private static func stringsArray(for key: Yaml, in metadata: Yaml) throws -> [String] {
     guard let values = metadata[key].array else {
       throw WorkshopError.malformedMetadata("Missing \(key) list")
