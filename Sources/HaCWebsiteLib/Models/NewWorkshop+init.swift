@@ -107,8 +107,8 @@ private struct WorkshopBuilder {
     return try Markdown(contentsOfFile: localPath + filePaths.setupInstructions)
   }
 
-  func getPresenterGuide() throws -> Markdown {
-    return try Markdown(contentsOfFile: localPath + filePaths.presenterGuide)
+  func getPresenterGuide() throws -> Markdown? {
+    return try? Markdown(contentsOfFile: localPath + filePaths.presenterGuide)
   }
 
   private func repoUrl(origin: String, relativePath: String) throws -> URL {

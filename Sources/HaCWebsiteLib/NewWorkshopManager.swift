@@ -79,7 +79,8 @@ public struct NewWorkshopManager {
           let updatedWorkshop = try NewWorkshop(localPath: repoUtil.localRepoPath, headCommitSha: repoUtil.getHeadCommitSha())
           workshops[repoName] = updatedWorkshop
         } catch {
-          print(error)
+          print("Failed to initialise workshop from repo: \(repoName)")
+          dump(error)
         }
         updateDispatchGroup.leave()
       }
