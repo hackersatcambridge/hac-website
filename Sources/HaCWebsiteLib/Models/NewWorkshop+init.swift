@@ -17,7 +17,7 @@ private let validImageExtensions = ["jpg", "svg", "png", "gif"]
 
 extension NewWorkshop {
   /// Create a NewWorkshop from a local path
-  init(localPath: String, headCommitSha: String?) throws {
+  init(localPath: String, headCommitSha: String) throws {
     workshopId = try NewWorkshop.getWorkshopId(localPath: localPath)
     let metadata = try NewWorkshop.getMetadata(localPath: localPath)
     let builder = WorkshopBuilder(localPath: localPath, commitSha: headCommitSha, workshopId: workshopId, metadata: metadata)
@@ -83,7 +83,7 @@ private enum WorkshopError: Swift.Error {
 
 private struct WorkshopBuilder {
   let localPath: String
-  let commitSha: String?
+  let commitSha: String
   let workshopId: String
   let metadata: Yaml
 
@@ -122,7 +122,7 @@ private struct WorkshopBuilder {
   }
 
   func fileservingUrl(relativePath: String) throws -> URL {
-    return try repoUrl(origin: "https://rawgit.com/", relativePath: "\(commitSha ?? "master")\(relativePath)")
+    return try repoUrl(origin: "https://rawgit.com/", relativePath: "\(commitSha)\(relativePath)")
   }
 
   func remoteRepoUrl(relativePath: String) throws -> URL {

@@ -31,13 +31,13 @@ class NewWorkshopTests: HaCWebsiteLibTestCase {
   }
 
   func testMissingDetails() {
-    XCTAssertThrowsError(try NewWorkshop(localPath: try! getTestResourcePath(at: "NewWorkshopTestData/workshop-missing-contributors"), headCommitSha: nil))
-    XCTAssertThrowsError(try NewWorkshop(localPath: try! getTestResourcePath(at: "NewWorkshopTestData/workshop-missing-notes"), headCommitSha: nil))
-    XCTAssertThrowsError(try NewWorkshop(localPath: try! getTestResourcePath(at: "NewWorkshopTestData/workshop-missing-tags"), headCommitSha: nil))
+    XCTAssertThrowsError(try NewWorkshop(localPath: try! getTestResourcePath(at: "NewWorkshopTestData/workshop-missing-contributors"), headCommitSha: "abcde"))
+    XCTAssertThrowsError(try NewWorkshop(localPath: try! getTestResourcePath(at: "NewWorkshopTestData/workshop-missing-notes"), headCommitSha: "abcde"))
+    XCTAssertThrowsError(try NewWorkshop(localPath: try! getTestResourcePath(at: "NewWorkshopTestData/workshop-missing-tags"), headCommitSha: "abcde"))
   }
 
   func testDoubleBackground() {
-    XCTAssertThrowsError(try NewWorkshop(localPath: try! getTestResourcePath(at: "NewWorkshopTestData/workshop-double-bg"), headCommitSha: nil))
+    XCTAssertThrowsError(try NewWorkshop(localPath: try! getTestResourcePath(at: "NewWorkshopTestData/workshop-double-bg"), headCommitSha: "abcde"))
   }
 
   static var allTests : [(String, (NewWorkshopTests) -> () throws -> Void)] {
