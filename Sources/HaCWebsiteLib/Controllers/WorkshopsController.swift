@@ -5,7 +5,9 @@ struct WorkshopsController {
   static var handler: RouterHandler = { request, response, next in
     try response.send(
       WorkshopsIndexPage(
-        allWorkshops: Array(NewWorkshopManager.workshops.values).sorted { $0.title < $1.title }
+        allWorkshops: Array(NewWorkshopManager.workshops.values)
+          .sorted { $0.title < $1.title }
+          .filter { $0.workshopId != "example" }
       ).node.render()
     ).end()
   }
