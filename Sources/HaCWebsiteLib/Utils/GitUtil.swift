@@ -35,7 +35,7 @@ public struct GitUtil {
   }
 
   public func getHeadCommitSha() -> String {
-    let (shaWithNewline, _) = shell(args: "git", "rev-parse", "HEAD")
+    let (shaWithNewline, _) = shell(args: "git", "-C", localRepoPath, "rev-parse", "HEAD")
 
     return shaWithNewline!.replacingOccurrences(of: "\n", with: "")
   }
