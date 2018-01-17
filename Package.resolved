@@ -218,6 +218,15 @@
         }
       },
       {
+        "package": "KituraMarkdown",
+        "repositoryURL": "https://github.com/IBM-Swift/Kitura-Markdown.git",
+        "state": {
+          "branch": null,
+          "revision": "2c6b847f1fc8119de72a36a7af6fd581e0e35991",
+          "version": "0.9.1"
+        }
+      },
+      {
         "package": "LoggerAPI",
         "repositoryURL": "https://github.com/IBM-Swift/LoggerAPI.git",
         "state": {
