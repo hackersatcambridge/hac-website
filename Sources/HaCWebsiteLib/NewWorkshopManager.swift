@@ -76,7 +76,7 @@ public struct NewWorkshopManager {
       updateQueue.async {
         do {
           repoUtil.update()
-          let updatedWorkshop = try NewWorkshop(localPath: repoUtil.localRepoPath)
+          let updatedWorkshop = try NewWorkshop(localPath: repoUtil.localRepoPath, headCommitSha: repoUtil.getHeadCommitSha())
           workshops[repoName] = updatedWorkshop
         } catch {
           print(error)

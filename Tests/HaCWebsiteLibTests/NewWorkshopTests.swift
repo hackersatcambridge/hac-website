@@ -4,7 +4,7 @@ import XCTest
 class NewWorkshopTests: HaCWebsiteLibTestCase {
   func testParse() throws {
     let workshopDataPath = try getTestResourcePath(at: "NewWorkshopTestData/workshop-passing-example")
-    let workshop = try NewWorkshop(localPath: workshopDataPath)
+    let workshop = try NewWorkshop(localPath: workshopDataPath, headCommitSha: "abcde")
 
     XCTAssertEqual(workshop.workshopId, "passing-example")
     XCTAssertEqual(workshop.title, "Sample Workshop")
@@ -21,22 +21,23 @@ class NewWorkshopTests: HaCWebsiteLibTestCase {
 
     XCTAssert(workshop.notes.raw.contains("The main source of the workshop content."))
 
-    // Note we currently do not test the promo image handling
+    XCTAssertEqual(workshop.promoImageForeground, "https://rawgit.com/hackersatcambridge/workshop-passing-example/abcde/info/promo_images/fg.png")
+    XCTAssertEqual(workshop.promoImageBackground, Background.color("#fffeee"))
 
     XCTAssertEqual(workshop.description.raw, "This workshop will take you through the basics of x. \nWe'll talk about how to foo and show you how, with a little work, you can bar your baz.")
     XCTAssertEqual(workshop.prerequisites.raw, "This workshop assumes:\n- Basic command line knowledge (you should be comfortable with the `cd`, `ls`, and `man` commands)\n- Some basic programming experience (you should be familiar with variables, loops and functions)")
     XCTAssertEqual(workshop.setupInstructions.raw, "If you have a Windows laptop, please install the application 'PuTTY' before you arrive by downloading ['putty.exe'](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)\n\nThis workshop requires connection to a UNIX machine (Linux, macOS) so to play along you'll be connecting to a UNIX machine using PuTTY.")
-    XCTAssertEqual(workshop.examplesLink?.absoluteString, "https://github.com/hackersatcambridge/workshop-passing-example/examples")
+    XCTAssertEqual(workshop.examplesLink?.absoluteString, "https://github.com/hackersatcambridge/workshop-passing-example/blob/master/examples")
   }
 
   func testMissingDetails() {
-    XCTAssertThrowsError(try NewWorkshop(localPath: try! getTestResourcePath(at: "NewWorkshopTestData/workshop-missing-contributors")))
-    XCTAssertThrowsError(try NewWorkshop(localPath: try! getTestResourcePath(at: "NewWorkshopTestData/workshop-missing-notes")))
-    XCTAssertThrowsError(try NewWorkshop(localPath: try! getTestResourcePath(at: "NewWorkshopTestData/workshop-missing-tags")))
+    XCTAssertThrowsError(try NewWorkshop(localPath: try! getTestResourcePath(at: "NewWorkshopTestData/workshop-missing-contributors"), headCommitSha: "abcde"))
+    XCTAssertThrowsError(try NewWorkshop(localPath: try! getTestResourcePath(at: "NewWorkshopTestData/workshop-missing-notes"), headCommitSha: "abcde"))
+    XCTAssertThrowsError(try NewWorkshop(localPath: try! getTestResourcePath(at: "NewWorkshopTestData/workshop-missing-tags"), headCommitSha: "abcde"))
   }
 
   func testDoubleBackground() {
-    XCTAssertThrowsError(try NewWorkshop(localPath: try! getTestResourcePath(at: "NewWorkshopTestData/workshop-double-bg")))
+    XCTAssertThrowsError(try NewWorkshop(localPath: try! getTestResourcePath(at: "NewWorkshopTestData/workshop-double-bg"), headCommitSha: "abcde"))
   }
 
   static var allTests : [(String, (NewWorkshopTests) -> () throws -> Void)] {

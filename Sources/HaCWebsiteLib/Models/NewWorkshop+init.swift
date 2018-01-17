@@ -1,7 +1,7 @@
 import Foundation
 import Yaml
 
-let filePaths = (
+private let filePaths = (
   metadata: "/info/metadata.yaml",
   description: "/info/description.md",
   prerequisites: "/info/prerequisites.md",
@@ -13,151 +13,154 @@ let filePaths = (
   setupInstructions: "/info/setup_instructions.md"
 )
 
-let validImageExtensions = ["jpg", "svg", "png", "gif"]
+private let validImageExtensions = ["jpg", "svg", "png", "gif"]
 
 extension NewWorkshop {
-  enum Error: Swift.Error {
-    case invalidPath
-    case missingMetadata
-    case malformedMetadata(String)
-    case missingDescription
-    case missingPrerequisites
-    case missingPromoImageBackground
-    case missingPromoImageForeground
-    case multiplePromoImageForegrounds
-    case multiplePromoImageBackgrounds
-    case invalidPromoImageForegroundFormat
-    case invalidPromoImageBackgroundFormat
-    case missingNotes
-    case badURLInNotes(String)
-    case emptyExamples
-    case invalidURL(String)
-  }
-
   /// Create a NewWorkshop from a local path
-  init(localPath: String) throws {
+  init(localPath: String, headCommitSha: String) throws {
     workshopId = try NewWorkshop.getWorkshopId(localPath: localPath)
-    let remoteRepoUrl = "https://github.com/hackersatcambridge/workshop-" + workshopId
-
-    presenterGuide = try NewWorkshop.getPresenterGuide(localPath: localPath)
-    promoImageBackground = try NewWorkshop.getPromoImageBackground(localPath: localPath, workshopId: workshopId)
-    promoImageForeground = try NewWorkshop.getPromoImageForeground(localPath: localPath, workshopId: workshopId).absoluteString
-    description = try NewWorkshop.getDescription(localPath: localPath)
-    prerequisites = try NewWorkshop.getPrerequisites(localPath: localPath)
-    setupInstructions = try NewWorkshop.getSetupInstructions(localPath: localPath)
-
-    examplesLink = try NewWorkshop.getExamplesLink(localPath: localPath, remoteRepoUrl: remoteRepoUrl)
-    notes = try NewWorkshop.getNotes(localPath: localPath)
-
     let metadata = try NewWorkshop.getMetadata(localPath: localPath)
+    let builder = WorkshopBuilder(localPath: localPath, commitSha: headCommitSha, workshopId: workshopId, metadata: metadata)
 
+    presenterGuide = try builder.getPresenterGuide()
+    promoImageBackground = try builder.getPromoImageBackground()
+    promoImageForeground = try builder.getPromoImageForeground().absoluteString
+    description = try builder.getDescription()
+    prerequisites = try builder.getPrerequisites()
+    setupInstructions = try builder.getSetupInstructions()
 
-    title = try NewWorkshop.getTitle(from: metadata)
-    contributors = try NewWorkshop.getContributors(from: metadata)
-    thanks = try NewWorkshop.getThanks(from: metadata)
-    furtherReadingLinks = try NewWorkshop.getFurtherReadingLinks(from: metadata)
-    recordingLink = try NewWorkshop.getRecordingLink(from: metadata)
-    slidesLink = try NewWorkshop.getSlidesLink(from: metadata)
-    tags = try NewWorkshop.getTags(from: metadata)
-    license = try NewWorkshop.getLicense(from: metadata)
+    examplesLink = try builder.getExamplesLink()
+    notes = try builder.getNotes()
+
+    title = try builder.getTitle()
+    contributors = try builder.getContributors()
+    thanks = try builder.getThanks()
+    furtherReadingLinks = try builder.getFurtherReadingLinks()
+    recordingLink = try builder.getRecordingLink()
+    slidesLink = try builder.getSlidesLink()
+    tags = try builder.getTags()
+    license = try builder.getLicense()
   }
 
-  fileprivate static func getWorkshopId(localPath: String) throws -> String {
+  private static func getWorkshopId(localPath: String) throws -> String {
     let directoryName = localPath.components(separatedBy: "/").last ?? localPath
 
     if directoryName.hasPrefix("workshop-") {
       return String(directoryName.dropFirst("workshop-".count))
     } else {
-      throw Error.invalidPath
+      throw WorkshopError.invalidPath
     }
   }
 
-  fileprivate static func getMetadata(localPath: String) throws -> Yaml {
+  private static func getMetadata(localPath: String) throws -> Yaml {
     let metadataString: String
     do {
       metadataString = try String(contentsOfFile: localPath + filePaths.metadata, encoding: .utf8)
     } catch {
-      throw Error.missingMetadata
+      throw WorkshopError.missingMetadata
     }
     return try Yaml.load(metadataString)
   }
+}
 
-  fileprivate static func getDescription(localPath: String) throws -> Markdown {
+private enum WorkshopError: Swift.Error {
+  case invalidPath
+  case missingMetadata
+  case malformedMetadata(String)
+  case missingDescription
+  case missingPrerequisites
+  case missingPromoImageBackground
+  case missingPromoImageForeground
+  case multiplePromoImageForegrounds
+  case multiplePromoImageBackgrounds
+  case invalidPromoImageForegroundFormat
+  case invalidPromoImageBackgroundFormat
+  case missingNotes
+  case badURLInNotes(String)
+  case emptyExamples
+  case invalidURL(String)
+}
+
+private struct WorkshopBuilder {
+  let localPath: String
+  let commitSha: String
+  let workshopId: String
+  let metadata: Yaml
+
+  func getDescription() throws -> Markdown {
     do {
       return try Markdown(contentsOfFile: localPath + filePaths.description)
     } catch {
-      throw Error.missingDescription
+      throw WorkshopError.missingDescription
     }
   }
 
-  fileprivate static func getPrerequisites(localPath: String) throws -> Markdown {
+  func getPrerequisites() throws -> Markdown {
     do {
       return try Markdown(contentsOfFile: localPath + filePaths.prerequisites)
     } catch {
-      throw Error.missingPrerequisites
+      throw WorkshopError.missingPrerequisites
     }
   }
 
-  fileprivate static func getSetupInstructions(localPath: String) throws -> Markdown {
+  func getSetupInstructions() throws -> Markdown {
     return try Markdown(contentsOfFile: localPath + filePaths.setupInstructions)
   }
 
-  fileprivate static func getPresenterGuide(localPath: String) throws -> Markdown {
+  func getPresenterGuide() throws -> Markdown {
     return try Markdown(contentsOfFile: localPath + filePaths.presenterGuide)
   }
 
-  /// Get the extension of a file. Returns nil if no file extension is present
-  fileprivate static func getFileExtension(fromPath filePath: String) -> String? {
-    if filePath.contains(".") {
-      return filePath.components(separatedBy: ".").last
-    } else {
-      return nil
-    }
-  }
-
-  fileprivate static func remoteRepoUrl(workshopId: String, relativePath: String, raw: Bool = false) throws -> URL {
-    let urlString = raw ? "https://rawgit.com/hackersatcambridge/workshop-\(workshopId)/master\(relativePath)" :
-      "https://github.com/hackersatcambridge/workshop-\(workshopId)/blob/master\(relativePath)"
+  private func repoUrl(origin: String, relativePath: String) throws -> URL {
+    let urlString = "\(origin)hackersatcambridge/workshop-\(workshopId)/\(relativePath)"
 
     if let url = URL(string: urlString) {
       return url
     } else {
-      throw Error.invalidURL(urlString)
+      throw WorkshopError.invalidURL(urlString)
     }
   }
 
+  func fileservingUrl(relativePath: String) throws -> URL {
+    return try repoUrl(origin: "https://rawgit.com/", relativePath: "\(commitSha)\(relativePath)")
+  }
+
+  func remoteRepoUrl(relativePath: String) throws -> URL {
+    return try repoUrl(origin: "https://github.com/", relativePath: "blob/master\(relativePath)");
+  }
+
   /// Return the CDN url of the foreground of the promotional image
-  fileprivate static func getPromoImageForeground(localPath: String, workshopId: String) throws -> URL {
+  func getPromoImageForeground() throws -> URL {
     let promoImageFileNames = try FileManager.default.contentsOfDirectory(atPath: localPath + filePaths.promoImagesDirectory)
     let foregroundImageFileNames = promoImageFileNames.filter { $0.hasPrefix("fg.") }
 
     guard foregroundImageFileNames.count == 1 else {
       if foregroundImageFileNames.count < 1 {
-        throw Error.missingPromoImageForeground
+        throw WorkshopError.missingPromoImageForeground
       } else {
-        throw Error.multiplePromoImageForegrounds
+        throw WorkshopError.multiplePromoImageForegrounds
       }
     }
 
     let foregroundImageFileName = foregroundImageFileNames[0]
 
     guard validImageExtensions.contains(getFileExtension(fromPath: foregroundImageFileName) ?? "") else {
-      throw Error.invalidPromoImageForegroundFormat
+      throw WorkshopError.invalidPromoImageForegroundFormat
     }
 
     let relativePathFromRepo = filePaths.promoImagesDirectory + "/" + foregroundImageFileName
-    return try remoteRepoUrl(workshopId: workshopId, relativePath: relativePathFromRepo, raw: true)
+    return try fileservingUrl(relativePath: relativePathFromRepo)
   }
 
   /// The `Background` of the promotional image
-  fileprivate static func getPromoImageBackground(localPath: String, workshopId: String) throws -> Background {
+  func getPromoImageBackground() throws -> Background {
     let promoImageFileNames = try FileManager.default.contentsOfDirectory(atPath: localPath + filePaths.promoImagesDirectory)
     let backgroundFileNames = promoImageFileNames.filter { $0.hasPrefix("bg.") }
     guard backgroundFileNames.count == 1 else {
       if backgroundFileNames.count < 1 {
-        throw Error.missingPromoImageBackground
+        throw WorkshopError.missingPromoImageBackground
       } else {
-        throw Error.multiplePromoImageBackgrounds 
+        throw WorkshopError.multiplePromoImageBackgrounds 
       }
     }
     let backgroundFileName = backgroundFileNames[0]
@@ -170,114 +173,124 @@ extension NewWorkshop {
     } else if validImageExtensions.contains(fileExtension) {
       // Get the CDN url of the image
       let relativePathFromRepo = filePaths.promoImagesDirectory + "/" + backgroundFileName
-      return Background.image(try remoteRepoUrl(workshopId: workshopId, relativePath: relativePathFromRepo, raw: true).absoluteString)
+      return Background.image(try fileservingUrl(relativePath: relativePathFromRepo).absoluteString)
     } else {
-      throw Error.invalidPromoImageBackgroundFormat
+      throw WorkshopError.invalidPromoImageBackgroundFormat
     }
   }
 
-  fileprivate static func getExamplesLink(localPath: String, remoteRepoUrl: String) throws -> URL? {
+  func getExamplesLink() throws -> URL? {
     let examplesPath = localPath + filePaths.examplesDirectory
     if FileManager.default.fileExists(atPath: examplesPath) {
       if try FileManager.default.contentsOfDirectory(atPath: examplesPath) == [] {
-        throw Error.emptyExamples
+        throw WorkshopError.emptyExamples
       } else {
-        return URL(string: remoteRepoUrl + filePaths.examplesDirectory)
+        return try remoteRepoUrl(relativePath: filePaths.examplesDirectory)
       }
     } else {
       return nil
     }
   }
 
-  fileprivate static func getNotes(localPath: String) throws -> Markdown {
+  func getNotes() throws -> Markdown {
     // TODO(#192): Handle embedded images in notes.md
     do {
       return try Markdown(contentsOfFile: localPath + filePaths.notesMarkdown)
     } catch {
-      throw Error.missingNotes
+      throw WorkshopError.missingNotes
     }
   }
 
-  fileprivate static func getTitle(from metadata: Yaml) throws -> String {
+  func getTitle() throws -> String {
     if let title = metadata["title"].string {
       return title
     } else {
-      throw Error.malformedMetadata("Missing title")
+      throw WorkshopError.malformedMetadata("Missing title")
     }
   }
 
-  fileprivate static func stringsArray(for key: Yaml, in metadata: Yaml) throws -> [String] {
-    guard let values = metadata[key].array else {
-      throw Error.malformedMetadata("Missing \(key) list")
-    }
-    return try values.map({
-      if let stringValue = $0.string {
-        return stringValue
-      } else {
-        throw Error.malformedMetadata("Expected values in \(key) to be strings")
-      }
-    })
-  }
-
-  fileprivate static func getContributors(from metadata: Yaml) throws -> [String] {
+  func getContributors() throws -> [String] {
     return try stringsArray(for: "contributors", in: metadata)
   }
 
-  fileprivate static func getThanks(from metadata: Yaml) throws -> [String] {
+  func getThanks() throws -> [String] {
     return try stringsArray(for: "thanks", in: metadata)
   }
 
-  fileprivate static func getFurtherReadingLinks(from metadata: Yaml) throws -> [Link] {
+  func getFurtherReadingLinks() throws -> [Link] {
     guard let links = metadata["further_reading_links"].array else {
-      throw Error.malformedMetadata("Missing further reading links")
+      throw WorkshopError.malformedMetadata("Missing further reading links")
     }
     return try links.map({
       guard let text = $0["text"].string,
         let urlString = $0["url"].string else {
-        throw Error.malformedMetadata("Links should have a 'text' and a 'url' property")
+        throw WorkshopError.malformedMetadata("Links should have a 'text' and a 'url' property")
       }
       
       guard let url = URL(string: urlString) else {
-        throw Error.malformedMetadata("Links should have valid URLs")
+        throw WorkshopError.malformedMetadata("Links should have valid URLs")
       }
 
       return Link(text: text, url: url)
     })
   }
 
-  fileprivate static func getRecordingLink(from metadata: Yaml) throws -> URL? {
+  func getRecordingLink() throws -> URL? {
     guard let urlString = metadata["recording_link"].string else {
       return nil
     }
     
     guard let url = URL(string: urlString) else {
-      throw Error.malformedMetadata("Recording link should be a valid URL")
+      throw WorkshopError.malformedMetadata("Recording link should be a valid URL")
     }
 
     return url
   }
 
-  fileprivate static func getSlidesLink(from metadata: Yaml) throws -> URL? {
+  func getSlidesLink() throws -> URL? {
     guard let urlString = metadata["slides_link"].string else {
       return nil
     }
     
     guard let url = URL(string: urlString) else {
-      throw Error.malformedMetadata("Slides link should be a valid URL")
+      throw WorkshopError.malformedMetadata("Slides link should be a valid URL")
     }
 
     return url
   }
 
-  fileprivate static func getTags(from metadata: Yaml) throws -> [String] {
+  func getTags() throws -> [String] {
     return try stringsArray(for: "tags", in: metadata)
   }
 
-  fileprivate static func getLicense(from metadata: Yaml) throws -> String {
+  func getLicense() throws -> String {
     if let license = metadata["license"].string {
       return license
     } else {
-      throw Error.malformedMetadata("Missing license")
+      throw WorkshopError.malformedMetadata("Missing license")
     }
   }
+}
+
+/// Get the extension of a file. Returns nil if no file extension is present
+private func getFileExtension(fromPath filePath: String) -> String? {
+  if filePath.contains(".") {
+    return filePath.components(separatedBy: ".").last
+  } else {
+    return nil
+  }
+}
+
+private func stringsArray(for key: Yaml, in metadata: Yaml) throws -> [String] {
+  guard let values = metadata[key].array else {
+    throw WorkshopError.malformedMetadata("Missing \(key) list")
+  }
+
+  return try values.map({
+    if let stringValue = $0.string {
+      return stringValue
+    } else {
+      throw WorkshopError.malformedMetadata("Expected values in \(key) to be strings")
+    }
+  })
 }
