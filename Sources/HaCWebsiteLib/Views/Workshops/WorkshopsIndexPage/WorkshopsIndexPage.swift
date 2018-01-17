@@ -4,8 +4,7 @@ import HaCTML
 
 struct WorkshopsIndexPage {
 
-  let upcomingWorkshops: [PostCard]
-  let previousWorkshops: [PostCard]
+  let allWorkshops: [NewWorkshop]
 
   let demonstratorsGroupUrl = "https://www.facebook.com/groups/1567785333234852/"
 
@@ -15,16 +14,10 @@ struct WorkshopsIndexPage {
       content: El.Div[Attr.className => "WorkshopsIndexPage"].containing(
         BackBar(backLinkText: "Home", backLinkURL: "/"),
         WorkshopsIndexAbout(),
-        WorkshopsIndexSchedule(),
+        WorkshopsIndexArchive(workshops: allWorkshops),
+        // WorkshopsIndexSchedule(),
         WorkshopsIndexGetInvolved()
       )
     ).node
-  }
-
-  private var previous: Node {
-    return El.Div[Attr.className => "WorkshopsPrevious"].containing(
-      El.H1[Attr.className => "Text--sectionHeading"].containing("Previous"),
-      El.Div[Attr.className => "WorkshopsPrevious__cards"].containing(previousWorkshops)
-    )
   }
 }
