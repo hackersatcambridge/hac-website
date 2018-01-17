@@ -46,10 +46,14 @@ struct WorkshopsController {
   }
 
   static var workshopHandler: RouterHandler = { request, response, next in 
-    dump(NewWorkshopManager.workshops)
-    try response.send(
-      IndividualWorkshopPage(workshop: NewWorkshopManager.workshops["workshop-example"]!).node.render()
-    ).end()
+    if let workshopId = request.parameters["workshopId"],
+      let workshop = NewWorkshopManager.workshops["workshop-\(workshopId)"] {
+        try response.send(
+          IndividualWorkshopPage(workshop: workshop).node.render()
+        ).end()
+    } else {
+      next()
+    }
   }
 
 }
