@@ -8,6 +8,7 @@ Config.checkEnvVars()
 // swiftlint:disable:next force_try
 WorkshopManager.update()
 ConstitutionManager.update()
+NewWorkshopManager.update()
 
 // This call never returns
 serveWebsite()

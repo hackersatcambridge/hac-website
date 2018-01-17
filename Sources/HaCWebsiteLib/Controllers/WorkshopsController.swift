@@ -46,8 +46,9 @@ struct WorkshopsController {
   }
 
   static var workshopHandler: RouterHandler = { request, response, next in 
+    dump(NewWorkshopManager.workshops)
     try response.send(
-      IndividualWorkshopPage().node.render()
+      IndividualWorkshopPage(workshop: NewWorkshopManager.workshops["workshop-example"]!).node.render()
     ).end()
   }
 
