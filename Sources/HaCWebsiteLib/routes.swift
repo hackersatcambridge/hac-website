@@ -46,6 +46,8 @@ func getWebsiteRouter() -> Router {
   router.get("/beta/landing-update-feed", handler: LandingUpdateFeedController.handler)
   router.get("/beta/workshops", handler: WorkshopsController.handler)
   router.get("/beta/workshops/:workshopId", handler: WorkshopsController.workshopHandler)
+  router.get("/beta/workshops/update", middleware: CredentialsServer.credentials)
+  router.get("/beta/workshops/update", handler: WorkshopsController.workshopUpdateHandler)
 
   router.all("/", middleware: NotFoundMiddleware())
   router.error(ErrorRoutingMiddleware())
