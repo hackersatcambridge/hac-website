@@ -17,6 +17,9 @@ public struct NewWorkshopManager {
     attributes: .concurrent
   )
 
+  private static var pollSource: DispatchSourceTimer! = nil
+  private static var currentlyUpdating = false
+
   /// The list of Workshops as derived from the workshop repos last time they were processed. Keys are workshop repo names
   public private(set) static var workshops: [String: NewWorkshop] = [:]
 
@@ -24,8 +27,30 @@ public struct NewWorkshopManager {
   private static var workshopRepoUtils: [String: GitUtil] = [:]
 
   public static func update() {
-    updateRepoList()
-    updateWorkshopsData()
+    print("Updating workshops...")
+    // Prevent multiple updates at once (might happen if an update takes longer than the poll interval)
+    if !currentlyUpdating {
+      currentlyUpdating = true
+      updateRepoList()
+      updateWorkshopsData()
+      currentlyUpdating = false
+    }
+    print("Workshops updated")
+  }
+
+  public static func startPoll() {
+    let pollQueue = DispatchQueue(label: "com.hac.website.workshops-poll-timer", attributes: .concurrent)
+    pollSource?.cancel()
+    pollSource = DispatchSource.makeTimerSource(queue: pollQueue)
+    pollSource?.setEventHandler {
+      update()
+    }
+    pollSource?.schedule(
+      deadline: DispatchTime.now(),
+      repeating: .seconds(600),
+      leeway: .seconds(2)
+    )
+    pollSource?.resume()
   }
 
   /// Update the list of workshop repositories synchronously. This does not update the workshops themselves
@@ -68,6 +93,7 @@ public struct NewWorkshopManager {
     })
   }
 
+  /// Update the in-memory copy of the workshops synchronously
   public static func updateWorkshopsData() {
     let updateDispatchGroup = DispatchGroup()
 
