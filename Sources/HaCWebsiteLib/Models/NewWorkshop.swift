@@ -31,7 +31,7 @@ public struct NewWorkshop {
   let notes: Markdown
 
   /// The prose advice for presenters of this workshop
-  let presenterGuide: Markdown
+  let presenterGuide: Markdown?
 
   /// A URL to a promotional image for the workshop, to be displayed on top of `promoImageBackground`
   let promoImageForeground: String
