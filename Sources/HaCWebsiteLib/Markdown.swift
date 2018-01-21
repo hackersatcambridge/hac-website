@@ -3,7 +3,7 @@ import HaCTML
 
 /// A type for text in Markdown form
 struct Markdown {
-  let raw: String
+  var raw: String
 
   init(_ markdown: String) {
     raw = markdown
