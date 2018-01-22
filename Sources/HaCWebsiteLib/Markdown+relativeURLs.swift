@@ -6,6 +6,7 @@ extension Markdown {
    * Markdown references (links and images) can contain relative URLs
    * This method will resolve relative URLs relative to a given base
    * e.g. '[Meow](images/cat.png)' -> '[Meow](https://hackersatcambridge.com/images/cat.png)'
+   * Note: Does not handle commented or nested references (see #208)
    */ 
   func resolveRelativeURLs(relativeTo baseURL: URL) -> Markdown {
 
