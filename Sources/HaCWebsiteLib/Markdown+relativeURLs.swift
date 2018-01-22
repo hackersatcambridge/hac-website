@@ -7,7 +7,7 @@ extension Markdown {
    * This method will resolve relative URLs relative to a given base
    * e.g. '[Meow](images/cat.png)' -> '[Meow](https://hackersatcambridge.com/images/cat.png)'
    */ 
-  mutating func resolveRelativeURLs(relativeTo baseURL: URL) {
+  func resolveRelativeURLs(relativeTo baseURL: URL) -> Markdown {
 
     // See https://regexr.com/3jh10 for demo of this regex
     let referenceTitleRegexString = 
@@ -33,7 +33,6 @@ extension Markdown {
     
     var translatedRaw = raw
     for match in referenceMatches {
-      // Get the url
       let exclamationPoint = match.captures[0]!
       let title = match.captures[1]!
       let url = match.captures[2]!
@@ -43,6 +42,6 @@ extension Markdown {
       translatedRaw.replaceSubrange(match.range, with: translatedReference)
     }
 
-    raw = translatedRaw
+    return Markdown(translatedRaw)
   }
 }

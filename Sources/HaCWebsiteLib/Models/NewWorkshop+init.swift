@@ -193,11 +193,9 @@ private struct WorkshopBuilder {
   }
 
   func getNotes() throws -> Markdown {
-    // TODO(#192): Handle embedded images in notes.md
     do {
-      var notes = try Markdown(contentsOfFile: localPath + filePaths.notesMarkdown)
-      notes.resolveRelativeURLs(relativeTo: try fileservingUrl(relativePath: filePaths.notesMarkdown))
-      return notes
+      let notes = try Markdown(contentsOfFile: localPath + filePaths.notesMarkdown)
+      return notes.resolveRelativeURLs(relativeTo: try fileservingUrl(relativePath: filePaths.notesMarkdown))
     } catch {
       throw WorkshopError.missingNotes
     }
