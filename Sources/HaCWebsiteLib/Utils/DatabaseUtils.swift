@@ -10,6 +10,10 @@ struct DatabaseURLComponents {
   let database: String
 }
 
+private let preparations = [
+  GeneralEvent.self
+]
+
 extension URL {
   var databaseURLComponents: DatabaseURLComponents? {
     if let host = self.host,
@@ -20,7 +24,7 @@ extension URL {
           host: host,
           user: user,
           password: password,
-          database: String(path.characters.dropFirst())
+          database: String(path.dropFirst())
         )
     } else {
       return nil
@@ -29,12 +33,12 @@ extension URL {
 }
 
 enum DatabaseUtils {
-  public static func prepareDatabase() {
+  public static func prepareDatabase(withPreparations: [Preparation.Type]) {
     do {
       let driver = try getDatabaseDriver()
       let database = Database(driver)
       Database.default = database
-      try GeneralEvent.prepare(database)
+      try database.prepare(withPreparations)
     } catch {
       print("Failed to prepare database")
     }
