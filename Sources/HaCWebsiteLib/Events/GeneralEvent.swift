@@ -96,30 +96,32 @@ final class GeneralEvent: Event, Entity {
   }
 }
 
-extension GeneralEvent: Preparation {
-  static func prepare(_ database: Database) throws {
-    try database.create(self) { events in 
-      events.id()
-      events.string("title")
-      events.date("startDate")
-      events.date("endDate")
-      events.string("tagLine")
-      events.string("color")
-      events.date("hypeStartDate")
-      events.date("hypeEndDate")
-      events.custom("tags", type: "TEXT[]")
-      events.string("markdown")
-      events.string("websiteURL", optional: true)
-      events.string("imageURL", optional: true)
-      events.double("latitude", optional: true)
-      events.double("longitude", optional: true)
-      events.string("address", optional: true)
-      events.string("venue", optional: true)
-      events.string("facebookEventID", optional: true)
+extension GeneralEvent {
+  enum InitPreparation: Preparation {
+    static func prepare(_ database: Database) throws {
+      try database.create(GeneralEvent.self) { events in 
+        events.id()
+        events.string("title")
+        events.date("startDate")
+        events.date("endDate")
+        events.string("tagLine")
+        events.string("color")
+        events.date("hypeStartDate")
+        events.date("hypeEndDate")
+        events.custom("tags", type: "TEXT[]")
+        events.string("markdown")
+        events.string("websiteURL", optional: true)
+        events.string("imageURL", optional: true)
+        events.double("latitude", optional: true)
+        events.double("longitude", optional: true)
+        events.string("address", optional: true)
+        events.string("venue", optional: true)
+        events.string("facebookEventID", optional: true)
+      }
     }
-  }
 
-  static func revert(_ database : Database) throws {
-    try database.delete(self)
+    static func revert(_ database : Database) throws {
+      try database.delete(GeneralEvent.self)
+    }
   }
 }
