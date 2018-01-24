@@ -10,10 +10,6 @@ struct DatabaseURLComponents {
   let database: String
 }
 
-private let preparations = [
-  GeneralEvent.self
-]
-
 extension URL {
   var databaseURLComponents: DatabaseURLComponents? {
     if let host = self.host,
