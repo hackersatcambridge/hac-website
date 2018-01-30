@@ -42,15 +42,15 @@ public struct NewWorkshopManager {
     let pollQueue = DispatchQueue(label: "com.hac.website.workshops-poll-timer", attributes: .concurrent)
     pollSource?.cancel()
     pollSource = DispatchSource.makeTimerSource(queue: pollQueue)
-    pollSource?.setEventHandler {
+    pollSource.setEventHandler {
       update()
     }
-    pollSource?.schedule(
+    pollSource.schedule(
       deadline: DispatchTime.now(),
-      repeating: .seconds(600),
+      repeating: .seconds(10),
       leeway: .seconds(2)
     )
-    pollSource?.resume()
+    pollSource.resume()
   }
 
   /// Update the list of workshop repositories synchronously. This does not update the workshops themselves
