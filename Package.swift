@@ -19,7 +19,8 @@ let package = Package(
     .package(url: "https://github.com/alexaubry/HTMLString", .upToNextMinor(from: "3.0.0")),
     .package(url: "https://github.com/vapor/fluent.git", .upToNextMinor(from: "2.4.0")),
     .package(url: "https://github.com/vapor-community/postgresql-driver.git", .upToNextMinor(from: "2.1.0")),
-    .package(url: "https://github.com/IBM-Swift/Kitura-CredentialsHTTP.git", .upToNextMinor(from: "2.0.0"))
+    .package(url: "https://github.com/IBM-Swift/Kitura-CredentialsHTTP.git", .upToNextMinor(from: "2.0.0")),
+    .package(url: "https://github.com/sharplet/Regex", .upToNextMajor(from: "1.1.0"))
   ],
   targets: [
     .target(name: "HaCTML", dependencies: [
@@ -37,7 +38,8 @@ let package = Package(
       "HTMLString",
       "Fluent",
       "PostgreSQLDriver",
-      "CredentialsHTTP"
+      "CredentialsHTTP",
+      "Regex"
     ]),
     .target(name: "HaCWebsite", dependencies: [
       "HaCWebsiteLib"
