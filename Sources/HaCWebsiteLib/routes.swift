@@ -1,12 +1,11 @@
 import Foundation
 import Kitura
+import KituraCompression
 import DotEnv
 import SwiftyJSON
 import LoggerAPI
 import HeliumLogger
 import HaCTML
-import Fluent
-import PostgreSQLDriver
 
 func getWebsiteRouter() -> Router {
   let router = Router()
@@ -29,12 +28,13 @@ func getWebsiteRouter() -> Router {
   /// Intended for use by GitHub webhooks
   router.post("/api/refresh_workshops", handler: GitHubWebhookController.handler(updater: WorkshopManager.update))
   router.post("/api/refresh_constitution", handler: GitHubWebhookController.handler(updater: ConstitutionManager.update))
+
+  // Used to add events to the database (see `/Docs/Api` for documentation)
   router.post("/api/add_event", allowPartialMatch: false, middleware: BodyParser())
   router.post("/api/add_event", middleware: CredentialsServer.credentials)
   router.post("/api/add_event", handler: EventApiController.handler)
 
   router.get("/", handler: LandingPageController.handler)
-  router.get("/workshops", handler: WorkshopsController.handler)
   router.get("/constitution", handler: ConstitutionController.handler)
 
   /// Custom event pages
@@ -42,15 +42,23 @@ func getWebsiteRouter() -> Router {
 
   // MARK: Features in progress
   router.get("/beta/landing-update-feed", handler: LandingUpdateFeedController.handler)
+  router.get("/beta/workshops", handler: WorkshopsController.handler)
+  router.get("/beta/workshops/:workshopId", handler: WorkshopsController.workshopHandler)
+  router.get("/beta/workshops/update", middleware: CredentialsServer.credentials)
+  router.get("/beta/workshops/update", handler: WorkshopsController.workshopUpdateHandler)
 
   router.all("/", middleware: NotFoundMiddleware())
-
+  router.error(ErrorRoutingMiddleware())
+  
+  // Enable http gzip compression globally
+  // Compression is the last step in middleware chain, add all route handlers above
+  router.all(middleware: Compression())
 
   return router
 }
 
 public func serveWebsite() {
-  DatabaseUtils.prepareDatabase()
+  DatabaseUtils.prepareDatabase(withPreparations: DatabasePreparations.preparations)
   // Helium logger provides logging for Kitura processes
   HeliumLogger.use()
   // This speaks to Kitura's 'LoggerAPI' to set the default logger to HeliumLogger.

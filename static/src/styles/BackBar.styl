@@ -1,0 +1,41 @@
+.BackBar {
+  background-color: white;
+  padding: grid(1.5);
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.05);
+  text-align: center;
+  position: relative;
+  height: grid(8);
+}
+
+@media screen and (max-width: 750px) {
+  .BackBar {
+    text-align: right;
+  }
+}
+
+.BackBar__backButton {
+  position: absolute;
+  left: grid(1.5);
+}
+
+.BackBar__branding {
+  display: inline-block;
+  padding-top: 0.5em;
+}
+
+.BackBar__branding__short {
+  display: none;
+}
+
+.BackBar__branding__full {
+  display: inline-block;
+}
+
+@media screen and (max-width: 400px) {
+  .BackBar__branding__short {
+    display: inline-block;
+  }
+  .BackBar__branding__full {
+    display: none;
+  }
+}

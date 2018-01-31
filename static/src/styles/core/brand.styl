@@ -2,8 +2,21 @@
   height: grid(4);
 }
 
+// The abbreviated logo ('HaC' rather than 'Hackers at Cambridge')
+.SiteLogo--short {
+  height: grid(3);
+}
+
+// A condensed size for tighter spots
+.SiteLogo--small {
+  height: grid(3);
+}
+.SiteLogo--small.SiteLogo--short {
+  height: grid(2.25);
+}
+
 .TagLine {
   Text__headerScale(0);
-  font-family: $Text__monospacedFont;
+  font-family: $Text__monospacedDisplayFont;
   color: $Color__mediumGrayText;
 }

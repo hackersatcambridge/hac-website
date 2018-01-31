@@ -13,12 +13,14 @@ let package = Package(
     .package(url: "https://github.com/IBM-Swift/SwiftyJSON.git", .upToNextMinor(from: "17.0.0")),
     .package(url: "https://github.com/IBM-Swift/HeliumLogger.git", .upToNextMinor(from: "1.7.1")),
     .package(url: "https://github.com/IBM-Swift/Kitura-Markdown.git", .upToNextMajor(from: "0.9.1")),
+    .package(url: "https://github.com/IBM-Swift/Kitura-Compression.git", .upToNextMajor(from: "2.0.0")),
     .package(url: "https://github.com/hackersatcambridge/YamlSwift.git", .upToNextMinor(from: "4.0.0")),
     .package(url: "https://github.com/jaredkhan/SwiftDotEnv.git", .upToNextMinor(from: "1.2.0")),
     .package(url: "https://github.com/alexaubry/HTMLString", .upToNextMinor(from: "3.0.0")),
     .package(url: "https://github.com/vapor/fluent.git", .upToNextMinor(from: "2.4.0")),
     .package(url: "https://github.com/vapor-community/postgresql-driver.git", .upToNextMinor(from: "2.1.0")),
-    .package(url: "https://github.com/IBM-Swift/Kitura-CredentialsHTTP.git", .upToNextMinor(from: "2.0.0"))
+    .package(url: "https://github.com/IBM-Swift/Kitura-CredentialsHTTP.git", .upToNextMinor(from: "2.0.0")),
+    .package(url: "https://github.com/sharplet/Regex", .upToNextMajor(from: "1.1.0"))
   ],
   targets: [
     .target(name: "HaCTML", dependencies: [
@@ -30,12 +32,14 @@ let package = Package(
       "SwiftyJSON",
       "HeliumLogger",
       "KituraMarkdown",
+      "KituraCompression",
       "Yaml",
       "SwiftDotEnv",
       "HTMLString",
       "Fluent",
       "PostgreSQLDriver",
-      "CredentialsHTTP"
+      "CredentialsHTTP",
+      "Regex"
     ]),
     .target(name: "HaCWebsite", dependencies: [
       "HaCWebsiteLib"

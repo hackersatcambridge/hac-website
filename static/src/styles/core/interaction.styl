@@ -12,3 +12,41 @@
 .BigButton:hover {
   background: darken($Color__bright1, 20%);
 }
+
+.BigButton--back:before {
+  content: "←";
+  padding-right: 0.5em;
+}
+
+.BigButton--back {
+  padding-left: grid(2);
+}
+
+.BigButton--inline {
+  margin-right: 1em;
+  margin-bottom: 1em;
+}
+
+.BigButton--facebook {
+  background: $Color__facebook;
+  box-shadow: 0px 2px 6px alpha(darken($Color__facebook, 50%), 0.3);
+}
+.BigButton--facebook:hover {
+  background: darken($Color__facebook, 20%);
+}
+
+.BigButton--youtube {
+  background: $Color__youtube;
+  box-shadow: 0px 2px 6px alpha(darken($Color__youtube, 50%), 0.3);
+}
+.BigButton--youtube:hover {
+  background: darken($Color__youtube, 20%);
+}
+
+.BigButton--github {
+  background: $Color__github;
+  box-shadow: 0px 2px 6px alpha(darken($Color__github, 50%), 0.3);
+}
+.BigButton--github:hover {
+  background: darken($Color__github, 20%);
+}
