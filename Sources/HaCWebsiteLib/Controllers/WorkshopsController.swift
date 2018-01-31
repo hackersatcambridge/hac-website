@@ -23,4 +23,11 @@ struct WorkshopsController {
     }
   }
 
+  static var workshopUpdateHandler: RouterHandler = { request, response, next in
+    NewWorkshopManager.update()
+    try response.send(
+      "Workshops updated!"
+    ).end()
+  }
+
 }

@@ -9,6 +9,7 @@ Config.checkEnvVars()
 WorkshopManager.update()
 ConstitutionManager.update()
 NewWorkshopManager.update()
+NewWorkshopManager.startPoll()
 
 // This call never returns
 serveWebsite()
