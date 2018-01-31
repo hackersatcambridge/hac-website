@@ -117,8 +117,15 @@ struct LandingPage: Nodeable {
 
                 If you've missed one of our workshops and would like to catch up, check out our [YouTube page](\(youtubeUrl)) for recordings.
 
-                If you would like to help out at one of our workshops, join the [demonstrators group](\(demonstratorsGroupUrl)), we'd love to have you! 
-              """)
+                If you would like to help out at one of our workshops, join the [demonstrators group](\(demonstratorsGroupUrl)), we'd love to have you!
+              """),
+              El.A[
+                Attr.href => "/workshops",
+                Attr.className => "BigButton"
+              ].containing(
+                "Check out our workshops"
+              )
+
             )
           ),
           El.Article[Attr.className => "LandingAbout__section"].containing(
