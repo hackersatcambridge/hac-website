@@ -26,7 +26,6 @@ func getWebsiteRouter() -> Router {
   router.all(assetsConfig.urlBase, middleware: Assets.fileServingMiddleware)
 
   /// Intended for use by GitHub webhooks
-  router.post("/api/refresh_workshops", handler: GitHubWebhookController.handler(updater: WorkshopManager.update))
   router.post("/api/refresh_constitution", handler: GitHubWebhookController.handler(updater: ConstitutionManager.update))
 
   // Used to add events to the database (see `/Docs/Api` for documentation)
@@ -49,7 +48,7 @@ func getWebsiteRouter() -> Router {
 
   router.all("/", middleware: NotFoundMiddleware())
   router.error(ErrorRoutingMiddleware())
-  
+
   // Enable http gzip compression globally
   // Compression is the last step in middleware chain, add all route handlers above
   router.all(middleware: Compression())
