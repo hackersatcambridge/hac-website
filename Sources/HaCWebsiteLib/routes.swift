@@ -6,8 +6,6 @@ import SwiftyJSON
 import LoggerAPI
 import HeliumLogger
 import HaCTML
-import Fluent
-import PostgreSQLDriver
 
 func getWebsiteRouter() -> Router {
   let router = Router()
@@ -60,7 +58,7 @@ func getWebsiteRouter() -> Router {
 }
 
 public func serveWebsite() {
-  DatabaseUtils.prepareDatabase()
+  DatabaseUtils.prepareDatabase(withPreparations: DatabasePreparations.preparations)
   // Helium logger provides logging for Kitura processes
   HeliumLogger.use()
   // This speaks to Kitura's 'LoggerAPI' to set the default logger to HeliumLogger.

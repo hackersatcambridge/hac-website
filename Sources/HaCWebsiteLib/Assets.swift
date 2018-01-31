@@ -85,7 +85,7 @@ private struct AssetResolver {
 
 private func omitLeadingSlash(_ string: String) -> String {
   if (string[string.startIndex] == "/") {
-    return string.substring(from: string.index(after: string.startIndex))
+    return String(string[string.index(after: string.startIndex)...])
   }
 
   return string
