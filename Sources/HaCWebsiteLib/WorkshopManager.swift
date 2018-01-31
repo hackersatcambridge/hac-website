@@ -3,7 +3,7 @@ import DotEnv
 import Dispatch
 import Yaml
 
-public struct NewWorkshopManager {
+public struct WorkshopManager {
   public enum Error: Swift.Error {
     case updateFailed(String)
   }
@@ -21,7 +21,7 @@ public struct NewWorkshopManager {
   private static var currentlyUpdating = false
 
   /// The list of Workshops as derived from the workshop repos last time they were processed. Keys are workshop repo names
-  public private(set) static var workshops: [String: NewWorkshop] = [:]
+  public private(set) static var workshops: [String: Workshop] = [:]
 
   /// All the workshop repos that we know about. Keys are workshop repo names
   private static var workshopRepoUtils: [String: GitUtil] = [:]
@@ -102,7 +102,7 @@ public struct NewWorkshopManager {
       updateQueue.async {
         do {
           repoUtil.update()
-          let updatedWorkshop = try NewWorkshop(localPath: repoUtil.localRepoPath, headCommitSha: repoUtil.getHeadCommitSha())
+          let updatedWorkshop = try Workshop(localPath: repoUtil.localRepoPath, headCommitSha: repoUtil.getHeadCommitSha())
           workshops[repoName] = updatedWorkshop
         } catch {
           print("Failed to initialise workshop from repo: \(repoName)")

@@ -2,7 +2,7 @@ import Foundation
 
 /// Represents a workshop
 // TODO: Rename this struct to `Workshop` when it's ready for use
-public struct NewWorkshop {
+public struct Workshop {
   let title: String
 
   /// People that have directly contributed content to this workshop

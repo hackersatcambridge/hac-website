@@ -1,10 +1,10 @@
 import XCTest
 @testable import HaCWebsiteLib
 
-class NewWorkshopTests: HaCWebsiteLibTestCase {
+class WorkshopTests: HaCWebsiteLibTestCase {
   func testParse() throws {
-    let workshopDataPath = try getTestResourcePath(at: "NewWorkshopTestData/workshop-passing-example")
-    let workshop = try NewWorkshop(localPath: workshopDataPath, headCommitSha: "abcde")
+    let workshopDataPath = try getTestResourcePath(at: "WorkshopTestData/workshop-passing-example")
+    let workshop = try Workshop(localPath: workshopDataPath, headCommitSha: "abcde")
 
     XCTAssertEqual(workshop.workshopId, "passing-example")
     XCTAssertEqual(workshop.title, "Sample Workshop")
@@ -31,16 +31,16 @@ class NewWorkshopTests: HaCWebsiteLibTestCase {
   }
 
   func testMissingDetails() {
-    XCTAssertThrowsError(try NewWorkshop(localPath: try! getTestResourcePath(at: "NewWorkshopTestData/workshop-missing-contributors"), headCommitSha: "abcde"))
-    XCTAssertThrowsError(try NewWorkshop(localPath: try! getTestResourcePath(at: "NewWorkshopTestData/workshop-missing-notes"), headCommitSha: "abcde"))
-    XCTAssertThrowsError(try NewWorkshop(localPath: try! getTestResourcePath(at: "NewWorkshopTestData/workshop-missing-tags"), headCommitSha: "abcde"))
+    XCTAssertThrowsError(try Workshop(localPath: try! getTestResourcePath(at: "WorkshopTestData/workshop-missing-contributors"), headCommitSha: "abcde"))
+    XCTAssertThrowsError(try Workshop(localPath: try! getTestResourcePath(at: "WorkshopTestData/workshop-missing-notes"), headCommitSha: "abcde"))
+    XCTAssertThrowsError(try Workshop(localPath: try! getTestResourcePath(at: "WorkshopTestData/workshop-missing-tags"), headCommitSha: "abcde"))
   }
 
   func testDoubleBackground() {
-    XCTAssertThrowsError(try NewWorkshop(localPath: try! getTestResourcePath(at: "NewWorkshopTestData/workshop-double-bg"), headCommitSha: "abcde"))
+    XCTAssertThrowsError(try Workshop(localPath: try! getTestResourcePath(at: "WorkshopTestData/workshop-double-bg"), headCommitSha: "abcde"))
   }
 
-  static var allTests : [(String, (NewWorkshopTests) -> () throws -> Void)] {
+  static var allTests : [(String, (WorkshopTests) -> () throws -> Void)] {
     return [
       ("testParse", testParse),
       ("testMissingDetails", testMissingDetails),

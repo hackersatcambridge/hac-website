@@ -2,7 +2,7 @@ import HaCTML
 
 /// Above-the-fold for the WorkshopsIndexPage
 struct WorkshopsIndexArchive: Nodeable {
-  let workshops: [NewWorkshop]
+  let workshops: [Workshop]
 
   var node: Node {
     return El.Div[Attr.className => "WorkshopsIndexPage__archive"].containing(
