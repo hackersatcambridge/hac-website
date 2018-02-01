@@ -15,11 +15,11 @@ private let filePaths = (
 
 private let validImageExtensions = ["jpg", "svg", "png", "gif"]
 
-extension NewWorkshop {
-  /// Create a NewWorkshop from a local path
+extension Workshop {
+  /// Create a Workshop from a local path
   init(localPath: String, headCommitSha: String) throws {
-    workshopId = try NewWorkshop.getWorkshopId(localPath: localPath)
-    let metadata = try NewWorkshop.getMetadata(localPath: localPath)
+    workshopId = try Workshop.getWorkshopId(localPath: localPath)
+    let metadata = try Workshop.getMetadata(localPath: localPath)
     let builder = WorkshopBuilder(localPath: localPath, commitSha: headCommitSha, workshopId: workshopId, metadata: metadata)
 
     presenterGuide = try builder.getPresenterGuide()

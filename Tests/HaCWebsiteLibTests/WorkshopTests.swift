@@ -3,68 +3,48 @@ import XCTest
 
 class WorkshopTests: HaCWebsiteLibTestCase {
   func testParse() throws {
-    let testMetadata = try getTestResourceString(from: "conquering_linux/metadata.yaml")
-    let testDescription = try getTestResourceString(from: "conquering_linux/description.md")
-    let testPrerequisites = try getTestResourceString(from: "conquering_linux/prerequisites.md")
+    let workshopDataPath = try getTestResourcePath(at: "WorkshopTestData/workshop-passing-example")
+    let workshop = try Workshop(localPath: workshopDataPath, headCommitSha: "abcde")
 
-    let workshop = try Workshop.parse(metadataYaml: testMetadata, descriptionMarkdown: testDescription, prerequisitesMarkdown: testPrerequisites)
-    
-    XCTAssertEqual(workshop.title, "Conquering Linux")
-    XCTAssertEqual(workshop.authors, ["Robin McCorkell"])
-    XCTAssertEqual(workshop.presenters, ["Robin McCorkell"])
-    XCTAssertEqual(workshop.thanks, [
-      Workshop.Thanks(to: "Tristram Newman", reason: "Video"),
-      Workshop.Thanks(to: "University of Cambridge Computer Laboratory", reason: nil)
+    XCTAssertEqual(workshop.workshopId, "passing-example")
+    XCTAssertEqual(workshop.title, "Sample Workshop")
+    XCTAssertEqual(workshop.contributors, ["Richard HaC"])
+    XCTAssertEqual(workshop.thanks, ["Hacky Hal the chatbot pal"])
+    XCTAssertEqual(workshop.furtherReadingLinks, [
+      Link(text: "Sampling", url: URL(string: "https://en.wikipedia.org/wiki/Sampling_(music)")!),
+      Link(text: "Best websites a programmer should visit", url: URL(string: "https://github.com/sdmg15/Best-websites-a-programmer-should-visit#coding-practice-for-beginners")!)
     ])
-    XCTAssertEqual(workshop.recommendations, [
-      Workshop.Recommendation(title: "Install Guide", url: URL(string: "https://wiki.archlinux.org/index.php/Installation_guide")!),
-      Workshop.Recommendation(title: "Arch Wiki", url: URL(string: "https://wiki.archlinux.org/")!)
-    ])
-    // Not attempting to match full HTML generated because whitespace may vary between Markdown renderers
-    XCTAssert(workshop.prerequisites.html.contains("<a href=\"https://www.virtualbox.org/wiki/Downloads\">VirtualBox</a>"))
-    XCTAssert(workshop.description.html.contains("A workshop on installing and configuring Arch Linux."))
-    XCTAssertEqual(workshop.links, [URL(string: "https://www.youtube.com/watch?v=AqZWwsM3jaY")!])
-    XCTAssertEqual(workshop.tags, ["Linux"])
+    XCTAssertEqual(workshop.recordingLink, URL(string: "https://www.youtube.com/watch?v=FHG2oizTlpY"))
+    XCTAssertEqual(workshop.slidesLink, URL(string: "https://docs.google.com/presentation/d/10VeyoN7EzxfezPjInAda_uEBZ1yp1UkY7z8ST78Do8Q"))
+    XCTAssertEqual(workshop.tags, ["beginner", "javascript", "web", "programming"])
+    XCTAssertEqual(workshop.license, "MIT")
+
+    XCTAssert(workshop.notes.raw.contains("The main source of the workshop content."))
+
+    XCTAssertEqual(workshop.promoImageForeground, "https://rawgit.com/hackersatcambridge/workshop-passing-example/abcde/info/promo_images/fg.png")
+    XCTAssertEqual(workshop.promoImageBackground, Background.color("#fffeee"))
+
+    XCTAssertEqual(workshop.description.raw, "This workshop will take you through the basics of x. \nWe'll talk about how to foo and show you how, with a little work, you can bar your baz.")
+    XCTAssertEqual(workshop.prerequisites.raw, "This workshop assumes:\n- Basic command line knowledge (you should be comfortable with the `cd`, `ls`, and `man` commands)\n- Some basic programming experience (you should be familiar with variables, loops and functions)")
+    XCTAssertEqual(workshop.setupInstructions.raw, "If you have a Windows laptop, please install the application 'PuTTY' before you arrive by downloading ['putty.exe'](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)\n\nThis workshop requires connection to a UNIX machine (Linux, macOS) so to play along you'll be connecting to a UNIX machine using PuTTY.")
+    XCTAssertEqual(workshop.examplesLink?.absoluteString, "https://github.com/hackersatcambridge/workshop-passing-example/blob/master/examples")
   }
 
-  func checkThrows(metadataPath: String) {
-    let testMalformedMetadata = try! getTestResourceString(from: metadataPath)
-    let testDescription = try! getTestResourceString(from: "conquering_linux/description.md")
-    let testPrerequisites = try! getTestResourceString(from: "conquering_linux/prerequisites.md")
-
-    XCTAssertThrowsError(try Workshop.parse(
-      metadataYaml: testMalformedMetadata,
-      descriptionMarkdown: testDescription,
-      prerequisitesMarkdown: testPrerequisites
-    ))
+  func testMissingDetails() {
+    XCTAssertThrowsError(try Workshop(localPath: try! getTestResourcePath(at: "WorkshopTestData/workshop-missing-contributors"), headCommitSha: "abcde"))
+    XCTAssertThrowsError(try Workshop(localPath: try! getTestResourcePath(at: "WorkshopTestData/workshop-missing-notes"), headCommitSha: "abcde"))
+    XCTAssertThrowsError(try Workshop(localPath: try! getTestResourcePath(at: "WorkshopTestData/workshop-missing-tags"), headCommitSha: "abcde"))
   }
 
-  func testInvalidURL() {
-    checkThrows(metadataPath: "invalid_url.yaml")
-  }
-
-  func testMissingRecommendationName() {
-    checkThrows(metadataPath: "missing_name.yaml")
-  }
-
-  func testMissingTags() {
-    checkThrows(metadataPath: "missing_tags.yaml")
-  }
-
-  func testMissingTitle() {
-    checkThrows(metadataPath: "missing_title.yaml")
-  }
-
-  func testMissingThanksTo() {
-    checkThrows(metadataPath: "missing_to.yaml")
+  func testDoubleBackground() {
+    XCTAssertThrowsError(try Workshop(localPath: try! getTestResourcePath(at: "WorkshopTestData/workshop-double-bg"), headCommitSha: "abcde"))
   }
 
   static var allTests : [(String, (WorkshopTests) -> () throws -> Void)] {
     return [
       ("testParse", testParse),
-      ("testMissingTags", testMissingTags),
-      ("testMissingTitle", testMissingTitle),
-      ("testMissingThanksTo", testMissingThanksTo),
+      ("testMissingDetails", testMissingDetails),
+      ("testDoubleBackground", testDoubleBackground)
     ]
   }
 }

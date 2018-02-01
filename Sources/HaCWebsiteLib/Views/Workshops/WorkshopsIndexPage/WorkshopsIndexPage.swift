@@ -4,7 +4,7 @@ import HaCTML
 
 struct WorkshopsIndexPage {
 
-  let allWorkshops: [NewWorkshop]
+  let allWorkshops: [Workshop]
 
   let demonstratorsGroupUrl = "https://www.facebook.com/groups/1567785333234852/"
 

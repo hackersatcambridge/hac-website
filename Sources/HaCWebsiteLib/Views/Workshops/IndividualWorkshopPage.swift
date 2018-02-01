@@ -4,7 +4,7 @@ import Foundation
 // swiftlint:disable line_length
 
 struct IndividualWorkshopPage {
-  let workshop: NewWorkshop
+  let workshop: Workshop
 
   var node: Node {
     return Page(
