@@ -22,7 +22,7 @@ class HaCWebsiteLibTestCase: XCTestCase {
    */
   func getTestResourcePath(at relativePath: String, file: String = #file, line: UInt = #line) throws -> String {
     let thisFile = #file
-    let components = thisFile.characters.split(separator: "/").map(String.init)
+    let components = thisFile.split(separator: "/").map(String.init)
     let toTestsDir = components[0 ..< components.count - 1]
     let filePath = "/" + toTestsDir.joined(separator: "/") + "/Resources/" + relativePath
 
