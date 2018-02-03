@@ -13,7 +13,8 @@ enum LandingFeatures {
     LandingFeatures.binaryExploitation,
     LandingFeatures.gamesWithLove,
     LandingFeatures.gameGig,
-    LandingFeatures.introToUnity
+    LandingFeatures.introToUnity,
+    LandingFeatures.continuousIntegrationWorkshop
   ]
 
   /// Gets the most currently appropriate feature
