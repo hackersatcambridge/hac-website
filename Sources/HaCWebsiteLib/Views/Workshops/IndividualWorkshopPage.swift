@@ -21,11 +21,7 @@ struct IndividualWorkshopPage {
 
   var hero: Node {
     return El.Div[Attr.className => "WorkshopHero"].containing(
-      ImageHero(
-        background: workshop.promoImageBackground,
-        imagePath: workshop.promoImageForeground,
-        alternateText: workshop.title
-      )
+      workshop.hero
     )
   }
 

@@ -53,4 +53,12 @@ public struct Workshop {
 
   /// A link to code examples for this workshop
   let examplesLink: URL?
+
+  var hero: ImageHero {
+    return ImageHero(
+        background: self.promoImageBackground,
+        imagePath: self.promoImageForeground,
+        alternateText: self.title
+      )
+  }
 }

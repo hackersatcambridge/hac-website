@@ -10,11 +10,7 @@ extension LandingFeatures {
       ),
       eventLink: "https://www.facebook.com/events/181764052556196/",
       liveLink: "/workshops/continuous-integration",
-      hero: ImageHero(
-        background: WorkshopManager.workshops["workshop-continuous-integration"]!.promoImageBackground,
-        imagePath: WorkshopManager.workshops["workshop-continuous-integration"]!.promoImageForeground,
-        alternateText: WorkshopManager.workshops["workshop-continuous-integration"]!.title
-      ),
+      hero: WorkshopManager.workshops["workshop-continuous-integration"]!.hero,
       textShade: .light
     )
   }
