@@ -4,7 +4,7 @@ import XCTest
 class MarkdownTests: HaCWebsiteLibTestCase {
   func testAbsoluteOnly() throws {
     let markdown = Markdown(try getTestResourceString(from: "MarkdownRelativeURLTestData/absolute_only.md"))
-    let transformedMarkdown = markdown.resolveRelativeURLs(relativeTo: URL(string: "https://test.com")!)
+    let transformedMarkdown = markdown.resolvingRelativeURLs(relativeTo: URL(string: "https://test.com")!)
 
     XCTAssertEqual(transformedMarkdown.raw,
       """
@@ -21,7 +21,7 @@ class MarkdownTests: HaCWebsiteLibTestCase {
 
   func testSomeRelative() throws {
     let markdown = Markdown(try getTestResourceString(from: "MarkdownRelativeURLTestData/some_relative.md"))
-    let transformedMarkdown = markdown.resolveRelativeURLs(relativeTo: URL(string: "https://test.com/stuff/test.html")!)
+    let transformedMarkdown = markdown.resolvingRelativeURLs(relativeTo: URL(string: "https://test.com/stuff/test.html")!)
 
     XCTAssertEqual(
       transformedMarkdown.raw,
@@ -39,7 +39,7 @@ class MarkdownTests: HaCWebsiteLibTestCase {
 
   func testBracketing() throws {
     let markdown = Markdown(try getTestResourceString(from: "MarkdownRelativeURLTestData/brackets.md"))
-    let transformedMarkdown = markdown.resolveRelativeURLs(relativeTo: URL(string: "https://test.com")!)
+    let transformedMarkdown = markdown.resolvingRelativeURLs(relativeTo: URL(string: "https://test.com")!)
 
     XCTAssertEqual(transformedMarkdown.raw,
       """
