@@ -224,7 +224,7 @@ private struct WorkshopBuilder {
 
   func getFurtherReadingLinks() throws -> [Link] {
     guard let links = metadata["further_reading_links"].array else {
-      throw WorkshopError.malformedMetadata("Missing further reading links")
+      return []
     }
     return try links.map({
       guard let text = $0["text"].string,
