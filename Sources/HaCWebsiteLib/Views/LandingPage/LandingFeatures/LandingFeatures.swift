@@ -23,11 +23,8 @@ enum LandingFeatures {
 
     // We want to return the first non-nil LandingFeature whos expiry date is
     // after the current date. As the list itself is a list of optionals, we
-    // need to safely unwrap the result at least once as features.first returns
-    // a double optional.
-    return (
-      features.first { $0?.expiryDate ?? currentDate > currentDate }
-      ?? nil
-    )
+    // need to convert it to a list of non-optionals using flatMap first (as
+    // otherwise a value of type double-optional is returned.)
+    return  features.flatMap{ $0 }.first { $0.expiryDate > currentDate }
   }
 }
