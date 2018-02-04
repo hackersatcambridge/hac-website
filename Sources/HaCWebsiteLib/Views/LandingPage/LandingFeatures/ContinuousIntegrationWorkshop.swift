@@ -2,7 +2,11 @@ import HaCTML
 import Foundation
 
 extension LandingFeatures {
-  static var continuousIntegrationWorkshop: LandingFeature {
+  static var continuousIntegrationWorkshop: LandingFeature? {
+    guard let hero = WorkshopManager.workshops["workshop-continuous-integration"]?.hero else {
+        return nil
+    }
+
     return EventFeature(
       eventPeriod: DateInterval(
         start: Date.from(year: 2018, month: 2, day: 5, hour: 13, minute: 15    ),
@@ -10,7 +14,7 @@ extension LandingFeatures {
       ),
       eventLink: "https://www.facebook.com/events/181764052556196/",
       liveLink: "/workshops/continuous-integration",
-      hero: WorkshopManager.workshops["workshop-continuous-integration"]!.hero,
+      hero: hero,
       textShade: .light
     )
   }

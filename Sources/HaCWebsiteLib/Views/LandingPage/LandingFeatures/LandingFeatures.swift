@@ -2,7 +2,7 @@ import Foundation
 
 enum LandingFeatures {
   /// Features in ascending order of date
-  static let features: [LandingFeature] = [
+  static let features: [LandingFeature?] = [
     LandingFeatures.introToProgramming1,
     LandingFeatures.introToProgramming2,
     LandingFeatures.bashWorkshop,
@@ -20,6 +20,14 @@ enum LandingFeatures {
   /// Gets the most currently appropriate feature
   static var currentFeature: LandingFeature? {
     let currentDate = Date()
-    return features.first { $0.expiryDate > currentDate }
+
+    // We want to return the first non-nil LandingFeature whos expiry date is
+    // after the current date. As the list itself is a list of optionals, we
+    // need to safely unwrap the result at least once as features.first returns
+    // a double optional.
+    return (
+      features.first { $0?.expiryDate ?? currentDate > currentDate }
+      ?? nil
+    )
   }
 }
