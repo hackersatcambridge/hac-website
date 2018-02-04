@@ -71,6 +71,7 @@ private enum WorkshopError: Swift.Error {
   case missingPrerequisites
   case missingPromoImageBackground
   case missingPromoImageForeground
+  case missingMetadataKey(String)
   case multiplePromoImageForegrounds
   case multiplePromoImageBackgrounds
   case invalidPromoImageForegroundFormat
@@ -214,7 +215,11 @@ private struct WorkshopBuilder {
   }
 
   func getThanks() throws -> [String] {
-    return try stringsArray(for: "thanks", in: metadata)
+    do {
+      return try stringsArray(for: "thanks", in: metadata)
+    } catch WorkshopError.missingMetadataKey(_) {
+      return []
+    }
   }
 
   func getFurtherReadingLinks() throws -> [Link] {
@@ -283,7 +288,7 @@ private func getFileExtension(fromPath filePath: String) -> String? {
 
 private func stringsArray(for key: Yaml, in metadata: Yaml) throws -> [String] {
   guard let values = metadata[key].array else {
-    throw WorkshopError.malformedMetadata("Missing \(key) list")
+    throw WorkshopError.missingMetadataKey("Missing \(key) list")
   }
 
   return try values.map({
