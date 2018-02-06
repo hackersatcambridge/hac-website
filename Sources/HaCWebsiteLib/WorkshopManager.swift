@@ -59,7 +59,7 @@ public struct WorkshopManager {
     do {
       let indexYamlString = try String(
         contentsOf: URL(
-          string: "https://raw.githubusercontent.com/hackersatcambridge/workshops-refactor/master/workshops.yaml"
+          string: "https://raw.githubusercontent.com/hackersatcambridge/workshops/master/workshops.yaml"
         )!,
         encoding: .utf8
       )
