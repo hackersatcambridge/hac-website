@@ -3,15 +3,15 @@ import Foundation
 
 struct Page: Nodeable {
   let title: String
-  let customStylesheets: [String]
+  let postFixElements: Nodeable
   let content: Nodeable
 
-  init(title: String = defaultTitle, customStylesheets: [String] = [], content: Nodeable) {
+  init(title: String = defaultTitle, postFixElements: Nodeable = Fragment(), content: Nodeable) {
     self.title = title
-    self.customStylesheets = customStylesheets
+    self.postFixElements = postFixElements
     self.content = content
   }
-  
+
   public var node: Node {
     return Fragment(
       El.Doctype,
@@ -22,7 +22,7 @@ struct Page: Nodeable {
           El.Link[Attr.rel => "icon", Attr.type => "favicon/png", Attr.href => Assets.publicPath("/images/favicon.png")],
           El.Title.containing(title),
           Page.stylesheet(forUrl: Assets.publicPath("/styles/main.css")),
-          Fragment(customStylesheets.map { Page.stylesheet(forUrl: Assets.publicPath("/styles/custom/\($0).css")) })
+          postFixElements
         )
       ),
       El.Body.containing(
@@ -52,7 +52,7 @@ struct Page: Nodeable {
 
   private static let defaultTitle = "Cambridge's student tech society | Hackers at Cambridge"
 
-  private static func stylesheet(forUrl urlString: String) -> Node {
+  public static func stylesheet(forUrl urlString: String) -> Node {
     return El.Link[Attr.rel => "stylesheet", Attr.type => "text/css", Attr.href => urlString]
   }
 }

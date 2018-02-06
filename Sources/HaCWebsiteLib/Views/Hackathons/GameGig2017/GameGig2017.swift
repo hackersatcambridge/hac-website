@@ -186,7 +186,7 @@ struct GameGig2017: Hackathon {
 
     return Page(
       title: "Hackers at Cambridge Game Gig 80's",
-      customStylesheets: ["gamegig2017"],
+      postFixElements: Page.stylesheet(forUrl: Assets.publicPath("/styles/custom/gamegig2017.css")),
       content: Fragment(
         El.Div[Attr.className => "GameGigHero"].containing(
           El.Img[Attr.className => "GameGigHero__image", Attr.src => Assets.publicPath("/images/gamegig3000/gamegig-foreground.png")]
