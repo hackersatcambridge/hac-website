@@ -3,10 +3,10 @@ import XCTest
 
 class MarkdownTests: HaCWebsiteLibTestCase {
   func testAbsoluteOnly() throws {
-    var markdown = Markdown(try getTestResourceString(from: "MarkdownRelativeURLTestData/absolute_only.md"))
-    markdown.resolveRelativeURLs(relativeTo: URL(string: "https://test.com")!)
+    let markdown = Markdown(try getTestResourceString(from: "MarkdownRelativeURLTestData/absolute_only.md"))
+    let transformedMarkdown = markdown.resolvingRelativeURLs(relativeTo: URL(string: "https://test.com")!)
 
-    XCTAssertEqual(markdown.raw,
+    XCTAssertEqual(transformedMarkdown.raw,
       """
       This is a test
 
@@ -20,10 +20,11 @@ class MarkdownTests: HaCWebsiteLibTestCase {
   }
 
   func testSomeRelative() throws {
-    var markdown = Markdown(try getTestResourceString(from: "MarkdownRelativeURLTestData/some_relative.md"))
-    markdown.resolveRelativeURLs(relativeTo: URL(string: "https://test.com/stuff/test.html")!)
+    let markdown = Markdown(try getTestResourceString(from: "MarkdownRelativeURLTestData/some_relative.md"))
+    let transformedMarkdown = markdown.resolvingRelativeURLs(relativeTo: URL(string: "https://test.com/stuff/test.html")!)
 
-    XCTAssertEqual(markdown.raw,
+    XCTAssertEqual(
+      transformedMarkdown.raw,
       """
       This is a test
 
@@ -37,10 +38,10 @@ class MarkdownTests: HaCWebsiteLibTestCase {
   }
 
   func testBracketing() throws {
-    var markdown = Markdown(try getTestResourceString(from: "MarkdownRelativeURLTestData/brackets.md"))
-    markdown.resolveRelativeURLs(relativeTo: URL(string: "https://test.com")!)
+    let markdown = Markdown(try getTestResourceString(from: "MarkdownRelativeURLTestData/brackets.md"))
+    let transformedMarkdown = markdown.resolvingRelativeURLs(relativeTo: URL(string: "https://test.com")!)
 
-    XCTAssertEqual(markdown.raw,
+    XCTAssertEqual(transformedMarkdown.raw,
       """
       This is a test
 
