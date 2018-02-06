@@ -195,7 +195,7 @@ private struct WorkshopBuilder {
   func getNotes() throws -> Markdown {
     do {
       let notes = try Markdown(contentsOfFile: localPath + filePaths.notesMarkdown)
-      return notes.resolveRelativeURLs(relativeTo: try fileservingUrl(relativePath: filePaths.notesMarkdown))
+      return notes.resolvingRelativeURLs(relativeTo: try fileservingUrl(relativePath: filePaths.notesMarkdown))
     } catch {
       throw WorkshopError.missingNotes
     }

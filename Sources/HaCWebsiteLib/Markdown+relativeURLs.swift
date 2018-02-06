@@ -8,7 +8,7 @@ extension Markdown {
    * e.g. '[Meow](images/cat.png)' -> '[Meow](https://hackersatcambridge.com/images/cat.png)'
    * Note: Does not handle commented or nested references (see #208)
    */ 
-  func resolveRelativeURLs(relativeTo baseURL: URL) -> Markdown {
+  func resolvingRelativeURLs(relativeTo baseURL: URL) -> Markdown {
 
     // See https://regexr.com/3jh10 for demo of this regex
     let referenceTitleRegexString = 
