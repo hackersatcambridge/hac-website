@@ -9,6 +9,14 @@ struct IndividualWorkshopPage {
   var node: Node {
     return Page(
       title: "\(workshop.title) | Hackers at Cambridge",
+      // Use hightlight js to syntax-highlight code that appears in workshop notes https://highlightjs.org
+      postFixElements: Fragment(
+        Page.stylesheet(forUrl: "//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"),
+        El.Script[Attr.src => "//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"],
+        El.Script[Attr.src => "//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/groovy.min.js"],
+        El.Script[Attr.src => "//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/gradle.min.js"],
+        El.Script.containing("hljs.initHighlightingOnLoad();")
+      ),
       content: Fragment(
         BackBar(backLinkText: "Workshops", backLinkURL: "/workshops"),
         hero, // A big beautiful header
