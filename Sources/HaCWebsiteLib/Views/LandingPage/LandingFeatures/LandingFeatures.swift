@@ -14,7 +14,8 @@ enum LandingFeatures {
     LandingFeatures.gamesWithLove,
     LandingFeatures.gameGig,
     LandingFeatures.introToUnity,
-    LandingFeatures.continuousIntegrationWorkshop
+    LandingFeatures.continuousIntegrationWorkshop,
+    LandingFeatures.emacsWorkshop
   ]
 
   /// Gets the most currently appropriate feature
