@@ -47,7 +47,7 @@ public struct WorkshopManager {
     }
     pollSource.schedule(
       deadline: DispatchTime.now(),
-      repeating: .seconds(10),
+      repeating: .seconds(300),
       leeway: .seconds(2)
     )
     pollSource.resume()
