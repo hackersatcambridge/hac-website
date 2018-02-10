@@ -69,6 +69,7 @@ private enum WorkshopError: Swift.Error {
   case malformedMetadata(String)
   case missingDescription
   case missingPrerequisites
+  case missingSetupInstructions
   case missingPromoImageBackground
   case missingPromoImageForeground
   case missingMetadataKey(String)
@@ -105,7 +106,11 @@ private struct WorkshopBuilder {
   }
 
   func getSetupInstructions() throws -> Markdown {
-    return try Markdown(contentsOfFile: localPath + filePaths.setupInstructions)
+    do {
+      return try Markdown(contentsOfFile: localPath + filePaths.setupInstructions)
+    } catch {
+      throw WorkshopError.missingSetupInstructions
+    }
   }
 
   func getPresenterGuide() throws -> Markdown? {

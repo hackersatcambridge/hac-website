@@ -9,8 +9,16 @@ struct Markdown {
     raw = markdown
   }
 
+  public enum Error: Swift.Error {
+    case initialisation(String)
+  }
+
   init(contentsOfFile filePath: String) throws {
-    self.init(try String(contentsOfFile: filePath, encoding: .utf8))
+    do {
+      self.init(try String(contentsOfFile: filePath, encoding: .utf8))
+    } catch {
+      throw Error.initialisation("Couldn't find (UTF8-encoded) file at \(filePath)")
+    }
   }
 
   var html: String {

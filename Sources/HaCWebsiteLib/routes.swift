@@ -45,6 +45,8 @@ func getWebsiteRouter() -> Router {
   router.get("/workshops/:workshopId", handler: WorkshopsController.workshopHandler)
   router.get("/workshops/update", middleware: CredentialsServer.credentials)
   router.get("/workshops/update", handler: WorkshopsController.workshopUpdateHandler)
+  router.get("/workshops/validate/:workshopId", middleware: CredentialsServer.credentials)
+  router.get("/workshops/validate/:workshopId", handler: WorkshopsController.workshopVerifyHandler)
 
   router.all("/", middleware: NotFoundMiddleware())
   router.error(ErrorRoutingMiddleware())
