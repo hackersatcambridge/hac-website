@@ -13,7 +13,7 @@ struct WorkshopsController {
     ).end()
   }
 
-  static var workshopHandler: RouterHandler = { request, response, next in 
+  static var workshopHandler: RouterHandler = { request, response, next in
     if let workshopId = request.parameters["workshopId"],
       let workshop = WorkshopManager.workshops["workshop-\(workshopId)"] {
         try response.send(
@@ -34,7 +34,6 @@ struct WorkshopsController {
   static var workshopVerifyHandler: RouterHandler = { request, response, next in
     if let workshopId = request.parameters["workshopId"] {
       let workshopURL = "https://github.com/hackersatcambridge/workshop-\(workshopId)"
-      // Pull the repo to /test/id repo
       // Run the parser
       // Spit out the errors, or the workshop page if no errors
       let repoUtil = GitUtil(
@@ -85,7 +84,7 @@ struct WorkshopsController {
           title: "Workshop Validator: \(workshopId)",
           content: Fragment([
             errorNode,
-            pageNode 
+            pageNode
           ])
         ).render()
       ).end()
