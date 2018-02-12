@@ -15,14 +15,15 @@ enum LandingFeatures {
     LandingFeatures.gameGig,
     LandingFeatures.introToUnity,
     LandingFeatures.continuousIntegrationWorkshop,
-    LandingFeatures.emacsWorkshop
+    LandingFeatures.emacsWorkshop,
+    LandingFeatures.introToSwiftWorkshop
   ]
 
   /// Gets the most currently appropriate feature
   static var currentFeature: LandingFeature? {
     let currentDate = Date()
 
-    // We want to return the first non-nil LandingFeature whos expiry date is
+    // We want to return the first non-nil LandingFeature whose expiry date is
     // after the current date. As the list itself is a list of optionals, we
     // need to convert it to a list of non-optionals using flatMap first (as
     // otherwise a value of type double-optional is returned.)
