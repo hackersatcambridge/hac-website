@@ -3,7 +3,7 @@ import Foundation
 
 // swiftlint:disable line_length
 
-struct IndividualWorkshopPage {
+struct IndividualWorkshopPage: Nodeable {
   let workshop: Workshop
 
   var node: Node {
