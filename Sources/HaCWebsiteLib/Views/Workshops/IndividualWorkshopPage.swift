@@ -15,6 +15,7 @@ struct IndividualWorkshopPage {
         El.Script[Attr.src => "//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"],
         El.Script[Attr.src => "//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/groovy.min.js"],
         El.Script[Attr.src => "//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/gradle.min.js"],
+        El.Script[Attr.src => "//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/swift.min.js"],
         El.Script.containing("hljs.initHighlightingOnLoad();")
       ),
       content: Fragment(
