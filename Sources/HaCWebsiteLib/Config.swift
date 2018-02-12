@@ -22,7 +22,9 @@ public struct Config {
   }
 
   public static func checkEnvVars() {
-    checkEnvVarsExist(for: "DATA_DIR")
+    checkEnvVarsExist(for:
+      "DATA_DIR", "DATABASE_URL", "API_PASSWORD"
+    )
   }
 
   public static var isProduction: Bool {
