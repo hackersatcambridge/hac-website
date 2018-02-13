@@ -28,10 +28,7 @@ class DatabaseUtilsTests: HaCWebsiteLibTestCase {
       )
     )
 
-    XCTAssertEqual(
-      URL(string: "https://google.com/")!.databaseURLComponents,
-      nil
-    )
+    XCTAssertNil(URL(string: "https://google.com/")!.databaseURLComponents)
   }
 
   static var allTests : [(String, (DatabaseUtilsTests) -> () -> Void)] {
