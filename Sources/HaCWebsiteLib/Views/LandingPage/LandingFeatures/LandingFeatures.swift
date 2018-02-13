@@ -16,7 +16,8 @@ enum LandingFeatures {
     LandingFeatures.introToUnity,
     LandingFeatures.continuousIntegrationWorkshop,
     LandingFeatures.emacsWorkshop,
-    LandingFeatures.introToSwiftWorkshop
+    LandingFeatures.introToSwiftWorkshop,
+    LandingFeatures.openSourceWorkshop
   ]
 
   /// Gets the most currently appropriate feature
