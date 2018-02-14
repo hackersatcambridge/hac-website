@@ -4,7 +4,9 @@
   "description": "The official website of Cambridge's technology society",
   "main": "index.js",
   "scripts": {
-    "test": "swift test | perl -pe 's/(Test Case .*passed.*)/✅ \\1/' | perl -pe 's/(Test Case .* failed.*)/🆘 \\1/'",
+    "test": "yarn test:production-build && yarn test:run-tests",
+    "test:run-tests": "swift test",
+    "test:production-build": "swift build -c release",
     "gulp": "gulp",
     "heroku-postbuild": "gulp static-build"
   },

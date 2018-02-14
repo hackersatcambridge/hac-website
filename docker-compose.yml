@@ -11,10 +11,12 @@ services:
     ports:
       - 3000:3000
       - 3001:3001
+# When adding more environment variables, you MUST ensure that they are also
+# present in Config.swift checkEnvVars()!
     environment:
       DATA_DIR: /root/hac-website/Data
       DATABASE_URL: postgres://richard:test@hac-db:5432/hac
-      API_PASSWORD: secret
+      API_PASSWORD: test
     volumes:
       - build:/root/hac-website/.build
       - node_modules:/root/hac-website/node_modules

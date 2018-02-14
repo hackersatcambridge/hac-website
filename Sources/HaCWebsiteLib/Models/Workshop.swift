@@ -1,9 +1,8 @@
 import Foundation
-import Yaml
 
 /// Represents a workshop
 // TODO: Rename this struct to `Workshop` when it's ready for use
-public struct NewWorkshop {
+public struct Workshop {
   let title: String
 
   /// People that have directly contributed content to this workshop
@@ -31,8 +30,11 @@ public struct NewWorkshop {
   /// The prose content that accompanies the workshop (and slides)
   let notes: Markdown
 
-  /// A URL of a promotional image for the workshop, to be displayed on top of `promoImageBackground`
-  let promoImageForeground: URL
+  /// The prose advice for presenters of this workshop
+  let presenterGuide: Markdown?
+
+  /// A URL to a promotional image for the workshop, to be displayed on top of `promoImageBackground`
+  let promoImageForeground: String
 
   /// The background for `promoImageForeground`
   let promoImageBackground: Background
@@ -48,4 +50,15 @@ public struct NewWorkshop {
 
   /// The ID of the workshop as determined by its workshop repository URL
   let workshopId: String
+
+  /// A link to code examples for this workshop
+  let examplesLink: URL?
+
+  var hero: ImageHero {
+    return ImageHero(
+        background: self.promoImageBackground,
+        imagePath: self.promoImageForeground,
+        alternateText: self.title
+      )
+  }
 }

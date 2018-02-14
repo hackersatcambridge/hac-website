@@ -1,6 +1,7 @@
 $Text__primaryFont = Barlow, 'Helvetica Neue', Arial, sans-serif;
-$Text__monospacedFont = 'Space Mono', 'Menlo', 'Courier New', monospaced;
-$Text__emphasisFont = $Text__monospacedFont;
+$Text__monospacedDisplayFont = 'Space Mono', 'Menlo', 'Courier New', monospaced;
+$Text__codeFont = "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+$Text__emphasisFont = $Text__monospacedDisplayFont;
 
 $Text__baseSize = grid(2);
 
@@ -21,6 +22,7 @@ Text__headerScale($scale) {
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   margin-bottom: ($Text__baseSize / 2);
+  font-weight: 500;
 }
 
 h1 {
@@ -52,6 +54,37 @@ p, ol, ul {
   margin-bottom: $Text__baseSize;
 }
 
+b, strong {
+  font-weight: 500;
+}
+
+:not(pre) > code {
+  font-family: $Text__codeFont;
+  font-size: 0.9em;
+  background: alpha(white, 0.3);
+  color: $Color__inlineCodeText;
+  display: inline-block;
+  padding: 0 grid(0.5);
+  border: 1px solid alpha(gray, 0.2);
+  border-radius: $Layout__normalBorderRadius;
+}
+
+pre {
+  max-width: 100%;
+  overflow: scroll;
+}
+
+pre > code {
+  font-family: $Text__codeFont;
+  font-size: 0.9em;
+  background: alpha(white, 0.3);
+  color: $Color__inlineCodeText;
+  display: inline-block;
+  padding: grid(2);
+  border: 1px solid alpha(gray, 0.2);
+  border-radius: $Layout__normalBorderRadius;
+}
+
 .Text--sectionHeading {
   font-family: $Text__primaryFont;
   text-transform: uppercase;
@@ -59,6 +92,22 @@ p, ol, ul {
   font-weight: 500;
   Text__headerScale(0);
   color: $Color__mediumGrayText;
+}
+
+.Text--headline {
+  Text__headerScale(3);
+  margin-top: grid(3);
+  margin-bottom: grid(4);
+  font-family: $Text__monospacedDisplayFont;
+  font-weight: 800;
+  color: #792359;
+  line-height: 1.4em;
+}
+
+@media screen and (max-width: 900px) {
+  .Text--headline {
+    Text__headerScale(2);
+  }
 }
 
 /**

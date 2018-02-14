@@ -28,12 +28,12 @@
 public struct Fragment: Node {
   let nodes: [Node]
 
-  public init(_ nodes: Nodeable...) {
+  public init(_ nodes: Nodeable?...) {
     self.init(nodes)
   }
 
-  public init(_ nodes: [Nodeable]) {
-    self.nodes = nodes.map{ $0.node }
+  public init(_ nodes: [Nodeable?]) {
+    self.nodes = nodes.flatMap{ $0?.node }
   }
 
   public func render() -> String {

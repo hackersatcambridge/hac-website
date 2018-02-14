@@ -1,0 +1,29 @@
+.WorkshopsIndexUpcoming__list {
+  display: flex;
+  flex-direction: column;
+}
+
+.WorkshopsIndexUpcomingWorkshop {
+  display: inline-block;
+  padding: 0.5em 1em;
+  margin-bottom: 1em;
+  border-radius: $Layout__normalBorderRadius;
+  background: white;
+  box-shadow: 0px 2px 6px alpha(darken(white, 50%), 0.3);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.2s;
+}
+
+.WorkshopsIndexUpcomingWorkshop:hover {
+  background: darken(white, 5%);
+}
+
+.WorkshopsIndexUpcomingWorkshop__date {
+  display: inline-block;
+  Text__headerScale(-1);
+  text-transform: uppercase;
+  font-family: $Text__primaryFont;
+  letter-spacing: 0.15em;
+  width: 5em;
+}

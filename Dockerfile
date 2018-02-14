@@ -1,4 +1,4 @@
-FROM ibmcom/swift-ubuntu:4.0
+FROM ibmcom/swift-ubuntu:4.0.3
 
 # Allow installation of Node 6: https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions \
 # Install Yarn: https://yarnpkg.com/en/docs/install#linux-tab
