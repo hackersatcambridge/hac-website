@@ -11,7 +11,6 @@ struct EventApiController {
     guard let parsedBody = request.body else {
       next()
       response.statusCode = HTTPStatusCode.internalServerError
-      // TODO: Log info about why?
       Log.info("Unable to parse the body of the request")
       try response.send("Sorry - we weren't able to parse the body of the request\n").end()
       return
@@ -19,12 +18,10 @@ struct EventApiController {
     if case .json(let json) = parsedBody {
       do {
         try saveEvent(json: json)
-        // TODO: Log info about which fields were missing?
         Log.info("Succesfully added event to the database")
         try response.send("Successfully added your event to the database\n").end()
       }
       catch EventParsingError.missingParameters {
-        // TODO: Log info about which fields were missing?
         Log.info("Database event adding failed - missing parameters")
         response.statusCode = HTTPStatusCode.badRequest
         try response.send("Sorry - looks like you didn't include all the necessary fields\n").end()
@@ -34,7 +31,6 @@ struct EventApiController {
         try response.send("Sorry - looks like the hype period was invalid\n").end()
       }
     } else {
-      // TODO: Log info about what went wrong?
       Log.info("Adding event to database failed for unkown reason")
       response.statusCode = HTTPStatusCode.badRequest
       try response.send("Please use JSON for post data\n").end()
