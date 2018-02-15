@@ -30,7 +30,6 @@ struct LandingUpdateFeedController {
     let fromDate : Date = Date.from(string: request.queryParameters["fromDate"]) ?? Date()
     let toDate : Date = Date.from(string: request.queryParameters["toDate"]) ?? Date()
 
-    // TODO: test this extensively
     let eventPostCards : [PostCard] = EventServer.getEvents(from: fromDate, to: toDate).flatMap{ event in
       event.postCardRepresentation
     }
