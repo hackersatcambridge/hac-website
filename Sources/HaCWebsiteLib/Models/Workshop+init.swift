@@ -9,7 +9,8 @@ private let filePaths = (
   notesMarkdown: "/.hac_workshop/notes.md",
   examplesDirectory: "/",
   presenterGuide: "/.hac_workshop/presenter_guide.md",
-  setupInstructions: "/.hac_workshop/setup_instructions.md"
+  setupInstructions: "/.hac_workshop/setup_instructions.md",
+  license: "/LICENSE"
 )
 
 private let validImageExtensions = ["jpg", "svg", "png", "gif"]
@@ -39,6 +40,7 @@ extension Workshop {
     slidesLink = try builder.getSlidesLink()
     tags = try builder.getTags()
     license = try builder.getLicense()
+    hasLicense = try Workshop.getHasLicense(localPath: localPath)
   }
 
   private static func getWorkshopId(localPath: String) throws -> String {
@@ -60,11 +62,21 @@ extension Workshop {
     }
     return try Yaml.load(metadataString)
   }
+
+  private static func getHasLicense(localPath: String) throws -> Bool {
+    do {
+      _ = try String(contentsOfFile: localPath + filePaths.license, encoding: .utf8)
+    } catch {
+      return false
+    }
+    return true
+  }
 }
 
 private enum WorkshopError: Swift.Error {
   case invalidPath
   case missingMetadata
+  case missingLicenseText
   case malformedMetadata(String)
   case missingPromoImageBackground
   case missingPromoImageForeground
@@ -163,7 +175,7 @@ private struct WorkshopBuilder {
       if backgroundFileNames.count < 1 {
         throw WorkshopError.missingPromoImageBackground
       } else {
-        throw WorkshopError.multiplePromoImageBackgrounds 
+        throw WorkshopError.multiplePromoImageBackgrounds
       }
     }
     let backgroundFileName = backgroundFileNames[0]
@@ -222,7 +234,7 @@ private struct WorkshopBuilder {
         let urlString = $0["url"].string else {
         throw WorkshopError.malformedMetadata("Links should have a 'text' and a 'url' property")
       }
-      
+
       guard let url = URL(string: urlString) else {
         throw WorkshopError.malformedMetadata("Links should have valid URLs")
       }
@@ -235,7 +247,7 @@ private struct WorkshopBuilder {
     guard let urlString = metadata["recording_link"].string else {
       return nil
     }
-    
+
     guard let url = URL(string: urlString) else {
       throw WorkshopError.malformedMetadata("Recording link should be a valid URL")
     }
@@ -247,7 +259,7 @@ private struct WorkshopBuilder {
     guard let urlString = metadata["slides_link"].string else {
       return nil
     }
-    
+
     guard let url = URL(string: urlString) else {
       throw WorkshopError.malformedMetadata("Slides link should be a valid URL")
     }
