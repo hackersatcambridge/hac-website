@@ -15,7 +15,7 @@ struct WorkshopsController {
 
   static var workshopHandler: RouterHandler = { request, response, next in
     if let workshopId = request.parameters["workshopId"],
-      let workshop = WorkshopManager.workshops["workshop-\(workshopId)"] {
+      let workshop = WorkshopManager.workshops[workshopId] {
         try response.send(
           IndividualWorkshopPage(workshop: workshop).node.render()
         ).end()
