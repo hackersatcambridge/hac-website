@@ -2,15 +2,15 @@ import Foundation
 import Yaml
 
 private let filePaths = (
-  metadata: "/info/metadata.yaml",
-  description: "/info/description.md",
-  prerequisites: "/info/prerequisites.md",
-  promoImagesDirectory: "/info/promo_images",
-  notesDirectory: "/content/notes",
-  notesMarkdown: "/content/notes/notes.md",
-  examplesDirectory: "/examples",
-  presenterGuide: "/content/presenter_guide.md",
-  setupInstructions: "/info/setup_instructions.md"
+  metadata: "/.hac_workshop/metadata.yaml",
+  description: "/.hac_workshop/description.md",
+  prerequisites: "/.hac_workshop/prerequisites.md",
+  promoImagesDirectory: "/.hac_workshop/promo_images",
+  notesDirectory: "/.hac_workshop",
+  notesMarkdown: "/.hac_workshop/notes.md",
+  examplesDirectory: "/",
+  presenterGuide: "/.hac_workshop/presenter_guide.md",
+  setupInstructions: "/.hac_workshop/setup_instructions.md"
 )
 
 private let validImageExtensions = ["jpg", "svg", "png", "gif"]
@@ -53,6 +53,7 @@ extension Workshop {
   }
 
   private static func getMetadata(localPath: String) throws -> Yaml {
+    print (localPath + filePaths.metadata)
     let metadataString: String
     do {
       metadataString = try String(contentsOfFile: localPath + filePaths.metadata, encoding: .utf8)
