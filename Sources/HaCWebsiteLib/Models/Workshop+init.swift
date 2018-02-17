@@ -52,7 +52,6 @@ extension Workshop {
   }
 
   private static func getMetadata(localPath: String) throws -> Yaml {
-    print (localPath + filePaths.metadata)
     let metadataString: String
     do {
       metadataString = try String(contentsOfFile: localPath + filePaths.metadata, encoding: .utf8)
