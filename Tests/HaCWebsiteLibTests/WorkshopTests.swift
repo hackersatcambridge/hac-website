@@ -21,13 +21,13 @@ class WorkshopTests: HaCWebsiteLibTestCase {
 
     XCTAssert(workshop.notes.raw.contains("The main source of the workshop content."))
 
-    XCTAssertEqual(workshop.promoImageForeground, "https://rawgit.com/hackersatcambridge/workshop-passing-example/abcde/info/promo_images/fg.png")
+    XCTAssertEqual(workshop.promoImageForeground, "https://rawgit.com/hackersatcambridge/workshop-passing-example/abcde/.hac_workshop/promo_images/fg.png")
     XCTAssertEqual(workshop.promoImageBackground, Background.color("#fffeee"))
 
     XCTAssertEqual(workshop.description.raw, "This workshop will take you through the basics of x. \nWe'll talk about how to foo and show you how, with a little work, you can bar your baz.")
     XCTAssertEqual(workshop.prerequisites.raw, "This workshop assumes:\n- Basic command line knowledge (you should be comfortable with the `cd`, `ls`, and `man` commands)\n- Some basic programming experience (you should be familiar with variables, loops and functions)")
     XCTAssertEqual(workshop.setupInstructions.raw, "If you have a Windows laptop, please install the application 'PuTTY' before you arrive by downloading ['putty.exe'](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)\n\nThis workshop requires connection to a UNIX machine (Linux, macOS) so to play along you'll be connecting to a UNIX machine using PuTTY.")
-    XCTAssertEqual(workshop.examplesLink?.absoluteString, "https://github.com/hackersatcambridge/workshop-passing-example/blob/master/examples")
+    XCTAssertEqual(workshop.examplesLink?.absoluteString, "https://github.com/hackersatcambridge/workshop-passing-example/tree/master/")
   }
 
   func testMissingDetails() {
