@@ -6,7 +6,6 @@ private let filePaths = (
   description: "/.hac_workshop/description.md",
   prerequisites: "/.hac_workshop/prerequisites.md",
   promoImagesDirectory: "/.hac_workshop/promo_images",
-  notesDirectory: "/.hac_workshop",
   notesMarkdown: "/.hac_workshop/notes.md",
   examplesDirectory: "/",
   presenterGuide: "/.hac_workshop/presenter_guide.md",
@@ -68,9 +67,6 @@ private enum WorkshopError: Swift.Error {
   case invalidPath
   case missingMetadata
   case malformedMetadata(String)
-  case missingDescription
-  case missingPrerequisites
-  case missingSetupInstructions
   case missingPromoImageBackground
   case missingPromoImageForeground
   case missingMetadataKey(String)
@@ -78,7 +74,7 @@ private enum WorkshopError: Swift.Error {
   case multiplePromoImageBackgrounds
   case invalidPromoImageForegroundFormat
   case invalidPromoImageBackgroundFormat
-  case missingNotes
+  case missingMarkdown(String)
   case badURLInNotes(String)
   case emptyExamples
   case invalidURL(String)
@@ -90,32 +86,33 @@ private struct WorkshopBuilder {
   let workshopId: String
   let metadata: Yaml
 
-  func getDescription() throws -> Markdown {
+  func getMarkdown(relativePath: String) throws -> Markdown {
     do {
-      return try Markdown(contentsOfFile: localPath + filePaths.description)
+      let markdown = try Markdown(contentsOfFile: localPath + relativePath)
+      return markdown.resolvingRelativeURLs(relativeTo: try fileservingUrl(relativePath: relativePath))
     } catch {
-      throw WorkshopError.missingDescription
+      throw WorkshopError.missingMarkdown(relativePath)
     }
+  }
+
+  func getDescription() throws -> Markdown {
+    return try getMarkdown(relativePath: filePaths.description)
   }
 
   func getPrerequisites() throws -> Markdown {
-    do {
-      return try Markdown(contentsOfFile: localPath + filePaths.prerequisites)
-    } catch {
-      throw WorkshopError.missingPrerequisites
-    }
+    return try getMarkdown(relativePath: filePaths.prerequisites)
   }
 
   func getSetupInstructions() throws -> Markdown {
-    do {
-      return try Markdown(contentsOfFile: localPath + filePaths.setupInstructions)
-    } catch {
-      throw WorkshopError.missingSetupInstructions
-    }
+    return try getMarkdown(relativePath: filePaths.setupInstructions)
   }
 
   func getPresenterGuide() throws -> Markdown? {
-    return try? Markdown(contentsOfFile: localPath + filePaths.presenterGuide)
+    return try? getMarkdown(relativePath: filePaths.presenterGuide)
+  }
+
+  func getNotes() throws -> Markdown {
+    return try getMarkdown(relativePath: filePaths.notesMarkdown)
   }
 
   private func repoUrl(origin: String, relativePath: String) throws -> URL {
@@ -133,7 +130,7 @@ private struct WorkshopBuilder {
   }
 
   func remoteRepoUrl(relativePath: String) throws -> URL {
-    return try repoUrl(origin: "https://github.com/", relativePath: "blob/master\(relativePath)");
+    return try repoUrl(origin: "https://github.com/", relativePath: "tree/master\(relativePath)");
   }
 
   /// Return the CDN url of the foreground of the promotional image
@@ -188,23 +185,12 @@ private struct WorkshopBuilder {
 
   func getExamplesLink() throws -> URL? {
     let examplesPath = localPath + filePaths.examplesDirectory
-    if FileManager.default.fileExists(atPath: examplesPath) {
-      if try FileManager.default.contentsOfDirectory(atPath: examplesPath) == [] {
-        throw WorkshopError.emptyExamples
-      } else {
-        return try remoteRepoUrl(relativePath: filePaths.examplesDirectory)
-      }
+
+    // If there are non-hidden directories in the examples path, link to it
+    if try FileManager.default.contentsOfDirectory(atPath: examplesPath).contains { !$0.starts(with: ".") } {
+      return try remoteRepoUrl(relativePath: filePaths.examplesDirectory)
     } else {
       return nil
-    }
-  }
-
-  func getNotes() throws -> Markdown {
-    do {
-      let notes = try Markdown(contentsOfFile: localPath + filePaths.notesMarkdown)
-      return notes.resolvingRelativeURLs(relativeTo: try fileservingUrl(relativePath: filePaths.notesMarkdown))
-    } catch {
-      throw WorkshopError.missingNotes
     }
   }
 
