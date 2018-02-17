@@ -54,6 +54,7 @@ struct WorkshopsController {
         var warnings: [String] = []
         if workshop.title == "Sample Workshop" { warnings.append("Title has not been set") }
         if workshop.contributors.isEmpty { warnings.append("Contributors have not been listed") }
+        if !workshop.hasLicense { warnings.append("Lisence missing: The root of the workshop repo should have a LICENSE file containing the following license: \(workshop.license)") }
 
         if warnings.isEmpty {
           errorNode = El.Div[

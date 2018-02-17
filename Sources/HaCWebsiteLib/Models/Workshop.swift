@@ -27,6 +27,9 @@ public struct Workshop {
   // TODO: Make a type safe version of this
   let license: String
 
+  /// Whether or not the workshop repository actually contains license text in it
+  let hasLicense: Bool
+
   /// The prose content that accompanies the workshop (and slides)
   let notes: Markdown
 
