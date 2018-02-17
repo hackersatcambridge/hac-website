@@ -3,7 +3,7 @@ import Foundation
 
 extension LandingFeatures {
   static var emacsWorkshop: LandingFeature? {
-    guard let hero = WorkshopManager.workshops["workshop-emacs"]?.hero else {
+    guard let hero = WorkshopManager.workshops["emacs"]?.hero else {
         return nil
     }
 
