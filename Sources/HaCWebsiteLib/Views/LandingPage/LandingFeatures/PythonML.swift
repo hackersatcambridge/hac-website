@@ -3,7 +3,7 @@ import Foundation
 
 extension LandingFeatures {
   static var pythonML: LandingFeature? {
-    guard let hero = WorkshopManager.workshops["workshop-python-ml"]?.hero else {
+    guard let hero = WorkshopManager.workshops["python-ml"]?.hero else {
       return nil
     }
 
