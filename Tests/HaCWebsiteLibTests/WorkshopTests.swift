@@ -30,6 +30,13 @@ class WorkshopTests: HaCWebsiteLibTestCase {
     XCTAssertEqual(workshop.examplesLink?.absoluteString, "https://github.com/hackersatcambridge/workshop-passing-example/tree/master/")
   }
 
+  func testRelativeSlidesLink() throws {
+    let workshopDataPath = try getTestResourcePath(at: "WorkshopTestData/workshop-relative-slides-link")
+    let workshop = try Workshop(localPath: workshopDataPath, headCommitSha: "abcde")
+
+    XCTAssertEqual(workshop.slidesLink, URL(string: "https://rawgit.com/hackersatcambridge/workshop-relative-slides-link/abcde/.hac_workshop/slides.html"))
+  }
+
   func testMissingDetails() {
     XCTAssertThrowsError(try Workshop(localPath: try! getTestResourcePath(at: "WorkshopTestData/workshop-missing-contributors"), headCommitSha: "abcde"))
     XCTAssertThrowsError(try Workshop(localPath: try! getTestResourcePath(at: "WorkshopTestData/workshop-missing-notes"), headCommitSha: "abcde"))
