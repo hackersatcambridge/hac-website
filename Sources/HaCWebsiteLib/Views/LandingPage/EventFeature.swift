@@ -18,10 +18,8 @@ struct EventFeature: LandingFeature {
     case light
     var styleClass: String {
       switch self {
-        case .light:
+        default:
           return "EventFeature--text-light"
-        case .dark:
-          return "EventFeature--text-dark"
       }
     }
   }
