@@ -11,6 +11,15 @@ enum DateUtils {
 
     return formatter
   }()
+
+  static let individualTimeFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateStyle = .none
+    formatter.timeStyle = .short
+    formatter.locale = locale
+
+    return formatter
+  }()
 }
 
 extension Date {
