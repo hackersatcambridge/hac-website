@@ -14,8 +14,7 @@ extension LandingFeatures {
       ),
       eventLink: "https://www.facebook.com/events/415154248916702/",
       liveLink: "/workshops/emacs",
-      hero: hero,
-      textShade: .light
+      hero: hero
     )
   }
 }

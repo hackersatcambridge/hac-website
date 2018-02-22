@@ -13,8 +13,7 @@ private func createWebDevWorkshop(month: Int, day: Int, eventLink: String) -> La
     ),
     eventLink: eventLink,
     liveLink: "/workshops/web-dev",
-    hero: hero,
-    textShade: .light
+    hero: hero
   )
 }
 

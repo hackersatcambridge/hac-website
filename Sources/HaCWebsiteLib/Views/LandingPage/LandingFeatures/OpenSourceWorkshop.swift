@@ -14,8 +14,7 @@ extension LandingFeatures {
       ),
       eventLink: "https://www.facebook.com/events/1980238595569777/",
       liveLink: "/workshops/open-source",
-      hero: hero,
-      textShade: .light
+      hero: hero
     )
   }
 }
