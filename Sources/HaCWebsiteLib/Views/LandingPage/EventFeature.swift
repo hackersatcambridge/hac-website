@@ -19,7 +19,7 @@ struct EventFeature: LandingFeature {
       )
     } else if isToday {
       return El.Div[Attr.className => "EventFeature__date EventFeature__date--highlight"].containing(
-        "Today"
+        "Today at " + DateUtils.individualTimeFormatter.string(from: eventPeriod.start)
       )
     } else {
       return El.Div[Attr.className => "EventFeature__date"].containing(
