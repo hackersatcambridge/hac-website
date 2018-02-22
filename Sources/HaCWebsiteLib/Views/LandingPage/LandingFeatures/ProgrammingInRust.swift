@@ -14,8 +14,7 @@ extension LandingFeatures {
         background: .image(Assets.publicPath("/images/rustbg.png")),
         imagePath: Assets.publicPath("/images/rustfg.png"),
         alternateText: "HaC Programming in Rust on 9 November"
-      ),
-      textShade: .light
+      )
     )
   }
 }

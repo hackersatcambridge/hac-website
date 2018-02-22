@@ -14,8 +14,7 @@ extension LandingFeatures {
       ),
       eventLink: "https://www.facebook.com/events/1701011496625250/",
       liveLink: "/workshops/intro-to-swift",
-      hero: hero,
-      textShade: .light
+      hero: hero
     )
   }
 }
