@@ -58,10 +58,10 @@ struct EventApiController {
 
     // Make sure the event itself falls within the hype period
     // If it doesn't, we throw an invalidHypePeriod exception
-    if !((hypeStartDate.compare(startDate) == .orderedAscending) &&
-       (startDate.compare(hypeEndDate)   == .orderedAscending) &&
-       (hypeStartDate.compare(endDate)   == .orderedAscending) &&
-       (endDate.compare(hypeEndDate)     == .orderedAscending)) {
+    if !((hypeStartDate <= startDate) &&
+       (startDate <= hypeEndDate) &&
+       (hypeStartDate <= endDate) &&
+       (endDate <= hypeEndDate)) {
          throw EventParsingError.invalidHypePeriod
     }
 
