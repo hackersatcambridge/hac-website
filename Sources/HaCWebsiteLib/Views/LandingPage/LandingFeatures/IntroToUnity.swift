@@ -14,8 +14,7 @@ extension LandingFeatures {
         background: .image(Assets.publicPath("/images/unity/bg.png")),
         imagePath: Assets.publicPath("/images/unity/fg.svg"),
         alternateText: "Intro to Unity on the 1st of December"
-      ),
-      textShade: .light
+      )
     )
   }
 }

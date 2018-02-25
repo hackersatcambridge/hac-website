@@ -20,10 +20,10 @@ public struct WorkshopManager {
   private static var pollSource: DispatchSourceTimer! = nil
   private static var currentlyUpdating = false
 
-  /// The list of Workshops as derived from the workshop repos last time they were processed. Keys are workshop repo names
+  /// The list of Workshops as derived from the workshop repos last time they were processed. Keys are workshop IDs
   public private(set) static var workshops: [String: Workshop] = [:]
 
-  /// All the workshop repos that we know about. Keys are workshop repo names
+  /// All the workshop repos that we know about. Keys are workshop IDs
   private static var workshopRepoUtils: [String: GitUtil] = [:]
 
   public static func update() {
@@ -64,12 +64,12 @@ public struct WorkshopManager {
         encoding: .utf8
       )
       let indexYaml = try Yaml.load(indexYamlString)
-      let workshopURLs = try stringsArray(for: "workshops", in: indexYaml)
-      for workshopURL in workshopURLs {
-        let repoName = workshopURL.components(separatedBy: "/").last ?? workshopURL
-        if workshopRepoUtils[repoName] == nil {
-          workshopRepoUtils[repoName] = GitUtil(
-            remoteRepoURL: workshopURL,
+      let workshopIDs = try stringsArray(for: "workshops", in: indexYaml)
+      for workshopID in workshopIDs {
+        let repoName = "workshop-\(workshopID)"
+        if workshopRepoUtils[workshopID] == nil {
+          workshopRepoUtils[workshopID] = GitUtil(
+            remoteRepoURL: "https://github.com/hackersatcambridge/\(repoName)",
             directoryName: repoName
           )
         }
@@ -97,15 +97,15 @@ public struct WorkshopManager {
   public static func updateWorkshopsData() {
     let updateDispatchGroup = DispatchGroup()
 
-    for (repoName, repoUtil) in workshopRepoUtils {
+    for (workshopID, repoUtil) in workshopRepoUtils {
       updateDispatchGroup.enter()
       updateQueue.async {
         do {
           repoUtil.update()
           let updatedWorkshop = try Workshop(localPath: repoUtil.localRepoPath, headCommitSha: repoUtil.getHeadCommitSha())
-          workshops[repoName] = updatedWorkshop
+          workshops[workshopID] = updatedWorkshop
         } catch {
-          print("Failed to initialise workshop from repo: \(repoName)")
+          print("Failed to initialise workshop from repo: workshop-\(workshopID)")
           dump(error)
         }
         updateDispatchGroup.leave()

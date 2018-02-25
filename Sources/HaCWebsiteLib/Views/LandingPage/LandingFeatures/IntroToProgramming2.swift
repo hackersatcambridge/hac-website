@@ -14,8 +14,7 @@ extension LandingFeatures {
         background: .color("#eb7b1f"),
         imagePath: Assets.publicPath("/images/intro2feature.jpg"),
         alternateText: "HaC Intro to Programming Workshop on 23 October"
-      ),
-      textShade: .light
+      )
     )
   }
 }

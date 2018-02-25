@@ -3,7 +3,7 @@ import Foundation
 
 extension LandingFeatures {
   static var openSourceWorkshop: LandingFeature? {
-    guard let hero = WorkshopManager.workshops["workshop-open-source"]?.hero else {
+    guard let hero = WorkshopManager.workshops["open-source"]?.hero else {
       return nil
     }
 
@@ -14,8 +14,7 @@ extension LandingFeatures {
       ),
       eventLink: "https://www.facebook.com/events/1980238595569777/",
       liveLink: "/workshops/open-source",
-      hero: hero,
-      textShade: .light
+      hero: hero
     )
   }
 }

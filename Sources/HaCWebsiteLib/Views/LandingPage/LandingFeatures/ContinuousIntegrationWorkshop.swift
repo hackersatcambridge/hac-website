@@ -3,7 +3,7 @@ import Foundation
 
 extension LandingFeatures {
   static var continuousIntegrationWorkshop: LandingFeature? {
-    guard let hero = WorkshopManager.workshops["workshop-continuous-integration"]?.hero else {
+    guard let hero = WorkshopManager.workshops["continuous-integration"]?.hero else {
         return nil
     }
 
@@ -14,8 +14,7 @@ extension LandingFeatures {
       ),
       eventLink: "https://www.facebook.com/events/181764052556196/",
       liveLink: "/workshops/continuous-integration",
-      hero: hero,
-      textShade: .light
+      hero: hero
     )
   }
 }

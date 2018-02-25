@@ -14,8 +14,7 @@ extension LandingFeatures {
         background: .color("#F1283B"),
         imagePath: Assets.publicPath("/images/git-foreground.svg"),
         alternateText: "HaC Tools for Programmers: Bash on 25 October"
-      ),
-      textShade: .light
+      )
     )
   }
 }

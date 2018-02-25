@@ -3,7 +3,7 @@ import Foundation
 
 extension LandingFeatures {
   static var introToSwiftWorkshop: LandingFeature? {
-    guard let hero = WorkshopManager.workshops["workshop-intro-to-swift"]?.hero else {
+    guard let hero = WorkshopManager.workshops["intro-to-swift"]?.hero else {
         return nil
     }
 
@@ -14,8 +14,7 @@ extension LandingFeatures {
       ),
       eventLink: "https://www.facebook.com/events/1701011496625250/",
       liveLink: "/workshops/intro-to-swift",
-      hero: hero,
-      textShade: .light
+      hero: hero
     )
   }
 }

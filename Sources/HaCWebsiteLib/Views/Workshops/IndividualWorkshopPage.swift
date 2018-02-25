@@ -81,6 +81,17 @@ struct IndividualWorkshopPage: Nodeable {
     }
   }
 
+  var licenseButton: Node? {
+    let licenseURL = workshop.license.isEmpty ? nil : URL(string: "https://github.com/hackersatcambridge/workshop-\(workshop.workshopId)/blob/master/LICENSE")
+    return licenseURL.map {
+      El.A[Attr.href => $0.absoluteString, Attr.target => "_blank"].containing(
+        El.Div[Attr.className => "BigButton BigButton--inline BigButton--license"].containing(
+          "License: " + workshop.license
+        )
+      )
+    }
+  }
+
   var examplesButton: Node? {
     return workshop.examplesLink.map {
       El.A[Attr.href => $0.absoluteString, Attr.target => "_blank"].containing(
@@ -93,7 +104,7 @@ struct IndividualWorkshopPage: Nodeable {
 
   var content: Node {
     return El.Div[Attr.className => "WorkshopContent"].containing(
-      slidesButton, recordingButton, examplesButton,
+      slidesButton, recordingButton, examplesButton, licenseButton,
       workshop.notes
     )
   }

@@ -11,20 +11,6 @@ struct EventFeature: LandingFeature {
   /// The link to use whilst the event is happening
   let liveLink: String?
   let hero: Nodeable
-  let textShade: TextShade
-
-  enum TextShade {
-    case dark
-    case light
-    var styleClass: String {
-      switch self {
-        case .light:
-          return "EventFeature--text-light"
-        case .dark:
-          return "EventFeature--text-dark"
-      }
-    }
-  }
 
   var dateBlock: Nodeable {
     if currentlyHappening {
@@ -33,7 +19,7 @@ struct EventFeature: LandingFeature {
       )
     } else if isToday {
       return El.Div[Attr.className => "EventFeature__date EventFeature__date--highlight"].containing(
-        "Today"
+        "Today at " + DateUtils.individualTimeFormatter.string(from: eventPeriod.start)
       )
     } else {
       return El.Div[Attr.className => "EventFeature__date"].containing(
@@ -81,7 +67,7 @@ struct EventFeature: LandingFeature {
   }
 
   var node: Node {
-    return El.A[Attr.href => currentLink, Attr.className => "EventFeature \(textShade.styleClass)"].containing(
+    return El.A[Attr.href => currentLink, Attr.className => "EventFeature EventFeature--text-light"].containing(
       hero,
       dateBlock
     )
