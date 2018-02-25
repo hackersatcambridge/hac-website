@@ -4,6 +4,6 @@ import XCTest
 XCTMain([
   testCase(WorkshopTests.allTests),
   testCase(DateUtilsTests.allTests),
-  testCase(WorkshopTests.allTests),
+  testCase(EventApiControllerTests.allTests),
   testCase(MarkdownTests.allTests),
 ])

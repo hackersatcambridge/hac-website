@@ -14,6 +14,18 @@ struct PostCard: Nodeable {
   let backgroundColor: String?
   let imageURL: String?
 
+  init(
+    title: String, category: PostCategory,
+    description: String,
+    backgroundColor: String?, imageURL: String? = nil
+  ) {
+    self.title = title
+    self.category = category
+    self.description = description
+    self.backgroundColor = backgroundColor
+    self.imageURL = imageURL
+  }
+
   var node: Node {
     return El.Div[Attr.className => "PostCard", Attr.style => ["background-color": backgroundColor]].containing(
       El.Div[
