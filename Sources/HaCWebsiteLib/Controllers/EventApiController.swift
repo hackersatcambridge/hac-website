@@ -3,6 +3,7 @@ import KituraNet
 import SwiftyJSON
 import Foundation
 import DotEnv
+import LoggerAPI
 
 struct EventApiController {
   static var handler: RouterHandler = { request, response, next in
@@ -10,19 +11,27 @@ struct EventApiController {
     guard let parsedBody = request.body else {
       next()
       response.statusCode = HTTPStatusCode.internalServerError
+      Log.info("Unable to parse the body of the request")
       try response.send("Sorry - we weren't able to parse the body of the request\n").end()
       return
     }
     if case .json(let json) = parsedBody {
       do {
         try saveEvent(json: json)
+        Log.info("Succesfully added event to the database")
         try response.send("Successfully added your event to the database\n").end()
       }
       catch EventParsingError.missingParameters {
+        Log.info("Database event adding failed - missing parameters")
         response.statusCode = HTTPStatusCode.badRequest
         try response.send("Sorry - looks like you didn't include all the necessary fields\n").end()
-      } 
+      } catch EventParsingError.invalidHypePeriod {
+        Log.info("Database event adding failed - invalid hype period")
+        response.statusCode = HTTPStatusCode.badRequest
+        try response.send("Sorry - looks like the hype period was invalid\n").end()
+      }
     } else {
+      Log.info("Adding event to database failed for unkown reason")
       response.statusCode = HTTPStatusCode.badRequest
       try response.send("Please use JSON for post data\n").end()
     }
@@ -34,27 +43,29 @@ struct EventApiController {
     try event.save()
   }
 
-  private static func parseEvent(json : [String : Any]) throws -> GeneralEvent {
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.zzz"
-
+  public static func parseEvent(json : [String : Any]) throws -> GeneralEvent {
     guard let title = json["title"] as? String,
-    let startDateString = json["startDate"] as? String,
-    let endDateString = json["endDate"] as? String,
+    let startDate = Date.from(string: json["startDate"] as? String),
+    let endDate = Date.from(string: json["endDate"] as? String),
     let tagLine = json["tagLine"] as? String,
     let color = json["color"] as? String,
-    let hypeStartDateString = json["hypeStartDate"] as? String,
-    let hypeEndDateString = json["hypeEndDate"] as? String,
-    let startDate = dateFormatter.date(from: startDateString),
-    let endDate = dateFormatter.date(from: endDateString),
-    let hypeStartDate = dateFormatter.date(from: hypeStartDateString),
-    let hypeEndDate = dateFormatter.date(from: hypeEndDateString),
+    let hypeStartDate = Date.from(string: json["hypeStartDate"] as? String),
+    let hypeEndDate = Date.from(string: json["hypeEndDate"] as? String),
     let tags = getOptionalTags(json: json),
     let markdownDescription = json["markdownDescription"] as? String else {
       throw EventParsingError.missingParameters
     }
-    
-    let location = getOptionalLocation(json: json) 
+
+    // Make sure the event itself falls within the hype period
+    // If it doesn't, we throw an invalidHypePeriod exception
+    if !((hypeStartDate <= startDate) &&
+       (startDate <= hypeEndDate) &&
+       (hypeStartDate <= endDate) &&
+       (endDate <= hypeEndDate)) {
+         throw EventParsingError.invalidHypePeriod
+    }
+
+    let location = getOptionalLocation(json: json)
     let time = DateInterval(start: startDate, end: endDate)
     let hypePeriod = DateInterval(start: hypeStartDate, end: hypeEndDate)
     let eventDescription = Markdown(markdownDescription)
@@ -76,7 +87,7 @@ struct EventApiController {
     }
     let venue = json["venue"] as? String
     let address = json["address"] as? String
-    return Location(latitude: Double(latitude), longitude: Double(longitude), 
+    return Location(latitude: Double(latitude), longitude: Double(longitude),
       address: address, venue: venue)
   }
 
@@ -94,4 +105,5 @@ struct EventApiController {
 
 enum EventParsingError: Swift.Error {
   case missingParameters
+  case invalidHypePeriod
 }

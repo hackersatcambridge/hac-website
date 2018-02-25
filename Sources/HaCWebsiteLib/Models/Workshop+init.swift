@@ -88,7 +88,7 @@ private struct WorkshopBuilder {
   func getMarkdown(relativePath: String) throws -> Markdown {
     do {
       let markdown = try Markdown(contentsOfFile: localPath + relativePath)
-      return markdown.resolvingRelativeURLs(relativeTo: try fileservingUrl(relativePath: relativePath))
+      return markdown.resolvingRelativeURLs(relativeTo: try fileServingUrl(relativePath: relativePath))
     } catch {
       throw WorkshopError.missingMarkdown(relativePath)
     }
@@ -124,7 +124,7 @@ private struct WorkshopBuilder {
     }
   }
 
-  func fileservingUrl(relativePath: String) throws -> URL {
+  func fileServingUrl(relativePath: String) throws -> URL {
     return try repoUrl(origin: "https://rawgit.com/", relativePath: "\(commitSha)\(relativePath)")
   }
 
@@ -152,7 +152,7 @@ private struct WorkshopBuilder {
     }
 
     let relativePathFromRepo = filePaths.promoImagesDirectory + "/" + foregroundImageFileName
-    return try fileservingUrl(relativePath: relativePathFromRepo)
+    return try fileServingUrl(relativePath: relativePathFromRepo)
   }
 
   /// The `Background` of the promotional image
@@ -176,7 +176,7 @@ private struct WorkshopBuilder {
     } else if validImageExtensions.contains(fileExtension) {
       // Get the CDN url of the image
       let relativePathFromRepo = filePaths.promoImagesDirectory + "/" + backgroundFileName
-      return Background.image(try fileservingUrl(relativePath: relativePathFromRepo).absoluteString)
+      return Background.image(try fileServingUrl(relativePath: relativePathFromRepo).absoluteString)
     } else {
       throw WorkshopError.invalidPromoImageBackgroundFormat
     }
@@ -248,7 +248,7 @@ private struct WorkshopBuilder {
       return nil
     }
     
-    guard let url = URL(string: urlString) else {
+    guard let url = URL(string: urlString, relativeTo: try fileServingUrl(relativePath: filePaths.metadata)) else {
       throw WorkshopError.malformedMetadata("Slides link should be a valid URL")
     }
 

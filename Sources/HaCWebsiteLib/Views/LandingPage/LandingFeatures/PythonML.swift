@@ -14,8 +14,7 @@ extension LandingFeatures {
       ),
       eventLink: "/workshops/python-ml",
       liveLink: "/workshops/python-ml",
-      hero: hero,
-      textShade: .light
+      hero: hero
     )
   }
 }

@@ -4,4 +4,10 @@
   padding-top: grid(8);
   max-width: grid(120);
   margin: 0 auto;
+
+  // As the content is generated with Markdown, we cannot add classes
+  // to elements, so we must use a nested selector
+  img {
+    max-width: 100%;
+  }
 }

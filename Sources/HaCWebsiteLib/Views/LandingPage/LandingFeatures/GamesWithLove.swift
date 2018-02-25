@@ -14,8 +14,7 @@ extension LandingFeatures {
         background: .image(Assets.publicPath("/images/love/bg.png")),
         imagePath: Assets.publicPath("/images/love/fg.svg"),
         alternateText: "HaC Make games quickly with LÖVE on the 29th of November"
-      ),
-      textShade: .light
+      )
     )
   }
 }
