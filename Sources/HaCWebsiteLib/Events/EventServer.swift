@@ -7,7 +7,7 @@ public struct EventServer {
     return newEvents ?? []
   }
 
-  static func getCurrentEvents() -> [GeneralEvent] {
+  static func getCurrentlyHypedEvents() -> [GeneralEvent] {
     let currentDate = Date()
     let newEvents = try? GeneralEvent.makeQuery()
       .filter("hypeStartDate", .lessThanOrEquals, currentDate)
@@ -15,4 +15,12 @@ public struct EventServer {
       .all()
     return newEvents ?? []
   }
-}
+
+  static func getEvents(from fromDate: Date, to toDate: Date) -> [GeneralEvent] {
+    let newEvents = try? GeneralEvent.makeQuery()
+      .filter("hypeStartDate", .lessThanOrEquals, toDate)
+      .filter("hypeEndDate", .greaterThanOrEquals, fromDate)
+      .all()
+    return newEvents ?? []
+  }
+ }
