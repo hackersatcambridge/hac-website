@@ -13,10 +13,7 @@ class DatabaseUtilsTests: HaCWebsiteLibTestCase {
       )
     )
 
-    XCTAssertEqual(
-      URL(string: "postgres://richard@hac-db:5432/hac")!.databaseURLComponents,
-      nil
-    )
+    XCTAssertNil(URL(string: "postgres://richard@hac-db:5432/hac")!.databaseURLComponents)
 
     XCTAssertEqual(
       URL(string: "postgres://richard:test@hac-db:5432/")!.databaseURLComponents,
