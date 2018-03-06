@@ -21,7 +21,8 @@ enum LandingFeatures {
     LandingFeatures.pythonML,
     LandingFeatures.webDevWorkshop1,
     LandingFeatures.webDevWorkshop2,
-    LandingFeatures.webDevWorkshop3
+    LandingFeatures.webDevWorkshop3,
+    LandingFeatures.greenHack
   ]
 
   /// Gets the most currently appropriate feature
