@@ -11,6 +11,15 @@ enum DateUtils {
 
     return formatter
   }()
+
+  static let individualTimeFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateStyle = .none
+    formatter.timeStyle = .short
+    formatter.locale = locale
+
+    return formatter
+  }()
 }
 
 extension Date {
@@ -23,5 +32,12 @@ extension Date {
     } else {
       fatalError("Improper date given: \(year)-\(month)-\(day) \(hour):\(minute) does not exist")
     }
+  }
+
+  static func from(string dateString: String?) -> Date? {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.zzz"
+    // We don't use the map method here, because it returns a result of type Date??
+    return dateString != nil ? dateFormatter.date(from: dateString!) : nil
   }
 }

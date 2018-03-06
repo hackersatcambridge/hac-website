@@ -14,8 +14,7 @@ extension LandingFeatures {
         background: .image(Assets.publicPath("/images/bash-bg.jpg")),
         imagePath: Assets.publicPath("/images/bash-text.svg"),
         alternateText: "HaC Tools for Programmers: Bash on 25 October"
-      ),
-      textShade: .light
+      )
     )
   }
 }
