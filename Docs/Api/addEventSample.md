@@ -15,7 +15,6 @@ curl -X POST -H "Content-Type: application/json" -d @customEvent.json http://cha
     "hypeStartDate":"2017-11-15T12:01:12.123",
     "hypeEndDate":"2017-11-25T12:01:12.123",
     "tags": ["tag1", "tag2"],
-    "eventDescription": "This is a plain description",
     "websiteURL":"www.website.com",
     "imageURL":"www.website.com",
     "markdownDescription":"plain markdown",
