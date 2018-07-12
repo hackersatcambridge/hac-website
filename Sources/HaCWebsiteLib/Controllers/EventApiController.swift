@@ -38,6 +38,25 @@ struct EventApiController {
     next()
   }
 
+  static var editEventHandler: RouterHandler = { request, response, next in
+    response.headers["Content-Type"] = "text/plain; charset=utf-8"
+    guard let parsedBody = request.body else {
+      next()
+      response.statusCode = HTTPStatusCode.internalServerError
+      Log.info("Unable to parse the body of the request")
+      try response.send("Sorry - we weren't able to parse the body of the request\n").end()
+      return
+    }
+    if case .json(let json) = parsedBody {
+      //TODO: find event in database, edit the necessary properties, save again.
+    } else {
+      Log.info("Editing event in database failed for unkown reason")
+      response.statusCode = HTTPStatusCode.badRequest
+      try response.send("Please use JSON for post data\n").end()
+    }
+    next()
+  }
+
   private static func saveEvent(json: [String : Any]) throws {
     let event = try parseEvent(json: json)
     try event.save()

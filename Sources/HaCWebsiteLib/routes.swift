@@ -34,6 +34,7 @@ func getWebsiteRouter() -> Router {
   router.post("/api/add_event", middleware: CredentialsServer.credentials)
   router.post("/api/add_event", handler: EventApiController.addEventHandler)
 
+
   router.get("/", handler: LandingPageController.handler)
   router.get("/constitution", handler: ConstitutionController.handler)
 
@@ -42,6 +43,9 @@ func getWebsiteRouter() -> Router {
 
   // MARK: Features in progress
   router.get("/beta/landing-update-feed", handler: LandingUpdateFeedController.handler)
+  router.post("/beta/api/edit_event", allowPartialMatch: false, middleware: BodyParser())
+  router.post("/beta/api/edit_event", middleware: CredentialsServer.credentials)
+  router.post("/beta/api/edit_event", handler: EventApiController.editEventHandler)
   router.get("/beta/events-portal", middleware: CredentialsServer.credentials)
   router.get("/beta/events-portal", handler: EventsController.portalHandler)
   router.get("/beta/events/:eventId", middleware: CredentialsServer.credentials)
