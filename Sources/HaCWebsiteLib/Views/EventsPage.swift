@@ -8,7 +8,7 @@ func getEventListItem(_ event: GeneralEvent) -> Node {
   let colorText = "Color: " + event.color
   //TODO: let hypePeriodText = event.hypePeriod
   //TODO: let tagsText = event.tags
-  //TODO: let eventDescriptionText = event.eventDescription
+  let eventDescriptionText = "Markdown Event Description: " + event.eventDescription.raw
   let websiteURLText = "WebsiteURL: " + (event.websiteURL ?? "null")
   let imageURLText = "ImageURL: " + (event.imageURL ?? "null")
   //TODO: let locationText = event.location
@@ -21,7 +21,7 @@ func getEventListItem(_ event: GeneralEvent) -> Node {
     El.Header.containing(colorText),
     //TODO: El.Header.containing(hypeStartDateText),
     //TODO: El.Header.containing(tagsText),
-    //TODO: El.Header.containing(eventDescriptionText),
+    El.Header.containing(eventDescriptionText),
     El.Header.containing(websiteURLText),
     El.Header.containing(imageURLText),
     //TODO: El.Header.containing(locationText),
