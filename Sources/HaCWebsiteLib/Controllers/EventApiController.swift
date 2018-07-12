@@ -48,7 +48,31 @@ struct EventApiController {
       return
     }
     if case .json(let json) = parsedBody {
-      //TODO: find event in database, edit the necessary properties, save again.
+      do {
+        guard let id = json["eventId"] as? String else {
+          throw EventParsingError.missingParameters
+        }
+        guard let event = EventServer.getEvent(eventId: id) else {
+          throw EventParsingError.noSuchEvent
+        }
+        let updatedEvent = try updateNecessaryFields(event: event, updates: json)
+        try updatedEvent.save()
+      } catch EventParsingError.missingParameters {
+        Log.info("Updating event in database failed due to missing parameters in api call")
+        response.statusCode = HTTPStatusCode.badRequest
+        try response.send("There were missing parameters in your api call. Please consult the API documentation. \n").end()
+      } catch EventParsingError.noSuchEvent {
+        Log.info("Updating event in database failed due to the event not existing")
+        response.statusCode = HTTPStatusCode.badRequest
+        try response.send("It appears there is no such event with that id.\n").end()
+      } catch {
+        Log.info("Updating event in database failed due to unknown reason")
+        response.statusCode = HTTPStatusCode.badRequest
+        try response.send("Could not update event for unknown reason. \n").end()
+      }
+      Log.info("Event updated in database sucessfully")
+      response.statusCode = HTTPStatusCode.badRequest
+      try response.send("The event has been updated sucessfully.\n").end()
     } else {
       Log.info("Editing event in database failed for unkown reason")
       response.statusCode = HTTPStatusCode.badRequest
@@ -121,9 +145,136 @@ struct EventApiController {
     }
     return tagsArray
   }
+
+  private static func updateNecessaryFields(event: GeneralEvent, updates json: [String : Any]) throws -> GeneralEvent {
+    let fieldsToUpdate = json.keys
+
+    if fieldsToUpdate.contains("eventId") {
+      if let newEventId = json["eventId"] as? String {
+        event.eventId = newEventId
+      } else {
+        throw EventParsingError.invalidUpdateValue
+      }
+    }
+    if fieldsToUpdate.contains("title") {
+      if let newTitle = json["title"] as? String {
+        event.title = newTitle
+      } else {
+        throw EventParsingError.invalidUpdateValue
+      }
+    }
+    if fieldsToUpdate.contains("tagLine") {
+      if let newTagLine = json["tagLine"] as? String {
+        event.tagLine = newTagLine
+      } else {
+        throw EventParsingError.invalidUpdateValue
+      }
+    }
+    if fieldsToUpdate.contains("color") {
+      if let newColor = json["color"] as? String {
+        event.color = newColor
+      } else {
+        throw EventParsingError.invalidUpdateValue
+      }
+    }
+    if fieldsToUpdate.contains("websiteURL") {
+      if let newURL = json["websiteURL"] as? String {
+        event.websiteURL = newURL
+      } else {
+        throw EventParsingError.invalidUpdateValue
+      }
+    }
+    if fieldsToUpdate.contains("imageURL") {
+      if let newURL = json["imageURL"] as? String {
+        event.imageURL = newURL
+      } else {
+        throw EventParsingError.invalidUpdateValue
+      }
+    }
+    if fieldsToUpdate.contains("markdownDescription") {
+      if let newMarkdownDescription = json["markdownDescription"] as? String {
+        event.eventDescription = Markdown(newMarkdownDescription)
+      } else {
+        throw EventParsingError.invalidUpdateValue
+      }
+    }
+    if fieldsToUpdate.contains("facebookEventID") {
+      if let newFacebookId = json["facebookEventID"] as? String {
+        event.facebookEventID = newFacebookId
+      } else {
+        throw EventParsingError.invalidUpdateValue
+      }
+    }
+    if fieldsToUpdate.contains("startDate") {
+      if let newStartDate = Date.from(string: json["startDate"] as? String) {
+        let endDate = event.time.end
+        event.time = DateInterval(start: newStartDate, end: endDate)
+      } else {
+        throw EventParsingError.invalidUpdateValue
+      }
+    }
+    if fieldsToUpdate.contains("endDate") {
+      if let newEndDate = Date.from(string: json["endDate"] as? String) {
+        let startDate = event.time.start
+        event.time = DateInterval(start: startDate, end: newEndDate)
+      } else {
+        throw EventParsingError.invalidUpdateValue
+      }
+    }
+    if fieldsToUpdate.contains("hypeStartDate") {
+      if let newHypeStartDate = Date.from(string: json["hypeStartDate"] as? String) {
+        let hypeEndDate = event.time.end
+        event.hypePeriod = DateInterval(start: newHypeStartDate, end: hypeEndDate)
+      } else {
+        throw EventParsingError.invalidUpdateValue
+      }
+    }
+    if fieldsToUpdate.contains("hypeEndDate") {
+      if let newHypeEndDate = Date.from(string: json["hypeEndDate"] as? String) {
+        let hypeStartDate = event.time.start
+        event.hypePeriod = DateInterval(start: hypeStartDate, end: newHypeEndDate)
+      } else {
+        throw EventParsingError.invalidUpdateValue
+      }
+    }
+    if let newTags = getOptionalTags(json: json) {
+      event.tags = newTags
+    }
+    if fieldsToUpdate.contains("venue") {
+      if let newVenue = json["venue"] as? String {
+        event.location?.venue = newVenue
+      } else {
+        throw EventParsingError.invalidUpdateValue
+      }
+    }
+    if fieldsToUpdate.contains("address") {
+      if let newAddress = json["address"] as? String {
+        event.location?.address = newAddress
+      } else {
+        throw EventParsingError.invalidUpdateValue
+      }
+    }
+    if fieldsToUpdate.contains("longitude") {
+      if let newLongitude = json["longitude"] as? Int {
+        event.location?.longitude = Double(newLongitude)
+      } else {
+        throw EventParsingError.invalidUpdateValue
+      }
+    }
+    if fieldsToUpdate.contains("latitude") {
+      if let newLatitude = json["latitude"] as? Int {
+        event.location?.latitude = Double(newLatitude)
+      } else {
+        throw EventParsingError.invalidUpdateValue
+      }
+    }
+    return event
+  }
 }
 
 enum EventParsingError: Swift.Error {
   case missingParameters
   case invalidHypePeriod
+  case noSuchEvent
+  case invalidUpdateValue
 }
