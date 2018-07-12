@@ -4,18 +4,18 @@ import Fluent
 final class GeneralEvent: Event, Entity {
   //This is missing a workshop attribute from the deprecated WorkshopEvent.swift
   let storage = Storage()
-  let eventId : String
-  let title : String
-  let time : DateInterval
-  let tagLine : String
-  let color : String
-  let hypePeriod : DateInterval
-  let tags : [String]
-  let eventDescription : Markdown
-  let websiteURL : String?
-  let imageURL : String? 
-  let location : Location?
-  let facebookEventID : String?
+  var eventId : String 
+  var title : String
+  var time : DateInterval
+  var tagLine : String
+  var color : String
+  var hypePeriod : DateInterval
+  var tags : [String]
+  var eventDescription : Markdown
+  var websiteURL : String?
+  var imageURL : String? 
+  var location : Location?
+  var facebookEventID : String?
   var shouldShowAsUpdate : Bool {
     get {
       return self.hypePeriod.contains(Date())
