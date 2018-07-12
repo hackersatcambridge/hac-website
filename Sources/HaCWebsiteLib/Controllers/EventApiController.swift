@@ -89,6 +89,48 @@ struct EventApiController {
     next()
   }
 
+  static var deleteEventHandler: RouterHandler = { request, response, next in
+    response.headers["Content-Type"] = "text/plain; charset=utf-8"
+    guard let parsedBody = request.body else {
+      next()
+      response.statusCode = HTTPStatusCode.internalServerError
+      Log.info("Unable to parse the body of the request")
+      try response.send("Sorry - we weren't able to parse the body of the request\n").end()
+      return
+    }
+    if case .json(let json) = parsedBody {
+      do {
+        guard let id = json["eventId"] as? String else {
+          throw EventParsingError.missingParameters
+        }
+        guard let event = EventServer.getEvent(eventId: id) else {
+          throw EventParsingError.noSuchEvent
+        }
+        try event.delete()
+      } catch EventParsingError.missingParameters {
+        Log.info("Deleting event in database failed due to missing eventId parameter")
+        response.statusCode = HTTPStatusCode.badRequest
+        try response.send("Deleting event in database failed due to missing eventId parameter.\n").end()
+      } catch EventParsingError.noSuchEvent {
+        Log.info("Deleting event in database failed due to the event not existing")
+        response.statusCode = HTTPStatusCode.badRequest
+        try response.send("It appears there is no such event with that id.\n").end()
+      } catch {
+        Log.info("Deleting event in database failed due to unknown reason")
+        response.statusCode = HTTPStatusCode.badRequest
+        try response.send("Could not delete event for unknown reason. \n").end()
+      }
+      Log.info("Event deleted from database sucessfully")
+      response.statusCode = HTTPStatusCode.badRequest
+      try response.send("The event has been deleted sucessfully.\n").end()
+    } else {
+      Log.info("Deleting event in database failed for unkown reason")
+      response.statusCode = HTTPStatusCode.badRequest
+      try response.send("Please use JSON for post data\n").end()
+    }
+    next()
+  }
+
   private static func saveEvent(json: [String : Any]) throws {
     let event = try parseEvent(json: json)
     try event.save()
