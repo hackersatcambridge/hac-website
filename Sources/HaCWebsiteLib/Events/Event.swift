@@ -1,6 +1,7 @@
 import Foundation
 
 protocol Event: PostCardRepresentable {
+    var eventId: String {get}
     var title : String {get}
     var time : DateInterval {get}
     var tagLine : String {get}

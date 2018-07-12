@@ -4,6 +4,7 @@ import Fluent
 final class GeneralEvent: Event, Entity {
   //This is missing a workshop attribute from the deprecated WorkshopEvent.swift
   let storage = Storage()
+  let eventId : String
   let title : String
   let time : DateInterval
   let tagLine : String
@@ -30,9 +31,10 @@ final class GeneralEvent: Event, Entity {
     )
   }
 
-  init(title: String, time: DateInterval, tagLine: String, color: String, hypePeriod: DateInterval, 
+  init(eventId: String, title: String, time: DateInterval, tagLine: String, color: String, hypePeriod: DateInterval, 
   tags:[String], description eventDescription: Markdown, websiteURL : String? = nil, imageURL: String? = nil, 
   location: Location? = nil, facebookEventID: String? = nil) {
+    self.eventId = eventId
     self.title = title
     self.time = time
     self.tagLine = tagLine
@@ -47,6 +49,7 @@ final class GeneralEvent: Event, Entity {
   }
 
   init(row: Row) throws {
+    eventId = try row.get("eventId")
     title = try row.get("title")
     tagLine = try row.get("tagLine")
     color = try row.get("color")
@@ -76,6 +79,7 @@ final class GeneralEvent: Event, Entity {
 
   func makeRow() throws -> Row {
     var row = Row()
+    try row.set("eventId", eventId)
     try row.set("title", title)
     try row.set("startDate", time.start)
     try row.set("endDate", time.end)
@@ -101,6 +105,7 @@ extension GeneralEvent {
     static func prepare(_ database: Database) throws {
       try database.create(GeneralEvent.self) { events in 
         events.id()
+        events.string("eventId")
         events.string("title")
         events.date("startDate")
         events.date("endDate")

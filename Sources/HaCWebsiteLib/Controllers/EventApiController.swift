@@ -44,7 +44,8 @@ struct EventApiController {
   }
 
   public static func parseEvent(json : [String : Any]) throws -> GeneralEvent {
-    guard let title = json["title"] as? String,
+    guard let eventId = json["eventId"] as? String,
+    let title = json["title"] as? String,
     let startDate = Date.from(string: json["startDate"] as? String),
     let endDate = Date.from(string: json["endDate"] as? String),
     let tagLine = json["tagLine"] as? String,
@@ -75,7 +76,7 @@ struct EventApiController {
     let imageURL = json["imageURL"] as? String
     let facebookEventID = json["facebookEventID"] as? String
 
-    return GeneralEvent(title: title, time: time, tagLine: tagLine, color: color, hypePeriod: hypePeriod,
+    return GeneralEvent(eventId: eventId, title: title, time: time, tagLine: tagLine, color: color, hypePeriod: hypePeriod,
       tags: tags, description: eventDescription, websiteURL: websiteURL, imageURL: imageURL, location: location,
       facebookEventID: facebookEventID)
   }
