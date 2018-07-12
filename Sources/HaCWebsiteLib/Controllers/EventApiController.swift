@@ -6,7 +6,7 @@ import DotEnv
 import LoggerAPI
 
 struct EventApiController {
-  static var handler: RouterHandler = { request, response, next in
+  static var addEventHandler: RouterHandler = { request, response, next in
     response.headers["Content-Type"] = "text/plain; charset=utf-8"
     guard let parsedBody = request.body else {
       next()

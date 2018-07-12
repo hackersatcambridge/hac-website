@@ -32,7 +32,7 @@ func getWebsiteRouter() -> Router {
   // Used to add events to the database (see `/Docs/Api` for documentation)
   router.post("/api/add_event", allowPartialMatch: false, middleware: BodyParser())
   router.post("/api/add_event", middleware: CredentialsServer.credentials)
-  router.post("/api/add_event", handler: EventApiController.handler)
+  router.post("/api/add_event", handler: EventApiController.addEventHandler)
 
   router.get("/", handler: LandingPageController.handler)
   router.get("/constitution", handler: ConstitutionController.handler)
