@@ -3,7 +3,7 @@ import HaCTML
 struct EventView {
   public static func getEventListItem(_ event: GeneralEvent) -> Node {
     let idText = "Id: " + event.eventId
-    let titleText = "Title: " + event.title
+    let titleText = event.title
     let timeText = "Time: " + event.time.debugDescription
     let tagLineText = "Tagline: " + event.tagLine
     let colorText = "Color: " + event.color
@@ -25,8 +25,8 @@ struct EventView {
     let facebookEventIDText = "Facebook ID: " + (event.facebookEventID ?? "null")
 
     return El.Div[Attr.className => "EventsPortal__eventContainer"].containing(
+      El.H2.containing(titleText),
       El.Div.containing(idText),
-      El.Div.containing(titleText),
       El.Div.containing(timeText),
       El.Div.containing(tagLineText),
       El.Div.containing(colorText),
@@ -37,7 +37,7 @@ struct EventView {
       El.Div.containing(imageURLText),
       El.Div.containing(facebookEventIDText),
       El.Br,
-      El.H3.containing("Location: "),
+      El.H4.containing("Location: "),
       El.Div.containing(venue),
       El.Div.containing(addr),
       El.Div.containing(long),
