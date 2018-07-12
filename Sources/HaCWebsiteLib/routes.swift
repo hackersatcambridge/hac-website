@@ -42,6 +42,7 @@ func getWebsiteRouter() -> Router {
 
   // MARK: Features in progress
   router.get("/beta/landing-update-feed", handler: LandingUpdateFeedController.handler)
+  router.get("/beta/events-portal", handler: EventsController.handler)
   router.get("/workshops", handler: WorkshopsController.handler)
   router.get("/workshops/:workshopId", handler: WorkshopsController.workshopHandler)
   router.get("/workshops/update", middleware: CredentialsServer.credentials)
