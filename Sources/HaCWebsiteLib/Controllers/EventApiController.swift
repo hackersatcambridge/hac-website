@@ -17,6 +17,14 @@ struct EventApiController {
     }
     if case .json(let json) = parsedBody {
       do {
+        if let eventId = json["eventId"] as? String {
+          if EventServer.doesEventWithIdExist(eventId: eventId) {
+            Log.info("Database event adding failed - Event with that ID exists")
+            response.statusCode = HTTPStatusCode.badRequest
+            try response.send("Database event adding failed - Event with that ID exists\n").end()
+            return
+          }
+        }
         try saveEvent(json: json)
         Log.info("Succesfully added event to the database")
         try response.send("Successfully added your event to the database\n").end()

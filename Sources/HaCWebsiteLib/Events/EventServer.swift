@@ -34,4 +34,18 @@ public struct EventServer {
       return nil
     }
   }
+
+  static func doesEventWithIdExist(eventId: String) -> Bool {
+    do {
+      let events = try GeneralEvent.makeQuery()
+        .filter("eventId", .equals, eventId)
+        .all()
+      if events.count != 0 {
+        return true
+      }
+      return false
+    } catch {
+      return false
+    }
+  }
 }
