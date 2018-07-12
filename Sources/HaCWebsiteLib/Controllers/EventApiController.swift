@@ -248,33 +248,8 @@ struct EventApiController {
     if let newTags = getOptionalTags(json: json) {
       event.tags = newTags
     }
-    if fieldsToUpdate.contains("venue") {
-      if let newVenue = json["venue"] as? String {
-        event.location?.venue = newVenue
-      } else {
-        throw EventParsingError.invalidUpdateValue
-      }
-    }
-    if fieldsToUpdate.contains("address") {
-      if let newAddress = json["address"] as? String {
-        event.location?.address = newAddress
-      } else {
-        throw EventParsingError.invalidUpdateValue
-      }
-    }
-    if fieldsToUpdate.contains("longitude") {
-      if let newLongitude = json["longitude"] as? Int {
-        event.location?.longitude = Double(newLongitude)
-      } else {
-        throw EventParsingError.invalidUpdateValue
-      }
-    }
-    if fieldsToUpdate.contains("latitude") {
-      if let newLatitude = json["latitude"] as? Int {
-        event.location?.latitude = Double(newLatitude)
-      } else {
-        throw EventParsingError.invalidUpdateValue
-      }
+    if let newLocation = getOptionalLocation(json: json) {
+      event.location = newLocation
     }
     return event
   }
