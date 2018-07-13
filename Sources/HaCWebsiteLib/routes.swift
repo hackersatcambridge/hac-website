@@ -43,9 +43,9 @@ func getWebsiteRouter() -> Router {
 
   // MARK: Features in progress
   router.get("/beta/landing-update-feed", handler: LandingUpdateFeedController.handler)
-  router.post("/beta/api/edit_event", allowPartialMatch: false, middleware: BodyParser())
-  router.post("/beta/api/edit_event", middleware: CredentialsServer.credentials)
-  router.post("/beta/api/edit_event", handler: EventApiController.editEventHandler)
+  router.post("/beta/api/edit_event/:eventId", allowPartialMatch: false, middleware: BodyParser())
+  router.post("/beta/api/edit_event/:eventId", middleware: CredentialsServer.credentials)
+  router.post("/beta/api/edit_event/:eventId", handler: EventApiController.editEventHandler)
   router.post("/beta/api/delete_event", allowPartialMatch: false, middleware: BodyParser())
   router.post("/beta/api/delete_event", middleware: CredentialsServer.credentials)
   router.post("/beta/api/delete_event", handler: EventApiController.deleteEventHandler)
@@ -57,6 +57,8 @@ func getWebsiteRouter() -> Router {
   router.get("/beta/events/add_event", handler: EventsController.addEventFormHandler)
   router.get("/beta/events/delete_event/:eventId", middleware: CredentialsServer.credentials)
   router.get("/beta/events/delete_event/:eventId", handler: EventsController.deleteEventFormHandler)
+  router.get("/beta/events/edit_event/:eventId", middleware: CredentialsServer.credentials)
+  router.get("/beta/events/edit_event/:eventId", handler: EventsController.editEventPageHandler)
   router.get("/workshops", handler: WorkshopsController.handler)
   router.get("/workshops/:workshopId", handler: WorkshopsController.workshopHandler)
   router.get("/workshops/update", middleware: CredentialsServer.credentials)

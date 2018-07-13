@@ -18,7 +18,7 @@ struct EventsPage: Nodeable {
       content: Fragment(
         El.Div[Attr.className => "EventsPortal__mainContainer"].containing([
           El.Div.containing(eventsNumberText),
-          El.Div.containing("The available routes for interacting with the events API are /beta/events/add_event, /beta/events/delete_event/:eventid and /beta/events/:eventId "),
+          El.Div.containing("The available routes for interacting with the events API are /beta/events/edit_event/:eventId /beta/events/add_event, /beta/events/delete_event/:eventid and /beta/events/:eventId "),
           El.H1.containing("Events in Database"),
           El.Div[Attr.className => "EventsPortal__divider"].containing(),
           El.Div.containing(eventListItems)

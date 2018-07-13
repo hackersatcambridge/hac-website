@@ -57,7 +57,7 @@ struct EventApiController {
     }
     if case .json(let json) = parsedBody {
       do {
-        guard let id = json["eventId"] as? String else {
+        guard let id = request.parameters["eventId"] else {
           throw EventParsingError.missingParameters
         }
         guard let event = EventServer.getEvent(eventId: id) else {
