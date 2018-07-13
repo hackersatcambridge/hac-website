@@ -35,12 +35,10 @@ struct EditEventPage: Nodeable {
       xhr.open(\"POST\", url, true);
       xhr.setRequestHeader(\"Content-Type\", \"application/json\");
       xhr.onreadystatechange = function () {
-          if (xhr.readyState === 4 && xhr.status === 200) {
-            alert(\"Event edited successfully\");
-            window.location.href = \"/beta/events-portal\";
-          } else {
-            alert(\"There seems to have been a problem\");
-        }
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          alert(\"Event edited successfully\");
+          window.location.href = \"/beta/events-portal\";
+        } 
       };
 
       var data = JSON.stringify(

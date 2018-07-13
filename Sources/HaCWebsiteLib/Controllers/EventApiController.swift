@@ -69,26 +69,21 @@ struct EventApiController {
         Log.info("Updating event in database failed due to missing parameters in api call")
         response.statusCode = HTTPStatusCode.badRequest
         try response.send("There were missing parameters in your api call. Please consult the API documentation. \n").end()
-        return
       } catch EventParsingError.noSuchEvent {
         Log.info("Updating event in database failed due to the event not existing")
         response.statusCode = HTTPStatusCode.badRequest
         try response.send("It appears there is no such event with that id.\n").end()
-        return
       } catch {
         Log.info("Updating event in database failed due to unknown reason")
         response.statusCode = HTTPStatusCode.badRequest
         try response.send("Could not update event for unknown reason. \n").end()
-        return
       }
       Log.info("Event updated in database sucessfully")
       try response.send("The event has been updated sucessfully.\n").end()
-      return
     } else {
       Log.info("Editing event in database failed for unkown reason")
       response.statusCode = HTTPStatusCode.badRequest
       try response.send("Please use JSON for post data\n").end()
-      return
     }
     next()
   }

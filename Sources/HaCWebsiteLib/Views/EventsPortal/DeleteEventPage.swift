@@ -17,8 +17,6 @@ struct DeleteEventPage: Nodeable {
         if (xhr.readyState === 4 && xhr.status === 200) {
             alert(\"Event deleted successfully\");
             window.location.href = \"/beta/events-portal\";
-        } else {
-          alert(\"There seems to have been a problem\");
         }
     };
 
