@@ -3,6 +3,14 @@ import LoggerAPI
 
 // swiftlint:disable line_length
 
+func formatDateString(_ str: String) -> String {
+  var ret = str
+  ret.removeLast(6)
+  ret = ret.replacingOccurrences(of: " ", with: "T") 
+  ret = ret + ".000"
+  return ret
+}
+
 struct EditEventPage: Nodeable {
   let event : GeneralEvent
 
@@ -59,6 +67,10 @@ struct EditEventPage: Nodeable {
       xhr.send(data);
     }; submitForm();
     """
+    let startDate = formatDateString(event.time.start.description)
+    let endDate = formatDateString(event.time.end.description)
+    let hypeStartDate = formatDateString(event.hypePeriod.start.description)
+    let hypeEndDate = formatDateString(event.hypePeriod.end.description)
 
     return Page(
       title: "Edit Event",
@@ -71,17 +83,17 @@ struct EditEventPage: Nodeable {
           El.Input[Attr.id => "title", Attr.className => "AddEventPage__formInput", Attr.value => event.title],
           El.Div[Attr.className => "AddEventPage__inputLabel"].containing("startDate"),
           El.Div[Attr.className => "AddEventPage__inputLabel"].containing("Dates should be of the form 'year-month-dateThour:min:sec.msec'. E.g. '2017-11-15T12:01:12.123'"),
-          El.Input[Attr.id => "startDate", Attr.className => "AddEventPage__formInput", Attr.value => event.time.start.description],
+          El.Input[Attr.id => "startDate", Attr.className => "AddEventPage__formInput", Attr.value => startDate],
           El.Div[Attr.className => "AddEventPage__inputLabel"].containing("endDate"),
-          El.Input[Attr.id => "endDate", Attr.className => "AddEventPage__formInput", Attr.value => event.time.end.description],
+          El.Input[Attr.id => "endDate", Attr.className => "AddEventPage__formInput", Attr.value => endDate],
           El.Div[Attr.className => "AddEventPage__inputLabel"].containing("tagLine"),
           El.Textarea[Attr.id => "tagLine", Attr.className => "AddEventPage__formInput"].containing(event.tagLine),
           El.Div[Attr.className => "AddEventPage__inputLabel"].containing("color"),
           El.Input[Attr.id => "color", Attr.className => "AddEventPage__formInput", Attr.value => event.color],
           El.Div[Attr.className => "AddEventPage__inputLabel"].containing("hypeStartDate"),
-          El.Input[Attr.id => "hypeStartDate", Attr.className => "AddEventPage__formInput", Attr.value => event.hypePeriod.start.description],
+          El.Input[Attr.id => "hypeStartDate", Attr.className => "AddEventPage__formInput", Attr.value => hypeStartDate],
           El.Div[Attr.className => "AddEventPage__inputLabel"].containing("hypeEndDate"),
-          El.Input[Attr.id => "hypeEndDate", Attr.className => "AddEventPage__formInput", Attr.value => event.hypePeriod.end.description],
+          El.Input[Attr.id => "hypeEndDate", Attr.className => "AddEventPage__formInput", Attr.value => hypeEndDate],
           El.Div[Attr.className => "AddEventPage__inputLabel"].containing("tags"),
           El.Input[Attr.id => "tags", Attr.className => "AddEventPage__formInput"],
           El.Div[Attr.className => "AddEventPage__inputLabel"].containing("websiteURL"),
