@@ -175,14 +175,20 @@ struct EventApiController {
   }
 
   private static func getOptionalLocation(json: [String : Any]) -> Location? {
-    guard let latitude = json["latitude"] as? Int,
-    let longitude = json["longitude"] as? Int else {
-      return nil
-    }
+    var long : Double? = nil
+    var lat : Double? = nil
+    if let latInt = json["latitude"] as? Int { lat = Double(latInt) }
+    if let longInt = json["longitude"] as? Int { long = Double(longInt) }
+    if let latDouble = json["latitude"] as? Double { lat = latDouble }
+    if let longDouble = json["longitude"] as? Double { long = longDouble }
+
     let venue = json["venue"] as? String
     let address = json["address"] as? String
-    return Location(latitude: Double(latitude), longitude: Double(longitude),
-      address: address, venue: venue)
+
+    if let longitude = long, let latitude = lat {
+      return Location(latitude: latitude, longitude: longitude, address: address, venue: venue) 
+    }
+    return nil
   }
 
   private static func getOptionalTags(json: [String : Any]) -> [String]? {
