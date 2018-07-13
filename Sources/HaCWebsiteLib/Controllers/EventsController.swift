@@ -17,7 +17,11 @@ struct EventsController {
     } else {
       next()
     }
+  }
 
-    
+  static var addEventFormHandler: RouterHandler = { request, response, next in
+    try response.send(
+      AddEventForm().node.render()
+    ).end() 
   }
 }

@@ -53,6 +53,8 @@ func getWebsiteRouter() -> Router {
   router.get("/beta/events-portal", handler: EventsController.portalHandler)
   router.get("/beta/events/:eventId", middleware: CredentialsServer.credentials)
   router.get("/beta/events/:eventId", handler: EventsController.individualEventHandler)
+  router.get("/beta/events/add_event", middleware: CredentialsServer.credentials)
+  router.get("/beta/events/add_event", handler: EventsController.addEventFormHandler)
   router.get("/workshops", handler: WorkshopsController.handler)
   router.get("/workshops/:workshopId", handler: WorkshopsController.workshopHandler)
   router.get("/workshops/update", middleware: CredentialsServer.credentials)
