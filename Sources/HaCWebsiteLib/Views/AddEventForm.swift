@@ -10,11 +10,13 @@ struct AddEventForm: Nodeable {
       title: "Add Event",
       content: Fragment(
         El.Div[Attr.className => "AddEventPage__mainContainer"].containing(
+          El.H1[Attr.className => "AddEventPage__inputLabel"].containing("Add a new event to the Database"),
           El.Div[Attr.className => "AddEventPage__inputLabel"].containing("eventId"),
           El.Input[Attr.id => "eventId", Attr.className => "AddEventPage__formInput"],
           El.Div[Attr.className => "AddEventPage__inputLabel"].containing("title"),
           El.Input[Attr.id => "title", Attr.className => "AddEventPage__formInput"],
           El.Div[Attr.className => "AddEventPage__inputLabel"].containing("startDate"),
+          El.Div[Attr.className => "AddEventPage__inputLabel"].containing("Dates should be of the form 'year-month-dateThour:min:sec.msec'. E.g. '2017-11-15T12:01:12.123'"),
           El.Input[Attr.id => "startDate", Attr.className => "AddEventPage__formInput"],
           El.Div[Attr.className => "AddEventPage__inputLabel"].containing("endDate"),
           El.Input[Attr.id => "endDate", Attr.className => "AddEventPage__formInput"],
