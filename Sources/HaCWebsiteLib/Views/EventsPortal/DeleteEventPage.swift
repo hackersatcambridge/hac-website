@@ -15,7 +15,10 @@ struct DeleteEventPage: Nodeable {
     xhr.setRequestHeader(\"Content-Type\", \"application/json\");
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
-            console.log(\"success\");
+            alert(\"Event deleted successfully\");
+            window.location.href = \"/beta/events-portal\";
+        } else {
+          alert(\"There seems to have been a problem\");
         }
     };
 

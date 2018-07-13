@@ -28,8 +28,11 @@ struct EditEventPage: Nodeable {
       xhr.setRequestHeader(\"Content-Type\", \"application/json\");
       xhr.onreadystatechange = function () {
           if (xhr.readyState === 4 && xhr.status === 200) {
-              console.log(\"success\");
-          }
+            alert(\"Event edited successfully\");
+            window.location.href = \"/beta/events-portal\";
+          } else {
+            alert(\"There seems to have been a problem\");
+        }
       };
 
       var data = JSON.stringify(
@@ -53,9 +56,7 @@ struct EditEventPage: Nodeable {
         \"facebookEventID\": document.getElementById("facebookEventID").value
         }
       );
-      console.log(\"sending\");
       xhr.send(data);
-      console.log(\"sent\");
     }; submitForm();
     """
 

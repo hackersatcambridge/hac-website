@@ -3,6 +3,8 @@ import HaCTML
 struct EventView {
   public static func getEventListItem(_ event: GeneralEvent) -> Node {
     let deleteURL = "/beta/events/delete_event/" + event.eventId
+    let editURL = "/beta/events/edit_event/" + event.eventId
+    let viewURL = "/beta/events/" + event.eventId
     let idText = "Id: " + event.eventId
     let titleText = event.title
     let timeText = "Time: " + event.time.debugDescription
@@ -28,6 +30,10 @@ struct EventView {
     return El.Div[Attr.className => "EventsPortal__eventContainer"].containing(
       El.H2.containing(titleText),
       El.A[Attr.href => deleteURL].containing("Delete Event..."),
+      El.Br,
+      El.A[Attr.href => editURL].containing("Edit Event..."),
+      El.Br,
+      El.A[Attr.href => viewURL].containing("View Event Individually..."),
       El.Div.containing(idText),
       El.Div.containing(timeText),
       El.Div.containing(tagLineText),
