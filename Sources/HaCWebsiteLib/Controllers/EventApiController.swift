@@ -82,7 +82,6 @@ struct EventApiController {
         return
       }
       Log.info("Event updated in database sucessfully")
-      response.statusCode = HTTPStatusCode.badRequest
       try response.send("The event has been updated sucessfully.\n").end()
       return
     } else {
@@ -126,7 +125,6 @@ struct EventApiController {
         try response.send("Could not delete event for unknown reason. \n").end()
       }
       Log.info("Event deleted from database sucessfully")
-      response.statusCode = HTTPStatusCode.badRequest
       try response.send("The event has been deleted sucessfully.\n").end()
     } else {
       Log.info("Deleting event in database failed for unkown reason")
