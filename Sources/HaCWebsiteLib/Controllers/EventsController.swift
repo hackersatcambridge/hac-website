@@ -24,4 +24,14 @@ struct EventsController {
       AddEventForm().node.render()
     ).end() 
   }
+
+  static var deleteEventFormHandler: RouterHandler = { request, response, next in
+    if let eventId = request.parameters["eventId"] {
+      try response.send(
+        DeleteEventPage(eventId: eventId).node.render()
+      ).end() 
+    } else {
+      next()
+    }
+  }
 }

@@ -60,7 +60,7 @@ struct AddEventForm: Nodeable {
     xhr.setRequestHeader(\"Content-Type\", \"application/json\");
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
-            var json = JSON.parse(xhr.responseText);
+            console.log(\"success\");
         }
     };
 
@@ -85,9 +85,7 @@ struct AddEventForm: Nodeable {
       \"facebookEventID\": document.getElementById("facebookEventID").value
       }
     );
-    console.log(\"sending\");
     xhr.send(data);
-    console.log(\"sent\")
     }; submitForm();
     """
 }
