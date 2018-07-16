@@ -151,10 +151,9 @@ struct EventApiController {
     // Make sure the event itself falls within the hype period
     // If it doesn't, we throw an invalidHypePeriod exception
     if !((hypeStartDate <= startDate) &&
-       (startDate <= hypeEndDate) &&
-       (hypeStartDate <= endDate) &&
-       (endDate <= hypeEndDate)) {
-         throw EventParsingError.invalidHypePeriod
+      (startDate <= endDate) &&
+      (endDate <= hypeEndDate)) {
+        throw EventParsingError.invalidHypePeriod
     }
 
     let location = getOptionalLocation(json: json)
@@ -259,36 +258,59 @@ struct EventApiController {
         throw EventParsingError.invalidUpdateValue
       }
     }
-    if fieldsToUpdate.contains("startDate") {
-      if let newStartDate = Date.from(string: json["startDate"] as? String) {
-        let endDate = event.time.end
-        event.time = DateInterval(start: newStartDate, end: endDate)
-      } else {
-        throw EventParsingError.invalidUpdateValue
+    if fieldsToUpdate.contains("startDate") && fieldsToUpdate.contains("endDate") {
+      if let newStartDate = Date.from(string: json["startDate"] as? String),
+        let newEndDate = Date.from(string: json["endDate"] as? String) {
+          if newStartDate > newEndDate { throw EventParsingError.invalidUpdateValue }
+          event.time = DateInterval(start: newStartDate, end: newEndDate)
+        } else {
+          throw EventParsingError.invalidUpdateValue
+        }
+    } else {
+      if fieldsToUpdate.contains("startDate") {
+        if let newStartDate = Date.from(string: json["startDate"] as? String) {
+          let endDate = event.time.end
+          if newStartDate > endDate { throw EventParsingError.invalidUpdateValue }
+          event.time = DateInterval(start: newStartDate, end: endDate)
+        } else {
+          throw EventParsingError.invalidUpdateValue
+        }
+      } else if fieldsToUpdate.contains("endDate") {
+        if let newEndDate = Date.from(string: json["endDate"] as? String) {
+          let startDate = event.time.start
+          if startDate > newEndDate { throw EventParsingError.invalidUpdateValue }
+          event.time = DateInterval(start: startDate, end: newEndDate)
+        } else {
+          throw EventParsingError.invalidUpdateValue
+        }
       }
     }
-    if fieldsToUpdate.contains("endDate") {
-      if let newEndDate = Date.from(string: json["endDate"] as? String) {
-        let startDate = event.time.start
-        event.time = DateInterval(start: startDate, end: newEndDate)
-      } else {
-        throw EventParsingError.invalidUpdateValue
+    if fieldsToUpdate.contains("hypeStartDate") && fieldsToUpdate.contains("hypeEndDate") {
+      if let newHypeStartDate = Date.from(string: json["hypeStartDate"] as? String),
+        let newHypeEndDate = Date.from(string: json["hypeEndDate"] as? String) {
+          if newHypeStartDate > newHypeEndDate { throw EventParsingError.invalidUpdateValue }
+          event.hypePeriod = DateInterval(start: newHypeStartDate, end: newHypeEndDate)
+        } else {
+          throw EventParsingError.invalidUpdateValue
+        }
+    } else {
+      if fieldsToUpdate.contains("hypeStartDate") {
+        if let newHypeStartDate = Date.from(string: json["hypeStartDate"] as? String) {
+          let hypeEndDate = event.time.end
+          if newHypeStartDate > hypeEndDate { throw EventParsingError.invalidUpdateValue }
+          event.hypePeriod = DateInterval(start: newHypeStartDate, end: hypeEndDate)
+        } else {
+          throw EventParsingError.invalidUpdateValue
+        }
       }
-    }
-    if fieldsToUpdate.contains("hypeStartDate") {
-      if let newHypeStartDate = Date.from(string: json["hypeStartDate"] as? String) {
-        let hypeEndDate = event.time.end
-        event.hypePeriod = DateInterval(start: newHypeStartDate, end: hypeEndDate)
-      } else {
-        throw EventParsingError.invalidUpdateValue
-      }
-    }
-    if fieldsToUpdate.contains("hypeEndDate") {
-      if let newHypeEndDate = Date.from(string: json["hypeEndDate"] as? String) {
-        let hypeStartDate = event.time.start
-        event.hypePeriod = DateInterval(start: hypeStartDate, end: newHypeEndDate)
-      } else {
-        throw EventParsingError.invalidUpdateValue
+      if fieldsToUpdate.contains("hypeEndDate") {
+        if let newHypeEndDate = Date.from(string: json["hypeEndDate"] as? String) {
+          let hypeStartDate = event.time.start
+          if hypeStartDate > newHypeEndDate { throw EventParsingError.invalidUpdateValue }
+          event.hypePeriod = DateInterval(start: hypeStartDate, end: newHypeEndDate)
+        } else {
+          throw EventParsingError.invalidUpdateValue
+        }
       }
     }
     if let newTags = getOptionalTags(json: json) {
