@@ -12,7 +12,10 @@ struct EventsPage: Nodeable {
         EventView.getEventListItem(event)
       }
     )
-    let eventsNumberText = "There are " + String(eventListItems.count) + " items in the database"
+    let count = eventListItems.count
+    let innerString = (count == 1 ? "is \(count) item" : "are \(count) items")
+    let eventsNumberText = "There \(innerString) in the database"
+
     return Page(
       title: "Events",
       content: Fragment(
