@@ -32,56 +32,52 @@ struct EditEventPage: Nodeable {
       longitudeString = String(location.longitude)
       latitudeString = String(location.latitude)
     }
-
     let facebookEventID = event.facebookEventID ?? ""
-
     let submitFormJS = """
-    function submitForm() {
-      var xhr = new XMLHttpRequest();
-      var url = \"/beta/api/edit_event/\(event.eventId)\";
-      xhr.open(\"POST\", url, true);
-      xhr.setRequestHeader(\"Content-Type\", \"application/json\");
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-          alert(\"Event edited successfully\");
-          window.location.href = \"/beta/events-portal\";
-        } 
-      };
-      let tagEls = Array.from(document.getElementsByClassName(\"AddEventPage__tagInput\"));
-      var tags= tagEls.map(el => el.value);
-      tags = tags.filter(function(entry) { return entry.trim() != ''; });
+      function submitForm() {
+        var xhr = new XMLHttpRequest();
+        var url = \"/beta/api/edit_event/\(event.eventId)\";
+        xhr.open(\"POST\", url, true);
+        xhr.setRequestHeader(\"Content-Type\", \"application/json\");
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            alert(\"Event edited successfully\");
+            window.location.href = \"/beta/events-portal\";
+          } 
+        };
+        let tagEls = Array.from(document.getElementsByClassName(\"AddEventPage__tagInput\"));
+        var tags= tagEls.map(el => el.value);
+        tags = tags.filter(function(entry) { return entry.trim() != ''; });
 
-      var data = JSON.stringify(
-        {
-        \"eventId\": document.getElementById("eventId").value,
-        \"title\": document.getElementById("title").value,
-        \"startDate\": document.getElementById("startDate").value,
-        \"endDate\": document.getElementById("endDate").value,
-        \"tagLine\": document.getElementById("tagLine").value,
-        \"color\": document.getElementById("color").value,
-        \"hypeStartDate\": document.getElementById("hypeStartDate").value,
-        \"hypeEndDate\": document.getElementById("hypeEndDate").value,
-        \"tags\": tags,
-        \"websiteURL\": document.getElementById("websiteURL").value,
-        \"imageURL\": document.getElementById("imageURL").value,
-        \"markdownDescription\": document.getElementById("markdownDescription").value,
-        \"latitude\": parseFloat(document.getElementById("latitude").value),
-        \"longitude\": parseFloat(document.getElementById("longitude").value),
-        \"venue\": document.getElementById("venue").value,
-        \"address\": document.getElementById("address").value,
-        \"facebookEventID\": document.getElementById("facebookEventID").value
-        }
-      );
-      xhr.send(data);
-    }; submitForm();
+        var data = JSON.stringify(
+          {
+          \"eventId\": document.getElementById("eventId").value,
+          \"title\": document.getElementById("title").value,
+          \"startDate\": document.getElementById("startDate").value,
+          \"endDate\": document.getElementById("endDate").value,
+          \"tagLine\": document.getElementById("tagLine").value,
+          \"color\": document.getElementById("color").value,
+          \"hypeStartDate\": document.getElementById("hypeStartDate").value,
+          \"hypeEndDate\": document.getElementById("hypeEndDate").value,
+          \"tags\": tags,
+          \"websiteURL\": document.getElementById("websiteURL").value,
+          \"imageURL\": document.getElementById("imageURL").value,
+          \"markdownDescription\": document.getElementById("markdownDescription").value,
+          \"latitude\": parseFloat(document.getElementById("latitude").value),
+          \"longitude\": parseFloat(document.getElementById("longitude").value),
+          \"venue\": document.getElementById("venue").value,
+          \"address\": document.getElementById("address").value,
+          \"facebookEventID\": document.getElementById("facebookEventID").value
+          }
+        );
+        xhr.send(data);
+      }; submitForm();
     """
     let startDate = formatDateString(event.time.start.description)
     let endDate = formatDateString(event.time.end.description)
     let hypeStartDate = formatDateString(event.hypePeriod.start.description)
     let hypeEndDate = formatDateString(event.hypePeriod.end.description)
-    Log.info("Starting map")
     let tagElements = getTagElements(fromList: event.tags)
-    Log.info("Finished map")
 
     return Page(
       title: "Edit Event",

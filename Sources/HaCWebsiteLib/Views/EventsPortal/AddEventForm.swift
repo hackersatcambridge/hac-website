@@ -56,10 +56,10 @@ struct AddEventForm: Nodeable {
   }
 
   private let addNewTagJS = """
-  var div = document.getElementById(\"tagInputContainer\");
-  var newElement = document.createElement('input');
-  newElement.className = \"AddEventPage__formInput AddEventPage__tagInput\";
-  div.appendChild(newElement);
+    var div = document.getElementById(\"tagInputContainer\");
+    var newElement = document.createElement('input');
+    newElement.className = \"AddEventPage__formInput AddEventPage__tagInput\";
+    div.appendChild(newElement);
   """
 
   private let submitFormJS = """
