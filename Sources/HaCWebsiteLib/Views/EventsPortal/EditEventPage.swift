@@ -11,6 +11,13 @@ func formatDateString(_ str: String) -> String {
   return ret
 }
 
+func getTagElements(fromList tags: [String]) -> [HTMLElement] {
+  let htmlElements = tags.map{tag in 
+    El.Input[Attr.className => "AddEventPage__formInput AddEventPage__tagInput", Attr.value => tag]
+  }
+  return htmlElements
+}
+
 struct EditEventPage: Nodeable {
   let event : GeneralEvent
 
@@ -40,6 +47,9 @@ struct EditEventPage: Nodeable {
           window.location.href = \"/beta/events-portal\";
         } 
       };
+      let tagEls = Array.from(document.getElementsByClassName(\"AddEventPage__tagInput\"));
+      var tags= tagEls.map(el => el.value);
+      tags = tags.filter(function(entry) { return entry.trim() != ''; });
 
       var data = JSON.stringify(
         {
@@ -51,7 +61,7 @@ struct EditEventPage: Nodeable {
         \"color\": document.getElementById("color").value,
         \"hypeStartDate\": document.getElementById("hypeStartDate").value,
         \"hypeEndDate\": document.getElementById("hypeEndDate").value,
-        \"tags\": [document.getElementById("tags").value],
+        \"tags\": tags,
         \"websiteURL\": document.getElementById("websiteURL").value,
         \"imageURL\": document.getElementById("imageURL").value,
         \"markdownDescription\": document.getElementById("markdownDescription").value,
@@ -69,6 +79,9 @@ struct EditEventPage: Nodeable {
     let endDate = formatDateString(event.time.end.description)
     let hypeStartDate = formatDateString(event.hypePeriod.start.description)
     let hypeEndDate = formatDateString(event.hypePeriod.end.description)
+    Log.info("Starting map")
+    let tagElements = getTagElements(fromList: event.tags)
+    Log.info("Finished map")
 
     return Page(
       title: "Edit Event",
@@ -93,7 +106,10 @@ struct EditEventPage: Nodeable {
           El.Div[Attr.className => "AddEventPage__inputLabel"].containing("hypeEndDate"),
           El.Input[Attr.id => "hypeEndDate", Attr.className => "AddEventPage__formInput", Attr.value => hypeEndDate],
           El.Div[Attr.className => "AddEventPage__inputLabel"].containing("tags"),
-          El.Input[Attr.id => "tags", Attr.className => "AddEventPage__formInput"],
+          El.Div[Attr.id => "tagInputContainer"].containing(
+            tagElements
+          ),
+          El.Button[Attr.onClick => addNewTagJS, Attr.className => "AddEventPage__button"].containing("Add another tag"),
           El.Div[Attr.className => "AddEventPage__inputLabel"].containing("websiteURL"),
           El.Input[Attr.id => "websiteURL", Attr.className => "AddEventPage__formInput", Attr.value => websiteURL],
           El.Div[Attr.className => "AddEventPage__inputLabel"].containing("imageURL"),
@@ -110,9 +126,16 @@ struct EditEventPage: Nodeable {
           El.Input[Attr.id => "address", Attr.className => "AddEventPage__formInput", Attr.value => address],
           El.Div[Attr.className => "AddEventPage__inputLabel"].containing("facebookEventID"),
           El.Input[Attr.id => "facebookEventID", Attr.className => "AddEventPage__formInput", Attr.value => facebookEventID],
-          El.Button[Attr.onClick => submitFormJS].containing("Submit")
+          El.Button[Attr.onClick => submitFormJS, Attr.className => "AddEventPage__button"].containing("Submit")
         )
       )
     ).node
   }
+
+  private let addNewTagJS = """
+    var div = document.getElementById(\"tagInputContainer\");
+    var newElement = document.createElement('input');
+    newElement.className = \"AddEventPage__formInput AddEventPage__tagInput\";
+    div.appendChild(newElement);
+  """
 }

@@ -75,7 +75,8 @@ struct AddEventForm: Nodeable {
         }
     };
     let tagEls = Array.from(document.getElementsByClassName(\"AddEventPage__tagInput\"));
-    let tags = tagEls.map(el => el.value);
+    var tags = tagEls.map(el => el.value);
+    tags = tags.filter(function(entry) { return entry.trim() != ''; });
 
     var data = JSON.stringify(
       {
