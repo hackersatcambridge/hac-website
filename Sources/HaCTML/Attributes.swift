@@ -38,6 +38,7 @@ public enum Attributes {
   static public let rel = stringAttribute("rel")
   static public let src = stringAttribute("src")
   static public let srcset = stringAttribute("srcset")
+  static public let step = stringAttribute("step")
   static public let style = CSSAttribute("style")
   static public let target = stringAttribute("target")
   static public let type = stringAttribute("type")
