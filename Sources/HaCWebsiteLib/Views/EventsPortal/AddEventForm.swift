@@ -29,7 +29,10 @@ struct AddEventForm: Nodeable {
           El.Div[Attr.className => "AddEventPage__inputLabel"].containing("hypeEndDate"),
           El.Input[Attr.id => "hypeEndDate", Attr.className => "AddEventPage__formInput"],
           El.Div[Attr.className => "AddEventPage__inputLabel"].containing("tags"),
-          El.Input[Attr.id => "tags", Attr.className => "AddEventPage__formInput"],
+          El.Div[Attr.id => "tagInputContainer"].containing(
+            El.Input[Attr.className => "AddEventPage__formInput AddEventPage__tagInput"]
+          ),
+          El.Button[Attr.onClick => addNewTagJS, Attr.className => "AddEventPage__button"].containing("Add another tag"),
           El.Div[Attr.className => "AddEventPage__inputLabel"].containing("websiteURL"),
           El.Input[Attr.id => "websiteURL", Attr.className => "AddEventPage__formInput"],
           El.Div[Attr.className => "AddEventPage__inputLabel"].containing("imageURL"),
@@ -46,11 +49,18 @@ struct AddEventForm: Nodeable {
           El.Input[Attr.id => "address", Attr.className => "AddEventPage__formInput"],
           El.Div[Attr.className => "AddEventPage__inputLabel"].containing("facebookEventID"),
           El.Input[Attr.id => "facebookEventID", Attr.className => "AddEventPage__formInput"],
-          El.Button[Attr.onClick => submitFormJS].containing("Submit")
+          El.Button[Attr.onClick => submitFormJS, Attr.className => "AddEventPage__button"].containing("Submit")
         )
       )
     ).node
   }
+
+  private let addNewTagJS = """
+  var div = document.getElementById(\"tagInputContainer\");
+  var newElement = document.createElement('input');
+  newElement.className = \"AddEventPage__formInput AddEventPage__tagInput\";
+  div.appendChild(newElement);
+  """
 
   private let submitFormJS = """
     function submitForm() {
@@ -64,6 +74,8 @@ struct AddEventForm: Nodeable {
           window.location.href = \"/beta/events-portal\";
         }
     };
+    let tagEls = Array.from(document.getElementsByClassName(\"AddEventPage__tagInput\"));
+    let tags = tagEls.map(el => el.value);
 
     var data = JSON.stringify(
       {
@@ -75,7 +87,7 @@ struct AddEventForm: Nodeable {
       \"color\": document.getElementById("color").value,
       \"hypeStartDate\": document.getElementById("hypeStartDate").value,
       \"hypeEndDate\": document.getElementById("hypeEndDate").value,
-      \"tags\": [document.getElementById("tags").value],
+      \"tags\": tags,
       \"websiteURL\": document.getElementById("websiteURL").value,
       \"imageURL\": document.getElementById("imageURL").value,
       \"markdownDescription\": document.getElementById("markdownDescription").value,
