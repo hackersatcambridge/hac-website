@@ -4,9 +4,9 @@ import KituraNet
 import LoggerAPI
 
 struct EventsController {
-    static var portalHandler: RouterHandler = { request, response, next in
+  static var portalHandler: RouterHandler = { request, response, next in
     try response.send(
-      EventsPage().node.render()
+      AllEventsPage().node.render()
     ).end()
   }
   

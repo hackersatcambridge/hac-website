@@ -8,7 +8,7 @@ struct IndividualEventPage: Nodeable {
   var node: Node {
     return Page(
       title: "Event",
-      content: EventView.getEventListItem(event)
+      content: EventView.getEventFullDescription(from: event)
     ).node
   }
 }

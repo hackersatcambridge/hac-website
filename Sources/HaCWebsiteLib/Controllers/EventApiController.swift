@@ -25,23 +25,22 @@ struct EventApiController {
             return
           }
         }
-        try saveEvent(json: json)
+        try getEventFromJSON(src: json).save()
         Log.info("Succesfully added event to the database")
-        try response.send("Successfully added your event to the database\n").end()
-      }
-      catch EventParsingError.missingParameters {
+        response.send("Successfully added your event to the database\n")
+      } catch EventParsingError.missingParameters {
         Log.info("Database event adding failed - missing parameters")
         response.statusCode = HTTPStatusCode.badRequest
-        try response.send("Sorry - looks like you didn't include all the necessary fields\n").end()
+        response.send("Sorry - looks like you didn't include all the necessary fields\n")
       } catch EventParsingError.invalidHypePeriod {
         Log.info("Database event adding failed - invalid hype period")
         response.statusCode = HTTPStatusCode.badRequest
-        try response.send("Sorry - looks like the hype period was invalid\n").end()
+        response.send("Sorry - looks like the hype period was invalid\n")
       }
     } else {
       Log.info("Adding event to database failed for unkown reason")
       response.statusCode = HTTPStatusCode.badRequest
-      try response.send("Please use JSON for post data\n").end()
+      response.send("Please use JSON for post data\n")
     }
     next()
   }
@@ -65,25 +64,25 @@ struct EventApiController {
         }
         let updatedEvent = try updateNecessaryFields(event: event, updates: json)
         try updatedEvent.save()
+        Log.info("Event updated in database sucessfully")
+        response.send("The event has been updated sucessfully.\n")
       } catch EventParsingError.missingParameters {
         Log.info("Updating event in database failed due to missing parameters in api call")
         response.statusCode = HTTPStatusCode.badRequest
-        try response.send("There were missing parameters in your api call. Please consult the API documentation. \n").end()
+        response.send("There were missing parameters in your api call. Please consult the API documentation. \n")
       } catch EventParsingError.noSuchEvent {
         Log.info("Updating event in database failed due to the event not existing")
         response.statusCode = HTTPStatusCode.badRequest
-        try response.send("It appears there is no such event with that id.\n").end()
+        response.send("It appears there is no such event with that id.\n")
       } catch {
         Log.info("Updating event in database failed due to unknown reason")
         response.statusCode = HTTPStatusCode.badRequest
-        try response.send("Could not update event for unknown reason. \n").end()
+        response.send("Could not update event for unknown reason. \n")
       }
-      Log.info("Event updated in database sucessfully")
-      try response.send("The event has been updated sucessfully.\n").end()
     } else {
       Log.info("Editing event in database failed for unkown reason")
       response.statusCode = HTTPStatusCode.badRequest
-      try response.send("Please use JSON for post data\n").end()
+      response.send("Please use JSON for post data\n")
     }
     next()
   }
@@ -106,35 +105,33 @@ struct EventApiController {
           throw EventParsingError.noSuchEvent
         }
         try event.delete()
+        Log.info("Event deleted from database sucessfully")
+        response.send("The event has been deleted sucessfully.\n")
       } catch EventParsingError.missingParameters {
         Log.info("Deleting event in database failed due to missing eventId parameter")
         response.statusCode = HTTPStatusCode.badRequest
-        try response.send("Deleting event in database failed due to missing eventId parameter.\n").end()
+        response.send("Deleting event in database failed due to missing eventId parameter.\n")
       } catch EventParsingError.noSuchEvent {
         Log.info("Deleting event in database failed due to the event not existing")
         response.statusCode = HTTPStatusCode.badRequest
-        try response.send("It appears there is no such event with that id.\n").end()
+        response.send("It appears there is no such event with that id.\n")
       } catch {
         Log.info("Deleting event in database failed due to unknown reason")
         response.statusCode = HTTPStatusCode.badRequest
-        try response.send("Could not delete event for unknown reason. \n").end()
+        response.send("Could not delete event for unknown reason. \n")
       }
-      Log.info("Event deleted from database sucessfully")
-      try response.send("The event has been deleted sucessfully.\n").end()
     } else {
       Log.info("Deleting event in database failed for unkown reason")
       response.statusCode = HTTPStatusCode.badRequest
-      try response.send("Please use JSON for post data\n").end()
+      response.send("Please use JSON for post data\n")
     }
     next()
   }
 
-  private static func saveEvent(json: [String : Any]) throws {
-    let event = try parseEvent(json: json)
-    try event.save()
-  }
-
-  public static func parseEvent(json : [String : Any]) throws -> GeneralEvent {
+  /*
+  Generate a GeneralEvent object from a JSON object containing ALL the necessary fields.
+  */
+  public static func getEventFromJSON(src json: [String : Any]) throws -> GeneralEvent {
     guard let eventId = json["eventId"] as? String,
     let title = json["title"] as? String,
     let startDate = Date.from(string: json["startDate"] as? String),
@@ -150,10 +147,8 @@ struct EventApiController {
 
     // Make sure the event itself falls within the hype period
     // If it doesn't, we throw an invalidHypePeriod exception
-    if !((hypeStartDate <= startDate) &&
-      (startDate <= endDate) &&
-      (endDate <= hypeEndDate)) {
-        throw EventParsingError.invalidHypePeriod
+    if !((hypeStartDate <= startDate) && (startDate <= endDate) && (endDate <= hypeEndDate)) {
+      throw EventParsingError.invalidHypePeriod
     }
 
     let location = getOptionalLocation(json: json)
@@ -166,9 +161,20 @@ struct EventApiController {
     let imageURL = json["imageURL"] as? String
     let facebookEventID = json["facebookEventID"] as? String
 
-    return GeneralEvent(eventId: eventId, title: title, time: time, tagLine: tagLine, color: color, hypePeriod: hypePeriod,
-      tags: tags, description: eventDescription, websiteURL: websiteURL, imageURL: imageURL, location: location,
-      facebookEventID: facebookEventID)
+    return GeneralEvent(
+      eventId: eventId,
+      title: title, 
+      time: time, 
+      tagLine: tagLine, 
+      color: color, 
+      hypePeriod: hypePeriod,
+      tags: tags, 
+      description: eventDescription, 
+      websiteURL: websiteURL, 
+      imageURL: imageURL, 
+      location: location,
+      facebookEventID: facebookEventID
+    )
   }
 
   private static func getOptionalLocation(json: [String : Any]) -> Location? {
@@ -233,49 +239,49 @@ struct EventApiController {
     }
     return event
   }
-}
 
-/*
-Scan through a json and return either 
-- the String for a given key if it exists in the json, or
-- the old String of the field if the key doesn't exist in the json
-*/
-func getLatestFieldString(originalValue: String, json: [String: Any], fieldName: String) throws -> String {
-  if json.keys.contains(fieldName) {
-    if let newValue = json[fieldName] as? String {
-      return newValue
+  /*
+  Scan through a json and return either 
+  - the String for a given key if it exists in the json, or
+  - the old String of the field if the key doesn't exist in the json
+  */
+  private static func getLatestFieldString(originalValue: String, json: [String: Any], fieldName: String) throws -> String {
+    if json.keys.contains(fieldName) {
+      if let newValue = json[fieldName] as? String {
+        return newValue
+      } else {
+        throw EventParsingError.invalidUpdateValue
+      }
     } else {
-      throw EventParsingError.invalidUpdateValue
+      return originalValue
     }
-  } else {
+  }
+
+  private static func getLatestFieldStringOpt(originalValue: String?, json: [String: Any], fieldName: String) throws -> String? {
+    if json.keys.contains(fieldName) {
+      if let newValue = json[fieldName] as? String {
+        return newValue
+      } else {
+        throw EventParsingError.invalidUpdateValue
+      }
+    } else {
+      return originalValue
+    }
+  }
+
+  /*
+  Scan through a json and return either 
+  - the Date for a given key if it exists in the json, or
+  - the old Date of the field if the key doesn't exist in the json
+  */
+  private static func getLatestFieldDate(originalValue: Date, json: [String: Any], fieldName: String) -> Date {
+    if json.keys.contains(fieldName) {
+      if let newValue = Date.from(string: json[fieldName] as? String) {
+        return newValue
+      }
+    }
     return originalValue
   }
-}
-
-func getLatestFieldStringOpt(originalValue: String?, json: [String: Any], fieldName: String) throws -> String? {
-  if json.keys.contains(fieldName) {
-    if let newValue = json[fieldName] as? String {
-      return newValue
-    } else {
-      throw EventParsingError.invalidUpdateValue
-    }
-  } else {
-    return originalValue
-  }
-}
-
-/*
-Scan through a json and return either 
-- the Date for a given key if it exists in the json, or
-- the old Date of the field if the key doesn't exist in the json
-*/
-func getLatestFieldDate(originalValue: Date, json: [String: Any], fieldName: String) -> Date {
-  if json.keys.contains(fieldName) {
-    if let newValue = Date.from(string: json[fieldName] as? String) {
-      return newValue
-    }
-  }
-  return originalValue
 }
 
 enum EventParsingError: Swift.Error {

@@ -2,14 +2,13 @@ import HaCTML
 
 // swiftlint:disable line_length
 
-struct EventsPage: Nodeable {
+struct AllEventsPage: Nodeable {
 
   var node: Node {
-
     let events = EventServer.getAllEvents()
     let eventListItems = events.map({
       (event: GeneralEvent) -> Node in 
-        EventView.getEventListItem(event)
+        EventView.getEventShortDescription(from: event)
       }
     )
     let count = eventListItems.count
