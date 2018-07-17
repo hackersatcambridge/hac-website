@@ -200,119 +200,31 @@ struct EventApiController {
   }
 
   private static func updateNecessaryFields(event: GeneralEvent, updates json: [String : Any]) throws -> GeneralEvent {
-    let fieldsToUpdate = json.keys
+    event.eventId = try getLatestFieldString(originalValue: event.eventId, json: json, fieldName: "eventId")
+    event.title = try getLatestFieldString(originalValue: event.title, json: json, fieldName: "title")
+    event.tagLine = try getLatestFieldString(originalValue: event.tagLine, json: json, fieldName: "tagLine")
+    event.color = try getLatestFieldString(originalValue: event.color, json: json, fieldName: "color")
+    event.websiteURL = try getLatestFieldStringOpt(originalValue: event.websiteURL, json: json, fieldName: "websiteURL")
+    event.imageURL = try getLatestFieldStringOpt(originalValue: event.imageURL, json: json, fieldName: "imageURL")
+    event.eventDescription = Markdown(try getLatestFieldString(originalValue: event.eventDescription.raw, json: json, fieldName: "markdownDescription"))
+    event.facebookEventID = try getLatestFieldStringOpt(originalValue: event.facebookEventID, json: json, fieldName: "facebookEventID")
 
-    if fieldsToUpdate.contains("eventId") {
-      if let newEventId = json["eventId"] as? String {
-        event.eventId = newEventId
-      } else {
+    //Check for new times in json
+    
+    let startDate = getLatestFieldDate(originalValue: event.time.start, json: json, fieldName: "startDate")
+    let endDate = getLatestFieldDate(originalValue: event.time.end, json: json, fieldName: "endDate")
+    let hypeStartDate = getLatestFieldDate(originalValue: event.hypePeriod.start, json: json, fieldName: "hypeStartDate")
+    let hypeEndDate = getLatestFieldDate(originalValue: event.hypePeriod.end, json: json, fieldName: "hypeEndDate")
+    
+    if !((hypeStartDate <= startDate) &&
+      (startDate <= endDate) &&
+      (endDate <= hypeEndDate)) {
         throw EventParsingError.invalidUpdateValue
-      }
     }
-    if fieldsToUpdate.contains("title") {
-      if let newTitle = json["title"] as? String {
-        event.title = newTitle
-      } else {
-        throw EventParsingError.invalidUpdateValue
-      }
-    }
-    if fieldsToUpdate.contains("tagLine") {
-      if let newTagLine = json["tagLine"] as? String {
-        event.tagLine = newTagLine
-      } else {
-        throw EventParsingError.invalidUpdateValue
-      }
-    }
-    if fieldsToUpdate.contains("color") {
-      if let newColor = json["color"] as? String {
-        event.color = newColor
-      } else {
-        throw EventParsingError.invalidUpdateValue
-      }
-    }
-    if fieldsToUpdate.contains("websiteURL") {
-      if let newURL = json["websiteURL"] as? String {
-        event.websiteURL = newURL
-      } else {
-        throw EventParsingError.invalidUpdateValue
-      }
-    }
-    if fieldsToUpdate.contains("imageURL") {
-      if let newURL = json["imageURL"] as? String {
-        event.imageURL = newURL
-      } else {
-        throw EventParsingError.invalidUpdateValue
-      }
-    }
-    if fieldsToUpdate.contains("markdownDescription") {
-      if let newMarkdownDescription = json["markdownDescription"] as? String {
-        event.eventDescription = Markdown(newMarkdownDescription)
-      } else {
-        throw EventParsingError.invalidUpdateValue
-      }
-    }
-    if fieldsToUpdate.contains("facebookEventID") {
-      if let newFacebookId = json["facebookEventID"] as? String {
-        event.facebookEventID = newFacebookId
-      } else {
-        throw EventParsingError.invalidUpdateValue
-      }
-    }
-    if fieldsToUpdate.contains("startDate") && fieldsToUpdate.contains("endDate") {
-      if let newStartDate = Date.from(string: json["startDate"] as? String),
-        let newEndDate = Date.from(string: json["endDate"] as? String) {
-          if newStartDate > newEndDate { throw EventParsingError.invalidUpdateValue }
-          event.time = DateInterval(start: newStartDate, end: newEndDate)
-        } else {
-          throw EventParsingError.invalidUpdateValue
-        }
-    } else {
-      if fieldsToUpdate.contains("startDate") {
-        if let newStartDate = Date.from(string: json["startDate"] as? String) {
-          let endDate = event.time.end
-          if newStartDate > endDate { throw EventParsingError.invalidUpdateValue }
-          event.time = DateInterval(start: newStartDate, end: endDate)
-        } else {
-          throw EventParsingError.invalidUpdateValue
-        }
-      } else if fieldsToUpdate.contains("endDate") {
-        if let newEndDate = Date.from(string: json["endDate"] as? String) {
-          let startDate = event.time.start
-          if startDate > newEndDate { throw EventParsingError.invalidUpdateValue }
-          event.time = DateInterval(start: startDate, end: newEndDate)
-        } else {
-          throw EventParsingError.invalidUpdateValue
-        }
-      }
-    }
-    if fieldsToUpdate.contains("hypeStartDate") && fieldsToUpdate.contains("hypeEndDate") {
-      if let newHypeStartDate = Date.from(string: json["hypeStartDate"] as? String),
-        let newHypeEndDate = Date.from(string: json["hypeEndDate"] as? String) {
-          if newHypeStartDate > newHypeEndDate { throw EventParsingError.invalidUpdateValue }
-          event.hypePeriod = DateInterval(start: newHypeStartDate, end: newHypeEndDate)
-        } else {
-          throw EventParsingError.invalidUpdateValue
-        }
-    } else {
-      if fieldsToUpdate.contains("hypeStartDate") {
-        if let newHypeStartDate = Date.from(string: json["hypeStartDate"] as? String) {
-          let hypeEndDate = event.time.end
-          if newHypeStartDate > hypeEndDate { throw EventParsingError.invalidUpdateValue }
-          event.hypePeriod = DateInterval(start: newHypeStartDate, end: hypeEndDate)
-        } else {
-          throw EventParsingError.invalidUpdateValue
-        }
-      }
-      if fieldsToUpdate.contains("hypeEndDate") {
-        if let newHypeEndDate = Date.from(string: json["hypeEndDate"] as? String) {
-          let hypeStartDate = event.time.start
-          if hypeStartDate > newHypeEndDate { throw EventParsingError.invalidUpdateValue }
-          event.hypePeriod = DateInterval(start: hypeStartDate, end: newHypeEndDate)
-        } else {
-          throw EventParsingError.invalidUpdateValue
-        }
-      }
-    }
+    //Update DateIntervals in event
+    event.time = DateInterval(start: startDate, end: endDate)
+    event.hypePeriod = DateInterval(start: hypeStartDate, end: hypeEndDate)
+
     if let newTags = getOptionalTags(json: json) {
       event.tags = newTags
     }
@@ -321,6 +233,49 @@ struct EventApiController {
     }
     return event
   }
+}
+
+/*
+Scan through a json and return either 
+- the String for a given key if it exists in the json, or
+- the old String of the field if the key doesn't exist in the json
+*/
+func getLatestFieldString(originalValue: String, json: [String: Any], fieldName: String) throws -> String {
+  if json.keys.contains(fieldName) {
+    if let newValue = json[fieldName] as? String {
+      return newValue
+    } else {
+      throw EventParsingError.invalidUpdateValue
+    }
+  } else {
+    return originalValue
+  }
+}
+
+func getLatestFieldStringOpt(originalValue: String?, json: [String: Any], fieldName: String) throws -> String? {
+  if json.keys.contains(fieldName) {
+    if let newValue = json[fieldName] as? String {
+      return newValue
+    } else {
+      throw EventParsingError.invalidUpdateValue
+    }
+  } else {
+    return originalValue
+  }
+}
+
+/*
+Scan through a json and return either 
+- the Date for a given key if it exists in the json, or
+- the old Date of the field if the key doesn't exist in the json
+*/
+func getLatestFieldDate(originalValue: Date, json: [String: Any], fieldName: String) -> Date {
+  if json.keys.contains(fieldName) {
+    if let newValue = Date.from(string: json[fieldName] as? String) {
+      return newValue
+    }
+  }
+  return originalValue
 }
 
 enum EventParsingError: Swift.Error {
