@@ -14,8 +14,7 @@ extension LandingFeatures {
         background: .image(Assets.publicPath("/images/gamegig3000/gamegig-background.jpg")),
         imagePath: Assets.publicPath("images/gamegig3000/gamegig-foreground.png"),
         alternateText: "HaC Game Gig 3000 on the 1st of December 2017!"
-      ),
-      textShade: .light
+      )
     )
   }
 }

@@ -14,8 +14,7 @@ extension LandingFeatures {
       ),
       eventLink: "https://www.facebook.com/events/181764052556196/",
       liveLink: "/workshops/continuous-integration",
-      hero: hero,
-      textShade: .light
+      hero: hero
     )
   }
 }

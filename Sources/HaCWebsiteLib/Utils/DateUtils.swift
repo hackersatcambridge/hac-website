@@ -33,4 +33,11 @@ extension Date {
       fatalError("Improper date given: \(year)-\(month)-\(day) \(hour):\(minute) does not exist")
     }
   }
+
+  static func from(string dateString: String?) -> Date? {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.zzz"
+    // We don't use the map method here, because it returns a result of type Date??
+    return dateString != nil ? dateFormatter.date(from: dateString!) : nil
+  }
 }

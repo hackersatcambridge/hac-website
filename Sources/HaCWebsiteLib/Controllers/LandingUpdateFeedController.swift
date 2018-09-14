@@ -5,6 +5,7 @@ import LoggerAPI
 import HeliumLogger
 import DotEnv
 import SwiftyJSON
+import LoggerAPI
 
 struct LandingUpdateFeedController {
 
@@ -26,7 +27,10 @@ struct LandingUpdateFeedController {
   ]
 
   static var handler: RouterHandler = { request, response, next in
-    let eventPostCards : [PostCard] = EventServer.getCurrentEvents().flatMap{ event in 
+    let fromDate : Date = Date.from(string: request.queryParameters["fromDate"]) ?? Date()
+    let toDate : Date = Date.from(string: request.queryParameters["toDate"]) ?? Date()
+
+    let eventPostCards : [PostCard] = EventServer.getEvents(from: fromDate, to: toDate).flatMap{ event in
       event.postCardRepresentation
     }
     let updates = eventPostCards + videos

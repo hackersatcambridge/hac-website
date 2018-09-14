@@ -3,11 +3,15 @@ import DotEnv
 import Fluent
 import PostgreSQLDriver
 
-struct DatabaseURLComponents {
+struct DatabaseURLComponents: Equatable {
   let host: String
   let user: String
   let password: String
   let database: String
+
+  static func == (lhs: DatabaseURLComponents, rhs: DatabaseURLComponents) -> Bool {
+    return (lhs.host, lhs.user, lhs.password, lhs.database) == (rhs.host, rhs.user, rhs.password, rhs.database)
+  }
 }
 
 extension URL {
