@@ -115,8 +115,7 @@ private struct WorkshopBuilder {
   }
 
   private func repoUrl(origin: String, relativePath: String) throws -> URL {
-    let urlString = "\(origin)hackersatcambridge/workshop-\(workshopId)/\(relativePath)"
-
+    let urlString = "\(origin)hackersatcambridge/workshop-\(workshopId)@\(relativePath)"
     if let url = URL(string: urlString) {
       return url
     } else {
@@ -125,7 +124,7 @@ private struct WorkshopBuilder {
   }
 
   func fileServingUrl(relativePath: String) throws -> URL {
-    return try repoUrl(origin: "https://rawgit.com/", relativePath: "\(commitSha)\(relativePath)")
+    return try repoUrl(origin: "https://cdn.jsdelivr.net/gh/", relativePath: "\(commitSha)\(relativePath)")
   }
 
   func remoteRepoUrl(relativePath: String) throws -> URL {
