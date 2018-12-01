@@ -94,3 +94,5 @@ As the container shares source files with your project directory, any source fil
 ## Documentation
 
 Documentation on further features can be found in the [`/Docs`](/Docs) folder.
+
+Now using [Vapor Reverted Verison](https://github.com/patricoferris/heroku-buildpack.git) in Heroku.
