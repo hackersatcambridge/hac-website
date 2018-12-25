@@ -100,7 +100,13 @@ struct LandingPage: Nodeable {
                 Don't let the name scare you, we aren't the kind of hackers that try our best to get around complex security systems. We are simply an enthusiastic group of people who love technology.
 
                 At HaC it’s our mission to empower everyone to build whatever technology project they want. Whether you are a complete beginner or a seasoned pro, we're here to help you develop and share your tech skills.
-              """)
+              """),
+              El.A[
+                Attr.href => "/about",
+                Attr.className => "BigButton"
+              ].containing(
+                "About us"
+              )
             )
           ),
           El.Article[Attr.className => "LandingAbout__section"].containing(
