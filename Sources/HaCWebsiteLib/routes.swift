@@ -16,8 +16,9 @@ func getWebsiteRouter() -> Router {
     "/git": "https://github.com/hackersatcambridge/git-workshop-2017",
     "/binary-exploitation": "https://github.com/hackersatcambridge/binary-exploitation/blob/master/handout.md",
     "/love": "https://github.com/hackersatcambridge/workshop-love2d/blob/master/content/notes/notes.md",
-    "/game-gig": "/events/2017/gamegig3000",
-    "/gamegig": "/events/2017/gamegig3000",
+    "/game-gig": "https://game-gig-one-button.netlify.com/",
+    "/gamegig": "https://game-gig-one-button.netlify.com/",
+    "/gamegig2017": "/events/2017/gamegig3000",
     "/greenhack": "https://greenhack.hackersatcambridge.com",
     "/unity": "https://github.com/hackersatcambridge/workshop-unity/blob/master/content/notes/notes.md"
   ]))
@@ -39,6 +40,9 @@ func getWebsiteRouter() -> Router {
 
   /// Custom event pages
   router.get("/events/2017/gamegig3000", handler: HackathonController.handler(hackathon: GameGig2017()))
+
+  // About section of the website
+  router.get("/about", handler: AboutController.handler)
 
   // MARK: Features in progress
   router.get("/beta/landing-update-feed", handler: LandingUpdateFeedController.handler)
