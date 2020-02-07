@@ -20,8 +20,7 @@ class WorkshopTests: HaCWebsiteLibTestCase {
     XCTAssertEqual(workshop.license, "MIT")
 
     XCTAssert(workshop.notes.raw.contains("The main source of the workshop content."))
-
-    XCTAssertEqual(workshop.promoImageForeground, "https://rawgit.com/hackersatcambridge/workshop-passing-example/abcde/.hac_workshop/promo_images/fg.png")
+    XCTAssertEqual(workshop.promoImageForeground, "https://cdn.jsdelivr.net/gh/hackersatcambridge/workshop-passing-example@abcde/.hac_workshop/promo_images/fg.png")
     XCTAssertEqual(workshop.promoImageBackground, Background.color("#fffeee"))
 
     XCTAssertEqual(workshop.description.raw, "This workshop will take you through the basics of x. \nWe'll talk about how to foo and show you how, with a little work, you can bar your baz.")
