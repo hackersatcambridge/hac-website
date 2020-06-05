@@ -1,8 +1,8 @@
 struct Location {
-    let latitude : Double
-    let longitude : Double
-    let address : String?
-    let venue : String?
+    var latitude : Double 
+    var longitude : Double
+    var address : String?
+    var venue : String?
 
     init(latitude: Double, longitude: Double, address: String? = nil, venue: String? = nil) {
         self.latitude = latitude

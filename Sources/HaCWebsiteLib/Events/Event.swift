@@ -1,14 +1,15 @@
 import Foundation
 
 protocol Event: PostCardRepresentable {
-    var title : String {get}
-    var time : DateInterval {get}
-    var tagLine : String {get}
-    var color : String {get}
-    var hypePeriod : DateInterval {get}
-    var tags : [String] {get}
-    var imageURL : String? {get}
-    var location : Location? {get}
-    var facebookEventID : String? {get}
+    var eventId: String {get set}
+    var title : String {get set}
+    var time : DateInterval {get set}
+    var tagLine : String {get set}
+    var color : String {get set}
+    var hypePeriod : DateInterval {get set}
+    var tags : [String] {get set}
+    var imageURL : String? {get set}
+    var location : Location? {get set}
+    var facebookEventID : String? {get set}
     var shouldShowAsUpdate : Bool {get}
 }

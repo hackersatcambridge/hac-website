@@ -23,4 +23,29 @@ public struct EventServer {
       .all()
     return newEvents ?? []
   }
- }
+
+  static func getEvent(eventId: String) -> GeneralEvent? {
+    do {
+      let event = try GeneralEvent.makeQuery()
+        .filter("eventId", .equals, eventId)
+        .first()
+      return event
+    } catch {
+      return nil
+    }
+  }
+
+  static func doesEventWithIdExist(eventId: String) -> Bool {
+    do {
+      let events = try GeneralEvent.makeQuery()
+        .filter("eventId", .equals, eventId)
+        .all()
+      if events.count != 0 {
+        return true
+      }
+      return false
+    } catch {
+      return false
+    }
+  }
+}
