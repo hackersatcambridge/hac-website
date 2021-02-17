@@ -36,7 +36,7 @@ func getWebsiteRouter() -> Router {
   router.post("/api/add_event", handler: EventApiController.handler)
 
   router.get("/", handler: LandingPageController.handler)
-  router.get("/constitution", handler: ConstitutionController.handler)
+  router.get("/constitution?", handler: ConstitutionController.handler)
 
   /// Custom event pages
   router.get("/events/2017/gamegig3000", handler: HackathonController.handler(hackathon: GameGig2017()))
@@ -46,7 +46,7 @@ func getWebsiteRouter() -> Router {
 
   // MARK: Features in progress
   router.get("/beta/landing-update-feed", handler: LandingUpdateFeedController.handler)
-  router.get("/workshops", handler: WorkshopsController.handler)
+  router.get("/workshops?", handler: WorkshopsController.handler)
   router.get("/workshops/:workshopId", handler: WorkshopsController.workshopHandler)
   router.get("/workshops/update", middleware: CredentialsServer.credentials)
   router.get("/workshops/update", handler: WorkshopsController.workshopUpdateHandler)
